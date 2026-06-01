@@ -221,9 +221,9 @@ const educationCategoryCounts = ["school", "course", "workshop", "conference"]
   </section>
 
   <section class="border-y bg-background py-8 md:py-10">
-    <div class="container">
-      <div class="grid overflow-hidden rounded-lg border bg-muted/20 md:grid-cols-[1.15fr_0.85fr]">
-        <div class="aspect-video bg-black md:aspect-auto md:min-h-80">
+    <div class="container grid gap-5 lg:grid-cols-2">
+      <article class="overflow-hidden rounded-lg border bg-muted/20">
+        <div class="aspect-video bg-black">
           <iframe
             class="size-full"
             src={featuredPublicTalk.embedUrl}
@@ -233,11 +233,11 @@ const educationCategoryCounts = ["school", "course", "workshop", "conference"]
             allowfullscreen
           ></iframe>
         </div>
-        <div class="p-6 md:p-8">
+        <div class="p-6 md:p-7">
           <span class="rounded-full border border-secondary/20 bg-secondary/10 px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-secondary">
             Featured public talk
           </span>
-          <h2 class="mt-4 text-2xl leading-tight md:text-3xl">
+          <h2 class="mt-4 text-2xl leading-tight">
             {featuredPublicTalk.title}
           </h2>
           <p class="text-muted-foreground mt-3">
@@ -257,28 +257,24 @@ const educationCategoryCounts = ["school", "course", "workshop", "conference"]
             />
           </a>
         </div>
-      </div>
-    </div>
-  </section>
+      </article>
 
-  <section class="border-y bg-background py-8 md:py-10">
-    <div class="container">
       <a
         href="/blog/kvs-computer-science-teacher-training-2018"
-        class="group grid overflow-hidden rounded-lg border bg-muted/20 transition hover:border-secondary md:grid-cols-[0.9fr_1.35fr]"
+        class="group overflow-hidden rounded-lg border bg-muted/20 transition hover:border-secondary"
       >
-        <div class="relative min-h-56 md:min-h-full">
+        <div class="relative aspect-video">
           <img
             src="/images/blog/kvs-cs-pgt-2018/kvs-cs-pgt-2018-01.png"
             alt="KVS Computer Science PGT teachers and facilitators at IIT Gandhinagar"
             class="absolute inset-0 size-full object-cover"
           />
         </div>
-        <div class="p-6 md:p-8">
+        <div class="p-6 md:p-7">
           <span class="rounded-full border border-secondary/20 bg-secondary/10 px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-secondary">
             Featured outreach story
           </span>
-          <h2 class="mt-4 text-2xl leading-tight md:text-3xl">
+          <h2 class="mt-4 text-2xl leading-tight">
             Teaching Python Through Play: KVS Computer Science PGT Training at IITGN
           </h2>
           <p class="text-muted-foreground mt-3">
