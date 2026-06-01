@@ -340,6 +340,7 @@ export const departmentEvents: DepartmentEvent[] = [
     description:
       "A GIAN course on pattern matching algorithms taught by Amihood Amir.",
     source: "CSE archive",
+    featured: true,
   },
   {
     id: "acm-graph-theory-summer-school-2017",
@@ -386,6 +387,7 @@ export const departmentEvents: DepartmentEvent[] = [
     description:
       "A GIAN course on 3D digitization methods for cultural heritage.",
     source: "CSE archive",
+    featured: true,
   },
 ];
 
