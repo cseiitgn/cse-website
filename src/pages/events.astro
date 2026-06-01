@@ -1,0 +1,17 @@
+---
+import PlaceholderPage from '@/components/sections/placeholder-page';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="Events" description="Seminars, talks, and events at the CSE department">
+  <PlaceholderPage
+    title="Events"
+    description="Seminars, talks, workshops, and other events from the CSE department."
+    sections={[
+      'Upcoming seminars and talks',
+      'Workshops and conferences',
+      'Event calendar',
+      'Past events archive',
+    ]}
+  />
+</DefaultLayout>

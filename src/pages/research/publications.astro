@@ -1,0 +1,11 @@
+---
+import PublicationsDirectory from "@/components/sections/publications-directory";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+---
+
+<DefaultLayout
+  title="Publications"
+  description="Research publications from the CSE department"
+>
+  <PublicationsDirectory client:load />
+</DefaultLayout>

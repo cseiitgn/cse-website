@@ -1,0 +1,23 @@
+---
+import AcademicSummaryPage from '@/components/sections/academic-summary-page.astro';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="VSRP" description="Visiting student opportunities at IIT Gandhinagar.">
+  <AcademicSummaryPage
+    title="Visiting Students Programme"
+    description="Spend a semester or academic term at IIT Gandhinagar through visiting-student research or coursework pathways."
+    summary="IITGN welcomes visiting students who want short-term study or research engagement at the institute. Students may take courses, participate in research, or work on projects with IITGN faculty, depending on the specific visiting-student route."
+    highlights={[
+      'The academic Visiting Students Programme is open to undergraduate, graduate, and postgraduate students who meet IITGN requirements.',
+      'The Visiting Students Research Engagement Programme enables select final-year students from IITs, IISc, IISERs, and NITs to pursue semester-long research projects with IITGN faculty.',
+      'Research Engagement credits are registered through IN 497 modules, with grading by the host department.',
+      'Eligibility, fees, stipend information, dates, and application links vary by program and are maintained on the IITGN admissions pages.',
+    ]}
+    links={[
+      { label: 'Visiting Students Programme', href: 'https://iitgn.ac.in/academics/visiting-students-programme' },
+      { label: 'Visiting Students Research Engagement Programme', href: 'https://iitgn.ac.in/admissions/visiting-students-research-engagement-programme' },
+      { label: 'Visiting Students admissions', href: 'https://iitgn.ac.in/admissions/nondegree' },
+    ]}
+  />
+</DefaultLayout>

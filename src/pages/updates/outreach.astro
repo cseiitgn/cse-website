@@ -1,0 +1,565 @@
+---
+import {
+  EVENT_CATEGORY_LABELS,
+  EVENT_CATEGORY_STYLES,
+  featuredLearningEvents,
+} from "@/data/events";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import {
+  ArrowRight,
+  GraduationCap,
+  Lightbulb,
+  Mic2,
+  Network,
+  Newspaper,
+  Search,
+  School,
+  Sparkles,
+} from "lucide-react";
+
+const researchOutcomes = [
+  {
+    title: "Permutation Match Puzzles",
+    people: "Kshitij Gajjar and Neeldhara Misra",
+    summary:
+      "A CCL-introduced physical puzzle becomes an algorithms paper about sorting match puzzles, solvability structure, counting, and repair algorithms.",
+    sourceLabel: "arXiv preprint",
+    sourceUrl: "https://arxiv.org/abs/2603.08110",
+  },
+  {
+    title: "A Little Aggression Goes a Long Way",
+    people: "Jyothi Krishnan, Neeldhara Misra, and Saraswati Girish Nanoti",
+    summary:
+      "A pen-and-paper game line of work matured into a COCOON 2024 paper on the computational complexity of a two-player graph game.",
+    sourceLabel: "IITGN repository",
+    sourceUrl:
+      "https://repository.iitgn.ac.in/handle/123456789/11195?show=full",
+  },
+];
+
+const outreachHighlights = [
+  {
+    title: "Creative Mathematical Sciences Communication",
+    label: "Keynote / plenary",
+    summary:
+      "Neeldhara Misra is listed among the plenary speakers for CMSC 2026, a conference centered on communicating mathematical ideas fundamental to computer science.",
+    sourceLabel: "CMSC 2026",
+    sourceUrl: "https://cmsc2026.github.io/",
+  },
+  {
+    title: "INYAS membership",
+    label: "Recognition",
+    summary:
+      "Neeldhara Misra was selected as a member of the Indian National Young Academy of Sciences for 2023.",
+    sourceLabel: "IITGN Connections",
+    sourceUrl: "https://iitgn.ac.in/assets/pdfs/connections/v15i3_4.pdf",
+  },
+  {
+    title: "Google exploreCSR Award",
+    label: "Broadening participation",
+    summary:
+      "Nipun Batra, Neeldhara Misra, and Abhishek Bichhawat received the Google exploreCSR Award 2024.",
+    sourceLabel: "CSE news",
+    sourceUrl: "https://cs.iitgn.ac.in/news",
+  },
+  {
+    title: "NCERT CSE textbook committee",
+    label: "School curriculum",
+    summary:
+      "Neeldhara Misra serves on the NCERT committee writing computer science and engineering textbooks for classes 11 and 12.",
+    sourceLabel: "NCERT",
+    sourceUrl: "https://ncert.nic.in/",
+  },
+  {
+    title: "Fun with Math and Computing",
+    label: "School Connect",
+    summary:
+      "The NPTEL School Connect course introduces school students to mathematical and computational thinking through puzzles, games, and hands-on ideas.",
+    sourceLabel: "NPTEL School Connect",
+    sourceUrl: "https://code.iitm.ac.in/schoolconnect/course-details?course=mc",
+  },
+];
+
+const publicPrograms = [
+  {
+    title: "Project Madhava",
+    people: "Manu Awasthi with CCL IITGN",
+    summary:
+      "A hands-on computer-systems pedagogy effort for schools, colleges, and polytechnics, paired with work on RISC-V microcontroller IP.",
+    sourceLabel: "Project talk",
+    sourceUrl: "https://events.vtools.ieee.org/m/535012",
+  },
+  {
+    title: "Center for Creative Learning",
+    people: "CCL IITGN and CSE collaborators",
+    summary:
+      "CCL builds toys, activities, workshops, videos, and research-led designs for STEM learning at scale with school students and teachers.",
+    sourceLabel: "CCL impact",
+    sourceUrl: "https://ccl.iitgn.ac.in/",
+  },
+];
+
+const mediaItems = [
+  {
+    title: "Conversation with Neeldhara Misra",
+    person: "Neeldhara Misra",
+    type: "Podcast",
+    summary:
+      "A long-form conversation on her path into algorithms, computational social choice, games, and science communication.",
+    sourceLabel: "VISMAYA",
+    sourceUrl:
+      "https://historyofscience.in/2024/01/03/conversation-with-neeldhara-misra/",
+  },
+  {
+    title: "IITGN Podcast: AI, Academia, and Student Opportunities",
+    person: "Mayank Singh",
+    type: "Podcast",
+    summary:
+      "A student-led discussion on AI, academia, mentorship, research opportunities, and the future of AI in education.",
+    sourceLabel: "IITGN SAC",
+    sourceUrl:
+      "https://www.linkedin.com/posts/student-academic-council-iit-gandhinagar_iitgn-podcastsiitgn-studentvoices-activity-7344738444247556097-4Un_",
+  },
+  {
+    title: "Ganga-1B Hindi language model",
+    person: "Mayank Singh",
+    type: "Media",
+    summary:
+      "Coverage of the Lingo Research Group’s Hindi language-model work and its educational and public-sector possibilities.",
+    sourceLabel: "Indian Express",
+    sourceUrl:
+      "https://indianexpress.com/article/cities/ahmedabad/ganga-1b-pre-trained-hindi-ai-model-developed-at-iitgn-9441288/",
+  },
+  {
+    title: "Project Madhava for hardware education",
+    person: "Manu Awasthi",
+    type: "Media / public talk",
+    summary:
+      "Public coverage and talks frame Project Madhava as a route from school-level digital logic activities to indigenous microcontroller design.",
+    sourceLabel: "India Today",
+    sourceUrl:
+      "https://www.indiatoday.in/education-today/featurephilia/story/iit-gandhinagars-self-reliant-india-story-begins-in-classrooms-2869886-2026-02-18",
+  },
+  {
+    title: "Computational sustainability and energy analytics",
+    person: "Nipun Batra",
+    type: "Public profile",
+    summary:
+      "Public profiles describe Sustainability Lab work on AI for energy, buildings, air quality, and health sensing.",
+    sourceLabel: "Faculty profile",
+    sourceUrl: "https://nipunbatra.github.io/",
+  },
+  {
+    title: "AI Resilience and Command Centre",
+    person: "Udit Bhatia",
+    type: "Media",
+    summary:
+      "IITGN coverage highlights data-driven climate-risk management and AI-based urban flooding decision support.",
+    sourceLabel: "IITGN News",
+    sourceUrl:
+      "https://news.iitgn.ac.in/iit-gandhinagar-launches-ai-resilience-and-command-centre-for-data-driven-climate-risk-management/",
+  },
+  {
+    title: "5G and network-security capacity building",
+    person: "Sameer G. Kulkarni",
+    type: "Public workshop",
+    summary:
+      "External workshop listings show public-facing engagement around 5G, programmable networks, and security practice.",
+    sourceLabel: "IIT Bombay workshop",
+    sourceUrl: "https://www.ieor.iitb.ac.in/mlions/5Gworkshop2024/",
+  },
+];
+
+const educationEventIds = new Set([
+  "acm-ikdd-summer-school-2022",
+  "gian-randomized-methods-2022",
+  "acm-india-csed-2022",
+  "cricket-computing-education-week-2024",
+  "compute-t4e-2024",
+  "modern-80211-wlans-2025",
+  "acmw-algorithmic-game-theory-2019",
+  "acm-graph-theory-summer-school-2017",
+  "teqip-design-analysis-algorithms-2016",
+  "gian-social-choice-2017",
+]);
+
+const educationEvents = featuredLearningEvents.filter((event) =>
+  educationEventIds.has(event.id),
+);
+
+const educationCategoryCounts = ["school", "course", "workshop", "conference"]
+  .map((category) => ({
+    category,
+    count: educationEvents.filter((event) => event.category === category)
+      .length,
+  }))
+  .filter(({ count }) => count > 0);
+---
+
+<DefaultLayout
+  title="Outreach"
+  description="CSE outreach through schools, public learning, CCL collaborations, media, and research-led education."
+>
+  <section
+    class="from-primary/5 bg-gradient-to-b to-transparent pb-8 pt-10 md:pb-10 md:pt-12"
+  >
+    <div class="container">
+      <p class="text-secondary text-sm font-medium uppercase tracking-wider">
+        Public learning and computing for everyone
+      </p>
+      <h1 class="mt-3 text-3xl md:text-4xl">Outreach</h1>
+      <p class="text-muted-foreground mt-4 max-w-3xl">
+        CSE outreach spans summer schools, teacher workshops, hands-on school
+        programs, research-led puzzles and games, public talks, media
+        conversations, and broadening-participation grants.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-y bg-background py-8 md:py-10">
+    <div class="container">
+      <a
+        href="/blog/kvs-computer-science-teacher-training-2018"
+        class="group grid overflow-hidden rounded-lg border bg-muted/20 transition hover:border-secondary md:grid-cols-[0.9fr_1.35fr]"
+      >
+        <div class="relative min-h-56 md:min-h-full">
+          <img
+            src="/images/blog/kvs-cs-pgt-2018/kvs-cs-pgt-2018-01.png"
+            alt="KVS Computer Science PGT teachers and facilitators at IIT Gandhinagar"
+            class="absolute inset-0 size-full object-cover"
+          />
+        </div>
+        <div class="p-6 md:p-8">
+          <span class="rounded-full border border-secondary/20 bg-secondary/10 px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-secondary">
+            Featured outreach story
+          </span>
+          <h2 class="mt-4 text-2xl leading-tight md:text-3xl">
+            Teaching Python Through Play: KVS Computer Science PGT Training at IITGN
+          </h2>
+          <p class="text-muted-foreground mt-3">
+            A 12-day IITGN and CCL program helped 52 Kendriya Vidyalaya
+            Computer Science teachers transition from C++ to Python through
+            activities, games, robotics, classroom tools, and hands-on projects.
+          </p>
+          <span class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-secondary">
+            Read the blog post
+            <ArrowRight
+              className="size-4 transition group-hover:translate-x-1"
+              aria-hidden="true"
+            />
+          </span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="border-y bg-muted/20 py-10 md:py-12">
+    <div class="container">
+      <div class="grid gap-5 md:grid-cols-3">
+        <article class="rounded-lg border bg-background p-5">
+          <School className="size-6 text-secondary" aria-hidden="true" />
+          <h2 class="mt-4 text-xl">Schools and Teachers</h2>
+          <p class="text-muted-foreground mt-2 text-sm">
+            Hands-on STEM activities, computing education workshops, and
+            curriculum programs connect the department with learners well before
+            college.
+          </p>
+        </article>
+        <article class="rounded-lg border bg-background p-5">
+          <Lightbulb className="size-6 text-secondary" aria-hidden="true" />
+          <h2 class="mt-4 text-xl">Play to Research</h2>
+          <p class="text-muted-foreground mt-2 text-sm">
+            Games, puzzles, and classroom activities are treated seriously:
+            several have become formal questions in algorithms and complexity.
+          </p>
+        </article>
+        <article class="rounded-lg border bg-background p-5">
+          <Mic2 className="size-6 text-secondary" aria-hidden="true" />
+          <h2 class="mt-4 text-xl">Public Conversations</h2>
+          <p class="text-muted-foreground mt-2 text-sm">
+            Faculty members regularly translate research ideas for students,
+            teachers, media, policy audiences, and the wider public.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 md:py-12">
+    <div class="container">
+      <div class="mb-6 flex items-center gap-2">
+        <GraduationCap className="size-5 text-secondary" aria-hidden="true" />
+        <h2 class="text-2xl">Summer Schools, Courses, and Workshops</h2>
+      </div>
+      <div class="mb-5 space-y-3">
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            class="rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 data-[active=true]:border-slate-700 data-[active=true]:bg-slate-800 data-[active=true]:text-white"
+            data-learning-filter
+            data-filter="all"
+            data-active="true"
+            aria-pressed="true"
+          >
+            All: {educationEvents.length}
+          </button>
+          {
+            educationCategoryCounts.map(({ category, count }) => (
+              <button
+                type="button"
+                class={`rounded-full border px-3 py-1 text-sm transition hover:brightness-95 data-[active=true]:border-slate-700 data-[active=true]:bg-slate-800 data-[active=true]:text-white ${EVENT_CATEGORY_STYLES[category]}`}
+                data-learning-filter
+                data-filter={category}
+                data-active="false"
+                aria-pressed="false"
+              >
+                {EVENT_CATEGORY_LABELS[category]}: {count}
+              </button>
+            ))
+          }
+        </div>
+        <label class="sr-only" for="learning-search">
+          Search learning programs
+        </label>
+        <div class="relative">
+          <Search
+            className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+            aria-hidden="true"
+          />
+          <input
+            id="learning-search"
+            type="search"
+            class="w-full rounded-full border bg-background py-2 pl-10 pr-4 text-sm outline-none transition placeholder:text-muted-foreground focus:border-secondary"
+            placeholder="Search learning program titles..."
+            data-learning-search
+          />
+        </div>
+        <p
+          id="learning-filter-status"
+          class="text-muted-foreground text-sm"
+        >
+          Showing {educationEvents.length} programs.
+        </p>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {
+          educationEvents.map((event) => (
+            <article
+              class="rounded-lg border bg-background p-5"
+              data-learning-card
+              data-category={event.category}
+              data-title={event.title}
+            >
+              <div class="mb-3 flex flex-wrap items-center gap-2">
+                <span
+                  class={`rounded-full border px-2 py-0.5 text-xs font-medium ${EVENT_CATEGORY_STYLES[event.category]}`}
+                >
+                  {EVENT_CATEGORY_LABELS[event.category]}
+                </span>
+                <span class="text-muted-foreground text-xs">
+                  {event.displayDate}
+                </span>
+              </div>
+              <h3 class="font-semibold leading-snug">{event.title}</h3>
+              <p class="text-muted-foreground mt-2 text-sm">
+                {event.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y bg-muted/20 py-10 md:py-12">
+    <div class="container">
+      <div class="grid gap-8 lg:grid-cols-[0.85fr_1.4fr]">
+        <div>
+          <div class="flex items-center gap-2">
+            <Network className="size-5 text-secondary" aria-hidden="true" />
+            <h2 class="text-2xl">CCL Collaborations</h2>
+          </div>
+          <p class="text-muted-foreground mt-3">
+            The Center for Creative Learning is a recurring partner for
+            school outreach. The collaboration also feeds research questions:
+            playful activities become formal models, and formal models return as
+            better activities.
+          </p>
+          <a
+            href="https://ccl.iitgn.ac.in/about-ccl"
+            target="_blank"
+            rel="noreferrer"
+            class="mt-4 inline-flex rounded-full border px-4 py-2 text-sm transition hover:border-secondary hover:text-secondary"
+          >
+            CCL overview
+          </a>
+        </div>
+
+        <div class="space-y-4">
+          <div class="grid gap-4 md:grid-cols-2">
+          {publicPrograms.map((item) => (
+            <article class="rounded-lg border bg-background p-5">
+              <span class="text-secondary text-xs font-medium uppercase tracking-wider">
+                {item.people}
+              </span>
+              <h3 class="mt-2 font-semibold leading-snug">{item.title}</h3>
+              <p class="text-muted-foreground mt-2 text-sm">{item.summary}</p>
+              <a
+                href={item.sourceUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="mt-4 inline-flex text-sm font-medium text-secondary underline underline-offset-4"
+              >
+                {item.sourceLabel}
+              </a>
+            </article>
+          ))}
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            {researchOutcomes.map((item) => (
+              <article class="rounded-lg border bg-background p-5">
+                <span class="rounded-full border border-secondary/20 bg-secondary/10 px-2 py-0.5 text-xs font-medium text-secondary">
+                  Paper
+                </span>
+                <p class="text-muted-foreground mt-3 text-sm">{item.people}</p>
+                <h3 class="mt-2 font-semibold leading-snug">{item.title}</h3>
+                <p class="text-muted-foreground mt-2 text-sm">
+                  {item.summary}
+                </p>
+                <a
+                  href={item.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="mt-4 inline-flex text-sm font-medium text-secondary underline underline-offset-4"
+                >
+                  {item.sourceLabel}
+                </a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y bg-muted/20 py-10 md:py-12">
+    <div class="container">
+      <div class="mb-6 flex items-center gap-2">
+        <Sparkles className="size-5 text-secondary" aria-hidden="true" />
+        <h2 class="text-2xl">Recognition and Access Programs</h2>
+      </div>
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          outreachHighlights.map((item) => (
+            <article class="rounded-lg border bg-background p-5">
+              <span class="rounded-full border border-secondary/20 bg-secondary/10 px-2 py-0.5 text-xs font-medium text-secondary">
+                {item.label}
+              </span>
+              <h3 class="mt-3 font-semibold leading-snug">{item.title}</h3>
+              <p class="text-muted-foreground mt-2 text-sm">{item.summary}</p>
+              <a
+                href={item.sourceUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="mt-4 inline-flex text-sm font-medium text-secondary underline underline-offset-4"
+              >
+                {item.sourceLabel}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 md:py-12">
+    <div class="container">
+      <div class="mb-6 flex items-center gap-2">
+        <Newspaper className="size-5 text-secondary" aria-hidden="true" />
+        <h2 class="text-2xl">Media, Podcasts, and Public Appearances</h2>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          mediaItems.map((item) => (
+            <article class="rounded-lg border bg-background p-5">
+              <div class="mb-3 flex flex-wrap items-center gap-2">
+                <span class="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700">
+                  {item.type}
+                </span>
+                <span class="text-muted-foreground text-xs">
+                  {item.person}
+                </span>
+              </div>
+              <h3 class="font-semibold leading-snug">{item.title}</h3>
+              <p class="text-muted-foreground mt-2 text-sm">{item.summary}</p>
+              <a
+                href={item.sourceUrl}
+                target="_blank"
+                rel="noreferrer"
+                class="mt-4 inline-flex text-sm font-medium text-secondary underline underline-offset-4"
+              >
+                {item.sourceLabel}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const learningFilterButtons = Array.from(
+      document.querySelectorAll("[data-learning-filter]"),
+    );
+    const learningCards = Array.from(
+      document.querySelectorAll("[data-learning-card]"),
+    );
+    const learningSearchInput = document.querySelector(
+      "[data-learning-search]",
+    );
+    const learningStatus = document.querySelector("#learning-filter-status");
+    let activeLearningFilter = "all";
+
+    const applyLearningFilters = () => {
+      const query =
+        learningSearchInput instanceof HTMLInputElement
+          ? learningSearchInput.value.trim().toLowerCase()
+          : "";
+      let visible = 0;
+
+      learningCards.forEach((card) => {
+        if (!(card instanceof HTMLElement)) return;
+        const categoryMatches =
+          activeLearningFilter === "all" ||
+          card.dataset.category === activeLearningFilter;
+        const title = (card.dataset.title ?? "").toLowerCase();
+        const titleMatches = !query || title.includes(query);
+        const show = categoryMatches && titleMatches;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+
+      learningFilterButtons.forEach((button) => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        const isActive = button.dataset.filter === activeLearningFilter;
+        button.dataset.active = String(isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      if (learningStatus) {
+        learningStatus.textContent = `Showing ${visible} program${visible === 1 ? "" : "s"}.`;
+      }
+    };
+
+    learningFilterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        activeLearningFilter = button.dataset.filter ?? "all";
+        applyLearningFilters();
+      });
+    });
+
+    learningSearchInput?.addEventListener("input", applyLearningFilters);
+  </script>
+</DefaultLayout>

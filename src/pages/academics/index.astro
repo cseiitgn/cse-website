@@ -1,0 +1,23 @@
+---
+import AcademicSummaryPage from '@/components/sections/academic-summary-page.astro';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="Academics" description="Academic programs in CSE at IIT Gandhinagar">
+  <AcademicSummaryPage
+    title="Academics"
+    description="Explore undergraduate, postgraduate, doctoral, and visiting-student opportunities connected to CSE at IIT Gandhinagar."
+    summary="IIT Gandhinagar's academic programs emphasize interdisciplinary learning, hands-on projects, research exposure, and a broad curriculum that supports technical depth as well as communication, leadership, and social awareness."
+    highlights={[
+      'The institute offers BTech, MTech, PhD, visiting-student, executive masters, and other academic pathways through a flexible academic structure.',
+      'Students can shape their learning through electives, minors, honors, dual degrees, dual majors, research projects, and external exposure opportunities.',
+      'Admissions information, current application cycles, and institute-level requirements are maintained by IIT Gandhinagar.',
+      'The CSE department links students to computing programs, research opportunities, and course offerings across undergraduate and postgraduate levels.',
+    ]}
+    links={[
+      { label: 'IITGN academics overview', href: 'https://iitgn.ac.in/academics' },
+      { label: 'IITGN admissions', href: 'https://iitgn.ac.in/admissions' },
+      { label: 'CSE course catalogue', href: '/academics/courses' },
+    ]}
+  />
+</DefaultLayout>

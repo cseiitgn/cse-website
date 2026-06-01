@@ -1,0 +1,168 @@
+---
+type Committee = {
+  title: string;
+  members: string[];
+  note?: string;
+};
+
+type CommitteeGroup = {
+  title: string;
+  description: string;
+  committees: Committee[];
+};
+
+const committeeGroups: CommitteeGroup[] = [
+  {
+    title: 'Academic Governance',
+    description:
+      'Representatives and coordinators for senate-facing academic processes, admissions, qualifying exams, and data science coordination.',
+    committees: [
+      {
+        title: 'SAPC Representative',
+        members: ['Manisha Padala'],
+      },
+      {
+        title: 'SAPEC Representative',
+        members: ['Balagopal Komarath'],
+      },
+      {
+        title: 'PG Admissions Coordinators',
+        members: ['Bireshwar Das', 'Sameer Kulkarni'],
+        note: 'Sameer Kulkarni also serves as focal point for the IITGN-SAC Collaborative PhD Programme.',
+      },
+      {
+        title: 'PhD Qualifying Exam Coordinator',
+        members: ['Balagopal Komarath'],
+      },
+      {
+        title: 'CDS Representative',
+        members: ['Mayank Singh'],
+      },
+    ],
+  },
+  {
+    title: 'Courses and Programs',
+    description:
+      'Coordination roles for project courses, thesis or project courses, joint programs, and supervisor allocation.',
+    committees: [
+      {
+        title: 'UG Project Courses and Grades Coordinator',
+        members: ['Manoj Gupta'],
+      },
+      {
+        title: 'PG Thesis/Project Courses and Grades Coordinator',
+        members: ['Yogesh Kumar Meena'],
+      },
+      {
+        title: 'Joint PG Programs Coordinator',
+        members: ['Yogesh Kumar Meena'],
+      },
+      {
+        title: 'PG Supervisor Allocation Coordinators',
+        members: ['Abhishek Bichhawat', 'Yogesh Kumar Meena', 'Manoj Gupta'],
+      },
+    ],
+  },
+  {
+    title: 'Department Planning and Outreach',
+    description:
+      'Coordinators for resources, department vision, recruitment, communication, and public visibility.',
+    committees: [
+      {
+        title: 'Resource Management and Planning Coordinators',
+        members: ['Mayank Singh', 'Yogesh Kumar Meena', 'Sameer Kulkarni'],
+        note: 'Covers budget, facilities, space, SIPC, and grants.',
+      },
+      {
+        title: 'Department Vision Document Coordinators',
+        members: ['Manoj Gupta', 'Yogesh Kumar Meena', 'Sameer Kulkarni'],
+      },
+      {
+        title: 'Faculty Recruitment Committee Representative',
+        members: ['Abhishek Bichhawat'],
+      },
+      {
+        title: 'Department Visibility and Perception Coordinators',
+        members: ['Neeldhara Misra', 'Anup Kalbalia', 'Manu Awasthi'],
+        note: 'Includes website, communications, and social media.',
+      },
+    ],
+  },
+];
+---
+
+<section class="border-b bg-muted/40">
+  <div class="container py-14 md:py-18">
+    <p class="text-secondary text-sm font-medium">
+      Department of Computer Science &amp; Engineering, IIT Gandhinagar
+    </p>
+    <div class="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+      <div class="max-w-3xl">
+        <h1 class="text-3xl font-semibold leading-tight md:text-5xl">
+          Administration
+        </h1>
+        <p class="text-muted-foreground mt-5 text-lg leading-relaxed">
+          Department-level committee assignments and administrative coordination
+          roles, consolidated from the current CSE office orders.
+        </p>
+      </div>
+      <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
+        <p class="font-semibold">Current term</p>
+        <p class="text-muted-foreground mt-3 text-sm leading-relaxed">
+          These assignments are constituted for department activities from
+          <span class="font-medium text-foreground">19 September 2025</span> to
+          <span class="font-medium text-foreground">31 August 2027</span>.
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section-padding">
+  <div class="container">
+    <div class="max-w-3xl">
+      <p class="text-secondary text-sm font-medium">Department Committees</p>
+      <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+        Roles and coordinators
+      </h2>
+      <p class="text-muted-foreground mt-3 leading-relaxed">
+        Faculty members in these committees may co-opt other department faculty
+        members as required for carrying out specific tasks.
+      </p>
+    </div>
+
+    <div class="mt-8 space-y-10">
+      {
+        committeeGroups.map((group) => (
+          <section class="scroll-mt-24">
+            <div class="mb-4 border-b pb-3">
+              <h3 class="text-xl font-semibold">{group.title}</h3>
+              <p class="text-muted-foreground mt-1 text-sm">
+                {group.description}
+              </p>
+            </div>
+            <div class="grid gap-4 md:grid-cols-2">
+              {group.committees.map((committee) => (
+                <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+                  <h4 class="text-lg font-semibold">{committee.title}</h4>
+                  <ul class="mt-4 flex flex-wrap gap-2">
+                    {committee.members.map((member) => (
+                      <li class="rounded-full border bg-background px-3 py-1 text-sm">
+                        {member}
+                      </li>
+                    ))}
+                  </ul>
+                  {committee.note && (
+                    <p class="text-muted-foreground mt-4 text-sm leading-relaxed">
+                      {committee.note}
+                    </p>
+                  )}
+                </article>
+              ))}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</section>

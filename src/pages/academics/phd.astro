@@ -1,0 +1,55 @@
+---
+import AcademicSummaryPage from '@/components/sections/academic-summary-page.astro';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="PhD Program" description="Doctoral program in CSE at IIT Gandhinagar">
+  <AcademicSummaryPage
+    title="PhD Program"
+    description="A research-focused doctoral program for creative, independent, and interdisciplinary inquiry."
+    summary="IITGN describes its PhD program as a pathway for creative scholarly inquiry, intellectual maturity, and research careers in teaching, innovation, entrepreneurship, and advanced research. The program combines research with coursework and encourages interdisciplinary interactions."
+    highlights={[
+      'Doctoral students work with research-active faculty and a diverse PhD community across disciplines.',
+      'The program includes coursework, research credits, the postgraduate orientation programme Aarohan, and institute-level academic requirements.',
+      'IITGN highlights interdisciplinary supervision and a porous academic environment connected to the broader Ahmedabad-Gandhinagar research ecosystem.',
+      'Current CSE and AI admissions areas, eligibility details, and application cycles are maintained on the IITGN admissions pages.',
+    ]}
+    links={[
+      { label: 'IITGN PhD overview', href: 'https://iitgn.ac.in/academics/phd' },
+      { label: 'PhD admissions', href: 'https://iitgn.ac.in/admissions/phd' },
+      { label: 'Prime Minister Research Fellowship at IITGN', href: 'https://iitgn.ac.in/pmrf' },
+    ]}
+  />
+
+  <section class="border-t bg-muted/30 section-padding">
+    <div class="container">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div class="max-w-3xl">
+          <p class="text-sm font-medium text-secondary">Interview preparation</p>
+          <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+            Preparing for the PhD interview
+          </h2>
+          <p class="mt-3 leading-relaxed text-muted-foreground">
+            Prospective PhD applicants can use this playlist to prepare for the
+            CSE PhD interview process and refresh core ideas before the
+            interaction.
+          </p>
+        </div>
+        <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
+          <p class="font-semibold">Preparation playlist</p>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+            Watch the curated YouTube playlist for interview preparation.
+          </p>
+          <a
+            href="https://www.youtube.com/playlist?list=PLmxpyUxOO0b6PbMFXjnEvoYxygFoDF-Yk"
+            class="mt-5 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open playlist -&gt;
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>

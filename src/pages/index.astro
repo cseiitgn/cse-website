@@ -1,0 +1,16 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+import Announcements from '@/components/sections/announcements';
+import Hero from '@/components/sections/hero';
+import RecentWins from '@/components/sections/recent-wins';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <Hero client:only="react" />
+  <div class="bg-blue-50/50 dark:bg-blue-900/20">
+    <Announcements client:only="react" />
+  </div>
+  <RecentWins />
+</DefaultLayout>

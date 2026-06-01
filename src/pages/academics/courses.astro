@@ -1,0 +1,11 @@
+---
+import CourseCatalog from "@/components/sections/course-catalog";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+---
+
+<DefaultLayout
+  title="Courses"
+  description="Course catalogue for CSE at IIT Gandhinagar"
+>
+  <CourseCatalog client:only="react" />
+</DefaultLayout>

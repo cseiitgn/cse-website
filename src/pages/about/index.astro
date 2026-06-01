@@ -1,0 +1,17 @@
+---
+import PlaceholderPage from '@/components/sections/placeholder-page';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="About" description="About the Department of Computer Science and Engineering at IIT Gandhinagar">
+  <PlaceholderPage
+    title="About the Department"
+    description="Learn about the history, mission, and vision of the CSE department at IIT Gandhinagar."
+    sections={[
+      'Department overview and history',
+      'Mission and vision statement',
+      'Facilities and infrastructure',
+      'Achievements timeline',
+    ]}
+  />
+</DefaultLayout>

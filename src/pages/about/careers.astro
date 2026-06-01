@@ -1,0 +1,150 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const priorityAreas = [
+  'Programming languages',
+  'Cryptography and information security',
+  'Quantum computing',
+  'Computer and embedded systems and networking',
+];
+
+const careerLinks = [
+  {
+    label: 'IITGN careers',
+    href: 'https://iitgn.ac.in/careers',
+    description: 'Institute-wide faculty, staff, and student openings.',
+  },
+  {
+    label: 'Faculty recruitment advertisement',
+    href: 'https://iitgn.ac.in/careers/faculty-rolling-advertisement',
+    description: 'Rolling faculty recruitment details, eligibility, and post descriptions.',
+  },
+  {
+    label: 'Apply online',
+    href: 'https://iitgn.ac.in/careers/apply',
+    description: 'Application portal instructions for faculty applicants.',
+  },
+];
+---
+
+<DefaultLayout title="Careers" description="Join the CSE department at IIT Gandhinagar.">
+  <section class="border-b bg-muted/40">
+    <div class="container py-14 md:py-18">
+      <p class="text-sm font-medium text-secondary">
+        Department of Computer Science &amp; Engineering, IIT Gandhinagar
+      </p>
+      <div class="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div class="max-w-3xl">
+          <h1 class="text-3xl font-semibold leading-tight md:text-5xl">
+            Build the future of computing with us
+          </h1>
+          <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
+            IIT Gandhinagar welcomes bright, motivated colleagues who combine
+            high-quality research, committed teaching, and a desire to solve
+            problems that matter to society.
+          </p>
+        </div>
+        <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
+          <p class="font-semibold">Faculty hiring</p>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+            Faculty recruitment is rolling, and applications are accepted
+            throughout the year through the IITGN recruitment portal.
+          </p>
+          <a
+            href="https://iitgn.ac.in/careers/apply"
+            class="mt-5 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Apply through IITGN -&gt;
+          </a>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-secondary">Faculty careers</p>
+        <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+          We are especially interested in these CSE areas
+        </h2>
+        <p class="mt-3 leading-relaxed text-muted-foreground">
+          IITGN considers exceptional candidates across research areas. Current
+          CSE priority areas listed by the institute include the following.
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        {
+          priorityAreas.map((area) => (
+            <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+              <h3 class="text-lg font-semibold">{area}</h3>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y bg-muted/30 section-padding">
+    <div class="container">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div class="max-w-3xl">
+          <p class="text-sm font-medium text-secondary">Why IIT Gandhinagar</p>
+          <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+            A collaborative institute in a strong regional ecosystem
+          </h2>
+          <p class="mt-3 leading-relaxed text-muted-foreground">
+            The institute emphasizes interdisciplinary education and research,
+            supports new faculty through relocation support, start-up research
+            grants, professional development allowance, and matching grants for
+            externally funded projects as per institute norms.
+          </p>
+          <p class="mt-3 leading-relaxed text-muted-foreground">
+            Gandhinagar and nearby Ahmedabad offer strong infrastructure,
+            academic and research institutions, industry presence, schools, and
+            family-friendly urban amenities.
+          </p>
+        </div>
+        <aside class="rounded-lg border border-border bg-card p-5 shadow-sm lg:mt-28">
+          <p class="font-semibold">Inclusive search</p>
+          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+            IIT Gandhinagar strongly encourages applications from qualified
+            women and reserved category candidates.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-secondary">Openings and applications</p>
+        <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+          Follow the institute recruitment pages
+        </h2>
+      </div>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        {
+          careerLinks.map((link) => (
+            <a
+              href={link.href}
+              class="rounded-lg border border-border bg-card p-5 shadow-sm transition-colors hover:border-primary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <h3 class="text-lg font-semibold">{link.label}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {link.description}
+              </p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</DefaultLayout>

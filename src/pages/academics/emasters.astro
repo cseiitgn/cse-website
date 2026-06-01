@@ -1,0 +1,23 @@
+---
+import AcademicSummaryPage from '@/components/sections/academic-summary-page.astro';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="EMasters" description="Executive masters programs connected to data science and decision making.">
+  <AcademicSummaryPage
+    title="Executive Masters"
+    description="Executive education pathways for professionals seeking advanced skills in data science and decision making."
+    summary="IITGN's Executive Masters in Data Science for Decision Making is designed to help professionals translate data science knowledge into strategic decisions. The program is positioned around applied data excellence, decision-making, and an optional on-campus experience."
+    highlights={[
+      'The Data Science for Decision Making program is offered through IITGN-X and is aimed at working professionals.',
+      'The curriculum is designed by subject-matter experts to bridge data science methods with decision-making practice.',
+      'IITGN admissions maintains the institute-level Executive Masters entry point and related application information.',
+      'Prospective applicants should consult the current IITGN-X and admissions pages for cohort details, eligibility, fees, and schedules.',
+    ]}
+    links={[
+      { label: 'Executive Masters admissions', href: 'https://iitgn.ac.in/admissions' },
+      { label: 'Data Science for Decision Making', href: 'https://sites.iitgn.ac.in/iitgnx/dsdm' },
+      { label: 'IITGN-X programs', href: 'https://sites.iitgn.ac.in/iitgnx/' },
+    ]}
+  />
+</DefaultLayout>

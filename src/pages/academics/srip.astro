@@ -1,0 +1,22 @@
+---
+import AcademicSummaryPage from '@/components/sections/academic-summary-page.astro';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="SRIP" description="Summer research internship program at IIT Gandhinagar.">
+  <AcademicSummaryPage
+    title="Summer Research Internship Program"
+    description="IITGN's flagship summer research internship program for motivated undergraduate and masters students."
+    summary="SRIP brings motivated students from institutions across the country to IIT Gandhinagar for cutting-edge research projects under faculty mentorship, with exposure to campus laboratories and instrumentation facilities."
+    highlights={[
+      'The program is intended for undergraduate and masters students interested in research experience at IITGN.',
+      'Interns work on faculty-led research projects and experience the research culture of the institute.',
+      'The SRIP portal publishes current-cycle announcements, results, guidelines, highlights, and reports from previous years.',
+      'For program-specific communication, the SRIP site lists internships@iitgn.ac.in as the contact address.',
+    ]}
+    links={[
+      { label: 'SRIP information portal', href: 'https://srip.iitgn.ac.in/info/' },
+      { label: 'SRIP 2026 portal', href: 'https://srip.iitgn.ac.in/portal/' },
+    ]}
+  />
+</DefaultLayout>

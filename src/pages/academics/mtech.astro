@@ -1,0 +1,23 @@
+---
+import AcademicSummaryPage from '@/components/sections/academic-summary-page.astro';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="M.Tech Program" description="Postgraduate program in CSE at IIT Gandhinagar">
+  <AcademicSummaryPage
+    title="MTech in Computer Science & Engineering"
+    description="A postgraduate program combining broad coursework, thesis or project work, and flexible research pathways."
+    summary="The IITGN MTech program combines coursework with a project or thesis to build independent thinking and R&D capability. Students have flexibility to shape their academic path, including research beyond a narrow disciplinary boundary or in collaboration with industry."
+    highlights={[
+      'IITGN offers MTech degrees in Computer Science & Engineering, Artificial Intelligence, Integrated Circuit Design & Technology, and several other disciplines.',
+      'The CSE MTech focus areas listed by IITGN include Computer Systems, Theoretical Computer Science, and Artificial Intelligence & Machine Learning.',
+      'Program requirements include coursework, thesis credits, the postgraduate orientation programme Aarohan, and institute-level academic performance requirements.',
+      'MTech graduates are prepared for leadership paths in R&D, teaching, and industry.',
+    ]}
+    links={[
+      { label: 'IITGN MTech overview', href: 'https://iitgn.ac.in/academics/mtech' },
+      { label: 'MTech admissions', href: 'https://iitgn.ac.in/admissions/mtech' },
+      { label: 'Early admit MTech', href: 'https://iitgn.ac.in/admissions/eamtech' },
+    ]}
+  />
+</DefaultLayout>

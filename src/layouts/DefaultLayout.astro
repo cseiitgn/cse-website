@@ -1,0 +1,111 @@
+---
+import { Font } from 'astro:assets';
+import { ClientRouter } from 'astro:transitions';
+
+import BaseHead from '@/components/BaseHead.astro';
+import Banner from '@/components/layout/banner';
+import Footer from '@/components/layout/footer';
+import Navbar from '@/components/layout/navbar';
+
+const { title, description } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<html lang="en">
+  <head>
+    <ClientRouter />
+    <BaseHead title={title} description={description} />
+    <Font cssVariable="--font-imprima" preload />
+    <Font cssVariable="--font-rubik" preload />
+    <Font cssVariable="--font-eb-garamond" preload />
+    <meta name="view-transition" content="same-origin" />
+  </head>
+  <body class="h-screen antialiased flex flex-col">
+    <div
+      id="route-preloader"
+      class="pointer-events-none fixed inset-0 z-[1000] place-items-center bg-background/75 backdrop-blur-sm"
+      style="display: none; opacity: 0; transition: opacity 160ms ease;"
+      role="status"
+      aria-hidden="true"
+      aria-live="polite"
+    >
+      <div class="flex items-center gap-3 rounded-lg border bg-background px-4 py-3 shadow-lg">
+        <img
+          src="/images/publications-preloader.gif"
+          alt=""
+          width="48"
+          height="48"
+          class="size-8"
+          decoding="async"
+        />
+        <span class="text-sm text-muted-foreground">Loading page...</span>
+      </div>
+    </div>
+    <Banner client:only="react" />
+    <Navbar currentPage={currentPath} client:only="react" />
+    <main class="flex-1" style="view-transition-name: main;">
+      <slot />
+    </main>
+    <Footer client:only="react" />
+    <script is:inline>
+      (() => {
+        if (window.__routePreloaderInitialized) return;
+
+        window.__routePreloaderInitialized = true;
+
+        const reducedMotionQuery = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        );
+        let showTimer;
+        let hideTimer;
+        let fallbackTimer;
+
+        const getRoutePreloader = () =>
+          document.getElementById("route-preloader");
+
+        const show = () => {
+          const routePreloader = getRoutePreloader();
+
+          if (!routePreloader) return;
+
+          window.clearTimeout(hideTimer);
+          routePreloader.style.display = "grid";
+          routePreloader.setAttribute("aria-hidden", "false");
+          requestAnimationFrame(() => {
+            routePreloader.style.opacity = "1";
+          });
+        };
+
+        const hide = () => {
+          const routePreloader = getRoutePreloader();
+
+          window.clearTimeout(showTimer);
+          window.clearTimeout(fallbackTimer);
+          if (!routePreloader) return;
+
+          routePreloader.style.opacity = "0";
+          routePreloader.setAttribute("aria-hidden", "true");
+          hideTimer = window.setTimeout(
+            () => {
+              getRoutePreloader()?.style.setProperty("display", "none");
+            },
+            reducedMotionQuery.matches ? 0 : 160,
+          );
+        };
+
+        const queue = () => {
+          window.clearTimeout(showTimer);
+          window.clearTimeout(fallbackTimer);
+          showTimer = window.setTimeout(show, 450);
+          fallbackTimer = window.setTimeout(hide, 8000);
+        };
+
+        document.addEventListener("astro:before-preparation", queue);
+        document.addEventListener("astro:after-swap", hide);
+        document.addEventListener("astro:page-load", hide);
+        window.addEventListener("load", hide);
+        window.addEventListener("pageshow", hide);
+      })();
+    </script>
+  </body>
+</html>

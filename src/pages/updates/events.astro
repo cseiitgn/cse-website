@@ -1,0 +1,374 @@
+---
+import {
+  departmentEvents,
+  EVENT_CATEGORY_LABELS,
+  EVENT_CATEGORY_STYLES,
+  pastEvents,
+  upcomingEvents,
+  type EventCategory,
+} from "@/data/events";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { CalendarDays, Search, Sparkles } from "lucide-react";
+
+const categoryOrder: EventCategory[] = [
+  "conference",
+  "school",
+  "workshop",
+  "symposium",
+  "course",
+];
+
+const categoryCounts = categoryOrder
+  .map((category) => ({
+    category,
+    count: departmentEvents.filter((event) => event.category === category)
+      .length,
+  }))
+  .filter(({ count }) => count > 0);
+
+const groupedPastEvents = Object.entries(
+  pastEvents.reduce<Record<number, typeof pastEvents>>((groups, event) => {
+    groups[event.year] ??= [];
+    groups[event.year].push(event);
+    return groups;
+  }, {}),
+).sort(([a], [b]) => Number(b) - Number(a));
+---
+
+<DefaultLayout
+  title="Events"
+  description="Schools, conferences, workshops, and symposia organized by CSE at IIT Gandhinagar."
+>
+  <section
+    class="from-primary/5 bg-gradient-to-b to-transparent pb-8 pt-10 md:pb-10 md:pt-12"
+  >
+    <div class="container">
+      <p class="text-secondary text-sm font-medium uppercase tracking-wider">
+        Schools, workshops, and conferences
+      </p>
+      <h1 class="mt-3 text-3xl md:text-4xl">Events</h1>
+      <p class="text-muted-foreground mt-4 max-w-2xl">
+        Department-hosted schools, workshops, short courses, conferences, and
+        community-facing programs from the CSE events archive.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-y bg-muted/20">
+    <div class="container py-5">
+      <div class="flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          class="rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 data-[active=true]:border-slate-700 data-[active=true]:bg-slate-800 data-[active=true]:text-white"
+          data-event-filter
+          data-filter="all"
+          data-active="true"
+          aria-pressed="true"
+        >
+          All: {departmentEvents.length}
+        </button>
+        {
+          categoryCounts.map(({ category, count }) => (
+            <button
+              type="button"
+              class={`rounded-full border px-3 py-1 text-sm transition hover:brightness-95 data-[active=true]:border-slate-700 data-[active=true]:bg-slate-800 data-[active=true]:text-white ${EVENT_CATEGORY_STYLES[category]}`}
+              data-event-filter
+              data-filter={category}
+              data-active="false"
+              aria-pressed="false"
+            >
+              {EVENT_CATEGORY_LABELS[category]}: {count}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="mt-4">
+        <label class="sr-only" for="event-search">Search events</label>
+        <div class="relative">
+          <Search
+            className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+            aria-hidden="true"
+          />
+          <input
+            id="event-search"
+            type="search"
+            class="w-full rounded-full border bg-background py-2 pl-10 pr-4 text-sm outline-none transition placeholder:text-muted-foreground focus:border-secondary"
+            placeholder="Search title, organizer, year, category, or description..."
+            data-event-search
+          />
+        </div>
+        <p id="event-filter-status" class="text-muted-foreground mt-2 text-sm">
+          Showing {departmentEvents.length} events.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 md:py-12">
+    <div class="container">
+      <div class="grid gap-6 lg:grid-cols-[0.9fr_1.4fr]">
+        <div>
+          <div class="flex items-center gap-2">
+            <CalendarDays className="size-5 text-secondary" aria-hidden="true" />
+            <h2 class="text-2xl">Upcoming</h2>
+          </div>
+          <p class="text-muted-foreground mt-2 text-sm">
+            Future-dated public event listings as of 1 Jun 2026.
+          </p>
+        </div>
+        <div class="grid gap-3 md:grid-cols-2">
+          {
+            upcomingEvents.length === 0 ? (
+              <article class="rounded-lg border bg-background p-5 shadow-sm md:col-span-2">
+                <h3 class="font-semibold leading-snug">
+                  No upcoming events listed right now.
+                </h3>
+                <p class="text-muted-foreground mt-2 text-sm">
+                  Recently completed 2026 events are available in the archive
+                  below.
+                </p>
+              </article>
+            ) : upcomingEvents.map((event) => (
+              <article
+                class="rounded-lg border bg-background p-5 shadow-sm"
+                data-event-card
+                data-category={event.category}
+                data-search={[
+                  event.title,
+                  event.category,
+                  EVENT_CATEGORY_LABELS[event.category],
+                  event.displayDate,
+                  event.organizer,
+                  event.collaborators,
+                  event.description,
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <div class="mb-3 flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    class={`rounded-full border px-2 py-0.5 text-xs font-medium ${EVENT_CATEGORY_STYLES[event.category]}`}
+                    data-event-filter
+                    data-filter={event.category}
+                    data-active="false"
+                    aria-pressed="false"
+                  >
+                    {EVENT_CATEGORY_LABELS[event.category]}
+                  </button>
+                  <span class="text-muted-foreground text-xs">
+                    {event.displayDate}
+                  </span>
+                </div>
+                <h3 class="text-lg font-semibold leading-snug">
+                  {event.title}
+                </h3>
+                <p class="text-muted-foreground mt-2 text-sm">
+                  {event.description}
+                </p>
+                {(event.organizer || event.collaborators) && (
+                  <dl class="mt-4 grid gap-1.5 text-sm">
+                    {event.organizer && (
+                      <>
+                        <dt class="text-muted-foreground">Organizer</dt>
+                        <dd>{event.organizer}</dd>
+                      </>
+                    )}
+                    {event.collaborators && (
+                      <>
+                        <dt class="text-muted-foreground">With</dt>
+                        <dd>{event.collaborators}</dd>
+                      </>
+                    )}
+                  </dl>
+                )}
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y bg-muted/20 py-10 md:py-12">
+    <div class="container">
+      <div class="mb-6 flex items-center gap-2">
+        <Sparkles className="size-5 text-secondary" aria-hidden="true" />
+        <h2 class="text-2xl">Featured Learning Programs</h2>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {
+          departmentEvents
+            .filter((event) => event.featured)
+            .slice(0, 9)
+            .map((event) => (
+              <article
+                class="rounded-lg border bg-background p-5"
+                data-event-card
+                data-category={event.category}
+                data-search={[
+                  event.title,
+                  event.category,
+                  EVENT_CATEGORY_LABELS[event.category],
+                  event.displayDate,
+                  event.organizer,
+                  event.collaborators,
+                  event.description,
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
+              >
+                <div class="mb-3 flex flex-wrap items-center gap-2">
+                  <button
+                    type="button"
+                    class={`rounded-full border px-2 py-0.5 text-xs font-medium ${EVENT_CATEGORY_STYLES[event.category]}`}
+                    data-event-filter
+                    data-filter={event.category}
+                    data-active="false"
+                    aria-pressed="false"
+                  >
+                    {EVENT_CATEGORY_LABELS[event.category]}
+                  </button>
+                  <span class="text-muted-foreground text-xs">
+                    {event.displayDate}
+                  </span>
+                </div>
+                <h3 class="font-semibold leading-snug">{event.title}</h3>
+                <p class="text-muted-foreground mt-2 text-sm">
+                  {event.description}
+                </p>
+              </article>
+            ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10 md:py-12">
+    <div class="container">
+      <div class="mb-6">
+        <h2 class="text-2xl">Archive</h2>
+        <p class="text-muted-foreground mt-2 text-sm">
+          Administrative placeholders and excluded upcoming-sheet items are not
+          shown in this public listing.
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        {
+          groupedPastEvents.map(([year, events]) => (
+            <section class="scroll-mt-24">
+              <h3 class="mb-3 text-xl">{year}</h3>
+              <div class="overflow-hidden rounded-lg border bg-background">
+                {events.map((event) => (
+                  <article
+                    class="grid gap-3 border-b p-4 last:border-b-0 md:grid-cols-[9rem_1fr_12rem]"
+                    data-event-card
+                    data-category={event.category}
+                    data-search={[
+                      event.title,
+                      event.category,
+                      EVENT_CATEGORY_LABELS[event.category],
+                      event.displayDate,
+                      event.organizer,
+                      event.collaborators,
+                      event.description,
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                  >
+                    <div class="flex flex-wrap items-start gap-2 md:block">
+                      <button
+                        type="button"
+                        class={`rounded-full border px-2 py-0.5 text-xs font-medium ${EVENT_CATEGORY_STYLES[event.category]}`}
+                        data-event-filter
+                        data-filter={event.category}
+                        data-active="false"
+                        aria-pressed="false"
+                      >
+                        {EVENT_CATEGORY_LABELS[event.category]}
+                      </button>
+                      <p class="text-muted-foreground mt-0 text-xs md:mt-2">
+                        {event.displayDate}
+                      </p>
+                    </div>
+                    <div>
+                      <h4 class="font-semibold leading-snug">{event.title}</h4>
+                      <p class="text-muted-foreground mt-1 text-sm">
+                        {event.description}
+                      </p>
+                    </div>
+                    <div class="text-sm">
+                      {event.organizer && (
+                        <>
+                          <p class="text-muted-foreground">Organizer</p>
+                          <p>{event.organizer}</p>
+                        </>
+                      )}
+                      {event.collaborators && (
+                        <p class="text-muted-foreground mt-2">
+                          With {event.collaborators}
+                        </p>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const filterButtons = Array.from(
+      document.querySelectorAll("[data-event-filter]"),
+    );
+    const cards = Array.from(document.querySelectorAll("[data-event-card]"));
+    const searchInput = document.querySelector("[data-event-search]");
+    const status = document.querySelector("#event-filter-status");
+    let activeFilter = "all";
+
+    const applyFilters = () => {
+      const query =
+        searchInput instanceof HTMLInputElement
+          ? searchInput.value.trim().toLowerCase()
+          : "";
+      let visible = 0;
+
+      cards.forEach((card) => {
+        if (!(card instanceof HTMLElement)) return;
+        const categoryMatches =
+          activeFilter === "all" || card.dataset.category === activeFilter;
+        const text = (card.dataset.search ?? "").toLowerCase();
+        const searchMatches = !query || text.includes(query);
+        const show = categoryMatches && searchMatches;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+
+      filterButtons.forEach((button) => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        const isActive = button.dataset.filter === activeFilter;
+        button.dataset.active = String(isActive);
+        button.setAttribute("aria-pressed", String(isActive));
+      });
+
+      if (status) {
+        status.textContent = `Showing ${visible} event${visible === 1 ? "" : "s"}.`;
+      }
+    };
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (!(button instanceof HTMLButtonElement)) return;
+        activeFilter = button.dataset.filter ?? "all";
+        applyFilters();
+      });
+    });
+
+    searchInput?.addEventListener("input", applyFilters);
+  </script>
+</DefaultLayout>

@@ -1,0 +1,112 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const visitInfo = [
+  {
+    question: 'Where is IIT Gandhinagar located?',
+    answer:
+      'The Institute is located at Palaj, Gandhinagar, Gujarat, approximately 26 km from Ahmedabad Airport and 28 km from Ahmedabad Railway Station.',
+  },
+  {
+    question: 'What is the climate like in Gandhinagar?',
+    answer:
+      'Gandhinagar generally has a dry climate apart from the monsoon months of June to September. March to June are hot summer days with an average maximum temperature of about 36 C, while November to February are wintry with temperatures ranging between 15 C and 30 C, occasionally dropping to 8 C.',
+  },
+  {
+    question: 'How does one reach Palaj from Ahmedabad airport or railway station?',
+    answer:
+      'A taxi ride by app-based cab would typically cost about Rs 350-400 from the airport or Ahmedabad Railway Station at Kalupur. A typical auto rickshaw fare from Ahmedabad railway station to Palaj is about Rs 400.',
+  },
+  {
+    question: 'How to reach IIT Gandhinagar?',
+    answer:
+      'Ahmedabad is well connected by air, train, and road from major cities across India. From Ahmedabad, visitors can continue to the Palaj campus by taxi, app-based cab, or auto rickshaw.',
+  },
+];
+---
+
+<DefaultLayout title="Visit Us" description="Plan a visit to the IIT Gandhinagar campus at Palaj.">
+  <section class="border-b bg-muted/40">
+    <div class="container py-14 md:py-18">
+      <p class="text-sm font-medium text-secondary">
+        Department of Computer Science &amp; Engineering, IIT Gandhinagar
+      </p>
+      <div class="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div class="max-w-3xl">
+          <h1 class="text-3xl font-semibold leading-tight md:text-5xl">
+            Visit us at the Palaj campus
+          </h1>
+          <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
+            IIT Gandhinagar is located in Palaj, Gandhinagar, with convenient
+            access from Ahmedabad airport and railway station.
+          </p>
+        </div>
+        <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
+          <p class="font-semibold">Quick distances</p>
+          <dl class="mt-5 space-y-4">
+            <div>
+              <dt class="text-sm text-muted-foreground">From Ahmedabad Airport</dt>
+              <dd class="mt-1 text-2xl font-semibold">26 km</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-muted-foreground">From Ahmedabad Railway Station</dt>
+              <dd class="mt-1 text-2xl font-semibold">28 km</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-secondary">General information</p>
+        <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+          Planning your trip
+        </h2>
+      </div>
+
+      <div class="mt-8 grid gap-5 md:grid-cols-2">
+        {
+          visitInfo.map((item) => (
+            <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+              <h3 class="text-lg font-semibold">{item.question}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+                {item.answer}
+              </p>
+              {item.links && (
+                <div class="mt-4 flex flex-wrap gap-3">
+                  {item.links.map((link) => (
+                    <a
+                      href={link.href}
+                      class="text-sm font-medium text-primary underline-offset-4 hover:underline"
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="mt-6 rounded-lg border border-primary/20 bg-primary/5 p-5 shadow-sm">
+        <p class="font-semibold">Campus facilities</p>
+        <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+          The latest information about IIT Gandhinagar campus facilities is
+          available from the campus website.
+        </p>
+        <a
+          href="https://campus.iitgn.ac.in/"
+          class="mt-4 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Visit the IITGN campus website -&gt;
+        </a>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,0 +1,219 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const hpcFacilities = [
+  {
+    title: 'PARAM Ananta',
+    subtitle: 'National Supercomputing Mission supercomputer',
+    description:
+      'Commissioned at IIT Gandhinagar in May 2022 under the National Supercomputing Mission, PARAM Ananta supports CPU- and GPU-intensive research across computational science, engineering, AI/ML/DL, climate and environment sciences, materials, biology, astronomy, and related domains.',
+    stats: [
+      '838 TFLOPS peak performance',
+      '7,408 CPU cores and 20 NVIDIA V100 GPU cards',
+      '52 TiB RAM and 1 PiB usable PFS-based storage',
+      '156 compute nodes with 100 Gbps EDR InfiniBand',
+    ],
+    link: 'https://istf.iitgn.ac.in/hpc/paramananta.php',
+  },
+  {
+    title: 'IITGN HPC Cluster',
+    subtitle: 'In-house high-performance computing cluster',
+    description:
+      'The institute HPC cluster, developed through successive upgrades since the supercomputing facility began in 2010, complements PARAM Ananta with additional CPU, GPU, memory, storage, and InfiniBand-connected capacity for research workloads.',
+    stats: [
+      '132 TFLOPS peak performance',
+      'About 1,250 CPU cores and 6 GPU cards',
+      'About 7 TiB RAM and 100 TB usable PFS storage',
+      '34 compute nodes with Mellanox EDR InfiniBand',
+    ],
+    link: 'https://istf.iitgn.ac.in/hpc/iitgn-hpc.php',
+  },
+  {
+    title: 'Singularity Cluster',
+    subtitle: 'CSE high-performance computing cluster',
+    description:
+      'Commissioned in April 2025, the CSE Singularity HPC Cluster provides GPU-accelerated computing capacity for departmental research workloads, with SLURM-based scheduling and shared storage for users.',
+    stats: [
+      '128 CPU cores',
+      '8 NVIDIA L40S GPU cards',
+      '172 TB usable PFS storage',
+      '100 Gbps EDR InfiniBand',
+    ],
+    link: 'https://cs.iitgn.ac.in/hpc/',
+  },
+  {
+    title: 'Turing and Hamilton',
+    subtitle: 'Department-maintained GPU servers',
+    description:
+      'Turing and Hamilton are department-maintained GPU-based server resources that support CSE research computing needs alongside the institute and CSE HPC clusters.',
+    stats: [
+      'GPU-based departmental computing resources',
+      'Maintained by the Department of Computer Science & Engineering',
+      'In active use for running various department-level utilities',
+    ],
+  },
+];
+
+const hpcLinks = [
+  {
+    label: 'Supercomputing facility overview',
+    href: 'https://istf.iitgn.ac.in/hpc/',
+  },
+  {
+    label: 'Available software domains',
+    href: 'https://istf.iitgn.ac.in/hpc/software.php',
+  },
+  {
+    label: 'Usage and access FAQs',
+    href: 'https://istf.iitgn.ac.in/hpc/faqs.php',
+  },
+  {
+    label: 'CSE Singularity cluster',
+    href: 'https://cs.iitgn.ac.in/hpc/',
+  },
+];
+---
+
+<DefaultLayout
+  title="Facilities"
+  description="Research and teaching computing facilities for the CSE department at IIT Gandhinagar."
+>
+  <section class="border-b bg-muted/40">
+    <div class="container py-14 md:py-18">
+      <p class="text-sm font-medium text-secondary">
+        Department of Computer Science &amp; Engineering, IIT Gandhinagar
+      </p>
+      <div class="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div class="max-w-3xl">
+          <h1 class="text-3xl font-semibold leading-tight md:text-5xl">
+            Computing facilities for research and teaching
+          </h1>
+          <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
+            The department draws on institute-scale high-performance computing
+            infrastructure for research, and maintains dedicated computing labs
+            for hands-on instruction and course delivery.
+          </p>
+        </div>
+        <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
+          <p class="font-semibold">At a glance</p>
+          <dl class="mt-5 grid grid-cols-2 gap-4">
+            <div>
+              <dt class="text-sm text-muted-foreground">Research clusters</dt>
+              <dd class="mt-1 text-2xl font-semibold">3</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-muted-foreground">Teaching labs</dt>
+              <dd class="mt-1 text-2xl font-semibold">4</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-secondary">Research facilities</p>
+        <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+          High-performance computing through ISTF
+        </h2>
+        <p class="mt-3 leading-relaxed text-muted-foreground">
+          IIT Gandhinagar's supercomputing ecosystem includes PARAM Ananta, the
+          IITGN HPC cluster, the CSE Singularity cluster, and department
+          GPU-server resources such as Turing and Hamilton, supporting
+          high-performance CPU, GPU, memory, and storage needs across institute
+          and department research workloads.
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-5 lg:grid-cols-2">
+        {
+          hpcFacilities.map((facility) => (
+            <article class="flex h-full flex-col rounded-lg border border-border bg-card p-5 shadow-sm">
+              <p class="text-sm font-medium text-secondary">
+                {facility.subtitle}
+              </p>
+              <h3 class="mt-2 text-2xl font-semibold">{facility.title}</h3>
+              <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+                {facility.description}
+              </p>
+              <ul class="mt-5 space-y-3 text-sm">
+                {facility.stats.map((stat) => (
+                  <li class="flex gap-3">
+                    <span class="mt-2 size-1.5 shrink-0 rounded-full bg-secondary" />
+                    <span class="leading-relaxed">{stat}</span>
+                  </li>
+                ))}
+              </ul>
+              {facility.link && (
+                <div class="mt-6 pt-1">
+                  <a
+                    href={facility.link}
+                    class="inline-flex items-center text-sm font-medium text-primary underline-offset-4 hover:underline"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View source details
+                    <span aria-hidden="true" class="ml-1">-&gt;</span>
+                  </a>
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="mt-6 rounded-lg border border-border bg-muted/30 p-5">
+        <p class="font-semibold">More HPC information</p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          {
+            hpcLinks.map((link) => (
+              <a
+                href={link.href}
+                class="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground hover:border-primary hover:text-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y bg-muted/30 section-padding">
+    <div class="container">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+        <div class="max-w-3xl">
+          <p class="text-sm font-medium text-secondary">Teaching facilities</p>
+          <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+            Dedicated computing labs for coursework
+          </h2>
+          <p class="mt-3 leading-relaxed text-muted-foreground">
+            The department has four computing labs for teaching and practical
+            sessions. Each lab is equipped with 70 machines, giving students
+            access to 280 teaching-lab systems across the department.
+          </p>
+        </div>
+        <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
+          <p class="text-sm font-medium text-muted-foreground">
+            Teaching lab capacity
+          </p>
+          <div class="mt-5 grid grid-cols-2 gap-4">
+            <div class="rounded-md border bg-background p-4">
+              <p class="text-3xl font-semibold">4</p>
+              <p class="mt-1 text-sm text-muted-foreground">Computing labs</p>
+            </div>
+            <div class="rounded-md border bg-background p-4">
+              <p class="text-3xl font-semibold">70</p>
+              <p class="mt-1 text-sm text-muted-foreground">Machines each</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>

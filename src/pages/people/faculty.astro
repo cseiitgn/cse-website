@@ -1,0 +1,8 @@
+---
+import FacultyDirectory from '@/components/sections/faculty-directory';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="Faculty" description="Faculty of the Department of Computer Science and Engineering at IIT Gandhinagar">
+  <FacultyDirectory client:only="react" />
+</DefaultLayout>

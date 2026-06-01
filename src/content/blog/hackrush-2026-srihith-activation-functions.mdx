@@ -1,0 +1,56 @@
+---
+title: 'Hardware-Friendly Activation Functions at Hackrush 2026'
+description: 'Srihith explains how four ML activation functions were implemented in fixed-point hardware with one-cycle latency and zero DSP usage.'
+date: '2026-05-04'
+author:
+  name: 'Srihith'
+  image: '/favicon/web-app-manifest-192x192.png'
+tags: ['Hackrush 2026', 'hackrush2026', 'Computer Architecture']
+coverImage: '/images/blog/hackrush-2026/hackrush-2026-cover.webp'
+---
+
+For Hackrush 2026, I worked on a computer architecture problem that required implementing four machine-learning activation functions in hardware: ReLU, Leaky ReLU, sigmoid approximation, and tanh approximation.
+
+The main constraints were low latency, fixed-point representation, and efficient resource usage. Synthesis was performed on Basys3 using Vivado, and Q16 fixed-point representation was used throughout.
+
+## ReLU and Leaky ReLU
+
+ReLU was the simplest function: output the input when it is positive and output 0 otherwise. This can be implemented directly with a conditional operator, giving a latency of one cycle.
+
+Leaky ReLU is similar, except negative inputs are scaled by a constant `alpha`. The problem allowed contestants to choose `alpha`. To avoid multipliers, I used `alpha = 0.125`, which can be implemented as a right shift by 3 bits. This also achieved one-cycle latency.
+
+## Sigmoid Approximation
+
+For sigmoid, I used a five-segment piecewise linear approximation:
+
+```text
+x < -3        -> 0
+-3 <= x < -1 -> 0.125x + 0.375
+-1 <= x < 1  -> 0.25x + 0.5
+1 <= x < 3   -> 0.125x + 0.625
+x >= 3       -> 1
+```
+
+All multiplications were implemented using shifts. This eliminated multiplier usage while keeping the approximation simple enough for one-cycle latency.
+
+## Tanh Approximation
+
+The tanh function needed a finer approximation, so I used seven piecewise segments:
+
+```text
+x < -2          -> -1
+-2 <= x < -1   -> 0.25x - 0.5
+-1 <= x < -0.5 -> 0.5x - 0.25
+-0.5 <= x < 0.5 -> x
+0.5 <= x < 1   -> 0.5x + 0.25
+1 <= x < 2     -> 0.25x + 0.5
+x >= 2         -> 1
+```
+
+Again, all scaling was shift-based. The goal was to improve accuracy over sigmoid while keeping the hardware implementation compact.
+
+## Result
+
+All four activation functions were implemented with one-cycle latency. The bit-shift-based scaling removed the need for multipliers, reducing DSP usage to 0.
+
+The main lesson was that hardware implementation changes how we think about familiar ML functions. In software, multiplying by a small constant is ordinary. In hardware, choosing constants that map cleanly to shifts can make the design simpler, faster, and more resource-efficient.

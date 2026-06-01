@@ -1,0 +1,515 @@
+---
+import {
+  seminarEntries,
+  seminarTypeLabels,
+  type SeminarType,
+} from "@/data/seminars";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { FileText, LayoutGrid, List, Search, UserRound, X } from "lucide-react";
+
+const typeOrder: SeminarType[] = [
+  "CSE seminar",
+  "Faculty candidate seminar",
+  "CS theory seminar",
+  "Virtual research seminar",
+  "Research proposal session",
+  "Teaching session",
+];
+
+const seminarCounts = typeOrder
+  .map((type) => ({
+    type,
+    count: seminarEntries.filter((item) => item.type === type).length,
+  }))
+  .filter(({ count }) => count > 0);
+
+const seminarTypeStyles: Record<SeminarType, string> = {
+  "CSE seminar":
+    "border-sky-200 bg-sky-50 text-sky-700 hover:border-sky-300 hover:bg-sky-100 data-[active=true]:border-sky-600 data-[active=true]:bg-sky-600 data-[active=true]:text-white",
+  "Faculty candidate seminar":
+    "border-emerald-200 bg-emerald-50 text-emerald-700 hover:border-emerald-300 hover:bg-emerald-100 data-[active=true]:border-emerald-600 data-[active=true]:bg-emerald-600 data-[active=true]:text-white",
+  "CS theory seminar":
+    "border-violet-200 bg-violet-50 text-violet-700 hover:border-violet-300 hover:bg-violet-100 data-[active=true]:border-violet-600 data-[active=true]:bg-violet-600 data-[active=true]:text-white",
+  "Virtual research seminar":
+    "border-amber-200 bg-amber-50 text-amber-800 hover:border-amber-300 hover:bg-amber-100 data-[active=true]:border-amber-500 data-[active=true]:bg-amber-500 data-[active=true]:text-white",
+  "Research proposal session":
+    "border-rose-200 bg-rose-50 text-rose-700 hover:border-rose-300 hover:bg-rose-100 data-[active=true]:border-rose-600 data-[active=true]:bg-rose-600 data-[active=true]:text-white",
+  "Teaching session":
+    "border-teal-200 bg-teal-50 text-teal-700 hover:border-teal-300 hover:bg-teal-100 data-[active=true]:border-teal-600 data-[active=true]:bg-teal-600 data-[active=true]:text-white",
+};
+---
+
+<DefaultLayout
+  title="Seminars"
+  description="CSE seminar announcements, CS theory talks, virtual research seminars, and faculty-candidate research seminars from 2026."
+>
+  <section
+    class="from-primary/5 bg-gradient-to-b to-transparent pb-4 pt-10 md:pb-5 md:pt-12"
+  >
+    <div class="container">
+      <p class="text-secondary text-sm font-medium uppercase tracking-wider">
+        Talks and lecture series
+      </p>
+      <h1 class="mt-3 text-3xl md:text-4xl">Seminars</h1>
+    </div>
+  </section>
+
+  <section class="border-y bg-muted/20">
+    <div class="container">
+      <div class="flex flex-wrap items-center justify-between gap-4 py-5">
+        <div>
+          <h2 class="text-2xl">2026</h2>
+          <p
+            id="seminar-filter-status"
+            class="text-muted-foreground mt-1 text-sm"
+          >
+            {seminarEntries.length} seminar announcement{
+              seminarEntries.length === 1 ? "" : "s"
+            }, newest first
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            class="rounded-full border border-slate-200 bg-white px-3 py-1 text-sm text-slate-600 transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 data-[active=true]:border-slate-700 data-[active=true]:bg-slate-800 data-[active=true]:text-white"
+            data-filter-button
+            data-filter="all"
+            data-active="true"
+            aria-pressed="true"
+          >
+            All: {seminarEntries.length}
+          </button>
+          {
+            seminarCounts.map(({ type, count }) => (
+              <button
+                type="button"
+                class={`rounded-full border px-3 py-1 text-sm transition ${seminarTypeStyles[type]}`}
+                data-filter-button
+                data-filter={type}
+                data-active="false"
+                aria-pressed="false"
+              >
+                {seminarTypeLabels[type]}: {count}
+              </button>
+            ))
+          }
+
+          <span class="mx-1 h-6 w-px bg-border" aria-hidden="true"></span>
+          <button
+            type="button"
+            class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground data-[active=true]:border-slate-700 data-[active=true]:bg-slate-800 data-[active=true]:text-white"
+            data-layout-button
+            data-layout="card"
+            data-active="true"
+            aria-pressed="true"
+            aria-label="Use card layout"
+            title="Card layout"
+          >
+            <LayoutGrid className="size-4" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground data-[active=true]:border-slate-700 data-[active=true]:bg-slate-800 data-[active=true]:text-white"
+            data-layout-button
+            data-layout="list"
+            data-active="false"
+            aria-pressed="false"
+            aria-label="Use list layout"
+            title="List layout"
+          >
+            <List className="size-4" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+
+      <div class="pb-5">
+        <label class="sr-only" for="seminar-search">Search seminars</label>
+        <div class="relative">
+          <Search
+            className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+            aria-hidden="true"
+          />
+          <input
+            id="seminar-search"
+            type="search"
+            class="w-full rounded-full border bg-background py-2 pl-10 pr-4 text-sm outline-none transition placeholder:text-muted-foreground focus:border-secondary"
+            placeholder="Search title, speaker, abstract, bio, venue..."
+            data-seminar-search
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pb-16 pt-8 md:pb-20">
+    <div class="container">
+      <div
+        class="grid gap-4 md:grid-cols-2 xl:grid-cols-3 data-[layout=list]:gap-2 data-[layout=list]:md:grid-cols-1 data-[layout=list]:xl:grid-cols-1"
+        data-seminar-list
+        data-layout="card"
+      >
+        {
+          seminarEntries.map((item) => (
+            <article
+              id={item.id}
+              class="group flex scroll-mt-24 flex-col rounded-lg border bg-background p-4 transition data-[layout=list]:rounded-md data-[layout=list]:p-4"
+              data-seminar-card
+              data-layout="card"
+              data-type={item.type}
+              data-search={[
+                item.title,
+                item.speaker,
+                item.affiliation,
+                item.displayDate,
+                item.time,
+                item.venue,
+                item.type,
+                seminarTypeLabels[item.type],
+                item.summary,
+                item.abstract,
+                item.bio,
+              ]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              <div class="mb-3 flex flex-col items-start gap-1.5 group-data-[layout=list]:mb-2 group-data-[layout=list]:flex-row group-data-[layout=list]:flex-wrap group-data-[layout=list]:items-center group-data-[layout=list]:gap-2">
+                <button
+                  type="button"
+                  class={`rounded-full border px-2 py-0.5 text-xs font-medium transition ${seminarTypeStyles[item.type]}`}
+                  data-filter-button
+                  data-filter={item.type}
+                  data-active="false"
+                  aria-pressed="false"
+                >
+                  {seminarTypeLabels[item.type]}
+                </button>
+
+                <div class="flex flex-wrap items-center gap-2">
+                  <span class="text-muted-foreground text-xs">
+                    {item.displayDate}
+                  </span>
+                  {item.time && (
+                    <span class="text-muted-foreground text-xs">
+                      {item.time}
+                    </span>
+                  )}
+                  {item.venue && (
+                    <span class="text-muted-foreground text-xs">
+                      {item.venue}
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <h3 class="text-lg font-semibold leading-snug md:group-data-[layout=list]:text-xl">
+                {item.title}
+              </h3>
+
+              <dl class="mt-3 grid gap-1.5 text-sm group-data-[layout=list]:gap-x-3 group-data-[layout=list]:gap-y-1 md:group-data-[layout=list]:grid-cols-[8rem_1fr]">
+                <dt class="text-muted-foreground">Speaker</dt>
+                <dd>
+                  {item.speaker}
+                  {item.affiliation && (
+                    <span class="text-muted-foreground">
+                      {" "}
+                      ({item.affiliation})
+                    </span>
+                  )}
+                </dd>
+                <dt class="text-muted-foreground">Date</dt>
+                <dd>{item.displayDate}</dd>
+                {item.time && (
+                  <>
+                    <dt class="text-muted-foreground">Time</dt>
+                    <dd>{item.time}</dd>
+                  </>
+                )}
+                {item.venue && (
+                  <>
+                    <dt class="text-muted-foreground">Venue</dt>
+                    <dd>{item.venue}</dd>
+                  </>
+                )}
+              </dl>
+
+              {(item.abstract || item.summary || item.bio) && (
+                <div class="mt-auto flex justify-end gap-2 pt-4">
+                  {(item.abstract || item.summary) && (
+                    <>
+                      <button
+                        type="button"
+                        class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground"
+                        data-modal-trigger
+                        data-modal-kind={
+                          item.abstract ? "Abstract" : "Overview"
+                        }
+                        data-modal-title={item.title}
+                        data-modal-subtitle={`${item.speaker}${item.affiliation ? ` (${item.affiliation})` : ""}`}
+                        data-modal-target={`${item.id}-abstract`}
+                        aria-label={`${item.abstract ? "Read abstract" : "Read overview"} for ${item.title}`}
+                        title={item.abstract ? "Abstract" : "Overview"}
+                      >
+                        <FileText className="size-4" aria-hidden="true" />
+                      </button>
+                      <div id={`${item.id}-abstract`} hidden>
+                        {(item.abstract ?? item.summary)
+                          ?.split("\n\n")
+                          .map((paragraph) => (
+                            <p>{paragraph}</p>
+                          ))}
+                      </div>
+                    </>
+                  )}
+
+                  {item.bio && (
+                    <>
+                      <button
+                        type="button"
+                        class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground"
+                        data-modal-trigger
+                        data-modal-kind="Speaker Bio"
+                        data-modal-title={item.title}
+                        data-modal-subtitle={`${item.speaker}${item.affiliation ? ` (${item.affiliation})` : ""}`}
+                        data-modal-target={`${item.id}-bio`}
+                        aria-label={`Read speaker bio for ${item.title}`}
+                        title="Speaker Bio"
+                      >
+                        <UserRound className="size-4" aria-hidden="true" />
+                      </button>
+                      <div id={`${item.id}-bio`} hidden>
+                        <p>{item.bio}</p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <div
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/40 p-4 data-[open=true]:flex"
+    data-seminar-modal
+    data-open="false"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="seminar-modal-title"
+    hidden
+  >
+    <div
+      class="flex max-h-[min(42rem,calc(100vh-4rem))] w-[min(42rem,calc(100vw-2rem))] flex-col rounded-lg border bg-background shadow-xl"
+    >
+      <div class="flex items-start justify-between gap-4 border-b p-5">
+        <div>
+          <p
+            class="text-secondary text-xs font-semibold uppercase tracking-wider"
+            data-modal-kind
+          >
+          </p>
+          <h2 id="seminar-modal-title" class="mt-2 text-xl font-semibold"></h2>
+          <p class="text-muted-foreground mt-1 text-sm" data-modal-subtitle></p>
+        </div>
+        <button
+          type="button"
+          class="inline-flex size-8 shrink-0 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground"
+          data-modal-close
+          aria-label="Close seminar details"
+          title="Close"
+        >
+          <X className="size-4" aria-hidden="true" />
+        </button>
+      </div>
+      <div
+        class="text-muted-foreground max-h-[32rem] space-y-3 overflow-y-auto p-5 text-sm leading-relaxed"
+        data-modal-content
+      >
+      </div>
+    </div>
+  </div>
+
+  <script is:inline data-astro-rerun>
+    (() => {
+      if (window.__seminarsPageClickHandler) {
+        document.removeEventListener(
+          "click",
+          window.__seminarsPageClickHandler,
+        );
+      }
+      if (window.__seminarsPageKeyHandler) {
+        document.removeEventListener(
+          "keydown",
+          window.__seminarsPageKeyHandler,
+        );
+      }
+      if (window.__seminarsPageInputHandler) {
+        document.removeEventListener(
+          "input",
+          window.__seminarsPageInputHandler,
+        );
+      }
+
+      let currentFilter = "all";
+      let currentQuery =
+        document.querySelector("[data-seminar-search]")?.value.trim() || "";
+
+      const applySeminarFilters = () => {
+        const seminarCards = Array.from(
+          document.querySelectorAll("[data-seminar-card]"),
+        );
+        const filterButtons = Array.from(
+          document.querySelectorAll("[data-filter-button]"),
+        );
+        const status = document.querySelector("#seminar-filter-status");
+        const totalCount = seminarCards.length;
+        const query = currentQuery.toLowerCase();
+        let visibleCount = 0;
+
+        seminarCards.forEach((card) => {
+          const matchesType =
+            currentFilter === "all" || card.dataset.type === currentFilter;
+          const matchesSearch =
+            !query || (card.dataset.search || "").toLowerCase().includes(query);
+          const isVisible = matchesType && matchesSearch;
+          card.hidden = !isVisible;
+          if (isVisible) visibleCount += 1;
+        });
+
+        filterButtons.forEach((button) => {
+          const isActive = button.dataset.filter === currentFilter;
+          button.dataset.active = String(isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+
+        if (status) {
+          const noun =
+            visibleCount === 1
+              ? "seminar announcement"
+              : "seminar announcements";
+          const searchText = currentQuery ? ` matching "${currentQuery}"` : "";
+          status.textContent =
+            currentFilter === "all" && !currentQuery
+              ? `${totalCount} ${totalCount === 1 ? "seminar announcement" : "seminar announcements"}, newest first`
+              : `${visibleCount} ${noun}${searchText}, newest first`;
+        }
+      };
+
+      const setLayout = (layout) => {
+        const seminarList = document.querySelector("[data-seminar-list]");
+        const seminarCards = Array.from(
+          document.querySelectorAll("[data-seminar-card]"),
+        );
+        const layoutButtons = Array.from(
+          document.querySelectorAll("[data-layout-button]"),
+        );
+        const nextLayout = layout === "list" ? "list" : "card";
+
+        if (seminarList) seminarList.setAttribute("data-layout", nextLayout);
+        seminarCards.forEach((card) => {
+          card.dataset.layout = nextLayout;
+        });
+
+        layoutButtons.forEach((button) => {
+          const isActive = button.dataset.layout === nextLayout;
+          button.dataset.active = String(isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+      };
+
+      const closeModal = () => {
+        const modal = document.querySelector("[data-seminar-modal]");
+        if (!modal) return;
+
+        modal.hidden = true;
+        modal.dataset.open = "false";
+        if (window.__seminarsLastFocusedElement) {
+          window.__seminarsLastFocusedElement.focus();
+        }
+      };
+
+      const openModal = (button) => {
+        const modal = document.querySelector("[data-seminar-modal]");
+        const modalKind = modal
+          ? modal.querySelector("[data-modal-kind]")
+          : null;
+        const modalTitle = modal
+          ? modal.querySelector("#seminar-modal-title")
+          : null;
+        const modalSubtitle = modal
+          ? modal.querySelector("[data-modal-subtitle]")
+          : null;
+        const modalContent = modal
+          ? modal.querySelector("[data-modal-content]")
+          : null;
+        const modalCloseButton = modal
+          ? modal.querySelector("[data-modal-close]")
+          : null;
+        const content = document.getElementById(button.dataset.modalTarget);
+
+        if (!modal || !modalContent || !content) return;
+
+        window.__seminarsLastFocusedElement = button;
+        if (modalKind) modalKind.textContent = button.dataset.modalKind || "";
+        if (modalTitle)
+          modalTitle.textContent = button.dataset.modalTitle || "";
+        if (modalSubtitle) {
+          modalSubtitle.textContent = button.dataset.modalSubtitle || "";
+        }
+        const clonedContent = Array.from(content.childNodes).map((node) =>
+          node.cloneNode(true),
+        );
+        modalContent.replaceChildren(...clonedContent);
+        modal.hidden = false;
+        modal.dataset.open = "true";
+        if (modalCloseButton) modalCloseButton.focus();
+      };
+
+      window.__seminarsPageClickHandler = (event) => {
+        const filterButton = event.target.closest("[data-filter-button]");
+        if (filterButton) {
+          currentFilter = filterButton.dataset.filter || "all";
+          applySeminarFilters();
+          return;
+        }
+
+        const layoutButton = event.target.closest("[data-layout-button]");
+        if (layoutButton) {
+          setLayout(layoutButton.dataset.layout);
+          return;
+        }
+
+        const detailButton = event.target.closest("[data-modal-trigger]");
+        if (detailButton) {
+          openModal(detailButton);
+          return;
+        }
+
+        if (event.target.closest("[data-modal-close]")) {
+          closeModal();
+          return;
+        }
+
+        const modal = document.querySelector("[data-seminar-modal]");
+        if (modal && event.target === modal) closeModal();
+      };
+
+      window.__seminarsPageKeyHandler = (event) => {
+        if (event.key === "Escape") closeModal();
+      };
+
+      window.__seminarsPageInputHandler = (event) => {
+        if (!event.target.matches("[data-seminar-search]")) return;
+
+        currentQuery = event.target.value.trim();
+        applySeminarFilters();
+      };
+
+      document.addEventListener("click", window.__seminarsPageClickHandler);
+      document.addEventListener("keydown", window.__seminarsPageKeyHandler);
+      document.addEventListener("input", window.__seminarsPageInputHandler);
+    })();
+  </script>
+</DefaultLayout>

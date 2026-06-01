@@ -1,0 +1,23 @@
+---
+import AcademicSummaryPage from '@/components/sections/academic-summary-page.astro';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="Student Openings" description="Explore available internship, JRF, SRF, and project positions.">
+  <AcademicSummaryPage
+    title="Student Openings"
+    description="Explore institute-maintained openings for project staff, research roles, and student employment opportunities."
+    summary="IITGN maintains current openings through its careers and recruitment pages, including staff openings, project positions, postdoctoral roles, JRF/SRF-style research positions, and student-only on-campus employment opportunities."
+    highlights={[
+      'Open positions change frequently and are maintained on IITGN recruitment portals rather than on this department page.',
+      'The staff openings page lists current project and research positions with discipline, PI, posting date, deadline, detail links, and application status.',
+      'Project-staff applications are commonly routed through the IITGN project staff recruitment portal or position-specific application links.',
+      'CSE-specific opportunities may appear alongside institute-wide listings, so applicants should check the current IITGN pages directly.',
+    ]}
+    links={[
+      { label: 'IITGN careers', href: 'https://iitgn.ac.in/careers' },
+      { label: 'Staff and project openings', href: 'https://iitgn.ac.in/careers/staff' },
+      { label: 'Project staff recruitment portal', href: 'https://recruitment.iitgn.ac.in/projectstaff/' },
+    ]}
+  />
+</DefaultLayout>

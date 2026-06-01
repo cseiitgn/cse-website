@@ -1,0 +1,40 @@
+---
+import { POSTDOCS } from '@/data/postdocs';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout title="Post-Docs" description="Postdoctoral researchers and fellows.">
+  <section class="from-primary/5 bg-gradient-to-b to-transparent py-16 md:py-20">
+    <div class="container">
+      <p class="text-secondary text-sm font-medium uppercase tracking-wider">People</p>
+      <h1 class="mt-3 text-3xl md:text-4xl">Postdoctoral Researchers</h1>
+      <p class="text-muted-foreground mt-4 max-w-2xl">
+        Current postdoctoral researchers working with the department.
+      </p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="grid gap-4 md:grid-cols-2">
+        {POSTDOCS.map((postdoc) => (
+          <article class="rounded-lg border bg-background p-5">
+            <h2 class="text-xl font-semibold">{postdoc.name}</h2>
+            <p class="text-muted-foreground mt-1 text-sm">{postdoc.period}</p>
+            <dl class="mt-5 grid gap-2 text-sm">
+              <div>
+                <dt class="text-muted-foreground">Doctorate</dt>
+                <dd>{postdoc.phd}</dd>
+                <dd>{postdoc.phdInstitute}</dd>
+              </div>
+              <div>
+                <dt class="text-muted-foreground">Working with</dt>
+                <dd>{postdoc.workingWith}</dd>
+              </div>
+            </dl>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
