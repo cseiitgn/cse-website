@@ -288,6 +288,7 @@ export const departmentNews: DepartmentNewsItem[] = [
     status: "confirmed",
     sourceLabel: "ACM SIGEnergy",
     sourceUrl: "https://energy.acm.org/",
+    homepage: true,
   },
   {
     id: "inter-iit-2024-adobe-research",
@@ -400,4 +401,4 @@ export const homepageNewsItems = sortByDateDesc(
 
 export const homepageAwardItems = sortByDateDesc(
   departmentNews.filter((item) => item.homepage && item.category === "award"),
-).slice(0, 3);
+).slice(0, 4);

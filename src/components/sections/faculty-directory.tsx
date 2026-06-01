@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { ExternalLink, Filter } from 'lucide-react';
+import { Filter, Globe } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -21,6 +21,12 @@ function FacultyCard({ member }: { member: FacultyMember }) {
     .join('')
     .slice(0, 2)
     .toUpperCase();
+  const affiliationLine =
+    member.category === 'affiliated'
+      ? `Primary Affiliation: ${member.primaryDepartment}`
+      : member.secondaryDepartment
+        ? `Also affiliated with ${member.secondaryDepartment}`
+        : undefined;
 
   return (
     <Card className="group flex gap-4 p-4">
@@ -40,15 +46,17 @@ function FacultyCard({ member }: { member: FacultyMember }) {
               href={member.homepage}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Open IITGN faculty profile for ${member.name}`}
+              title="IITGN faculty profile"
               className="text-muted-foreground hover:text-secondary shrink-0 transition-colors"
             >
-              <ExternalLink className="size-3.5" />
+              <Globe className="size-3.5" />
             </a>
           )}
         </div>
-        {member.secondaryDepartment && (
+        {affiliationLine && (
           <p className="text-muted-foreground mt-1 text-xs">
-            Also affiliated with {member.secondaryDepartment}
+            {affiliationLine}
           </p>
         )}
         {member.affiliations && member.affiliations.length > 0 && (
@@ -60,6 +68,9 @@ function FacultyCard({ member }: { member: FacultyMember }) {
     </Card>
   );
 }
+
+const sortByFirstName = (members: FacultyMember[]) =>
+  [...members].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function FacultyDirectory() {
   const [activeFilter, setActiveFilter] = useState<FacultyCategory | 'all'>(
@@ -118,7 +129,9 @@ export default function FacultyDirectory() {
       <section className="section-padding">
         <div className="container">
           {filteredCategories.map((category) => {
-            const members = FACULTY.filter((f) => f.category === category);
+            const members = sortByFirstName(
+              FACULTY.filter((f) => f.category === category),
+            );
             if (members.length === 0) return null;
 
             return (

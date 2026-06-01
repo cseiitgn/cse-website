@@ -27,6 +27,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: [],
     dateOfJoining: '2022-10-03',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
   },
   {
     name: 'Anirban Dasgupta',
@@ -35,6 +36,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering', 'Artificial Intelligence'],
     dateOfJoining: '2013-12-30',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-anirban',
   },
   {
     name: 'Bireswar Das',
@@ -43,6 +45,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering'],
     dateOfJoining: '2010-06-28',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-bireswar',
   },
   {
     name: 'Neeldhara Misra',
@@ -51,15 +54,17 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering', 'Artificial Intelligence'],
     dateOfJoining: '2015-09-23',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-neeldhara',
   },
   {
     name: 'Nipun Batra',
     designation: 'Associate Professor',
     category: 'core',
     primaryDepartment: 'Computer Science and Engineering',
-    affiliations: ['Sustainability Lab'],
+    affiliations: ['Center for Sustainability'],
     researchAreas: ['Computer Science and Engineering', 'Artificial Intelligence'],
     dateOfJoining: '2018-07-09',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-nipun',
   },
   {
     name: 'Manoj D Gupta',
@@ -68,6 +73,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering'],
     dateOfJoining: '2016-01-18',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-manoj',
   },
   {
     name: 'Mayank Singh',
@@ -76,6 +82,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering', 'Artificial Intelligence'],
     dateOfJoining: '2019-02-06',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-mayank',
   },
   {
     name: 'Sameer G Kulkarni',
@@ -85,6 +92,7 @@ export const FACULTY: FacultyMember[] = [
     secondaryDepartment: 'Electrical Engineering',
     researchAreas: ['Computer Science and Engineering', 'Electrical Engineering'],
     dateOfJoining: '2020-04-03',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-sameer',
   },
   {
     name: 'Balagopal Komarath',
@@ -93,6 +101,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering'],
     dateOfJoining: '2020-12-21',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-balagopal',
   },
   {
     name: 'Abhishek Bichhawat',
@@ -101,6 +110,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering'],
     dateOfJoining: '2021-03-30',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-abhishek',
   },
   {
     name: 'Yogesh Kumar Meena',
@@ -113,6 +123,7 @@ export const FACULTY: FacultyMember[] = [
       'Cognitive Science',
     ],
     dateOfJoining: '2023-02-14',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-yogesh',
   },
   {
     name: 'Shouvick Mondal',
@@ -121,14 +132,16 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering'],
     dateOfJoining: '2023-02-01',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-shouvick',
   },
   {
     name: 'Manisha Padala',
-    designation: 'Assistant Professor (Contract)',
+    designation: 'Assistant Professor',
     category: 'core',
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: [],
     dateOfJoining: '2024-03-26',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-manisha',
   },
 
   // --- Affiliated Faculty ---
@@ -144,6 +157,7 @@ export const FACULTY: FacultyMember[] = [
       'Artificial Intelligence',
     ],
     dateOfJoining: '2013-05-20',
+    homepage: 'https://iitgn.ac.in/faculty/ee/fac-shanmuganathan',
   },
   {
     name: 'Udit Bhatia',
@@ -153,24 +167,18 @@ export const FACULTY: FacultyMember[] = [
     secondaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Civil Engineering', 'Artificial Intelligence', 'Earth Sciences'],
     dateOfJoining: '2019-01-17',
+    homepage: 'https://iitgn.ac.in/faculty/civil/fac-udit',
   },
-  {
-    name: 'Krishna Prasad Miyapuram',
-    designation: 'Associate Professor',
-    category: 'affiliated',
-    primaryDepartment: 'Cognitive and Brain Sciences',
-    researchAreas: ['Cognitive Science', 'Artificial Intelligence'],
-    dateOfJoining: '2012-10-03',
-  },
-
   // --- Teaching Faculty ---
   {
     name: 'Jyoti Krishnan',
     designation: 'Assistant Teaching Professor',
     category: 'teaching',
     primaryDepartment: 'Computer Science and Engineering',
+    affiliations: ['Center for Creative Learning'],
     researchAreas: ['Computer Science and Engineering'],
     dateOfJoining: '2024-03-11',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-jyothi',
   },
 
   // --- Practice Faculty ---
@@ -182,6 +190,7 @@ export const FACULTY: FacultyMember[] = [
     affiliations: ['Center for Creative Learning'],
     researchAreas: [],
     dateOfJoining: '2025-12-12',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-manu',
   },
   {
     name: 'Anup Kalbalia',
@@ -190,6 +199,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: [],
     dateOfJoining: '2026-02-02',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-anup',
   },
 
   // --- Visiting / Guest Faculty ---
@@ -200,6 +210,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: [],
     dateOfJoining: '2025-08-04',
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-nirmal',
   },
   {
     name: 'Samit Bhattacharya',
@@ -216,6 +227,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: [],
     dateOfJoining: '2025-10-17',
+    homepage: 'https://iitgn.ac.in/faculty/guestprof/fac-venkatesh_raman',
   },
   {
     name: 'Viraj Shah',
@@ -240,6 +252,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: [],
     dateOfJoining: '2025-01-01',
+    homepage: 'https://iitgn.ac.in/faculty/guestprof/yuvraj_patel',
   },
   {
     name: 'Subir Verma',
@@ -248,6 +261,7 @@ export const FACULTY: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: [],
     dateOfJoining: '2025-10-17',
+    homepage: 'https://iitgn.ac.in/faculty/guestprof/subir_varma',
   },
   {
     name: 'Ambarish Ojha',
@@ -271,7 +285,7 @@ export const CATEGORY_LABELS: Record<FacultyCategory, string> = {
   core: 'Core Faculty',
   affiliated: 'Affiliated Faculty',
   visiting: 'Visiting Faculty',
-  practice: 'Faculty of Practice',
+  practice: 'Professors of Practice',
   teaching: 'Teaching Faculty',
   guest: 'Guest Faculty',
 };

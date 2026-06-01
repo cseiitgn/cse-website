@@ -234,55 +234,93 @@ const seminarTypeStyles: Record<SeminarType, string> = {
               </dl>
 
               {(item.abstract || item.summary || item.bio) && (
-                <div class="mt-auto flex justify-end gap-2 pt-4">
-                  {(item.abstract || item.summary) && (
-                    <>
-                      <button
-                        type="button"
-                        class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground"
-                        data-modal-trigger
-                        data-modal-kind={
-                          item.abstract ? "Abstract" : "Overview"
-                        }
-                        data-modal-title={item.title}
-                        data-modal-subtitle={`${item.speaker}${item.affiliation ? ` (${item.affiliation})` : ""}`}
-                        data-modal-target={`${item.id}-abstract`}
-                        aria-label={`${item.abstract ? "Read abstract" : "Read overview"} for ${item.title}`}
-                        title={item.abstract ? "Abstract" : "Overview"}
-                      >
-                        <FileText className="size-4" aria-hidden="true" />
-                      </button>
-                      <div id={`${item.id}-abstract`} hidden>
-                        {(item.abstract ?? item.summary)
-                          ?.split("\n\n")
-                          .map((paragraph) => (
-                            <p>{paragraph}</p>
-                          ))}
-                      </div>
-                    </>
-                  )}
+                <>
+                  <div class="mt-auto flex justify-end gap-2 pt-4 group-data-[layout=list]:hidden">
+                    {(item.abstract || item.summary) && (
+                      <>
+                        <button
+                          type="button"
+                          class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground"
+                          data-modal-trigger
+                          data-modal-kind={
+                            item.abstract ? "Abstract" : "Overview"
+                          }
+                          data-modal-title={item.title}
+                          data-modal-subtitle={`${item.speaker}${item.affiliation ? ` (${item.affiliation})` : ""}`}
+                          data-modal-target={`${item.id}-abstract`}
+                          aria-label={`${item.abstract ? "Read abstract" : "Read overview"} for ${item.title}`}
+                          title={item.abstract ? "Abstract" : "Overview"}
+                        >
+                          <FileText className="size-4" aria-hidden="true" />
+                        </button>
+                        <div id={`${item.id}-abstract`} hidden>
+                          {(item.abstract ?? item.summary)
+                            ?.split("\n\n")
+                            .map((paragraph) => (
+                              <p>{paragraph}</p>
+                            ))}
+                        </div>
+                      </>
+                    )}
 
-                  {item.bio && (
-                    <>
-                      <button
-                        type="button"
-                        class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground"
-                        data-modal-trigger
-                        data-modal-kind="Speaker Bio"
-                        data-modal-title={item.title}
-                        data-modal-subtitle={`${item.speaker}${item.affiliation ? ` (${item.affiliation})` : ""}`}
-                        data-modal-target={`${item.id}-bio`}
-                        aria-label={`Read speaker bio for ${item.title}`}
-                        title="Speaker Bio"
-                      >
-                        <UserRound className="size-4" aria-hidden="true" />
-                      </button>
-                      <div id={`${item.id}-bio`} hidden>
-                        <p>{item.bio}</p>
-                      </div>
-                    </>
-                  )}
-                </div>
+                    {item.bio && (
+                      <>
+                        <button
+                          type="button"
+                          class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground"
+                          data-modal-trigger
+                          data-modal-kind="Speaker Bio"
+                          data-modal-title={item.title}
+                          data-modal-subtitle={`${item.speaker}${item.affiliation ? ` (${item.affiliation})` : ""}`}
+                          data-modal-target={`${item.id}-bio`}
+                          aria-label={`Read speaker bio for ${item.title}`}
+                          title="Speaker Bio"
+                        >
+                          <UserRound className="size-4" aria-hidden="true" />
+                        </button>
+                        <div id={`${item.id}-bio`} hidden>
+                          <p>{item.bio}</p>
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  <div class="mt-4 hidden gap-3 border-t pt-4 group-data-[layout=list]:grid md:group-data-[layout=list]:grid-cols-2">
+                    {(item.abstract || item.summary) && (
+                      <details class="rounded-md border bg-muted/20">
+                        <summary class="flex cursor-pointer list-none items-center gap-2 px-3 py-2 text-sm font-medium [&::-webkit-details-marker]:hidden">
+                          <FileText
+                            className="text-muted-foreground size-4"
+                            aria-hidden="true"
+                          />
+                          {item.abstract ? "Abstract" : "Overview"}
+                        </summary>
+                        <div class="text-muted-foreground space-y-3 px-3 pb-3 text-sm leading-relaxed">
+                          {(item.abstract ?? item.summary)
+                            ?.split("\n\n")
+                            .map((paragraph) => (
+                              <p>{paragraph}</p>
+                            ))}
+                        </div>
+                      </details>
+                    )}
+
+                    {item.bio && (
+                      <details class="rounded-md border bg-muted/20">
+                        <summary class="flex cursor-pointer list-none items-center gap-2 px-3 py-2 text-sm font-medium [&::-webkit-details-marker]:hidden">
+                          <UserRound
+                            className="text-muted-foreground size-4"
+                            aria-hidden="true"
+                          />
+                          Speaker Bio
+                        </summary>
+                        <div class="text-muted-foreground px-3 pb-3 text-sm leading-relaxed">
+                          <p>{item.bio}</p>
+                        </div>
+                      </details>
+                    )}
+                  </div>
+                </>
               )}
             </article>
           ))

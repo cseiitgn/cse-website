@@ -1,11 +1,197 @@
 ---
-import PlaceholderPage from '@/components/sections/placeholder-page';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+type Project = {
+  title: string;
+  faculty: string;
+  sponsor: string;
+  category: string;
+  period: string;
+  source: string;
+};
+
+const projects: Project[] = [
+  {
+    title: 'Approximate Shortest Paths in Graphs',
+    faculty: 'Manoj D Gupta',
+    sponsor: 'Anusandhan National Research Foundation',
+    category: 'ANRF/SERB',
+    period: 'July-September 2026',
+    source: 'https://iitgn.ac.in/newsletter/projects/q3_2026',
+  },
+  {
+    title: 'Chitrabhasha: Developing India\'s Largest Dataset and Foundation Models for Multimodal AI',
+    faculty: 'Mayank Singh',
+    sponsor: 'Anusandhan National Research Foundation',
+    category: 'ANRF/SERB',
+    period: 'July-September 2026',
+    source: 'https://iitgn.ac.in/newsletter/projects/q3_2026',
+  },
+  {
+    title: 'Fair Federated Learning Framework in the Presence of Heterogeneous, Strategic, and Malicious Clients',
+    faculty: 'Manisha Padala',
+    sponsor: 'Anusandhan National Research Foundation (ECRG)',
+    category: 'ANRF/SERB',
+    period: 'April-June 2026',
+    source: 'https://iitgn.ac.in/newsletter/projects/q2_2026',
+  },
+  {
+    title: 'Understanding and Ensuring the Privacy of User Data',
+    faculty: 'Abhishek Bichhawat',
+    sponsor: 'Science & Engineering Research Board',
+    category: 'ANRF/SERB',
+    period: 'October-December 2023',
+    source: 'https://iitgn.ac.in/newsletter/projects/q4_2023',
+  },
+  {
+    title: 'Curating and constructing benchmarks and development of ML models for low-level NLP tasks in Hindi-English code-mixing',
+    faculty: 'Mayank Singh',
+    sponsor: 'Science & Engineering Research Board (Core Research Grant)',
+    category: 'ANRF/SERB',
+    period: 'January-March 2023',
+    source: 'https://iitgn.ac.in/newsletter/projects/q1_2023',
+  },
+  {
+    title: 'Verifying Security Properties of Group Messaging Protocols',
+    faculty: 'Abhishek Bichhawat',
+    sponsor: 'Centre Franco-Indien pour la Promotion de la Recherche Avancee',
+    category: 'International',
+    period: 'October-December 2023',
+    source: 'https://iitgn.ac.in/newsletter/projects/q4_2023',
+  },
+  {
+    title: 'A Brain-Computer Interface Driven Mental Fatigue Monitoring System to Improve Stroke Rehabilitation Therapy',
+    faculty: 'Yogesh Kumar Meena',
+    sponsor: 'Department for the Economy, Northern Ireland',
+    category: 'International',
+    period: 'October-December 2024',
+    source: 'https://iitgn.ac.in/newsletter/projects/q4_2024',
+  },
+  {
+    title: 'Microsoft Research PhD Fellowship for Zeel B Patel',
+    faculty: 'Nipun Batra',
+    sponsor: 'Microsoft Research Lab India Private Ltd',
+    category: 'Industry/Research Lab',
+    period: 'July-September 2024',
+    source: 'https://iitgn.ac.in/newsletter/projects/q3_2024',
+  },
+  {
+    title: 'Automated Crop mapping using time-series satellite and ancillary data',
+    faculty: 'Nipun Batra',
+    sponsor: 'Indian Space Research Organisation',
+    category: 'Sponsored',
+    period: 'April-June 2026',
+    source: 'https://iitgn.ac.in/newsletter/projects/q2_2026',
+  },
+  {
+    title: 'Specialized language models deployable on end points with low compute resources',
+    faculty: 'Anirban Dasgupta',
+    sponsor: 'Indian Space Research Organisation',
+    category: 'Sponsored',
+    period: 'July-September 2026',
+    source: 'https://iitgn.ac.in/newsletter/projects/q3_2026',
+  },
+  {
+    title: 'Development of Quantum Machine Learning Use Cases and Applications',
+    faculty: 'Sameer G Kulkarni',
+    sponsor: 'Ministry of Electronics and Information Technology (MeitY)',
+    category: 'Sponsored',
+    period: 'October-December 2024',
+    source: 'https://iitgn.ac.in/newsletter/projects/q4_2024',
+  },
+  {
+    title: 'exploreCSR: Bridging Digital Divides Through Computing',
+    faculty: 'Nipun Batra',
+    sponsor: 'Google',
+    category: 'Sponsored',
+    period: 'October-December 2024',
+    source: 'https://iitgn.ac.in/newsletter/projects/q4_2024',
+  },
+  {
+    title: 'How smart roads are different from conventional city roads and have brought ease of mobility to Indian cities?',
+    faculty: 'Mayank Singh',
+    sponsor: 'Ministry of Housing and Urban Affairs',
+    category: 'Consultancy',
+    period: 'January-March 2026',
+    source: 'https://iitgn.ac.in/newsletter/projects/q1_2026',
+  },
+  {
+    title: 'Development of Large Language Models based Chat plugin for Answering Website-specific Queries',
+    faculty: 'Mayank Singh',
+    sponsor: 'Silver Touch Technologies Limited',
+    category: 'Consultancy',
+    period: 'July-September 2023',
+    source: 'https://iitgn.ac.in/newsletter/projects/q3_2023',
+  },
+];
+
+const categories = ['ANRF/SERB', 'International', 'Sponsored', 'Industry/Research Lab', 'Consultancy'];
 ---
 
-<DefaultLayout title="Projects" description="Funded research projects and collaborations.">
-  <PlaceholderPage
-    title="Projects"
-    description="Funded research projects and collaborations."
-  />
+<DefaultLayout title="Projects" description="Funded research projects, collaborations, and consultancies.">
+  <section class="border-b bg-muted/40">
+    <div class="container py-14 md:py-18">
+      <p class="text-sm font-medium text-secondary">
+        Department of Computer Science &amp; Engineering, IIT Gandhinagar
+      </p>
+      <div class="mt-5 max-w-3xl">
+        <h1 class="text-3xl font-semibold leading-tight md:text-5xl">
+          Projects and consultancies
+        </h1>
+        <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
+          Selected publicly listed sponsored projects, international
+          collaborations, industry engagements, and consultancies involving CSE
+          faculty and affiliated faculty.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="flex flex-wrap gap-2">
+        {
+          categories.map((category) => (
+            <span class="rounded-full border bg-background px-3 py-1 text-sm text-muted-foreground">
+              {category}
+            </span>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        {
+          projects.map((project) => (
+            <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="rounded-full bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary">
+                  {project.category}
+                </span>
+                <span class="text-xs text-muted-foreground">{project.period}</span>
+              </div>
+              <h2 class="mt-4 text-xl font-semibold">{project.title}</h2>
+              <dl class="mt-4 space-y-3 text-sm">
+                <div>
+                  <dt class="font-medium">Faculty</dt>
+                  <dd class="mt-1 text-muted-foreground">{project.faculty}</dd>
+                </div>
+                <div>
+                  <dt class="font-medium">Agency / partner</dt>
+                  <dd class="mt-1 text-muted-foreground">{project.sponsor}</dd>
+                </div>
+              </dl>
+              <a
+                href={project.source}
+                class="mt-5 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Source listing -&gt;
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </DefaultLayout>

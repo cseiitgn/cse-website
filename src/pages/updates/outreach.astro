@@ -37,14 +37,26 @@ const researchOutcomes = [
   },
 ];
 
+const featuredPublicTalk = {
+  title: "Alan M. Turing: Ushering the Age of Computational Thinking",
+  speaker: "Anirban Dasgupta",
+  date: "15 May 2020",
+  summary:
+    "A public IIT Gandhinagar talk on Alan Turing and the ideas that shaped modern computational thinking.",
+  sourceLabel: "Watch on YouTube",
+  sourceUrl:
+    "https://www.youtube.com/watch?v=jvvPQbGUQf8&list=PLRfu94TCePTsl4ubkOe4igPL67BhJ-nOV&index=9",
+  embedUrl: "https://www.youtube.com/embed/jvvPQbGUQf8",
+};
+
 const outreachHighlights = [
   {
-    title: "Creative Mathematical Sciences Communication",
-    label: "Keynote / plenary",
+    title: "Google exploreCSR Award",
+    label: "Broadening participation",
     summary:
-      "Neeldhara Misra is listed among the plenary speakers for CMSC 2026, a conference centered on communicating mathematical ideas fundamental to computer science.",
-    sourceLabel: "CMSC 2026",
-    sourceUrl: "https://cmsc2026.github.io/",
+      "Nipun Batra, Neeldhara Misra, and Abhishek Bichhawat received the Google exploreCSR Award 2024.",
+    sourceLabel: "CSE news",
+    sourceUrl: "https://cs.iitgn.ac.in/news",
   },
   {
     title: "INYAS membership",
@@ -53,14 +65,6 @@ const outreachHighlights = [
       "Neeldhara Misra was selected as a member of the Indian National Young Academy of Sciences for 2023.",
     sourceLabel: "IITGN Connections",
     sourceUrl: "https://iitgn.ac.in/assets/pdfs/connections/v15i3_4.pdf",
-  },
-  {
-    title: "Google exploreCSR Award",
-    label: "Broadening participation",
-    summary:
-      "Nipun Batra, Neeldhara Misra, and Abhishek Bichhawat received the Google exploreCSR Award 2024.",
-    sourceLabel: "CSE news",
-    sourceUrl: "https://cs.iitgn.ac.in/news",
   },
   {
     title: "NCERT CSE textbook committee",
@@ -77,6 +81,14 @@ const outreachHighlights = [
       "The NPTEL School Connect course introduces school students to mathematical and computational thinking through puzzles, games, and hands-on ideas.",
     sourceLabel: "NPTEL School Connect",
     sourceUrl: "https://code.iitm.ac.in/schoolconnect/course-details?course=mc",
+  },
+  {
+    title: "Creative Mathematical Sciences Communication",
+    label: "Keynote / plenary",
+    summary:
+      "Neeldhara Misra is listed among the plenary speakers for CMSC 2026, a conference centered on communicating mathematical ideas fundamental to computer science.",
+    sourceLabel: "CMSC 2026",
+    sourceUrl: "https://cmsc2026.github.io/",
   },
 ];
 
@@ -141,13 +153,14 @@ const mediaItems = [
       "https://www.indiatoday.in/education-today/featurephilia/story/iit-gandhinagars-self-reliant-india-story-begins-in-classrooms-2869886-2026-02-18",
   },
   {
-    title: "Computational sustainability and energy analytics",
+    title: "TEDxConversations with Nipun Batra",
     person: "Nipun Batra",
-    type: "Public profile",
+    type: "Interview",
     summary:
-      "Public profiles describe Sustainability Lab work on AI for energy, buildings, air quality, and health sensing.",
-    sourceLabel: "Faculty profile",
-    sourceUrl: "https://nipunbatra.github.io/",
+      "A TEDxIITGandhinagar conversation on research in AI, sensing, air quality, health, IoT, smart homes, and sustainability.",
+    sourceLabel: "TEDxIITGandhinagar",
+    sourceUrl:
+      "https://www.linkedin.com/posts/nipunbatra0_prof-nipun-batra-tedxconversations-s2-activity-7259027715217874944-CV-R",
   },
   {
     title: "AI Resilience and Command Centre",
@@ -158,15 +171,6 @@ const mediaItems = [
     sourceLabel: "IITGN News",
     sourceUrl:
       "https://news.iitgn.ac.in/iit-gandhinagar-launches-ai-resilience-and-command-centre-for-data-driven-climate-risk-management/",
-  },
-  {
-    title: "5G and network-security capacity building",
-    person: "Sameer G. Kulkarni",
-    type: "Public workshop",
-    summary:
-      "External workshop listings show public-facing engagement around 5G, programmable networks, and security practice.",
-    sourceLabel: "IIT Bombay workshop",
-    sourceUrl: "https://www.ieor.iitb.ac.in/mlions/5Gworkshop2024/",
   },
 ];
 
@@ -213,6 +217,47 @@ const educationCategoryCounts = ["school", "course", "workshop", "conference"]
         programs, research-led puzzles and games, public talks, media
         conversations, and broadening-participation grants.
       </p>
+    </div>
+  </section>
+
+  <section class="border-y bg-background py-8 md:py-10">
+    <div class="container">
+      <div class="grid overflow-hidden rounded-lg border bg-muted/20 md:grid-cols-[1.15fr_0.85fr]">
+        <div class="aspect-video bg-black md:aspect-auto md:min-h-80">
+          <iframe
+            class="size-full"
+            src={featuredPublicTalk.embedUrl}
+            title={featuredPublicTalk.title}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div class="p-6 md:p-8">
+          <span class="rounded-full border border-secondary/20 bg-secondary/10 px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-secondary">
+            Featured public talk
+          </span>
+          <h2 class="mt-4 text-2xl leading-tight md:text-3xl">
+            {featuredPublicTalk.title}
+          </h2>
+          <p class="text-muted-foreground mt-3">
+            {featuredPublicTalk.summary}
+          </p>
+          <p class="text-muted-foreground mt-4 text-sm">
+            {featuredPublicTalk.speaker} · {featuredPublicTalk.date}
+          </p>
+          <a
+            href={featuredPublicTalk.sourceUrl}
+            class="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-secondary"
+          >
+            {featuredPublicTalk.sourceLabel}
+            <ArrowRight
+              className="size-4 transition group-hover:translate-x-1"
+              aria-hidden="true"
+            />
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
