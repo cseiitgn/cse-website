@@ -1,6 +1,15 @@
 ---
 import { POSTDOCS } from '@/data/postdocs';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const initials = (name: string) =>
+  name
+    .replace(/^Dr\.\s+/i, '')
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
 ---
 
 <DefaultLayout title="Post-Docs" description="Postdoctoral researchers and fellows.">
@@ -18,20 +27,25 @@ import DefaultLayout from '@/layouts/DefaultLayout.astro';
     <div class="container">
       <div class="grid gap-4 md:grid-cols-2">
         {POSTDOCS.map((postdoc) => (
-          <article class="rounded-lg border bg-background p-5">
-            <h2 class="text-xl font-semibold">{postdoc.name}</h2>
-            <p class="text-muted-foreground mt-1 text-sm">{postdoc.period}</p>
-            <dl class="mt-5 grid gap-2 text-sm">
-              <div>
-                <dt class="text-muted-foreground">Doctorate</dt>
-                <dd>{postdoc.phd}</dd>
-                <dd>{postdoc.phdInstitute}</dd>
-              </div>
-              <div>
-                <dt class="text-muted-foreground">Working with</dt>
-                <dd>{postdoc.workingWith}</dd>
-              </div>
-            </dl>
+          <article class="flex gap-4 rounded-lg border bg-background p-4">
+            <div class="grid size-14 shrink-0 place-items-center rounded-lg bg-primary/10 text-lg font-semibold text-primary">
+              {initials(postdoc.name)}
+            </div>
+            <div class="min-w-0 flex-1">
+              <h2 class="text-sm font-semibold leading-snug">{postdoc.name}</h2>
+              <p class="text-muted-foreground text-xs">Postdoctoral Researcher</p>
+              <p class="text-muted-foreground mt-1 text-xs">{postdoc.period}</p>
+              <dl class="mt-4 grid gap-1.5 text-sm">
+                <div>
+                  <dt class="text-muted-foreground inline">Doctorate: </dt>
+                  <dd class="inline">{postdoc.phd}, {postdoc.phdInstitute}</dd>
+                </div>
+                <div>
+                  <dt class="text-muted-foreground inline">Working with: </dt>
+                  <dd class="inline">{postdoc.workingWith}</dd>
+                </div>
+              </dl>
+            </div>
           </article>
         ))}
       </div>

@@ -34,51 +34,38 @@ function initials(name: string) {
     .toUpperCase();
 }
 
-function ScholarImage({ scholar }: { scholar: ResearchScholar }) {
-  const [failed, setFailed] = useState(false);
-
-  if (failed) {
-    return (
-      <div className="bg-primary/10 text-primary grid h-full w-full place-items-center text-2xl font-semibold">
-        {initials(scholar.name)}
-      </div>
-    );
-  }
-
+function InitialsMark({ name }: { name: string }) {
   return (
-    <img
-      src={scholar.image}
-      alt={scholar.name}
-      className="h-full w-full object-cover"
-      loading="lazy"
-      referrerPolicy="no-referrer"
-      onError={() => setFailed(true)}
-    />
+    <div className="bg-primary/10 text-primary grid size-14 shrink-0 place-items-center rounded-lg text-lg font-semibold">
+      {initials(name)}
+    </div>
   );
 }
 
 function GalleryCard({ scholar }: { scholar: ResearchScholar }) {
   return (
-    <Card className="overflow-hidden">
-      <div className="aspect-[4/3] bg-muted">
-        <ScholarImage scholar={scholar} />
-      </div>
-      <div className="p-4">
-        <div className="flex items-start justify-between gap-3">
+    <Card className="flex gap-4 p-4">
+      <InitialsMark name={scholar.name} />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-start justify-between gap-2">
           <div className="min-w-0">
-            <h3 className="truncate text-base font-semibold">
+            <h3 className="truncate text-sm font-semibold leading-snug">
               {scholar.name}
             </h3>
-            <p className="text-muted-foreground mt-1 text-sm">
-              {PROGRAM_LABELS[scholar.program]} · Joined {scholar.joined}
+            <p className="text-muted-foreground text-xs">
+              {PROGRAM_LABELS[scholar.program]}
+            </p>
+            <p className="text-muted-foreground mt-1 text-xs">
+              Joined {scholar.joined}
             </p>
           </div>
           <a
             href={`mailto:${scholar.email}`}
             className="text-muted-foreground hover:text-secondary shrink-0 transition-colors"
             aria-label={`Email ${scholar.name}`}
+            title="Email"
           >
-            <Mail className="size-4" />
+            <Mail className="size-3.5" />
           </a>
         </div>
       </div>
@@ -89,11 +76,9 @@ function GalleryCard({ scholar }: { scholar: ResearchScholar }) {
 function ListRow({ scholar }: { scholar: ResearchScholar }) {
   return (
     <article className="grid gap-3 border-b py-4 last:border-b-0 md:grid-cols-[1.5fr_1fr_8rem_2rem] md:items-center">
-      <div className="flex items-center gap-3">
-        <div className="size-12 shrink-0 overflow-hidden rounded-lg bg-muted">
-          <ScholarImage scholar={scholar} />
-        </div>
-        <h3 className="font-medium">{scholar.name}</h3>
+      <div className="flex min-w-0 items-center gap-3">
+        <InitialsMark name={scholar.name} />
+        <h3 className="truncate text-sm font-semibold">{scholar.name}</h3>
       </div>
       <p className="text-muted-foreground text-sm">{scholar.program}</p>
       <p className="text-muted-foreground text-sm">Joined {scholar.joined}</p>

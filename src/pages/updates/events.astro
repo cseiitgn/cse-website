@@ -8,7 +8,7 @@ import {
   type EventCategory,
 } from "@/data/events";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
-import { CalendarDays, Search, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarDays, Search, Sparkles } from "lucide-react";
 
 const categoryOrder: EventCategory[] = [
   "conference",
@@ -167,6 +167,20 @@ const groupedPastEvents = Object.entries(
                 <p class="text-muted-foreground mt-2 text-sm">
                   {event.description}
                 </p>
+                {event.sourceUrl && (
+                  <a
+                    href={event.sourceUrl}
+                    class="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {event.sourceLabel ?? "Event website"}
+                    <ArrowRight
+                      className="size-4 transition group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
+                  </a>
+                )}
                 {(event.organizer || event.collaborators) && (
                   <dl class="mt-4 grid gap-1.5 text-sm">
                     {event.organizer && (
@@ -238,6 +252,20 @@ const groupedPastEvents = Object.entries(
                 <p class="text-muted-foreground mt-2 text-sm">
                   {event.description}
                 </p>
+                {event.sourceUrl && (
+                  <a
+                    href={event.sourceUrl}
+                    class="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-secondary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {event.sourceLabel ?? "Event website"}
+                    <ArrowRight
+                      className="size-4 transition group-hover:translate-x-1"
+                      aria-hidden="true"
+                    />
+                  </a>
+                )}
               </article>
             ))
         }
@@ -298,6 +326,20 @@ const groupedPastEvents = Object.entries(
                       <p class="text-muted-foreground mt-1 text-sm">
                         {event.description}
                       </p>
+                      {event.sourceUrl && (
+                        <a
+                          href={event.sourceUrl}
+                          class="group mt-3 inline-flex items-center gap-2 text-sm font-medium text-secondary"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {event.sourceLabel ?? "Event website"}
+                          <ArrowRight
+                            className="size-4 transition group-hover:translate-x-1"
+                            aria-hidden="true"
+                          />
+                        </a>
+                      )}
                     </div>
                     <div class="text-sm">
                       {event.organizer && (

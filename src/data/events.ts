@@ -17,6 +17,8 @@ export interface DepartmentEvent {
   collaborators?: string;
   description: string;
   source: "CSE events.xlsx" | "CSE archive";
+  sourceLabel?: string;
+  sourceUrl?: string;
   featured?: boolean;
 }
 
@@ -65,6 +67,22 @@ export const departmentEvents: DepartmentEvent[] = [
       "A collaborative workshop focused on IT/OT security and financial-sector cybersecurity practice.",
     source: "CSE events.xlsx",
     featured: true,
+  },
+  {
+    id: "history-of-science-engineering-india-2026",
+    title: "Workshop on Doing History of Science and Engineering in India",
+    category: "workshop",
+    year: 2026,
+    displayDate: "23-24 Feb 2026",
+    startDate: "2026-02-23",
+    endDate: "2026-02-24",
+    organizer: "HSS IITGN and History of Mathematics in India (HoMI)",
+    collaborators: "Neeldhara Misra",
+    description:
+      "A workshop on doing history of science and engineering in India from a social-history perspective.",
+    source: "CSE archive",
+    sourceLabel: "Event website",
+    sourceUrl: "https://history-of-science-2026.netlify.app/",
   },
   {
     id: "modern-80211-wlans-2025",
