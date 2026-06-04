@@ -1,7 +1,395 @@
 ---
+import {
+  ArrowUpRight,
+  Award,
+  GraduationCap,
+  MapPin,
+} from 'lucide-react';
+
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+type AlumniLink = {
+  label: string;
+  href: string;
+};
+
+type FeaturedAlum = {
+  name: string;
+  credential: string;
+  current: string;
+  summary: string;
+  tags: string[];
+  links: AlumniLink[];
+};
+
+type DoctoralAlum = {
+  name: string;
+  joined: string;
+  year: string;
+};
+
+type PathwayGroup = {
+  title: string;
+  description: string;
+  people: string[];
+};
+
+const officialAlumniSource = 'https://iitgn.ac.in/people/student_alumni/cse';
+
+const featuredAlumni: FeaturedAlum[] = [
+  {
+    name: 'Vinu Sankar Sadasivan',
+    credential: 'BTech CSE 2020',
+    current: 'AI Research Scientist, Meta SuperIntelligence Labs',
+    summary:
+      'Works on AI safety, multimodal robustness, and trustworthy models, with earlier research appointments at Google DeepMind and Meta FAIR.',
+    tags: ['AI safety', 'research labs', 'BTech'],
+    links: [
+      { label: 'Profile', href: 'https://vinusankars.github.io/' },
+    ],
+  },
+  {
+    name: 'Sachin Yadav',
+    credential: 'BTech CS 2022',
+    current: 'Pre-Doctoral Researcher, Google DeepMind',
+    summary:
+      'Works on generative models and efficient language models, after research roles with Microsoft Research India and IITGN.',
+    tags: ['generative AI', 'research labs', 'BTech'],
+    links: [
+      { label: 'Profile', href: 'https://yadav-sachin.github.io/' },
+    ],
+  },
+  {
+    name: 'Rishiraj Adhikary',
+    credential: 'PhD CSE 2025',
+    current: 'Research Associate, University of Cambridge',
+    summary:
+      'Researches mobile sensing and health AI. Public profiles note Fulbright-Nehru, PMRF, Amazon internship, and student innovation recognition.',
+    tags: ['health AI', 'ubiquitous computing', 'PhD'],
+    links: [
+      { label: 'Profile', href: 'https://rishi-a.github.io/' },
+      { label: 'CVIG alumni', href: 'https://shanmuga.people.iitgn.ac.in/team.html' },
+    ],
+  },
+  {
+    name: 'Supratim Shit',
+    credential: 'PhD CSE 2021',
+    current: 'Assistant Professor, CSE, IIIT Delhi',
+    summary:
+      'Works in algorithms for data science, including coresets, clustering, and large-scale optimization.',
+    tags: ['faculty', 'algorithms', 'data science'],
+    links: [
+      { label: 'Faculty profile', href: 'https://iiitd.ac.in/supratim' },
+    ],
+  },
+  {
+    name: 'Indra Deep Mastan',
+    credential: 'PhD CSE 2021',
+    current: 'Assistant Professor, CSE, IIT BHU',
+    summary:
+      'Researches computer vision, deep learning, unsupervised learning, and vision-language models.',
+    tags: ['faculty', 'computer vision', 'PhD'],
+    links: [
+      { label: 'Faculty profile', href: 'https://www.iitbhu.ac.in/dept/cse/people/indracse' },
+      { label: 'CVIG alumni', href: 'https://shanmuga.people.iitgn.ac.in/team.html' },
+    ],
+  },
+  {
+    name: 'Sudhakar Kumawat',
+    credential: 'PhD CSE alumnus',
+    current: 'Assistant Professor, IIT(ISM) Dhanbad',
+    summary:
+      'Computer-vision researcher whose public alumni profile lists PMRF, BRICS Young Scientist, JSPS, Qualcomm Innovation Fellowship, patent, and CVPR-workshop recognition.',
+    tags: ['faculty', 'computer vision', 'awards'],
+    links: [
+      { label: 'Faculty profile', href: 'https://www.iitism.ac.in/faculty-details?faculty=sudhakar' },
+      { label: 'CVIG alumni', href: 'https://shanmuga.people.iitgn.ac.in/team.html' },
+    ],
+  },
+  {
+    name: 'Rachit Chhaya',
+    credential: 'PhD CSE 2022',
+    current: 'Assistant Professor, DA-IICT / DAU Gandhinagar',
+    summary:
+      'Works on streaming and randomized algorithms, coresets, and scalable methods for clustering and graph problems.',
+    tags: ['faculty', 'theory', 'coresets'],
+    links: [
+      { label: 'Faculty profile', href: 'https://www.daiict.ac.in/faculty/rachit-chhaya' },
+    ],
+  },
+  {
+    name: 'Akash Pareek',
+    credential: 'PhD CSE 2025',
+    current: 'Postdoctoral researcher, Universite libre de Bruxelles',
+    summary:
+      'Works in theoretical computer science, algorithms, and data structures after completing doctoral work at IITGN.',
+    tags: ['postdoc', 'theory', 'PhD'],
+    links: [
+      { label: 'Profile', href: 'https://sites.google.com/view/akashpareek/home' },
+    ],
+  },
+  {
+    name: 'Pankaj Pandey',
+    credential: 'PhD CSE 2023',
+    current: 'Postdoctoral researcher, St. Jude Children\'s Research Hospital',
+    summary:
+      'Researches machine learning for imaging and neurotechnology, with prior postdoctoral work at the University of Rhode Island.',
+    tags: ['postdoc', 'machine learning', 'health'],
+    links: [
+      { label: 'Profile', href: 'https://openreview.net/profile?id=~Pankaj_Pandey1' },
+    ],
+  },
+  {
+    name: 'Dharaben R. Thakkar',
+    credential: 'PhD CSE 2025',
+    current: 'Assistant Professor, Nagoya University',
+    summary:
+      'Recognized by ACM India Doctoral Dissertation Award 2025 mentions for her work on parameterized complexity and structural graph parameters.',
+    tags: ['faculty', 'theory', 'award'],
+    links: [
+      { label: 'Award mention', href: 'https://iitgn.ac.in/assets/pdfs/connections/v18i3.pdf' },
+      { label: 'Talk profile', href: 'https://event.india.acm.org/arcs/' },
+    ],
+  },
+  {
+    name: 'Jayesh Choudhari',
+    credential: 'PhD CSE 2020',
+    current: 'Postdoctoral researcher, University of Warwick',
+    summary:
+      'Works on dynamic algorithms, streaming and sublinear algorithms, graph analytics, and fair representation.',
+    tags: ['postdoc', 'algorithms', 'graphs'],
+    links: [
+      { label: 'Profile', href: 'https://jayeshchoudhari.github.io/' },
+    ],
+  },
+  {
+    name: 'Murali Krishna Enduri',
+    credential: 'PhD CSE 2018',
+    current: 'Faculty member, SRM University-AP',
+    summary:
+      'Works on graph algorithms, complex networks, data mining, machine learning, and systems with patents and journal publications listed publicly.',
+    tags: ['faculty', 'networks', 'PhD'],
+    links: [
+      { label: 'Faculty profile', href: 'https://www.srmap.edu.in/faculty/dr-murali-krishna-enduri/' },
+    ],
+  },
+];
+
+const pathwayGroups: PathwayGroup[] = [
+  {
+    title: 'Faculty and postdoctoral paths',
+    description:
+      'CSE doctoral alumni have moved into faculty and postdoctoral roles across IITs, IIITs, international universities, and research centers.',
+    people: [
+      'Supratim Shit - IIIT Delhi',
+      'Indra Deep Mastan - IIT BHU',
+      'Sudhakar Kumawat - IIT(ISM) Dhanbad',
+      'Rachit Chhaya - DA-IICT / DAU',
+      'Akash Pareek - Universite libre de Bruxelles',
+      'Jayesh Choudhari - University of Warwick',
+    ],
+  },
+  {
+    title: 'Research labs and applied AI',
+    description:
+      'Undergraduate, masters, and lab alumni are visible in AI research, applied science, and engineering roles at major research and product organizations.',
+    people: [
+      'Vinu Sankar Sadasivan - Meta',
+      'Sachin Yadav - Google DeepMind',
+      'Aditi Agarwal - Google DeepMind',
+      'Progyan Das - Microsoft India',
+      'Prasoon Kumar Karn - Google',
+      'Anshuman Dash - Meta',
+    ],
+  },
+  {
+    title: 'Recognition and public impact',
+    description:
+      'Public alumni profiles list awards, fellowships, patents, open-source work, and research contributions across AI, theory, systems, and HCI.',
+    people: [
+      'Dharaben R. Thakkar - ACM India Doctoral Dissertation Award mention',
+      'Rishiraj Adhikary - Fulbright-Nehru and PMRF',
+      'Sudhakar Kumawat - PMRF, JSPS, Qualcomm Innovation Fellowship',
+      'Darshita Jain - TCS Research and Innovation',
+      'Ram Singh - computer-vision research in industry',
+    ],
+  },
+];
+
+const doctoralAlumni: DoctoralAlum[] = [
+  { name: 'Murali Krishna Enduri', joined: '2011', year: '2018' },
+  { name: 'Vinod Kumar Reddy I', joined: '2011', year: '2018' },
+  { name: 'Choudhari Jayesh Tulsidas', joined: '2015', year: '2020' },
+  { name: 'Sudhakar Kumawat', joined: '2015', year: '2021' },
+  { name: 'Ananya Shrivastava', joined: '2016', year: '2021' },
+  { name: 'Indra Deep Mastan', joined: '2016', year: '2021' },
+  { name: 'Shiv Dutt Sharma', joined: '2016', year: '2021' },
+  { name: 'Supratim Shit', joined: '2016', year: '2021' },
+  { name: 'Chhaya Rachit Chandravadan', joined: '2017', year: '2022' },
+  { name: 'Pankaj Pandey', joined: '2017', year: '2023' },
+  { name: 'Tom Glint Issac', joined: '2018', year: '2024' },
+  { name: 'Akash Pareek', joined: '2019', year: '2025' },
+  { name: 'Dharaben Rameshbhai Thakkar', joined: '2019', year: '2025' },
+  { name: 'Rishiraj Adhikary', joined: '2019', year: '2025' },
+  { name: 'Shruti Singh', joined: '2019', year: '2025' },
+  { name: 'Dipan Dey', joined: '2020', year: '2025' },
+  { name: 'Harshil Mittal', joined: '2020', year: '2025' },
+  { name: 'Sawant Shriraj Pramod', joined: '2020', year: '2025' },
+];
+
 ---
 
-<DefaultLayout title="Alumni" description="Our graduates making an impact worldwide.">
-  <meta http-equiv="refresh" content="0;url=/people/faculty" slot="head" />
+<DefaultLayout
+  title="Alumni"
+  description="A public snapshot of IIT Gandhinagar CSE alumni achievements, career paths, and doctoral alumni."
+>
+  <section class="from-primary/5 bg-gradient-to-b to-transparent pb-8 pt-16 md:pb-12 md:pt-20">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-secondary text-sm font-medium uppercase tracking-wider">
+          People
+        </p>
+        <h1 class="mt-3 text-3xl md:text-4xl">Alumni</h1>
+        <p class="text-muted-foreground mt-4 text-base leading-relaxed">
+          IITGN CSE alumni are building careers in academia, research labs,
+          product engineering, graduate programs, startups, and public-interest
+          technology.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="container">
+      <div>
+        <div>
+          <p class="text-secondary flex items-center gap-2 text-sm font-medium">
+            <Award className="size-4" aria-hidden="true" />
+            Featured public trajectories
+          </p>
+          <h2 class="mt-2 text-2xl md:text-3xl">Featured Alumni Profiles</h2>
+        </div>
+      </div>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        {featuredAlumni.map((alum) => (
+          <article class="flex flex-col rounded-lg border bg-card p-5 text-card-foreground">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-base font-semibold leading-snug">{alum.name}</h3>
+                <p class="text-secondary mt-1 text-xs font-medium">
+                  {alum.credential}
+                </p>
+              </div>
+            </div>
+
+            <p class="mt-4 text-sm font-medium leading-relaxed">{alum.current}</p>
+            <p class="text-muted-foreground mt-2 flex-1 text-sm leading-relaxed">
+              {alum.summary}
+            </p>
+
+            <div class="mt-5 flex flex-wrap gap-2">
+              {alum.tags.map((tag) => (
+                <span class="rounded-full border bg-background px-2.5 py-1 text-xs text-muted-foreground">
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div class="mt-5 flex flex-wrap gap-3 border-t pt-4">
+              {alum.links.map((link) => (
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-secondary inline-flex items-center gap-1 text-sm font-medium"
+                >
+                  {link.label}
+                  <ArrowUpRight className="size-3.5" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y bg-muted/35 py-12 md:py-16">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-secondary flex items-center gap-2 text-sm font-medium">
+          <MapPin className="size-4" aria-hidden="true" />
+          Pathways
+        </p>
+        <h2 class="mt-2 text-2xl md:text-3xl">Alumni Careers</h2>
+        <p class="text-muted-foreground mt-4 text-sm leading-relaxed">
+          We are delighted to share the versatile trajectories that our alumni
+          are pursuing.
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-4 lg:grid-cols-3">
+        {pathwayGroups.map((group) => (
+          <article class="rounded-lg border bg-background p-5 md:p-6">
+            <h3 class="text-base font-semibold">{group.title}</h3>
+            <p class="text-muted-foreground mt-2 text-sm leading-relaxed">
+              {group.description}
+            </p>
+            <ul class="mt-5 space-y-2 text-sm">
+              {group.people.map((person) => (
+                <li class="border-l-2 border-primary/35 pl-3 leading-snug">
+                  {person}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="container">
+      <div>
+        <div>
+          <p class="text-secondary flex items-center gap-2 text-sm font-medium">
+            <GraduationCap className="size-4" aria-hidden="true" />
+            Doctoral alumni
+          </p>
+          <h2 class="mt-2 text-2xl md:text-3xl">CSE PhD Alumni</h2>
+        </div>
+      </div>
+
+      <div class="mt-8 overflow-hidden rounded-lg border">
+        <div class="grid grid-cols-[1.5fr_0.75fr_0.75fr] bg-muted px-4 py-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+          <span>Name</span>
+          <span>Joined</span>
+          <span>PhD year</span>
+        </div>
+        <div class="divide-y bg-background">
+          {doctoralAlumni.map((alum) => (
+            <div class="grid grid-cols-[1.5fr_0.75fr_0.75fr] gap-3 px-4 py-3 text-sm">
+              <span class="font-medium">{alum.name}</span>
+              <span class="text-muted-foreground">{alum.joined}</span>
+              <span class="text-muted-foreground">{alum.year}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-5">
+        <a
+          href={officialAlumniSource}
+          target="_blank"
+          rel="noreferrer"
+          class="text-secondary inline-flex items-center gap-1 text-sm font-medium"
+        >
+          Open the official IITGN alumni record
+          <ArrowUpRight className="size-3.5" aria-hidden="true" />
+        </a>
+      </div>
+    </div>
+  </section>
+
 </DefaultLayout>

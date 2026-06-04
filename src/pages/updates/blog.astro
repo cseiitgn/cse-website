@@ -1,11 +1,14 @@
 ---
-import PlaceholderPage from '@/components/sections/placeholder-page';
+import { getCollection } from 'astro:content';
+
+import BlogPosts from '@/components/sections/blog-posts';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <DefaultLayout title="Blog" description="Articles and perspectives from our community.">
-  <PlaceholderPage
-    title="Blog"
-    description="Articles and perspectives from our community."
-  />
+  <BlogPosts posts={posts} client:load />
 </DefaultLayout>

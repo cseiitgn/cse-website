@@ -26,7 +26,12 @@ const relatedPosts = allPosts
   .slice(0, 3);
 ---
 
-<DefaultLayout title={post.data.title} description={post.data.description}>
+<DefaultLayout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.coverImage}
+  imageAlt={post.data.title}
+>
   <BlogPost post={[post]} relatedPosts={relatedPosts} client:load>
     <Content />
   </BlogPost>

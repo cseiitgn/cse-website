@@ -6,26 +6,25 @@ import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 
 const slides = [
   {
-    src: 'https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1528&h=700&fit=crop',
-    alt: 'Abstract digital network',
-    title: 'Explore our programs',
-    description: 'B.Tech, M.Tech, and Ph.D. programs in Computer Science & Engineering.',
+    src: '/images/jee-open-house-2026-landscape.jpg',
+    alt: 'JEE Open House 2026 at IIT Gandhinagar',
+    title: 'JEE Open House 2026',
+    description:
+      'June 5, 2026 at 3:30 PM IST. Online session for JEE Advanced qualified students and parents.',
+    ctaLabel: 'Register Now',
+    ctaHref: 'https://zurl.co/Tgat9',
   },
   {
-    src: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1528&h=700&fit=crop',
-    alt: 'Abstract geometric patterns',
-    title: 'Explore our research',
-    description: 'Cutting-edge research across AI, systems, security, theory, and more.',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1528&h=700&fit=crop',
-    alt: 'Abstract AI visualization',
-    title: 'Join our community',
-    description: 'A vibrant student community with clubs, events, and hackathons.',
+    src: '/images/project-madhava-india-today.jpg',
+    alt: 'Project Madhav hardware learning kits displayed at the AI Summit 2026',
+    title:
+      "Inside IIT Gandhinagar's prototype lab: Project Madhav leads innovation",
+    ctaLabel: 'Read Article',
+    ctaHref:
+      'https://www.indiatoday.in/education-today/featurephilia/story/iit-gandhinagars-self-reliant-india-story-begins-in-classrooms-2869886-2026-02-18',
   },
 ];
 
@@ -118,7 +117,7 @@ export default function Hero() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
-    }, 2500);
+    }, 5000);
     return () => clearTimeout(timer);
   }, [currentIndex]);
 
@@ -165,7 +164,7 @@ export default function Hero() {
             </AnimatePresence>
           </MaskedDiv>
 
-          {/* Top-right box with dummy text */}
+          {/* Top-right slide summary */}
           <div className="absolute -top-26 right-0 flex gap-6">
             <motion.div
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
@@ -184,9 +183,11 @@ export default function Hero() {
                   <p className="text-sm font-medium text-foreground">
                     {slides[currentIndex].title}
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {slides[currentIndex].description}
-                  </p>
+                  {slides[currentIndex].description && (
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {slides[currentIndex].description}
+                    </p>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </motion.div>
@@ -206,9 +207,11 @@ export default function Hero() {
                   <p className="text-sm font-medium text-foreground">
                     {slides[currentIndex].title}
                   </p>
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {slides[currentIndex].description}
-                  </p>
+                  {slides[currentIndex].description && (
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {slides[currentIndex].description}
+                    </p>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -218,8 +221,20 @@ export default function Hero() {
             className="group -bottom-5 left-0 mt-3 flex items-center justify-center rounded-full bg-foreground px-6 py-2 text-background tracking-tight hover:bg-blue-500 dark:hover:bg-blue-400 hover:gap-4 lg:absolute lg:bottom-0 lg:mt-0 xl:bottom-3"
             asChild
           >
-            <a href="/about/contact">
-              Contact Us{' '}
+            <a
+              href={slides[currentIndex].ctaHref}
+              target={
+                slides[currentIndex].ctaHref.startsWith('http')
+                  ? '_blank'
+                  : undefined
+              }
+              rel={
+                slides[currentIndex].ctaHref.startsWith('http')
+                  ? 'noreferrer'
+                  : undefined
+              }
+            >
+              {slides[currentIndex].ctaLabel}{' '}
               <ArrowRight className="size-4 -rotate-45 transition-all duration-300 ease-out group-hover:rotate-0" />
             </a>
           </Button>

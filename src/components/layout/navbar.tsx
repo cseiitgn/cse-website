@@ -5,6 +5,7 @@ import { Fragment, useEffect, useState } from 'react';
 import type { LucideIcon } from 'lucide-react';
 import {
   ArrowRight,
+  Award,
   BookOpen,
   Brain,
   Briefcase,
@@ -51,16 +52,20 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Separator } from '@/components/ui/separator';
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet';
+import {
+  RESEARCH_AREAS,
+  type ResearchAreaSlug,
+} from '@/data/research-area-pages';
 import { seminarNavHighlights } from '@/data/seminars';
 import { cn } from '@/lib/utils';
 
 const RESEARCH_THEMES = [
-  { icon: Brain, label: 'AI & Machine Learning', href: '/research/ai', description: 'Deep learning, NLP, computer vision, and AI for social good.' },
-  { icon: Code2, label: 'Theoretical CS', href: '/research/theory', description: 'Algorithms, complexity, graph theory, and combinatorial optimization.' },
-  { icon: Lock, label: 'Security & Privacy', href: '/research/security', description: 'Program analysis, web security, and privacy-preserving computation.' },
-  { icon: Database, label: 'Data Science', href: '/research/data-science', description: 'Large-scale analytics, streaming algorithms, and knowledge discovery.' },
-  { icon: Monitor, label: 'Systems & Architecture', href: '/research/systems', description: 'Computer architecture, embedded systems, and hardware-software co-design.' },
-  { icon: Network, label: 'HCI & Cognitive Science', href: '/research/hci', description: 'Brain-computer interfaces, accessibility, and cognitive modeling.' },
+  { slug: 'ai', icon: Brain, label: 'AI & Machine Learning', href: '/research/ai', description: 'Deep learning, NLP, computer vision, and AI for social good.' },
+  { slug: 'theory', icon: Code2, label: 'Theoretical CS', href: '/research/theory', description: 'Algorithms, complexity, graph theory, and combinatorial optimization.' },
+  { slug: 'security', icon: Lock, label: 'Security & Privacy', href: '/research/security', description: 'Program analysis, web security, and privacy-preserving computation.' },
+  { slug: 'data-science', icon: Database, label: 'Data Science', href: '/research/data-science', description: 'Large-scale analytics, streaming algorithms, and knowledge discovery.' },
+  { slug: 'systems', icon: Monitor, label: 'Systems & Architecture', href: '/research/systems', description: 'Computer architecture, embedded systems, and hardware-software co-design.' },
+  { slug: 'hci', icon: Network, label: 'HCI & Cognitive Science', href: '/research/hci', description: 'Brain-computer interfaces, accessibility, and cognitive modeling.' },
 ];
 
 const RESEARCH_FEATURED = [
@@ -102,7 +107,7 @@ const ACADEMICS_PROGRAMS: AcademicsLink[] = [
   {
     label: 'MTech',
     href: '/academics/mtech',
-    description: 'Explore masters and dual-degree programs in CSE and AI',
+    description: 'Explore masters and dual-degree programs in CSE, AI, and ICDT',
     icon: GraduationCap,
   },
   {
@@ -160,7 +165,7 @@ const ACADEMICS_FEATURED = [
 ];
 
 const UPDATES_LINKS = [
-  { icon: FileText, label: 'Blog', description: 'Articles and perspectives', href: '/updates/blog' },
+  { icon: FileText, label: 'Blog', description: 'Articles and perspectives', href: '/blog' },
   { icon: Newspaper, label: 'News', description: 'Announcements and highlights', href: '/updates/news' },
   { icon: Calendar, label: 'Seminars', description: 'Talks and lecture series', href: '/updates/seminars' },
   { icon: BookOpen, label: 'Deadlines', description: 'Upcoming important dates', href: '/updates/deadlines' },
@@ -169,10 +174,10 @@ const UPDATES_LINKS = [
 ];
 
 const SOCIAL_LINKS_NAV = [
-  { title: 'X', href: 'https://x.com/iaboratories', icon: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/x.svg' },
-  { title: 'LinkedIn', href: 'https://linkedin.com', icon: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/linkedin-icon.svg' },
-  { title: 'YouTube', href: 'https://youtube.com', icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17'/%3E%3Cpath d='m10 15 5-3-5-3z'/%3E%3C/svg%3E" },
-  { title: 'Instagram', href: 'https://instagram.com', icon: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/instagram-icon.svg' },
+  { title: 'X', href: 'https://twitter.com/cse_iitgn', icon: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/x.svg' },
+  { title: 'LinkedIn', href: 'https://www.linkedin.com/company/cse-iitgn', icon: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/linkedin-icon.svg' },
+  { title: 'YouTube', href: 'https://www.youtube.com/channel/UCPYUnvUV3CiMmkhfYME48QQ', icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17'/%3E%3Cpath d='m10 15 5-3-5-3z'/%3E%3C/svg%3E" },
+  { title: 'Instagram', href: 'https://instagram.com/iit_gandhinagar', icon: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/instagram-icon.svg' },
   { title: 'RSS', href: '/rss.xml', icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 11a9 9 0 0 1 9 9'/%3E%3Cpath d='M4 4a16 16 0 0 1 16 16'/%3E%3Ccircle cx='5' cy='19' r='1'/%3E%3C/svg%3E" },
 ];
 
@@ -180,10 +185,9 @@ const LATEST_SEMINARS = seminarNavHighlights.latest;
 const THEORY_SEMINARS = seminarNavHighlights.theory;
 
 const FEATURED_ARTICLE = {
-  title: 'How AI is Transforming Climate Research at IITGN',
-  description: 'A look at how CSE faculty are using machine learning to model climate patterns.',
-  image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=400&h=200&fit=crop',
-  href: '/blog',
+  title: 'Building an AI Image Editor at Hackrush 2026',
+  description: 'A student account of building a modular AI image editor during Hackrush 2026.',
+  href: '/blog/hackrush-2026-yuvraj-ai-image-editor',
 };
 
 interface NavSubitem {
@@ -253,6 +257,8 @@ export const NAV_LINKS: NavItem[] = [
       { label: 'Post-Docs', href: '/people/postdocs', description: 'Postdoctoral researchers and fellows' },
       { label: 'Faculty', href: '/people/faculty', description: 'Core, affiliated, visiting, and guest faculty' },
       { label: 'Staff', href: '/people/staff', description: 'Administrative and technical staff' },
+      { label: 'Alumni', href: '/people/alumni', description: 'Public alumni trajectories and achievements' },
+      { label: 'Visitors', href: '/people/visitors', description: 'Seminar visitors and invited speakers' },
     ],
   },
   {
@@ -260,7 +266,7 @@ export const NAV_LINKS: NavItem[] = [
     href: '/academics',
     subitems: [
       { label: 'BTech', href: '/academics/btech', description: 'Undergraduate programs in CSE, AI, and ICDT' },
-      { label: 'MTech', href: '/academics/mtech', description: 'Masters and dual-degree programs in CSE and AI' },
+      { label: 'MTech', href: '/academics/mtech', description: 'Masters and dual-degree programs in CSE, AI, and ICDT' },
       { label: 'EMasters', href: '/academics/emasters', description: 'Executive masters programs in data analytics' },
       { label: 'PhD', href: '/academics/phd', description: 'Graduate programs in CSE and AI' },
       { label: 'SRIP', href: '/academics/srip', description: 'Flagship summer internship program' },
@@ -288,7 +294,7 @@ export const NAV_LINKS: NavItem[] = [
     label: 'Updates',
     href: '/news',
     subitems: [
-      { label: 'Blog', href: '/updates/blog', description: 'Articles and perspectives' },
+      { label: 'Blog', href: '/blog', description: 'Articles and perspectives' },
       { label: 'News', href: '/updates/news', description: 'Announcements and highlights' },
       { label: 'Seminars', href: '/updates/seminars', description: 'Talks and lecture series' },
       { label: 'Deadlines', href: '/updates/deadlines', description: 'Upcoming important dates' },
@@ -619,7 +625,20 @@ function DesktopMenuItem({
                     href={theme.href}
                     className="group flex gap-3 transition-opacity duration-200"
                   >
-                    <div className="bg-primary/10 text-primary flex size-8 shrink-0 items-center justify-center rounded-lg">
+                    <div
+                      className="flex size-8 shrink-0 items-center justify-center rounded-lg border"
+                      style={{
+                        backgroundColor:
+                          RESEARCH_AREAS[theme.slug as ResearchAreaSlug].accent
+                            .soft,
+                        borderColor:
+                          RESEARCH_AREAS[theme.slug as ResearchAreaSlug].accent
+                            .border,
+                        color:
+                          RESEARCH_AREAS[theme.slug as ResearchAreaSlug].accent
+                            .foreground,
+                      }}
+                    >
                       <theme.icon className="size-4" />
                     </div>
                     <div className="flex flex-col gap-1">
@@ -745,13 +764,6 @@ function DesktopMenuItem({
                     Featured Article
                   </p>
                   <a href={FEATURED_ARTICLE.href} className="group block">
-                    <div className="bg-muted mb-2 overflow-hidden rounded-lg">
-                      <img
-                        src={FEATURED_ARTICLE.image}
-                        alt={FEATURED_ARTICLE.title}
-                        className="aspect-[2/1] w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
                     <p className="group-hover:text-foreground text-base font-semibold leading-snug text-foreground/80">
                       {FEATURED_ARTICLE.title}
                     </p>
@@ -997,6 +1009,18 @@ const PEOPLE_LINKS = [
     href: '/people/faculty',
     description: 'Core, affiliated, visiting, and guest faculty',
     icon: BookOpen,
+  },
+  {
+    label: 'Alumni',
+    href: '/people/alumni',
+    description: 'Public alumni trajectories and achievements',
+    icon: Award,
+  },
+  {
+    label: 'Visitors',
+    href: '/people/visitors',
+    description: 'Seminar visitors and invited speakers',
+    icon: Calendar,
   },
   {
     label: 'Staff',

@@ -23,7 +23,7 @@ footerLinks.push({
   id: 'updates',
   items: [
     { text: 'News', link: '/updates/news' },
-    { text: 'Blog', link: '/updates/blog' },
+    { text: 'Blog', link: '/blog' },
     { text: 'Seminars', link: '/updates/seminars' },
     { text: 'Deadlines', link: '/updates/deadlines' },
     { text: 'Outreach', link: '/updates/outreach' },
@@ -65,10 +65,16 @@ const RSS_ICON = {
 };
 
 const socialLinks = [
-  { icon: SOCIAL_ICONS.x, link: 'https://x.com/iaboratories' },
-  { icon: SOCIAL_ICONS.linkedin, link: 'https://linkedin.com' },
-  { icon: SOCIAL_ICONS.youtube, link: 'https://youtube.com' },
-  { icon: SOCIAL_ICONS.instagram, link: 'https://instagram.com' },
+  { icon: SOCIAL_ICONS.x, link: 'https://twitter.com/cse_iitgn' },
+  {
+    icon: SOCIAL_ICONS.linkedin,
+    link: 'https://www.linkedin.com/company/cse-iitgn',
+  },
+  {
+    icon: SOCIAL_ICONS.youtube,
+    link: 'https://www.youtube.com/channel/UCPYUnvUV3CiMmkhfYME48QQ',
+  },
+  { icon: SOCIAL_ICONS.instagram, link: 'https://instagram.com/iit_gandhinagar' },
   { icon: RSS_ICON, link: '/rss.xml' },
 ];
 

@@ -1,11 +1,11 @@
 ---
-import PlaceholderPage from '@/components/sections/placeholder-page';
+import ResearchAreaProfile from '@/components/sections/research-area-profile.astro';
+import { RESEARCH_AREAS } from '@/data/research-area-pages';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const area = RESEARCH_AREAS['data-science'];
 ---
 
 <DefaultLayout title="Data Science" description="Large-scale analytics, streaming algorithms, and knowledge discovery.">
-  <PlaceholderPage
-    title="Data Science"
-    description="Large-scale analytics, streaming algorithms, and knowledge discovery."
-  />
+  <ResearchAreaProfile area={area} />
 </DefaultLayout>

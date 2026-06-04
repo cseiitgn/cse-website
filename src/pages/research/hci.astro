@@ -1,11 +1,11 @@
 ---
-import PlaceholderPage from '@/components/sections/placeholder-page';
+import ResearchAreaProfile from '@/components/sections/research-area-profile.astro';
+import { RESEARCH_AREAS } from '@/data/research-area-pages';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const area = RESEARCH_AREAS.hci;
 ---
 
 <DefaultLayout title="HCI & Cognitive Science" description="Brain-computer interfaces, accessibility, and cognitive modeling.">
-  <PlaceholderPage
-    title="HCI & Cognitive Science"
-    description="Brain-computer interfaces, accessibility, and cognitive modeling."
-  />
+  <ResearchAreaProfile area={area} />
 </DefaultLayout>

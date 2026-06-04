@@ -1,11 +1,11 @@
 ---
-import PlaceholderPage from '@/components/sections/placeholder-page';
+import ResearchAreaProfile from '@/components/sections/research-area-profile.astro';
+import { RESEARCH_AREAS } from '@/data/research-area-pages';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const area = RESEARCH_AREAS.ai;
 ---
 
 <DefaultLayout title="AI & Machine Learning" description="Deep learning, NLP, computer vision, and AI for social good.">
-  <PlaceholderPage
-    title="AI & Machine Learning"
-    description="Deep learning, NLP, computer vision, and AI for social good."
-  />
+  <ResearchAreaProfile area={area} />
 </DefaultLayout>

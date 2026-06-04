@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { Globe } from 'lucide-react';
 
 type Patent = {
   title: string;
@@ -7,6 +8,7 @@ type Patent = {
   status: string;
   jurisdiction: string;
   source: string;
+  patentUrl?: string;
 };
 
 const patents: Patent[] = [
@@ -18,10 +20,108 @@ const patents: Patent[] = [
     source: 'https://iitgn.ac.in/faculty/cogs/fac-yogesh',
   },
   {
-    title: 'Electronic Voting Machine (EVM)',
+    title: 'Prismatic Lens',
     faculty: 'Rajat Moona',
-    status: 'Granted, application no. 201841002146, January 2022',
+    status: 'Design Patent, applied, Application No. 332180-001, August 2020',
     jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'System and Method for Estimating Life and Health of a Battery',
+    faculty: 'Rajat Moona',
+    status: 'Applied, Application No. 201941035486, September 2019',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Method and System for Detecting Troughs and Peaks in an Input Waveform',
+    faculty: 'Rajat Moona',
+    status: 'Applied, Application No. 201941035489, September 2019',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'System and Device to Detect Fall of Printed Paper Slip in an Electronic Voting Machine',
+    faculty: 'Rajat Moona',
+    status: 'Applied, Application No. 201941035492, September 2019',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Optical Sensor for Detection of Movement of Media or Object',
+    faculty: 'Rajat Moona',
+    status: 'Applied, Application No. 201941033574, August 2019',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Temperature Sensitive Laser-based Photo Reflective Sensor and Compensation Method thereof',
+    faculty: 'Rajat Moona',
+    status: 'Applied, Application No. 201941033570, August 2019',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Unauthorized Access Detection Device, System and Method thereof',
+    faculty: 'Rajat Moona',
+    status: 'Applied, Application No. 201941033571, August 2019',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Optical System for Contrast Estimation During Gray-scale printing',
+    faculty: 'Rajat Moona',
+    status: 'Applied, Application No. 201941033572, August 2019',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Voter Verified Paper Audit Trail (VVPAT) System',
+    faculty: 'Rajat Moona',
+    status: 'Applied, Application No. 201841010850, March 2018',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Electronic Voting Machine (EEVM)',
+    faculty: 'Rajat Moona',
+    status: 'Granted January 27, 2022, Application No. 201841002146',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Repartitioning performance estimation in a hardware-software system',
+    faculty: 'Rajat Moona',
+    status: 'Applied for Indian Patent, Application No. 878/DELNP/2004, April 2004',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Authentication using non-biometric and biometric information',
+    faculty: 'Rajat Moona',
+    status: 'Indian Patent, Application No. 1967/CHE/2005, December 2005',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Using personal devices for authentication and service access at offline service outlets',
+    faculty: 'Rajat Moona',
+    status: 'Applied for Indian Patent, application no. 1018/DEL/2008, April 2008',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Repartitioning performance estimation in a hardware-software system',
+    faculty: 'Rajat Moona',
+    status: 'US Patent No. 6856951, February 2005',
+    jurisdiction: 'US',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Area optimization of hardware for algorithms by optimizing sizes of variables of the algorithm',
+    faculty: 'Rajat Moona',
+    status: 'US Patent pre-grant Publication 20060020574, January 2006',
+    jurisdiction: 'US',
     source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
   },
   {
@@ -34,39 +134,157 @@ const patents: Patent[] = [
   {
     title: 'Compiling memory dereferencing instructions from software to hardware in an electronic design',
     faculty: 'Rajat Moona',
-    status: 'US Patent No. 7203912, April 2007; Indian Patent No. 242517, August 2010',
-    jurisdiction: 'US / India',
+    status: 'US Patent No. 7203912, April 2007',
+    jurisdiction: 'US',
     source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
   },
   {
-    title: 'Methods and systems for secured access to devices and systems',
+    title: 'Compiling memory dereferencing instructions from software to hardware in an electronic design',
+    faculty: 'Rajat Moona',
+    status: 'Indian Patent No. 242517, August 2010',
+    jurisdiction: 'India',
+    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+  },
+  {
+    title: 'Methods and Systems for secured access to devices and systems',
     faculty: 'Rajat Moona',
     status: 'US Patent No. 7864987, January 2011',
     jurisdiction: 'US',
     source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
   },
   {
-    title: 'Method and system for using personal devices for authentication and service access at service outlets',
+    title: 'Method and System for using personal devices for authentication and service access at service outlets',
     faculty: 'Rajat Moona',
     status: 'US Patent No. 8713655, April 2014',
     jurisdiction: 'US',
     source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
   },
   {
-    title: 'Using personal devices for authentication and service access at offline service outlets',
-    faculty: 'Rajat Moona',
-    status: 'Applied for Indian Patent, application no. 1018/DEL/2008, April 2008',
-    jurisdiction: 'India',
-    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+    title: 'Mail compression scheme with individual message decompressability',
+    faculty: 'Anirban Dasgupta',
+    status: 'US Patent No. US7836099B2',
+    jurisdiction: 'US',
+    source: 'https://labs.iitgn.ac.in/datascience/anirban-dasgupta/',
   },
   {
-    title: 'Voter Verified Paper Audit Trail (VVPAT) System',
-    faculty: 'Rajat Moona',
-    status: 'Applied, application no. 201841010850, March 2018',
-    jurisdiction: 'India',
-    source: 'https://iitgn.ac.in/faculty/cse/fac-rajat-moona',
+    title: 'Feature selection for text classification using subspace sampling',
+    faculty: 'Anirban Dasgupta',
+    status: 'US Patent No. US8046317',
+    jurisdiction: 'US',
+    source: 'https://labs.iitgn.ac.in/datascience/anirban-dasgupta/',
+  },
+  {
+    title: 'Data management scheme in virtualized hyperscale environments',
+    faculty: 'Manu Awasthi',
+    status: 'US-10725663-B2, granted',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'Memory device having a translation layer with multiple associative sectors',
+    faculty: 'Manu Awasthi',
+    status: 'US-9898200-B2, granted',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'Intelligent controller for containerized applications',
+    faculty: 'Manu Awasthi',
+    status: 'US-10210024-B2, granted',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'Rack-level scheduling for reducing the long tail latency using high performance SSDs',
+    faculty: 'Manu Awasthi',
+    status: 'US-10628233-B2, granted',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'High bandwidth peer-to-peer switched key-value caching',
+    faculty: 'Manu Awasthi',
+    status: 'US-9723071-B2, granted',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'Online flash resource migration, allocation, retire and replacement manager based on a cost of ownership model',
+    faculty: 'Manu Awasthi',
+    status: 'US-10248348-B2, granted',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'I/O workload scheduling manager for RAID/non-RAID flash based storage systems for TCO and WAF optimizations',
+    faculty: 'Manu Awasthi',
+    status: 'US-10282140-B2, granted',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'Multi-bit data representation framework to enable dual program operation on solid-state flash devices',
+    faculty: 'Manu Awasthi',
+    status: 'US-10474567-B2, granted',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'Address translation in memory',
+    faculty: 'Manu Awasthi',
+    status: 'US-2016147667-A1, application',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'Block cleanup: page reclamation process to reduce garbage collection overhead in dual-programmable NAND flash devices',
+    faculty: 'Manu Awasthi',
+    status: 'US-2020278805-A1, application',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
+  },
+  {
+    title: 'Computing system with parallel mechanism and method of operation thereof',
+    faculty: 'Manu Awasthi',
+    status: 'US-2016188534-A1, application',
+    jurisdiction: 'US',
+    source: 'https://manuawasthi.in/pubs/misc/MAwasthi_CV.pdf',
   },
 ];
+
+function getPatentPageUrl(status: string) {
+  const hyphenatedUsPublication = status.match(/\bUS-(\d{4})(\d{6})-([A-Z]\d)\b/);
+  if (hyphenatedUsPublication) {
+    const [, year, serial, kind] = hyphenatedUsPublication;
+    return `https://patents.google.com/patent/US${year}0${serial}${kind}`;
+  }
+
+  const hyphenatedUsPatent = status.match(/\bUS-(\d+)-([A-Z]\d)\b/);
+  if (hyphenatedUsPatent) {
+    const [, number, kind] = hyphenatedUsPatent;
+    return `https://patents.google.com/patent/US${number}${kind}`;
+  }
+
+  const usPatentNumber = status.match(/\bUS Patent No\. (?:US)?(\d+)([A-Z]\d)?\b/i);
+  if (usPatentNumber) {
+    const [, number, kind = ''] = usPatentNumber;
+    return `https://patents.google.com/patent/US${number}${kind}`;
+  }
+
+  const usPublication = status.match(/\bPublication (\d{11})\b/i);
+  if (usPublication) {
+    return `https://patents.google.com/patent/US${usPublication[1]}A1`;
+  }
+
+  return undefined;
+}
+
+const patentsWithPages = patents.map((patent) => ({
+  ...patent,
+  patentUrl: patent.patentUrl ?? getPatentPageUrl(patent.status),
+}));
+
+const jurisdictionFilters = ['India', 'US'];
 ---
 
 <DefaultLayout title="Patents" description="Intellectual property and technology transfer.">
@@ -80,9 +298,10 @@ const patents: Patent[] = [
           Patents
         </h1>
         <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
-          Selected publicly listed patents and patent applications involving CSE
-          faculty. Entries link back to the faculty profile pages where the
-          patent information is listed.
+          Publicly listed patents and patent applications involving CSE faculty.
+        </p>
+        <p class="mt-2 text-sm text-muted-foreground">
+          Collaborators are not listed on this page.
         </p>
       </div>
     </div>
@@ -90,16 +309,68 @@ const patents: Patent[] = [
 
   <section class="section-padding">
     <div class="container">
+      <div class="flex flex-col gap-4 border-b pb-5 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex flex-wrap items-center gap-2" aria-label="Filter patents by jurisdiction">
+          <button
+            type="button"
+            class="rounded-full border bg-background px-3 py-1 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground data-[active=true]:border-primary data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+            data-patent-filter="all"
+            data-active="true"
+            aria-pressed="true"
+          >
+            All
+          </button>
+          {
+            jurisdictionFilters.map((jurisdiction) => (
+              <button
+                type="button"
+                class="rounded-full border bg-background px-3 py-1 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground data-[active=true]:border-primary data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+                data-patent-filter={jurisdiction}
+                data-active="false"
+                aria-pressed="false"
+              >
+                {jurisdiction}
+              </button>
+            ))
+          }
+        </div>
+        <p
+          class="text-sm text-muted-foreground"
+          data-patent-filter-count
+          aria-live="polite"
+        >
+          {patentsWithPages.length} patents and applications
+        </p>
+      </div>
+
       <div class="grid gap-4 md:grid-cols-2">
         {
-          patents.map((patent) => (
-            <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+          patentsWithPages.map((patent) => (
+            <article
+              class="rounded-lg border border-border bg-card p-5 shadow-sm"
+              data-patent-card
+              data-patent-jurisdiction={patent.jurisdiction}
+            >
               <div class="flex flex-wrap items-center gap-2">
                 <span class="rounded-full bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary">
                   {patent.jurisdiction}
                 </span>
               </div>
-              <h2 class="mt-4 text-xl font-semibold">{patent.title}</h2>
+              <div class="mt-4 flex items-start justify-between gap-3">
+                <h2 class="text-xl font-semibold">{patent.title}</h2>
+                {patent.patentUrl && (
+                  <a
+                    href={patent.patentUrl}
+                    class="mt-1 inline-flex size-8 shrink-0 items-center justify-center rounded-full border text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                    target="_blank"
+                    rel="noreferrer"
+                    title="Open patent page"
+                    aria-label={`Open patent page for ${patent.title}`}
+                  >
+                    <Globe className="size-4" />
+                  </a>
+                )}
+              </div>
               <dl class="mt-4 space-y-3 text-sm">
                 <div>
                   <dt class="font-medium">Faculty</dt>
@@ -110,18 +381,43 @@ const patents: Patent[] = [
                   <dd class="mt-1 text-muted-foreground">{patent.status}</dd>
                 </div>
               </dl>
-              <a
-                href={patent.source}
-                class="mt-5 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Source profile -&gt;
-              </a>
             </article>
           ))
         }
       </div>
     </div>
   </section>
+
+  <script>
+    const patentFilterButtons = document.querySelectorAll('[data-patent-filter]');
+    const patentCards = document.querySelectorAll('[data-patent-card]');
+    const patentCount = document.querySelector('[data-patent-filter-count]');
+
+    function applyPatentFilter(filter) {
+      let visibleCount = 0;
+
+      patentCards.forEach((card) => {
+        const isVisible =
+          filter === 'all' || card.dataset.patentJurisdiction === filter;
+        card.toggleAttribute('hidden', !isVisible);
+        if (isVisible) visibleCount += 1;
+      });
+
+      patentFilterButtons.forEach((button) => {
+        const isActive = button.dataset.patentFilter === filter;
+        button.dataset.active = String(isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      if (patentCount) {
+        patentCount.textContent = `${visibleCount} patent${visibleCount === 1 ? '' : 's'} and application${visibleCount === 1 ? '' : 's'}`;
+      }
+    }
+
+    patentFilterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyPatentFilter(button.dataset.patentFilter || 'all');
+      });
+    });
+  </script>
 </DefaultLayout>

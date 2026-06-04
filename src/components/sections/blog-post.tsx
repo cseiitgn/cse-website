@@ -1,8 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
 import { ChevronLeft, Facebook, Twitter, MessageCircle } from 'lucide-react';
-import { motion } from 'motion/react';
-
-import { BlogCard } from './blog-posts';
 
 /**
  * Calculate read time based on word count
@@ -33,6 +30,50 @@ export function calculateReadTime(content: string): string {
   return `${Math.max(1, minutes)} min read`;
 }
 
+const TAG_LABELS: Record<string, string> = {
+  'hackrush 2026': '#hackrush2026',
+  hackrush2026: '#hackrush2026',
+};
+
+function tagKey(tag: string) {
+  return tag.toLowerCase().replace(/[#\s-]/g, '');
+}
+
+function displayTag(tag: string) {
+  return TAG_LABELS[tag.trim().toLowerCase()] ?? tag;
+}
+
+function getDisplayTags(tags: string[] = []) {
+  const seen = new Set<string>();
+  return tags
+    .map(displayTag)
+    .filter((tag) => {
+      const key = tagKey(tag);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+}
+
+function relatedDate(date: Date | string) {
+  return new Date(date).toLocaleDateString('en-GB', {
+    month: 'short',
+    day: '2-digit',
+  });
+}
+
+function tagFilterHref(tag: string) {
+  return `/blog?tag=${encodeURIComponent(tag)}`;
+}
+
+function authorInitials(name: string) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return 'CSE';
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+
+  return `${parts[0][0]}${parts[parts.length - 1][0]}`.toUpperCase();
+}
+
 const BlogPost = ({
   post,
   relatedPosts,
@@ -42,9 +83,10 @@ const BlogPost = ({
   relatedPosts: CollectionEntry<'blog'>[];
   children: React.ReactNode;
 }) => {
-  const { title, description, date, coverImage, author } = post[0].data;
-  const { id, body } = post[0];
+  const { title, description, date, author } = post[0].data;
+  const { body } = post[0];
   const readTime = calculateReadTime(body || '');
+  const initials = authorInitials(author.name);
 
   return (
     <div className="section-padding container">
@@ -60,37 +102,28 @@ const BlogPost = ({
           </a>
 
           {/* Title and Description */}
-          <h1 className="mb-4 text-4xl tracking-tight md:text-5xl lg:text-6xl">
+          <h1 className="mb-4 text-2xl leading-tight font-semibold tracking-tight md:text-3xl lg:text-4xl">
             {title}
           </h1>
-          <p className="text-muted-foreground mb-8 text-lg md:text-xl">
+          <p className="text-muted-foreground mb-8 text-base leading-relaxed md:text-lg">
             {description}
           </p>
         </header>
 
-        <motion.div className="relative aspect-[16/9] overflow-hidden rounded-xl">
-          <img
-            src={coverImage}
-            alt={title}
-            className="size-full object-cover"
-          />
-        </motion.div>
-
         {/* Author Information */}
-        <div className="mt-8 mb-12 flex flex-wrap items-center justify-between gap-4">
+        <div className="mb-12 flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="relative size-14 overflow-hidden rounded-full">
-              <img
-                src={author.image}
-                alt={author.name}
-                className="size-full object-cover"
-              />
+            <div
+              aria-hidden="true"
+              className="flex size-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-slate-900 via-blue-700 to-teal-500 text-sm font-semibold text-white shadow-sm ring-1 ring-border/70 dark:from-slate-100 dark:via-sky-200 dark:to-teal-200 dark:text-slate-950"
+            >
+              {initials}
             </div>
             <div>
-              <div className="text-foreground text-2xl font-semibold">
+              <div className="text-foreground text-lg font-semibold">
                 {author.name}
               </div>
-              <div className="text-muted-foreground">
+              <div className="text-muted-foreground text-sm">
                 {new Date(date).toLocaleDateString('en-GB', {
                   month: 'short',
                   day: 'numeric',
@@ -131,24 +164,43 @@ const BlogPost = ({
       </div>
 
       {relatedPosts.length > 0 && (
-        <section className="mt-20 lg:mt-24">
-          <h2 className="text-4xl tracking-tight lg:text-5xl">
+        <section className="mx-auto mt-16 max-w-4xl border-t pt-8">
+          <h2 className="text-muted-foreground text-sm font-semibold tracking-wide uppercase">
             Related Articles
           </h2>
-          <p className="text-muted-foreground mt-3 text-lg leading-snug lg:mt-4">
-            More writing from the IITGN CSE community, grouped by shared
-            themes and tags.
-          </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+          <div className="mt-4 space-y-1">
             {relatedPosts.map((relatedPost) => {
+              const tags = getDisplayTags(relatedPost.data.tags).slice(0, 2);
+
               return (
-                <a
+                <div
                   key={relatedPost.id}
-                  href={`/blog/${relatedPost.id}`}
-                  className="group block h-full"
+                  className="grid gap-2 rounded-sm py-2 sm:grid-cols-[5rem_minmax(0,1fr)_auto] sm:items-center"
                 >
-                  <BlogCard post={relatedPost} />
-                </a>
+                  <time
+                    dateTime={new Date(relatedPost.data.date).toISOString()}
+                    className="text-muted-foreground text-sm font-semibold"
+                  >
+                    {relatedDate(relatedPost.data.date)}
+                  </time>
+                  <a
+                    href={`/blog/${relatedPost.id}`}
+                    className="min-w-0 text-base font-semibold leading-snug transition-colors hover:text-primary"
+                  >
+                    {relatedPost.data.title}
+                  </a>
+                  <span className="flex flex-wrap gap-2 sm:justify-end">
+                    {tags.map((tag) => (
+                      <a
+                        key={tag}
+                        href={tagFilterHref(tag)}
+                        className="border-foreground/60 text-foreground rounded-sm border px-2 py-0.5 text-xs font-semibold leading-none transition-colors hover:border-primary hover:text-primary"
+                      >
+                        {tag}
+                      </a>
+                    ))}
+                  </span>
+                </div>
               );
             })}
           </div>

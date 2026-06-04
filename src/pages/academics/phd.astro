@@ -1,55 +1,330 @@
 ---
-import AcademicSummaryPage from '@/components/sections/academic-summary-page.astro';
+import { RECENT_PHD_GRADUATES } from '@/data/phd-recent-graduates';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { LayoutGrid, List, Mail } from 'lucide-react';
+
+const informationLinks = [
+  { label: 'IITGN PhD overview', href: 'https://iitgn.ac.in/academics/phd' },
+  { label: 'PhD admissions', href: 'https://iitgn.ac.in/admissions/phd' },
+  { label: 'Prime Minister Research Fellowship at IITGN', href: 'https://iitgn.ac.in/pmrf' },
+];
+
+const programHighlights = [
+  'Doctoral students work with research-active faculty and a diverse PhD community across disciplines.',
+  'The program includes coursework, research credits, the postgraduate orientation programme Aarohan, and institute-level academic requirements.',
+  'IITGN highlights interdisciplinary supervision and a porous academic environment connected to the broader Ahmedabad-Gandhinagar research ecosystem.',
+  'Current CSE and AI admissions areas, eligibility details, and application cycles are maintained on the IITGN admissions pages.',
+];
 ---
 
 <DefaultLayout title="PhD Program" description="Doctoral program in CSE at IIT Gandhinagar">
-  <AcademicSummaryPage
-    title="PhD Program"
-    description="A research-focused doctoral program for creative, independent, and interdisciplinary inquiry."
-    summary="IITGN describes its PhD program as a pathway for creative scholarly inquiry, intellectual maturity, and research careers in teaching, innovation, entrepreneurship, and advanced research. The program combines research with coursework and encourages interdisciplinary interactions."
-    highlights={[
-      'Doctoral students work with research-active faculty and a diverse PhD community across disciplines.',
-      'The program includes coursework, research credits, the postgraduate orientation programme Aarohan, and institute-level academic requirements.',
-      'IITGN highlights interdisciplinary supervision and a porous academic environment connected to the broader Ahmedabad-Gandhinagar research ecosystem.',
-      'Current CSE and AI admissions areas, eligibility details, and application cycles are maintained on the IITGN admissions pages.',
-    ]}
-    links={[
-      { label: 'IITGN PhD overview', href: 'https://iitgn.ac.in/academics/phd' },
-      { label: 'PhD admissions', href: 'https://iitgn.ac.in/admissions/phd' },
-      { label: 'Prime Minister Research Fellowship at IITGN', href: 'https://iitgn.ac.in/pmrf' },
-    ]}
-  />
-
-  <section class="border-t bg-muted/30 section-padding">
-    <div class="container">
-      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+  <section class="border-b bg-muted/40">
+    <div class="container py-14 md:py-18">
+      <p class="text-sm font-medium text-secondary">
+        Department of Computer Science &amp; Engineering, IIT Gandhinagar
+      </p>
+      <div class="mt-5 grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
         <div class="max-w-3xl">
-          <p class="text-sm font-medium text-secondary">Interview preparation</p>
-          <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
-            Preparing for the PhD interview
-          </h2>
-          <p class="mt-3 leading-relaxed text-muted-foreground">
-            Prospective PhD applicants can use this playlist to prepare for the
-            CSE PhD interview process and refresh core ideas before the
-            interaction.
+          <h1 class="text-3xl font-semibold leading-tight md:text-5xl">
+            PhD Program
+          </h1>
+          <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
+            A research-focused doctoral program for creative, independent, and
+            interdisciplinary inquiry.
           </p>
+
+          <div
+            class="mt-7 inline-flex flex-wrap gap-1 rounded-lg border bg-background p-1"
+            role="tablist"
+            aria-label="PhD page sections"
+          >
+            <button
+              type="button"
+              id="phd-tab-recent"
+              class="rounded-md px-4 py-2 text-sm font-medium text-muted-foreground transition data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+              data-phd-tab="recent"
+              data-active="true"
+              role="tab"
+              aria-selected="true"
+              aria-controls="phd-panel-recent"
+            >
+              Recent Graduates
+            </button>
+            <button
+              type="button"
+              id="phd-tab-about"
+              class="rounded-md px-4 py-2 text-sm font-medium text-muted-foreground transition data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+              data-phd-tab="about"
+              data-active="false"
+              role="tab"
+              aria-selected="false"
+              aria-controls="phd-panel-about"
+            >
+              About the Program
+            </button>
+          </div>
         </div>
         <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
-          <p class="font-semibold">Preparation playlist</p>
-          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Watch the curated YouTube playlist for interview preparation.
-          </p>
-          <a
-            href="https://www.youtube.com/playlist?list=PLmxpyUxOO0b6PbMFXjnEvoYxygFoDF-Yk"
-            class="mt-5 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open playlist -&gt;
-          </a>
+          <p class="font-semibold">More information</p>
+          <div class="mt-4 space-y-3">
+            {
+              informationLinks.map((link) => (
+                <a
+                  href={link.href}
+                  class="block text-sm font-medium text-primary underline-offset-4 hover:underline"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {link.label} -&gt;
+                </a>
+              ))
+            }
+          </div>
         </aside>
       </div>
     </div>
   </section>
+
+  <section
+    id="phd-panel-recent"
+    class="section-padding"
+    role="tabpanel"
+    aria-labelledby="phd-tab-recent"
+    data-phd-panel="recent"
+  >
+    <div class="container">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div class="max-w-3xl">
+          <p class="text-sm font-medium text-secondary">Recent Graduates</p>
+          <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+            Recent CSE PhD defenses
+          </h2>
+          <p class="mt-3 leading-relaxed text-muted-foreground">
+            Defense announcements from the last six months, matched with public
+            research-scholar profiles from the IITGN CSE student directory.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-muted-foreground">
+            {RECENT_PHD_GRADUATES.length} profiles
+          </span>
+          <span class="mx-1 h-6 w-px bg-border" aria-hidden="true"></span>
+          <button
+            type="button"
+            class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground data-[active=true]:border-slate-700 data-[active=true]:bg-slate-800 data-[active=true]:text-white"
+            data-phd-layout-button
+            data-layout="card"
+            data-active="true"
+            aria-pressed="true"
+            aria-label="Use card layout"
+            title="Card layout"
+          >
+            <LayoutGrid className="size-4" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            class="inline-flex size-8 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground data-[active=true]:border-slate-700 data-[active=true]:bg-slate-800 data-[active=true]:text-white"
+            data-phd-layout-button
+            data-layout="list"
+            data-active="false"
+            aria-pressed="false"
+            aria-label="Use list layout"
+            title="List layout"
+          >
+            <List className="size-4" aria-hidden="true" />
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3 data-[layout=list]:md:grid-cols-1 data-[layout=list]:xl:grid-cols-1"
+        data-phd-graduate-list
+        data-layout="card"
+      >
+        {
+          RECENT_PHD_GRADUATES.map((graduate) => (
+            <article
+              class="group flex rounded-lg border border-border bg-card p-5 text-card-foreground shadow-sm transition data-[layout=card]:flex-col data-[layout=list]:items-start data-[layout=list]:gap-5"
+              data-phd-graduate-card
+              data-layout="card"
+            >
+              <div
+                class="size-24 shrink-0 overflow-hidden rounded-full bg-muted ring-1 ring-border data-[layout=card]:mb-6 data-[layout=list]:size-24"
+                data-layout="card"
+                data-layout-shell
+              >
+                <img
+                  src={graduate.image}
+                  alt={`${graduate.name} profile photo`}
+                  class="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="flex min-w-0 flex-1 flex-col">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="min-w-0">
+                    <h3 class="text-lg font-semibold leading-tight">
+                      {graduate.name}
+                    </h3>
+                    <p class="mt-1 text-sm text-muted-foreground">
+                      {graduate.program}
+                    </p>
+                  </div>
+                  <a
+                    href={`mailto:${graduate.email}`}
+                    class="inline-flex size-8 shrink-0 items-center justify-center rounded-full border bg-background text-muted-foreground transition hover:border-secondary hover:text-foreground"
+                    aria-label={`Email ${graduate.name}`}
+                    title={`Email ${graduate.name}`}
+                  >
+                    <Mail className="size-4" aria-hidden="true" />
+                  </a>
+                </div>
+
+                <dl class="mt-4 grid gap-2 text-sm group-data-[layout=list]:md:grid-cols-[8rem_1fr]">
+                  <dt class="text-muted-foreground">Thesis</dt>
+                  <dd class="font-medium leading-relaxed">{graduate.thesisTitle}</dd>
+                  <dt class="text-muted-foreground">Defense</dt>
+                  <dd>{graduate.defenseDate}</dd>
+                  <dt class="text-muted-foreground">Supervisor</dt>
+                  <dd>{graduate.supervisor}</dd>
+                  <dt class="text-muted-foreground">Joined</dt>
+                  <dd>{graduate.joined}</dd>
+                </dl>
+
+                <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  {graduate.summary}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <div
+    id="phd-panel-about"
+    role="tabpanel"
+    aria-labelledby="phd-tab-about"
+    data-phd-panel="about"
+    hidden
+  >
+    <section class="section-padding">
+      <div class="container">
+        <div class="max-w-3xl">
+          <p class="text-sm font-medium text-secondary">Academics</p>
+          <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+            Overview
+          </h2>
+          <p class="mt-3 leading-relaxed text-muted-foreground">
+            IITGN describes its PhD program as a pathway for creative scholarly
+            inquiry, intellectual maturity, and research careers in teaching,
+            innovation, entrepreneurship, and advanced research. The program
+            combines research with coursework and encourages interdisciplinary
+            interactions.
+          </p>
+        </div>
+
+        <div class="mt-8 grid gap-4 md:grid-cols-2">
+          {
+            programHighlights.map((highlight) => (
+              <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+                <p class="leading-relaxed text-muted-foreground">{highlight}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="border-t bg-muted/30 section-padding">
+      <div class="container">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+          <div class="max-w-3xl">
+            <p class="text-sm font-medium text-secondary">Interview preparation</p>
+            <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+              Preparing for the PhD interview
+            </h2>
+            <p class="mt-3 leading-relaxed text-muted-foreground">
+              Prospective PhD applicants can use this playlist to prepare for
+              the CSE PhD interview process and refresh core ideas before the
+              interaction.
+            </p>
+          </div>
+          <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
+            <p class="font-semibold">Preparation playlist</p>
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Watch the curated YouTube playlist for interview preparation.
+            </p>
+            <a
+              href="https://www.youtube.com/playlist?list=PLmxpyUxOO0b6PbMFXjnEvoYxygFoDF-Yk"
+              class="mt-5 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open playlist -&gt;
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const tabButtons = Array.from(document.querySelectorAll('[data-phd-tab]'));
+      const panels = Array.from(document.querySelectorAll('[data-phd-panel]'));
+      const layoutButtons = Array.from(
+        document.querySelectorAll('[data-phd-layout-button]'),
+      );
+      const graduateList = document.querySelector('[data-phd-graduate-list]');
+      const graduateCards = Array.from(
+        document.querySelectorAll('[data-phd-graduate-card]'),
+      );
+
+      const setActiveTab = (tab) => {
+        tabButtons.forEach((button) => {
+          const isActive = button.dataset.phdTab === tab;
+          button.dataset.active = String(isActive);
+          button.setAttribute('aria-selected', String(isActive));
+        });
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.dataset.phdPanel !== tab;
+        });
+      };
+
+      const setLayout = (layout) => {
+        const nextLayout = layout === 'list' ? 'list' : 'card';
+        if (graduateList) {
+          graduateList.setAttribute('data-layout', nextLayout);
+        }
+        graduateCards.forEach((card) => {
+          card.dataset.layout = nextLayout;
+          card
+            .querySelector('[data-layout-shell]')
+            ?.setAttribute('data-layout', nextLayout);
+        });
+        layoutButtons.forEach((button) => {
+          const isActive = button.dataset.layout === nextLayout;
+          button.dataset.active = String(isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+      };
+
+      tabButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          setActiveTab(button.dataset.phdTab);
+        });
+      });
+
+      layoutButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          setLayout(button.dataset.layout);
+        });
+      });
+    })();
+  </script>
 </DefaultLayout>

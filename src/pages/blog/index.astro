@@ -2,14 +2,13 @@
 import { getCollection } from 'astro:content';
 
 import BlogPosts from '@/components/sections/blog-posts';
-import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 ---
 
-<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<DefaultLayout title="Blog" description="Articles and perspectives from the IITGN CSE community.">
   <div>
     <BlogPosts posts={posts} client:load />
   </div>

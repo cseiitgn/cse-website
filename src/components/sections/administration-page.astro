@@ -1,4 +1,6 @@
 ---
+import { Globe2 } from 'lucide-react';
+
 type Committee = {
   title: string;
   members: string[];
@@ -7,15 +9,12 @@ type Committee = {
 
 type CommitteeGroup = {
   title: string;
-  description: string;
   committees: Committee[];
 };
 
 const committeeGroups: CommitteeGroup[] = [
   {
     title: 'Academic Governance',
-    description:
-      'Representatives and coordinators for senate-facing academic processes, admissions, qualifying exams, and data science coordination.',
     committees: [
       {
         title: 'SAPC Representative',
@@ -42,8 +41,6 @@ const committeeGroups: CommitteeGroup[] = [
   },
   {
     title: 'Courses and Programs',
-    description:
-      'Coordination roles for project courses, thesis or project courses, joint programs, and supervisor allocation.',
     committees: [
       {
         title: 'UG Project Courses and Grades Coordinator',
@@ -65,8 +62,6 @@ const committeeGroups: CommitteeGroup[] = [
   },
   {
     title: 'Department Planning and Outreach',
-    description:
-      'Coordinators for resources, department vision, recruitment, communication, and public visibility.',
     committees: [
       {
         title: 'Resource Management and Planning Coordinators',
@@ -89,6 +84,14 @@ const committeeGroups: CommitteeGroup[] = [
     ],
   },
 ];
+
+const departmentHead = {
+  name: 'Prof. Shanmuganathan Raman',
+  role: 'Head of Department',
+  title: 'Professor, Electrical Engineering',
+  affiliation: 'Jointly with Computer Science & Engineering',
+  profile: 'https://iitgn.ac.in/faculty/ee/fac-shanmuganathan',
+};
 ---
 
 <section class="border-b bg-muted/40">
@@ -103,16 +106,39 @@ const committeeGroups: CommitteeGroup[] = [
         </h1>
         <p class="text-muted-foreground mt-5 text-lg leading-relaxed">
           Department-level committee assignments and administrative coordination
-          roles, consolidated from the current CSE office orders.
+          roles.
         </p>
-      </div>
-      <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
-        <p class="font-semibold">Current term</p>
-        <p class="text-muted-foreground mt-3 text-sm leading-relaxed">
+        <p class="text-muted-foreground mt-3 text-xs leading-relaxed">
           These assignments are constituted for department activities from
           <span class="font-medium text-foreground">19 September 2025</span> to
           <span class="font-medium text-foreground">31 August 2027</span>.
         </p>
+      </div>
+      <aside class="rounded-lg border border-border bg-card p-5 shadow-sm">
+        <div class="flex items-start justify-between gap-4">
+          <div class="grid size-14 shrink-0 place-items-center rounded-lg bg-secondary/10 text-lg font-semibold text-secondary">
+            SR
+          </div>
+          <a
+            href={departmentHead.profile}
+            class="inline-flex size-9 shrink-0 items-center justify-center rounded-full border border-border text-muted-foreground transition hover:border-secondary hover:text-secondary"
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Open faculty profile for ${departmentHead.name}`}
+            title="Faculty profile"
+          >
+            <Globe2 className="size-4" aria-hidden="true" />
+          </a>
+        </div>
+        <div class="mt-5">
+          <p class="text-sm font-medium text-secondary">
+            {departmentHead.role}
+          </p>
+          <h2 class="mt-1 text-2xl font-semibold">{departmentHead.name}</h2>
+          <p class="text-muted-foreground mt-2 text-sm leading-relaxed">
+            {departmentHead.title}. {departmentHead.affiliation}.
+          </p>
+        </div>
       </aside>
     </div>
   </div>
@@ -125,10 +151,6 @@ const committeeGroups: CommitteeGroup[] = [
       <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
         Roles and coordinators
       </h2>
-      <p class="text-muted-foreground mt-3 leading-relaxed">
-        Faculty members in these committees may co-opt other department faculty
-        members as required for carrying out specific tasks.
-      </p>
     </div>
 
     <div class="mt-8 space-y-10">
@@ -137,9 +159,6 @@ const committeeGroups: CommitteeGroup[] = [
           <section class="scroll-mt-24">
             <div class="mb-4 border-b pb-3">
               <h3 class="text-xl font-semibold">{group.title}</h3>
-              <p class="text-muted-foreground mt-1 text-sm">
-                {group.description}
-              </p>
             </div>
             <div class="grid gap-4 md:grid-cols-2">
               {group.committees.map((committee) => (

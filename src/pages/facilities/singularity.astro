@@ -1,0 +1,446 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const applyUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSd8YMqqE_Nwk4Tm75UfnS8wAp7LFIMT6x1_aZWxRh4kuBEw0A/viewform?usp=dialog';
+
+const navItems = [
+  { label: 'Overview', href: '#overview' },
+  { label: 'Specification', href: '#specification' },
+  { label: 'Software', href: '#software' },
+  { label: 'Access', href: '#access' },
+  { label: 'Funding', href: '#funding' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const heroStats = [
+  { label: 'Commissioned', value: 'April 2025' },
+  { label: 'CPU cores', value: '128' },
+  { label: 'GPU cards', value: '8 NVIDIA L40S' },
+  { label: 'Usable PFS storage', value: '172 TB' },
+];
+
+const specifications = [
+  {
+    title: 'CPU',
+    value: 'Intel Xeon Gold 6548Y+',
+    description: 'CPU compute capacity for scheduled research workloads.',
+  },
+  {
+    title: 'GPU',
+    value: 'NVIDIA L40S',
+    description: 'GPU acceleration for AI, ML, DL, and related workloads.',
+  },
+  {
+    title: 'Storage',
+    value: '172 TB usable PFS storage',
+    description: 'Shared parallel file system storage available to users.',
+  },
+  {
+    title: 'Interconnect',
+    value: '100 Gbps EDR InfiniBand',
+    description: 'High-speed interconnect for cluster jobs.',
+  },
+  {
+    title: 'Network',
+    value: '1 Gbps network switch',
+    description: 'Network switching for cluster access and management.',
+  },
+];
+
+const softwareRows = [
+  {
+    domain: 'AI / ML / DL',
+    applications: 'TensorFlow, pandas, NumPy, Anaconda',
+  },
+  {
+    domain: 'Compilers',
+    applications: 'MPI, OpenMPI, GCC',
+  },
+  {
+    domain: 'Other',
+    applications: 'JupyterHub, GitLab',
+  },
+];
+
+const accessFaqs = [
+  {
+    question: 'How do I request a Singularity HPC account?',
+    answer:
+      'Submit the access request form, then email raviraj.s@iitgn.ac.in with a copy to your supervisor. Include the required account duration and the software list you plan to run.',
+  },
+  {
+    question: 'What is the home-directory quota?',
+    answer: 'Each user receives 500 GB of quota in the home directory.',
+  },
+  {
+    question: 'How is scheduling implemented?',
+    answer:
+      'Jobs are handled through the SLURM scheduler. The scheduler automatically finds the required processing cores from available nodes, including partially used nodes. Users should not explicitly specify node numbers or number of nodes in job scripts. Priority-based queueing uses factors such as job size, queue priority, past and present usage, and time spent in the queue.',
+  },
+  {
+    question: 'What is the data backup policy?',
+    answer:
+      'Users should back up files and folders periodically. The support team does not provide a backup mechanism for user data. Automatic email alerts are sent when home usage reaches 75% and 85%; administrator deletion may begin within 24 hours of the second alert. Files in the home directory are automatically deleted 21 days after the last timestamp or update.',
+  },
+  {
+    question: 'Can I run jobs interactively on the master node or other nodes?',
+    answer:
+      'No. Users are strictly not allowed to run jobs on master nodes or other nodes interactively. Jobs must be run only through scheduler scripts.',
+  },
+];
+---
+
+<DefaultLayout
+  title="Singularity Cluster"
+  description="The CSE Singularity high-performance computing cluster at IIT Gandhinagar."
+>
+  <section class="border-b bg-muted/40">
+    <div class="container py-14 md:py-18">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-start">
+        <div class="max-w-3xl">
+          <p class="text-sm font-medium text-secondary">
+            CSE high-performance computing
+          </p>
+          <h1 class="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
+            Singularity Cluster
+          </h1>
+          <p class="mt-5 text-lg leading-relaxed text-muted-foreground">
+            The Singularity HPC Cluster was commissioned in April 2025. It
+            provides 128 CPU cores, 8 NVIDIA L40S GPU cards, and 172 TB of
+            usable PFS storage space for departmental research workloads.
+          </p>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a
+              href={applyUrl}
+              class="inline-flex h-10 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Apply for access
+            </a>
+            <a
+              href="#access"
+              class="inline-flex h-10 items-center rounded-md border border-border bg-background px-4 text-sm font-medium shadow-sm hover:border-primary hover:text-primary"
+            >
+              Read access policy
+            </a>
+          </div>
+        </div>
+
+        <div class="singularity-hero-media grid grid-cols-[minmax(0,1fr)_7rem] gap-3 sm:grid-cols-[minmax(0,1fr)_9rem]">
+          <img
+            src="/images/facilities/singularity/server1.jpg"
+            alt="Singularity cluster rack"
+            class="w-full rounded-lg border border-border object-cover object-center shadow-sm"
+            style="height: clamp(20rem, 34vw, 24rem);"
+            loading="eager"
+          />
+          <img
+            src="/images/facilities/singularity/server2.jpg"
+            alt="Singularity cluster server"
+            class="w-full rounded-lg border border-border object-cover object-center shadow-sm"
+            style="height: clamp(20rem, 34vw, 24rem);"
+            loading="eager"
+          />
+        </div>
+      </div>
+
+      <div class="mt-16 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          heroStats.map((stat) => (
+            <div class="rounded-lg border border-border bg-card p-4 shadow-sm">
+              <p class="text-sm text-muted-foreground">{stat.label}</p>
+              <p class="mt-2 text-2xl font-semibold">{stat.value}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <nav class="sticky top-0 z-20 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+    <div class="container flex gap-2 overflow-x-auto py-3">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="shrink-0 rounded-full border border-border bg-muted/30 px-4 py-2 text-sm font-medium text-muted-foreground hover:border-primary hover:bg-background hover:text-primary"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+  </nav>
+
+  <section id="overview" class="section-padding scroll-mt-24">
+    <div class="container">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_25rem] lg:items-start">
+        <div class="max-w-3xl">
+          <p class="text-sm font-medium text-secondary">Overview</p>
+          <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+            A departmental cluster for GPU-accelerated research
+          </h2>
+          <p class="mt-4 leading-relaxed text-muted-foreground">
+            Singularity complements institute-scale HPC resources by providing
+            CSE-managed compute capacity for departmental users. Jobs are run
+            through SLURM, with shared storage and a priority queueing model for
+            fair access across users.
+          </p>
+        </div>
+
+        <aside class="rounded-lg border border-border bg-muted/30 p-5">
+          <p class="font-semibold">Quick links</p>
+          <div class="mt-4 grid gap-3">
+            <a
+              href={applyUrl}
+              class="rounded-md border border-border bg-background px-4 py-3 text-sm font-medium hover:border-primary hover:text-primary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Access request form
+            </a>
+            <a
+              href="#software"
+              class="rounded-md border border-border bg-background px-4 py-3 text-sm font-medium hover:border-primary hover:text-primary"
+            >
+              Available software
+            </a>
+            <a
+              href="#contact"
+              class="rounded-md border border-border bg-background px-4 py-3 text-sm font-medium hover:border-primary hover:text-primary"
+            >
+              Contact CSE office
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <div class="mt-10 grid gap-6 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-start">
+        <figure>
+          <img
+            src="/images/facilities/singularity/layout.jpg"
+            alt="Singularity cluster layout"
+            class="w-full rounded-lg border border-border bg-card object-contain shadow-sm"
+            loading="lazy"
+          />
+          <figcaption class="mt-3 text-center text-sm text-muted-foreground">
+            Singularity layout
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            src="/images/facilities/singularity/queue.jpg"
+            alt="Singularity queueing system"
+            class="w-full rounded-lg border border-border bg-card object-contain shadow-sm"
+            loading="lazy"
+          />
+          <figcaption class="mt-3 text-center text-sm text-muted-foreground">
+            Singularity queueing system
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="specification" class="border-y bg-muted/30 section-padding scroll-mt-24">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-secondary">Specification</p>
+        <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+          Hardware and interconnect
+        </h2>
+        <p class="mt-3 leading-relaxed text-muted-foreground">
+          The cluster combines CPU compute, NVIDIA L40S GPU acceleration,
+          parallel file-system storage, and InfiniBand connectivity for
+          scheduled HPC workloads.
+        </p>
+      </div>
+
+      <div class="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <div class="grid gap-4 sm:grid-cols-2">
+          {
+            specifications.map((spec) => (
+              <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+                <p class="text-sm font-medium text-secondary">{spec.title}</p>
+                <h3 class="mt-2 text-xl font-semibold">{spec.value}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {spec.description}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+
+        <figure>
+          <img
+            src="/images/facilities/singularity/spec.jpg"
+            alt="Singularity cluster details"
+            class="w-full rounded-lg border border-border bg-card object-contain shadow-sm"
+            loading="lazy"
+          />
+          <figcaption class="mt-3 text-center text-sm text-muted-foreground">
+            Singularity details
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="software" class="section-padding scroll-mt-24">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-secondary">Software</p>
+        <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+          Available software domains
+        </h2>
+        <p class="mt-3 leading-relaxed text-muted-foreground">
+          The legacy software listing groups applications into the following
+          domains.
+        </p>
+      </div>
+
+      <div class="mt-8 overflow-hidden rounded-lg border border-border bg-card shadow-sm">
+        <table class="w-full text-left text-sm">
+          <thead class="border-b bg-muted/50 text-muted-foreground">
+            <tr>
+              <th class="px-5 py-4 font-medium">Domain</th>
+              <th class="px-5 py-4 font-medium">Applications</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              softwareRows.map((row) => (
+                <tr class="border-b last:border-b-0">
+                  <td class="px-5 py-4 font-medium">{row.domain}</td>
+                  <td class="px-5 py-4 text-muted-foreground">
+                    {row.applications}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="access" class="border-y bg-muted/30 section-padding scroll-mt-24">
+    <div class="container">
+      <div class="grid gap-8 lg:grid-cols-[21rem_minmax(0,1fr)] lg:items-start">
+        <div>
+          <p class="text-sm font-medium text-secondary">Access and policy</p>
+          <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+            Account requests, quotas, scheduling, and data handling
+          </h2>
+          <p class="mt-4 leading-relaxed text-muted-foreground">
+            Use the access form and email workflow for new accounts. Cluster
+            use is scheduler-based, and users are responsible for backing up
+            their own files.
+          </p>
+          <a
+            href={applyUrl}
+            class="mt-6 inline-flex h-10 items-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open access form
+          </a>
+        </div>
+
+        <div class="grid gap-4">
+          {
+            accessFaqs.map((faq) => (
+              <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+                <h3 class="font-semibold">{faq.question}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {faq.answer}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="funding" class="section-padding scroll-mt-24">
+    <div class="container">
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-center">
+        <div class="max-w-3xl">
+          <p class="text-sm font-medium text-secondary">Funding</p>
+          <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+            Funding acknowledgement
+          </h2>
+          <p class="mt-4 leading-relaxed text-muted-foreground">
+            The Singularity funding page identifies the Science and Engineering
+            Research Board as the funding agency.
+          </p>
+          <a
+            href="https://www.serb.gov.in/"
+            class="mt-6 inline-flex h-10 items-center rounded-md border border-border bg-background px-4 text-sm font-medium shadow-sm hover:border-primary hover:text-primary"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Visit SERB
+          </a>
+        </div>
+        <a
+          href="https://www.serb.gov.in/"
+          class="block rounded-lg border border-border bg-card p-5 shadow-sm hover:border-primary"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            src="/images/facilities/singularity/funding.jpg"
+            alt="Science and Engineering Research Board funding acknowledgement"
+            class="w-full object-contain"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="border-t bg-muted/30 section-padding scroll-mt-24">
+    <div class="container">
+      <div class="max-w-3xl">
+        <p class="text-sm font-medium text-secondary">Contact</p>
+        <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
+          CSE office contact details
+        </h2>
+      </div>
+
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+          <p class="text-sm text-muted-foreground">Email</p>
+          <a
+            href="mailto:office.cse@iitgn.ac.in"
+            class="mt-2 block font-semibold text-primary underline-offset-4 hover:underline"
+          >
+            office.cse@iitgn.ac.in
+          </a>
+        </article>
+        <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+          <p class="text-sm text-muted-foreground">Address</p>
+          <p class="mt-2 font-semibold leading-relaxed">
+            AB13-403A, CSE Office, Computer Sci. &amp; Engg. Department, IIT
+            Gandhinagar, Palaj
+          </p>
+        </article>
+        <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+          <p class="text-sm text-muted-foreground">Website</p>
+          <a
+            href="https://cs.iitgn.ac.in"
+            class="mt-2 block font-semibold text-primary underline-offset-4 hover:underline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            cs.iitgn.ac.in
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>

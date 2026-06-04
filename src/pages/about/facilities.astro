@@ -1,6 +1,8 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 
+const isExternalUrl = (url: string) => url.startsWith('http');
+
 const hpcFacilities = [
   {
     title: 'PARAM Ananta',
@@ -39,7 +41,7 @@ const hpcFacilities = [
       '172 TB usable PFS storage',
       '100 Gbps EDR InfiniBand',
     ],
-    link: 'https://cs.iitgn.ac.in/hpc/',
+    link: '/facilities/singularity',
   },
   {
     title: 'Turing and Hamilton',
@@ -69,7 +71,7 @@ const hpcLinks = [
   },
   {
     label: 'CSE Singularity cluster',
-    href: 'https://cs.iitgn.ac.in/hpc/',
+    href: '/facilities/singularity',
   },
 ];
 ---
@@ -129,7 +131,10 @@ const hpcLinks = [
 
       <div class="mt-8 grid gap-5 lg:grid-cols-2">
         {
-          hpcFacilities.map((facility) => (
+          hpcFacilities.map((facility) => {
+            const isExternal = facility.link ? isExternalUrl(facility.link) : false;
+
+            return (
             <article class="flex h-full flex-col rounded-lg border border-border bg-card p-5 shadow-sm">
               <p class="text-sm font-medium text-secondary">
                 {facility.subtitle}
@@ -151,16 +156,17 @@ const hpcLinks = [
                   <a
                     href={facility.link}
                     class="inline-flex items-center text-sm font-medium text-primary underline-offset-4 hover:underline"
-                    target="_blank"
-                    rel="noreferrer"
+                    target={isExternal ? '_blank' : undefined}
+                    rel={isExternal ? 'noreferrer' : undefined}
                   >
-                    View source details
+                    {isExternal ? 'View source details' : 'View cluster details'}
                     <span aria-hidden="true" class="ml-1">-&gt;</span>
                   </a>
                 </div>
               )}
             </article>
-          ))
+          );
+          })
         }
       </div>
 
@@ -168,16 +174,20 @@ const hpcLinks = [
         <p class="font-semibold">More HPC information</p>
         <div class="mt-4 flex flex-wrap gap-3">
           {
-            hpcLinks.map((link) => (
+            hpcLinks.map((link) => {
+              const isExternal = isExternalUrl(link.href);
+
+              return (
               <a
                 href={link.href}
                 class="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground hover:border-primary hover:text-primary"
-                target="_blank"
-                rel="noreferrer"
+                target={isExternal ? '_blank' : undefined}
+                rel={isExternal ? 'noreferrer' : undefined}
               >
                 {link.label}
               </a>
-            ))
+            );
+            })
           }
         </div>
       </div>

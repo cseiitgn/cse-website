@@ -8,9 +8,9 @@ import DefaultLayout from '@/layouts/DefaultLayout.astro';
 ---
 
 <DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <Hero client:only="react" />
+  <Hero client:load />
   <div class="bg-blue-50/50 dark:bg-blue-900/20">
-    <Announcements client:only="react" />
+    <Announcements client:load />
   </div>
   <RecentWins />
 </DefaultLayout>

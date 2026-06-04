@@ -1,0 +1,102 @@
+---
+import {
+  ArrowRight,
+  CalendarDays,
+  Clock3,
+  ExternalLink,
+  MonitorPlay,
+  UsersRound,
+} from 'lucide-react';
+
+interface Props {
+  variant?: 'home' | 'deadlines';
+}
+
+const { variant = 'home' } = Astro.props;
+
+const registerUrl = 'https://zurl.co/Tgat9';
+const announcementUrl =
+  'https://www.linkedin.com/posts/indian-institute-of-technology-gandhinagar-iitgn-_iitgn-jeeopenhouse2026-jeeadvanced-activity-7467168090930302976-1d_s';
+const sectionClass =
+  variant === 'home'
+    ? 'pb-10 pt-0 md:pb-12'
+    : 'pb-12 pt-8 md:pb-16 md:pt-10';
+---
+
+<section class={sectionClass}>
+  <div class="container">
+    <article class="overflow-hidden rounded-lg border bg-background shadow-sm">
+      <div>
+        <div class="p-5 md:p-7 lg:p-8">
+          <p class="text-secondary text-sm font-medium uppercase tracking-wider">
+            Admissions event
+          </p>
+          <h2 class="mt-3 max-w-2xl text-2xl font-semibold md:text-3xl">
+            JEE Open House 2026: Explore IIT Gandhinagar
+          </h2>
+          <p class="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
+            JEE Advanced qualified students and parents are invited to an
+            online interactive session with IITGN leadership, faculty, Career
+            Development Services, students, and alumni.
+          </p>
+
+          <dl class="mt-5 grid gap-3 sm:grid-cols-3">
+            <div class="rounded-lg border bg-muted/30 p-3">
+              <dt class="text-muted-foreground flex items-center gap-2 text-xs">
+                <CalendarDays className="size-3.5" aria-hidden="true" />
+                Date
+              </dt>
+              <dd class="mt-1 font-medium">June 5, 2026</dd>
+            </div>
+            <div class="rounded-lg border bg-muted/30 p-3">
+              <dt class="text-muted-foreground flex items-center gap-2 text-xs">
+                <Clock3 className="size-3.5" aria-hidden="true" />
+                Time
+              </dt>
+              <dd class="mt-1 font-medium">3:30 PM IST</dd>
+            </div>
+            <div class="rounded-lg border bg-muted/30 p-3">
+              <dt class="text-muted-foreground flex items-center gap-2 text-xs">
+                <MonitorPlay className="size-3.5" aria-hidden="true" />
+                Mode
+              </dt>
+              <dd class="mt-1 font-medium">Online session</dd>
+            </div>
+          </dl>
+
+          <div class="mt-5 flex items-start gap-3 rounded-lg bg-secondary/5 p-4 text-sm">
+            <UsersRound
+              className="mt-0.5 size-4 shrink-0 text-secondary"
+              aria-hidden="true"
+            />
+            <p class="text-muted-foreground leading-relaxed">
+              The session will cover academics, research opportunities, student
+              life, placements, entrepreneurship, and the IITGN experience.
+            </p>
+          </div>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a
+              href={registerUrl}
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:bg-primary/90"
+            >
+              Register now
+              <ArrowRight className="size-4" aria-hidden="true" />
+            </a>
+            <a
+              href={announcementUrl}
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center justify-center gap-2 rounded-md border bg-background px-4 py-2 text-sm font-medium transition hover:bg-muted"
+            >
+              LinkedIn announcement
+              <ExternalLink className="size-4" aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>

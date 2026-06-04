@@ -13,8 +13,8 @@ type Project = {
 type GrantAnnouncement = {
   scheme: string;
   faculty: string;
-  note: string;
-  source: string;
+  title: string;
+  coPi?: string;
 };
 
 const projects: Project[] = [
@@ -152,22 +152,57 @@ const categories = ['ANRF/SERB', 'International', 'Sponsored', 'Industry/Researc
 
 const recentGrantAnnouncements: GrantAnnouncement[] = [
   {
-    scheme: 'ANRF Prime Minister Early Career Research Grant',
-    faculty: 'Manisha Padala, Shouvick Mondal, Yogesh Kumar Meena',
-    note: 'Recent CSE announcement listing department awardees under PMECRG.',
-    source: 'https://www.linkedin.com/posts/cse-iitgn_anusandhan-national-research-foundation-activity-7419330427775115265-v86v',
+    scheme: 'Prime Minister Early Career Research Grant (PMECRG)',
+    faculty: 'Manisha Padala',
+    title:
+      'Fair Federated Learning Framework in the Presence of Heterogeneous, Strategic, and Malicious Clients',
   },
   {
-    scheme: 'ANRF Advanced Research Grant',
-    faculty: 'Mayank Singh, Nipun Batra, Abhishek Bichhawat',
-    note: 'Recent CSE announcement listing department awardees under ARG.',
-    source: 'https://www.linkedin.com/posts/cse-iitgn_anusandhan-national-research-foundation-activity-7419330427775115265-v86v',
+    scheme: 'Prime Minister Early Career Research Grant (PMECRG)',
+    faculty: 'Shouvick Mondal',
+    title:
+      'Testing of Pre-trained Large Language Models for Zero-shot Software Engineering Tasks',
   },
   {
-    scheme: 'ANRF ARG MATRICS',
-    faculty: 'Bireswar Das, Manoj Gupta, Balagopal Komarath',
-    note: 'Recent CSE announcement listing department awardees under ARG MATRICS.',
-    source: 'https://www.linkedin.com/posts/cse-iitgn_anusandhan-national-research-foundation-activity-7419330427775115265-v86v',
+    scheme: 'Advanced Research Grant (ARG)',
+    faculty: 'Mayank Singh',
+    title:
+      'Chitrabhasha: Developing India\'s Largest Dataset and Foundation Models for Multimodal AI',
+  },
+  {
+    scheme: 'Prime Minister Early Career Research Grant (PMECRG)',
+    faculty: 'Yogesh Kumar Meena',
+    title:
+      'iGazeBuddy: Multimodal Gaze-Controlled On-Screen Assisted Learning System for Dyslexia Detection and Intervention in Regional Indian Languages',
+  },
+  {
+    scheme: 'Advanced Research Grant (ARG)',
+    faculty: 'Nipun Batra',
+    title:
+      'Scalable Detection of Brick Kilns from Low-Resolution Satellite Imagery for Environmental Compliance',
+  },
+  {
+    scheme: 'Advanced Research Grant (ARG) MATRICS',
+    faculty: 'Bireswar Das',
+    title: 'Quantum Algorithms for Group Theoretic Problems',
+  },
+  {
+    scheme: 'Advanced Research Grant (ARG) MATRICS',
+    faculty: 'Balagopal Komarath',
+    title:
+      'On the Role of Multilinearity and Monotonicity in Algebraic Computation',
+  },
+  {
+    scheme: 'Advanced Research Grant (ARG)',
+    faculty: 'Abhishek Bichhawat',
+    coPi: 'Co-PI: Mainak Mondal, IIT Kharagpur',
+    title:
+      'Towards a Private yet Functional Web: Designing a Usable and Privacy-compliant Consent Management Framework for Online Browsing',
+  },
+  {
+    scheme: 'Advanced Research Grant (ARG) MATRICS',
+    faculty: 'Manoj Gupta',
+    title: 'Approximate Shortest Paths in Graphs',
   },
 ];
 ---
@@ -193,55 +228,73 @@ const recentGrantAnnouncements: GrantAnnouncement[] = [
 
   <section class="section-padding">
     <div class="container">
-      <div class="flex flex-wrap gap-2">
-        {
-          categories.map((category) => (
-            <span class="rounded-full border bg-background px-3 py-1 text-sm text-muted-foreground">
-              {category}
-            </span>
-          ))
-        }
-      </div>
-
-      <div class="mt-8 rounded-lg border border-border bg-muted/30 p-5">
+      <div class="rounded-lg border border-border bg-muted/30 p-5">
         <div class="max-w-3xl">
-          <p class="text-sm font-medium text-secondary">Recent ANRF announcements</p>
+          <p class="text-sm font-medium text-secondary">Recent ANRF grants</p>
           <h2 class="mt-2 text-2xl font-semibold">
-            Department faculty have secured multiple recent ANRF grants
+            CSE faculty members have secured multiple recent ANRF grants in the latest cycle
           </h2>
-          <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
-            Recent public announcements list CSE faculty awardees across ANRF
-            PMECRG, Advanced Research Grant, and ARG MATRICS schemes. Project
-            titles are included below where they are publicly available.
-          </p>
         </div>
         <div class="mt-5 grid gap-4 md:grid-cols-3">
           {
             recentGrantAnnouncements.map((grant) => (
               <article class="rounded-lg border bg-background p-4">
-                <h3 class="font-semibold">{grant.scheme}</h3>
-                <p class="mt-3 text-sm font-medium">{grant.faculty}</p>
-                <p class="mt-2 text-sm leading-relaxed text-muted-foreground">{grant.note}</p>
-                <a
-                  href={grant.source}
-                  class="mt-4 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Announcement -&gt;
-                </a>
+                <p class="text-sm font-medium text-secondary">{grant.scheme}</p>
+                <h3 class="mt-3 text-lg font-semibold">{grant.title}</h3>
+                <p class="mt-3 text-sm font-medium">PI: {grant.faculty}</p>
+                {grant.coPi && (
+                  <p class="mt-1 text-xs text-muted-foreground">{grant.coPi}</p>
+                )}
               </article>
             ))
           }
         </div>
       </div>
 
-      <h2 class="mt-10 text-2xl font-semibold">Selected project listings</h2>
+      <div class="mt-8 flex flex-wrap items-center gap-2" aria-label="Filter projects by category">
+        <button
+          type="button"
+          class="rounded-full border bg-background px-3 py-1 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground data-[active=true]:border-primary data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+          data-project-filter="all"
+          data-active="true"
+          aria-pressed="true"
+        >
+          All
+        </button>
+        {
+          categories.map((category) => (
+            <button
+              type="button"
+              class="rounded-full border bg-background px-3 py-1 text-sm text-muted-foreground transition-colors hover:border-primary hover:text-foreground data-[active=true]:border-primary data-[active=true]:bg-primary data-[active=true]:text-primary-foreground"
+              data-project-filter={category}
+              data-active="false"
+              aria-pressed="false"
+            >
+              {category}
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="mt-10 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <h2 class="text-2xl font-semibold">Selected project listings</h2>
+        <p
+          class="text-sm text-muted-foreground"
+          data-project-filter-count
+          aria-live="polite"
+        >
+          {projects.length} selected projects
+        </p>
+      </div>
 
       <div class="mt-5 grid gap-4 md:grid-cols-2">
         {
           projects.map((project) => (
-            <article class="rounded-lg border border-border bg-card p-5 shadow-sm">
+            <article
+              class="rounded-lg border border-border bg-card p-5 shadow-sm"
+              data-project-card
+              data-project-category={project.category}
+            >
               <div class="flex flex-wrap items-center gap-2">
                 <span class="rounded-full bg-secondary/10 px-3 py-1 text-xs font-medium text-secondary">
                   {project.category}
@@ -259,18 +312,43 @@ const recentGrantAnnouncements: GrantAnnouncement[] = [
                   <dd class="mt-1 text-muted-foreground">{project.sponsor}</dd>
                 </div>
               </dl>
-              <a
-                href={project.source}
-                class="mt-5 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Source listing -&gt;
-              </a>
             </article>
           ))
         }
       </div>
     </div>
   </section>
+
+  <script>
+    const filterButtons = document.querySelectorAll('[data-project-filter]');
+    const projectCards = document.querySelectorAll('[data-project-card]');
+    const projectCount = document.querySelector('[data-project-filter-count]');
+
+    function applyProjectFilter(filter) {
+      let visibleCount = 0;
+
+      projectCards.forEach((card) => {
+        const isVisible =
+          filter === 'all' || card.dataset.projectCategory === filter;
+        card.toggleAttribute('hidden', !isVisible);
+        if (isVisible) visibleCount += 1;
+      });
+
+      filterButtons.forEach((button) => {
+        const isActive = button.dataset.projectFilter === filter;
+        button.dataset.active = String(isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      if (projectCount) {
+        projectCount.textContent = `${visibleCount} selected project${visibleCount === 1 ? '' : 's'}`;
+      }
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyProjectFilter(button.dataset.projectFilter || 'all');
+      });
+    });
+  </script>
 </DefaultLayout>

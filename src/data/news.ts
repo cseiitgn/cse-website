@@ -3,7 +3,8 @@ export type NewsCategory =
   | "research"
   | "award"
   | "event"
-  | "infrastructure";
+  | "infrastructure"
+  | "service";
 
 export type NewsStatus = "confirmed" | "achievement";
 
@@ -27,6 +28,7 @@ export const CATEGORY_LABELS: Record<NewsCategory, string> = {
   award: "Award",
   event: "Event",
   infrastructure: "Infrastructure",
+  service: "Service",
 };
 
 export const STATUS_LABELS: Record<NewsStatus, string> = {
@@ -35,6 +37,208 @@ export const STATUS_LABELS: Record<NewsStatus, string> = {
 };
 
 export const departmentNews: DepartmentNewsItem[] = [
+  {
+    id: "abhishek-asiaccs-2026-track-chair",
+    title: "Prof. Abhishek Bichhawat named AsiaCCS 2026 track co-chair",
+    summary:
+      "Prof. Bichhawat is track co-chair for Software Security, Formal Methods, and Programming Languages at ACM AsiaCCS 2026 in Bengaluru.",
+    people: "Prof. Abhishek Bichhawat",
+    displayDate: "June 2026",
+    date: "2026-06-01",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "ACM AsiaCCS 2026 Program Committee",
+    sourceUrl: "https://asiaccs2026.cse.iitkgp.ac.in/program-committee/",
+  },
+  {
+    id: "abhishek-acm-summer-school-systems-ml-2026",
+    title:
+      "Prof. Abhishek Bichhawat serves as academic coordinator for ACM India Summer School on Systems for ML",
+    summary:
+      "The VIT-hosted ACM India summer school runs from 1-12 June 2026 and covers scalable ML systems, deep learning infrastructure, hardware accelerators, distributed ML, Edge AI, ML compilers, and explainable AI.",
+    people: "Prof. Abhishek Bichhawat",
+    displayDate: "June 2026",
+    date: "2026-06-01",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "VIT brochure",
+    sourceUrl: "https://vit.ac.in/wp-content/uploads/2026/05/ACM_VIT-brochure-U3.pdf",
+  },
+  {
+    id: "abhishek-acm-indics-secure-usable-systems-2026",
+    title:
+      "Prof. Abhishek Bichhawat organizes ACM IndiCS workshop on secure and usable systems",
+    summary:
+      "The 2026 ACM IndiCS workshop focuses on designing secure and usable systems for humans, connecting security, privacy, HCI, and systems perspectives.",
+    people: "Prof. Abhishek Bichhawat",
+    displayDate: "2026",
+    date: "2026-06-01",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "ACM IndiCS",
+    sourceUrl: "https://india.acm.org/research/indics",
+  },
+  {
+    id: "shanmuga-neurips-2026-area-chair",
+    title: "Prof. Shanmuganathan Raman serves as NeurIPS 2026 Area Chair",
+    summary:
+      "Prof. Raman is contributing to the NeurIPS 2026 main-track review process as an Area Chair.",
+    people: "Prof. Shanmuganathan Raman",
+    displayDate: "2026",
+    date: "2026-05-06",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "NeurIPS 2026 Main Track Handbook",
+    sourceUrl: "https://neurips.cc/Conferences/2026/MainTrackHandbook",
+  },
+  {
+    id: "neeldhara-aamas-2026-area-chair",
+    title: "Prof. Neeldhara Misra serves as AAMAS 2026 Area Chair",
+    summary:
+      "Prof. Misra is listed as an Area Chair for the Game Theory and Economic Paradigms area at AAMAS 2026.",
+    people: "Prof. Neeldhara Misra",
+    displayDate: "2026",
+    date: "2026-05-25",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "AAMAS 2026 Area Chairs",
+    sourceUrl: "https://cyprusconferences.org/aamas2026/area-chairs/",
+  },
+  {
+    id: "neeldhara-caldam-2026-pc-cochair",
+    title: "Prof. Neeldhara Misra serves as CALDAM 2026 PC co-chair",
+    summary:
+      "Prof. Misra and Prof. Arti Pandey are program committee co-chairs for the 12th International Conference on Algorithms and Discrete Applied Mathematics.",
+    people: "Prof. Neeldhara Misra and Prof. Arti Pandey",
+    displayDate: "Feb 2026",
+    date: "2026-02-12",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "CALDAM 2026 Committees",
+    sourceUrl: "https://caldam2026.iitdh.ac.in/committees",
+  },
+  {
+    id: "abhishek-jcs-associate-editor-2026",
+    title:
+      "Prof. Abhishek Bichhawat joins Journal of Computer Security editorial board",
+    summary:
+      "The Journal of Computer Security editorial board lists Prof. Bichhawat among its Associate Editors.",
+    people: "Prof. Abhishek Bichhawat",
+    displayDate: "2026",
+    date: "2026-01-01",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "Journal of Computer Security editorial board",
+    sourceUrl: "https://journals.sagepub.com/editorial-board/JCU",
+  },
+  {
+    id: "abhishek-plas-2025-pc-cochair",
+    title: "Prof. Abhishek Bichhawat serves as PLAS 2025 PC co-chair",
+    summary:
+      "PLAS 2025, the 20th Workshop on Programming Languages and Analysis for Security, was co-located with ACM CCS 2025 in Taipei.",
+    people: "Prof. Abhishek Bichhawat",
+    displayDate: "Oct 2025",
+    date: "2025-10-13",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "PLAS 2025",
+    sourceUrl: "https://plas25.github.io/",
+  },
+  {
+    id: "neeldhara-ctis-2024-pc-cochair",
+    title: "Prof. Neeldhara Misra serves as CTiS 2024 PC co-chair",
+    summary:
+      "Prof. Misra was program committee co-chair for ACM India's Computational Thinking in Schools 2024 conference with Geeta Ghormade.",
+    people: "Prof. Neeldhara Misra and Geeta Ghormade",
+    displayDate: "Jul 2024",
+    date: "2024-07-05",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "CTiS 2024",
+    sourceUrl: "https://event.india.acm.org/ctis/ctis-2024/",
+  },
+  {
+    id: "neeldhara-ipec-2023-pc-cochair",
+    title: "Prof. Neeldhara Misra serves as IPEC 2023 PC co-chair",
+    summary:
+      "Prof. Misra and Magnus Wahlström were program committee co-chairs for the 18th International Symposium on Parameterized and Exact Computation.",
+    people: "Prof. Neeldhara Misra and Magnus Wahlström",
+    displayDate: "Sep 2023",
+    date: "2023-09-06",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "IPEC 2023",
+    sourceUrl: "https://algo-conference.org/2023/ipec",
+  },
+  {
+    id: "neeldhara-acmw-india-council",
+    title: "Prof. Neeldhara Misra serves on the ACM-W India Council",
+    summary:
+      "Prof. Misra has served as a member of the ACM-India ACM-W Council since 2019.",
+    people: "Prof. Neeldhara Misra",
+    displayDate: "2019-present",
+    date: "2026-01-01",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "IITGN faculty chair profile",
+    sourceUrl: "https://iitgn.ac.in/faculty/chairs/avss",
+  },
+  {
+    id: "neeldhara-iarcs-council-2020-2023",
+    title: "Prof. Neeldhara Misra served on the IARCS Council",
+    summary:
+      "Prof. Misra served as a council member of the Indian Association for Research in Computing Science from 2020 to 2023.",
+    people: "Prof. Neeldhara Misra",
+    displayDate: "2020-23",
+    date: "2023-12-01",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "IARCS Council",
+    sourceUrl: "https://www.iarcs.org.in/about/council.php",
+  },
+  {
+    id: "neeldhara-acm-internal-affairs-2020-2022",
+    title: "Prof. Neeldhara Misra served on the ACM Internal Affairs Committee",
+    summary:
+      "Prof. Misra served as a member of the ACM Internal Affairs Committee from 2020 to 2022.",
+    people: "Prof. Neeldhara Misra",
+    displayDate: "2020-22",
+    date: "2022-12-01",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "Neeldhara Misra CV",
+    sourceUrl: "https://www.neeldhara.com/CV.pdf",
+  },
+  {
+    id: "neeldhara-acm-summer-winter-schools-steering",
+    title:
+      "Prof. Neeldhara Misra served on the ACM-India Summer and Winter Schools steering committee",
+    summary:
+      "Prof. Misra was a steering committee member for ACM-India Summer and Winter Schools from 2019 to 2022.",
+    people: "Prof. Neeldhara Misra",
+    displayDate: "2019-22",
+    date: "2022-12-01",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "ACM India Annual Report",
+    sourceUrl:
+      "https://www.acm.org/binaries/content/assets/about/annual-reports/india_council_fy-22.pdf",
+  },
+  {
+    id: "neeldhara-algorithms-special-issue-2019",
+    title:
+      "Prof. Neeldhara Misra co-guest edited Algorithms special issue",
+    summary:
+      "Prof. Misra co-guest edited the Algorithms open-access special issue New Frontiers in Parameterized Complexity and Algorithms.",
+    people: "Prof. Neeldhara Misra, Frances Rosamond, and Meirav Zehavi",
+    displayDate: "2019",
+    date: "2019-09-30",
+    category: "service",
+    status: "confirmed",
+    sourceLabel: "Algorithms special issue",
+    sourceUrl:
+      "https://www.mdpi.com/journal/algorithms/special_issues/Parameterized_Complexity",
+  },
   {
     id: "thermeval-kdd-2026",
     title: "ThermEval accepted at KDD 2026",
@@ -77,7 +281,6 @@ export const departmentNews: DepartmentNewsItem[] = [
     sourceLabel: "India Today",
     sourceUrl:
       "https://www.indiatoday.in/education-today/featurephilia/story/iit-gandhinagars-self-reliant-india-story-begins-in-classrooms-2869886-2026-02-18",
-    homepage: true,
   },
   {
     id: "cvig-pollen-ai-2026",
@@ -266,7 +469,7 @@ export const departmentNews: DepartmentNewsItem[] = [
     id: "dharaben-acm-india-dda",
     title: "Dharaben R. Thakkar receives ACM India Doctoral Dissertation Award",
     summary:
-      "The theoretical CSE dissertation award recognizes work advised by Prof. Bireswar Das.",
+      "The ACM India dissertation award recognizes work advised by Prof. Bireswar Das.",
     people: "Dr. Dharaben R. Thakkar and Prof. Bireswar Das",
     displayDate: "2025",
     date: "2025-09-01",

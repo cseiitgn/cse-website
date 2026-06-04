@@ -1,0 +1,35 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { path: 'index' }, props: { target: '/facilities/singularity' } },
+    { params: { path: 'index.php' }, props: { target: '/facilities/singularity' } },
+    { params: { path: 'Software' }, props: { target: '/facilities/singularity#software' } },
+    { params: { path: 'Software.html' }, props: { target: '/facilities/singularity#software' } },
+    { params: { path: 'Funding' }, props: { target: '/facilities/singularity#funding' } },
+    { params: { path: 'Funding.html' }, props: { target: '/facilities/singularity#funding' } },
+    { params: { path: 'ContactUs' }, props: { target: '/facilities/singularity#contact' } },
+    { params: { path: 'ContactUs.html' }, props: { target: '/facilities/singularity#contact' } },
+  ];
+}
+
+const { target } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Redirecting to Singularity Cluster</title>
+    <script is:inline define:vars={{ target }}>
+      window.location.replace(target);
+    </script>
+  </head>
+  <body>
+    <p>
+      Redirecting to <a href={target}>Singularity Cluster</a>.
+    </p>
+  </body>
+</html>

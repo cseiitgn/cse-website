@@ -8,9 +8,11 @@ import { cn } from '@/lib/utils';
 
 const PAGES = [
   { title: 'Faculty', href: '/people/faculty', section: 'People' },
+  { title: 'Alumni', href: '/people/alumni', section: 'People' },
   { title: 'Staff', href: '/people/staff', section: 'People' },
   { title: 'Research Scholars', href: '/people/students', section: 'People' },
   { title: 'Postdoctoral Researchers', href: '/people/postdocs', section: 'People' },
+  { title: 'Visitors', href: '/people/visitors', section: 'People' },
   { title: 'B.Tech Program', href: '/academics/btech', section: 'Academics' },
   { title: 'M.Tech Program', href: '/academics/mtech', section: 'Academics' },
   { title: 'PhD Program', href: '/academics/phd', section: 'Academics' },

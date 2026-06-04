@@ -1,7 +1,14 @@
 ---
-import { allDepartmentNews, CATEGORY_LABELS } from '@/data/news';
+import { allDepartmentNews, CATEGORY_LABELS, type NewsCategory } from '@/data/news';
 
-const categoryOrder = ['media', 'research', 'award', 'event', 'infrastructure'];
+const categoryOrder: NewsCategory[] = [
+  'media',
+  'research',
+  'award',
+  'event',
+  'infrastructure',
+  'service',
+];
 ---
 
 <section class="from-primary/5 bg-gradient-to-b to-transparent py-16 md:py-20">
@@ -11,8 +18,8 @@ const categoryOrder = ['media', 'research', 'award', 'event', 'infrastructure'];
     </p>
     <h1 class="mt-3 text-3xl md:text-4xl">CSE in the News</h1>
     <p class="text-muted-foreground mt-4 max-w-2xl">
-      Recent media coverage, research highlights, awards, and department
-      achievements.
+      Recent media coverage, research highlights, awards, professional service,
+      and department achievements.
     </p>
   </div>
 </section>

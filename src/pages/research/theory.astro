@@ -1,11 +1,11 @@
 ---
-import PlaceholderPage from '@/components/sections/placeholder-page';
+import ResearchAreaProfile from '@/components/sections/research-area-profile.astro';
+import { RESEARCH_AREAS } from '@/data/research-area-pages';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const area = RESEARCH_AREAS.theory;
 ---
 
 <DefaultLayout title="Theoretical CS" description="Algorithms, computational complexity, and graph theory.">
-  <PlaceholderPage
-    title="Theoretical CS"
-    description="Algorithms, computational complexity, and graph theory."
-  />
+  <ResearchAreaProfile area={area} />
 </DefaultLayout>
