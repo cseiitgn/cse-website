@@ -20,6 +20,7 @@ export interface DepartmentNewsItem {
   sourceLabel: string;
   sourceUrl: string;
   homepage?: boolean;
+  featured?: boolean;
 }
 
 export const CATEGORY_LABELS: Record<NewsCategory, string> = {
@@ -410,6 +411,22 @@ export const departmentNews: DepartmentNewsItem[] = [
     sourceUrl: "https://technical-council.iitgn.tech/achievements",
   },
   {
+    id: "anirban-stoc-test-of-time-2024",
+    title: "Anirban Dasgupta receives ACM STOC 10-year Test of Time Award",
+    summary:
+      "The STOC 2024 award recognizes the lasting impact of the paper “A Sparse Johnson-Lindenstrauss Transform,” co-authored with Ravi Kumar and Tamás Sarlós.",
+    people: "Anirban Dasgupta, Ravi Kumar, and Tamás Sarlós",
+    displayDate: "2024",
+    date: "2024-06-21",
+    category: "award",
+    status: "confirmed",
+    sourceLabel: "Cornell Bowers CIS",
+    sourceUrl:
+      "https://bowers.cornell.edu/news-stories/faculty-and-alumni-receive-test-time-awards-stoc-2024",
+    homepage: true,
+    featured: true,
+  },
+  {
     id: "chitrabhasha-anrf",
     title: "Chitrabhasha receives ANRF Advanced Research Grant support",
     summary:
@@ -604,4 +621,6 @@ export const homepageNewsItems = sortByDateDesc(
 
 export const homepageAwardItems = sortByDateDesc(
   departmentNews.filter((item) => item.homepage && item.category === "award"),
-).slice(0, 4);
+)
+  .sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)))
+  .slice(0, 5);

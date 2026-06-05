@@ -40,6 +40,21 @@ export const EVENT_CATEGORY_STYLES: Record<EventCategory, string> = {
 
 export const departmentEvents: DepartmentEvent[] = [
   {
+    id: "theory-day-foundations-cs-2026",
+    title: "Theory Day: Foundations of Computer Science",
+    category: "symposium",
+    year: 2026,
+    displayDate: "17 Jun 2026",
+    startDate: "2026-06-17",
+    organizer: "Department of Computer Science & Engineering, IIT Gandhinagar",
+    description:
+      "A one-day Theory Day focused on foundations of computer science. The schedule, talk titles, and abstracts will be announced soon.",
+    source: "CSE archive",
+    sourceLabel: "Event page",
+    sourceUrl: "/updates/theory-day-2026",
+    featured: true,
+  },
+  {
     id: "ai-day-2026",
     title: "AI Day",
     category: "symposium",

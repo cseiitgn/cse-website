@@ -9,6 +9,15 @@ import { Button } from '@/components/ui/button';
 
 const slides = [
   {
+    src: '/images/course-resources/theory-of-computing.png',
+    alt: 'Foundations of computer science visual with automata, stacks, and computation diagrams',
+    title: 'Theory Day 2026',
+    description:
+      'Foundations of Computer Science. 17 June 2026; registration is open.',
+    ctaLabel: 'View Details',
+    ctaHref: '/updates/theory-day-2026',
+  },
+  {
     src: '/images/jee-open-house-2026-landscape.jpg',
     alt: 'JEE Open House 2026 at IIT Gandhinagar',
     title: 'JEE Open House 2026',

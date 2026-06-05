@@ -30,19 +30,32 @@ export default function RecentWins() {
             {homepageAwardItems.map((award, index) => (
               <tr
                 key={award.id}
-                className="border-b text-left text-foreground/40"
+                className={`border-b text-left ${
+                  award.featured
+                    ? 'bg-secondary/5 text-foreground'
+                    : 'text-foreground/40'
+                }`}
               >
                 <td className="py-4 pr-4 text-base font-medium tracking-tight text-foreground">
                   <div className="flex items-center gap-3">
-                    <span className={`size-3 shrink-0 rounded-full ${colors[index % colors.length]}`} />
-                    <a
-                      href={award.sourceUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="hover:text-secondary transition-colors"
-                    >
-                      {award.title}
-                    </a>
+                    <span
+                      className={`size-3 shrink-0 rounded-full ${colors[index % colors.length]}`}
+                    />
+                    <span className="space-y-1">
+                      {award.featured && (
+                        <span className="inline-flex rounded-full border border-secondary/30 bg-secondary/10 px-2 py-0.5 text-[0.68rem] font-medium uppercase tracking-wide text-secondary">
+                          Featured
+                        </span>
+                      )}
+                      <a
+                        href={award.sourceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block hover:text-secondary transition-colors"
+                      >
+                        {award.title}
+                      </a>
+                    </span>
                   </div>
                 </td>
                 <td className="hidden py-4 pr-4 text-sm md:table-cell">
