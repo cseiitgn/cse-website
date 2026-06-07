@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { AnimatePresence, motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -38,6 +37,15 @@ const slides: HeroSlide[] = [
     objectPosition: 'center bottom',
   },
 ];
+
+const SlideSummary = ({ slide }: { slide: HeroSlide }) => (
+  <>
+    <p className="text-sm font-medium text-foreground">{slide.title}</p>
+    {slide.description && (
+      <p className="mt-1 text-xs text-muted-foreground">{slide.description}</p>
+    )}
+  </>
+);
 
 interface SvgPath {
   path: string;
@@ -114,9 +122,7 @@ const MaskedDiv: React.FC<MaskedDivProps> = ({
       style={containerStyle}
     >
       {React.cloneElement(children, {
-        className: `w-full h-full object-cover transition-all duration-300 ${
-          children.props.className || ''
-        }`,
+        className: `h-full w-full object-cover ${children.props.className || ''}`,
       })}
     </section>
   );
@@ -126,11 +132,18 @@ export default function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    slides.forEach((slide) => {
+      const image = new Image();
+      image.src = slide.src;
+    });
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
     }, 5000);
-    return () => clearTimeout(timer);
-  }, [currentIndex]);
+    return () => window.clearInterval(timer);
+  }, []);
 
   return (
     <section className="py-10 md:py-14 lg:py-16">
@@ -161,71 +174,28 @@ export default function Hero() {
 
         <div className="relative lg:-translate-y-4">
           <MaskedDiv maskType="type-5">
-            <AnimatePresence mode="popLayout">
-              <motion.img
-                key={currentIndex}
-                className="h-full w-full object-cover"
-                style={{ objectPosition: slides[currentIndex].objectPosition }}
-                src={slides[currentIndex].src}
-                alt={slides[currentIndex].alt}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.5 }}
-              />
-            </AnimatePresence>
+            <img
+              className="h-full w-full object-cover"
+              style={{ objectPosition: slides[currentIndex].objectPosition }}
+              src={slides[currentIndex].src}
+              alt={slides[currentIndex].alt}
+              decoding="async"
+            />
           </MaskedDiv>
 
           {/* Top-right slide summary */}
           <div className="absolute -top-26 right-0 flex gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.9 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="hidden size-44 -translate-y-4 overflow-hidden rounded-3xl border border-border bg-muted/50 p-4 lg:flex lg:flex-col lg:justify-center xl:-translate-y-0"
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <p className="text-sm font-medium text-foreground">
-                    {slides[currentIndex].title}
-                  </p>
-                  {slides[currentIndex].description && (
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {slides[currentIndex].description}
-                    </p>
-                  )}
-                </motion.div>
-              </AnimatePresence>
-            </motion.div>
+            <div className="hidden size-44 -translate-y-4 overflow-hidden rounded-3xl border border-border bg-muted/50 p-4 lg:flex lg:flex-col lg:justify-center xl:-translate-y-0">
+              <SlideSummary slide={slides[currentIndex]} />
+            </div>
           </div>
 
           {/* Mobile: box below the image */}
           <div className="mt-5 flex w-full gap-6 lg:hidden">
             <div className="flex h-44 w-full items-center justify-center rounded-3xl border border-border bg-muted/50 p-4">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <p className="text-sm font-medium text-foreground">
-                    {slides[currentIndex].title}
-                  </p>
-                  {slides[currentIndex].description && (
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {slides[currentIndex].description}
-                    </p>
-                  )}
-                </motion.div>
-              </AnimatePresence>
+              <div>
+                <SlideSummary slide={slides[currentIndex]} />
+              </div>
             </div>
           </div>
 
