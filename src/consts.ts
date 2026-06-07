@@ -42,7 +42,7 @@ export const SITE_METADATA = {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'CSE @ IIT Gandhinagar',
+        alt: 'Computer Science and Engineering, IIT Gandhinagar',
       },
     ],
   },
@@ -51,6 +51,6 @@ export const SITE_METADATA = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     images: ['/images/og-image.jpg'],
-    creator: '@iaboratories',
+    creator: '@cse_iitgn',
   },
 };
