@@ -51,7 +51,7 @@ export const departmentEvents: DepartmentEvent[] = [
       "A one-day Theory Day focused on foundations of computer science. The schedule, talk titles, and abstracts will be announced soon.",
     source: "CSE archive",
     sourceLabel: "Event page",
-    sourceUrl: "/updates/theory-day-2026",
+    sourceUrl: "/events/theory-day-2026",
     featured: true,
   },
   {

@@ -35,6 +35,23 @@ const aninditaMaitiBio =
 
 const rawSeminarEntries = [
   {
+    id: 'sunil-chandran-graph-theory-quantum-physics-2026',
+    type: 'CS theory seminar',
+    title: 'Graph Theory in Quantum Physics!',
+    speaker: 'Prof. L. Sunil Chandran',
+    affiliation: 'Indian Institute of Science, Bangalore',
+    date: '2026-06-10',
+    displayDate: '10 Jun 2026',
+    time: '11:00 am IST',
+    venue: 'AB 7/208',
+    summary:
+      'This CS theory seminar connects graph perfect matchings and colourings with constructability questions in photonic quantum technologies. Refreshments will be served before the talk.',
+    abstract:
+      "In 2018, Krenn reported that certain problems related to the perfect matchings and colourings of graphs emerge out of studying constructability of general quantum states using modern photonic technologies.\n\nHe realized that if we can prove that the weighted matching index of a graph, a parameter defined in terms of perfect matchings and colourings of the graph is at most 2, that could lead to exciting insights on the potential of resources of quantum inference. Motivated by this, he conjectured that the weighted matching index of any graph is at most 2. The first result on this conjecture was by Bogdanov, who proved that the unweighted matching index is at most 2, thus classifying graphs non-isomorphic to K_4 into Type 0, Type 1 and Type 2. By definition, the weighted matching index of Type 0 graphs is 0. We give a structural characterization for Type 2 graphs, using which we settle Krenn's conjecture for Type 2 graphs.\n\nWe also present several other results regarding Krenn's conjecture: (1) Krenn's conjecture is true for multi-graphs whose underlying simple graph is of maximum degree at most 3. Also we show that Krenn's conjecture is true when the underlying simple graph has vertex connectivity at most 2. We also show some non-constructability results when the experiment graph is assumed to be simple.\n\nRefreshments will be served before the talk.",
+    bio:
+      'Prof. L. Sunil Chandran is a Professor in the Department of Computer Science and Automation at the Indian Institute of Science, Bangalore. He received his PhD from the Indian Institute of Science, Bangalore, and was a postdoctoral fellow at the Max Planck Institute for Informatics, Saarbruecken, Germany. His research areas are graph theory, combinatorics, and graph algorithms. He is a fellow of the Indian National Science Academy and the Indian National Academy of Engineering.',
+  },
+  {
     id: 'anindita-maiti-research-proposal-session-2026',
     type: 'Research proposal session',
     title: 'Research Proposal Session of Dr. Anindita Maiti',

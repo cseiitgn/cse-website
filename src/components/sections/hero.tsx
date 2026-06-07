@@ -7,7 +7,17 @@ import { ArrowRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 
-const slides = [
+type HeroSlide = {
+  src: string;
+  alt: string;
+  title: string;
+  description?: string;
+  ctaLabel: string;
+  ctaHref: string;
+  objectPosition?: React.CSSProperties['objectPosition'];
+};
+
+const slides: HeroSlide[] = [
   {
     src: '/images/course-resources/theory-of-computing.png',
     alt: 'Foundations of computer science visual with automata, stacks, and computation diagrams',
@@ -15,16 +25,7 @@ const slides = [
     description:
       'Foundations of Computer Science. 17 June 2026; registration is open.',
     ctaLabel: 'View Details',
-    ctaHref: '/updates/theory-day-2026',
-  },
-  {
-    src: '/images/jee-open-house-2026-landscape.jpg',
-    alt: 'JEE Open House 2026 at IIT Gandhinagar',
-    title: 'JEE Open House 2026',
-    description:
-      'June 5, 2026 at 3:30 PM IST. Online session for JEE Advanced qualified students and parents.',
-    ctaLabel: 'Register Now',
-    ctaHref: 'https://zurl.co/Tgat9',
+    ctaHref: '/events/theory-day-2026',
   },
   {
     src: '/images/project-madhava-india-today.jpg',
@@ -34,6 +35,7 @@ const slides = [
     ctaLabel: 'Read Article',
     ctaHref:
       'https://www.indiatoday.in/education-today/featurephilia/story/iit-gandhinagars-self-reliant-india-story-begins-in-classrooms-2869886-2026-02-18',
+    objectPosition: 'center bottom',
   },
 ];
 
@@ -163,6 +165,7 @@ export default function Hero() {
               <motion.img
                 key={currentIndex}
                 className="h-full w-full object-cover"
+                style={{ objectPosition: slides[currentIndex].objectPosition }}
                 src={slides[currentIndex].src}
                 alt={slides[currentIndex].alt}
                 initial={{ opacity: 0 }}

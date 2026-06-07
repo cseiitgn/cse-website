@@ -133,7 +133,7 @@ const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
               </article>
             ) : upcomingEvents.map((event) => (
               <article
-                class="rounded-lg border bg-background p-5 shadow-sm"
+                class={`rounded-lg border bg-background p-5 shadow-sm ${upcomingEvents.length === 1 ? "md:col-start-2" : ""}`}
                 data-event-card
                 data-category={event.category}
                 data-search={[

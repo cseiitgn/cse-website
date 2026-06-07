@@ -5,7 +5,7 @@ import { BlogPost } from '@/components/sections/blog-post';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = (await getCollection('blog')).filter((post) => !post.data.draft);
   return posts.map((post) => ({
     params: { slug: post.id },
     props: post,
@@ -16,7 +16,7 @@ const post = Astro.props;
 const { Content } = await render(post);
 
 // Get related posts based on shared tags
-const allPosts = await getCollection('blog');
+const allPosts = (await getCollection('blog')).filter((p) => !p.data.draft);
 const relatedPosts = allPosts
   .filter(
     (p) =>

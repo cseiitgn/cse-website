@@ -14,6 +14,19 @@ const parseSeminarDate = (date: string) => new Date(`${date}T00:00:00`);
 const formatSeminarMeta = (displayDate: string, time?: string) =>
   time ? `${displayDate} · ${time}` : displayDate;
 
+const homepageEventAnnouncements = [
+  {
+    id: "theory-day-2026",
+    categoryLabel: "Event",
+    displayDate: "17 Jun 2026",
+    title: "Theory Day: Foundations of Computer Science",
+    href: "/events/theory-day-2026",
+    summary:
+      "Registration is open for Theory Day on 17 June 2026. Schedule, talk titles, and abstracts will be announced soon.",
+    isExternal: false,
+  },
+];
+
 export default function Announcements() {
   const [seminarView, setSeminarView] = useState<"upcoming" | "recent">(
     "upcoming",
@@ -52,6 +65,18 @@ export default function Announcements() {
   );
   const activeSeminars =
     seminarView === "upcoming" ? upcomingSeminars : recentSeminars;
+  const homepageAnnouncements = [
+    ...homepageEventAnnouncements,
+    ...homepageNewsItems.slice(0, 2).map((item) => ({
+      id: item.id,
+      categoryLabel: CATEGORY_LABELS[item.category],
+      displayDate: item.displayDate,
+      title: item.title,
+      href: item.sourceUrl,
+      summary: item.summary,
+      isExternal: true,
+    })),
+  ];
 
   return (
     <section className="section-padding">
@@ -71,11 +96,11 @@ export default function Announcements() {
             </div>
 
             <div className="grid gap-2.5">
-              {homepageNewsItems.slice(0, 3).map((item) => (
+              {homepageAnnouncements.map((item) => (
                 <Card key={item.id} className="p-3.5">
                   <div className="mb-1.5 flex flex-wrap items-center gap-2">
                     <Badge variant="secondary" className="text-xs">
-                      {CATEGORY_LABELS[item.category]}
+                      {item.categoryLabel}
                     </Badge>
                     <span className="text-muted-foreground flex items-center gap-1 text-xs">
                       <Calendar className="size-3" />
@@ -83,9 +108,9 @@ export default function Announcements() {
                     </span>
                   </div>
                   <a
-                    href={item.sourceUrl}
-                    target="_blank"
-                    rel="noreferrer"
+                    href={item.href}
+                    target={item.isExternal ? "_blank" : undefined}
+                    rel={item.isExternal ? "noreferrer" : undefined}
                     className="hover:text-secondary text-base font-semibold transition-colors"
                   >
                     {item.title}

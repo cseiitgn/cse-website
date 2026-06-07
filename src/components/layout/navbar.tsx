@@ -1030,10 +1030,17 @@ const PEOPLE_LINKS = [
   },
 ];
 
-const PEOPLE_IMAGES = [
-  'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=340&fit=crop',
-  'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=340&fit=crop',
-  'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&h=340&fit=crop',
+const PEOPLE_MENU_IMAGES = [
+  {
+    src: '/images/people/mega-menu-group.jpeg',
+    alt: 'CSE students and faculty at IIT Gandhinagar',
+    objectPosition: 'center',
+  },
+  {
+    src: '/images/people/zeel-phd-jrfs-mtech.jpeg',
+    alt: 'Sustainability Lab group with students and researchers at IIT Gandhinagar',
+    objectPosition: 'center 55%',
+  },
 ];
 
 function PeopleMegaMenu() {
@@ -1041,7 +1048,7 @@ function PeopleMegaMenu() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage((i) => (i + 1) % PEOPLE_IMAGES.length);
+      setCurrentImage((i) => (i + 1) % PEOPLE_MENU_IMAGES.length);
     }, 3500);
     return () => clearInterval(interval);
   }, []);
@@ -1071,34 +1078,35 @@ function PeopleMegaMenu() {
         ))}
       </div>
 
-      {/* Right: image carousel */}
+      {/* Right: featured image slider */}
       <div className="relative overflow-hidden rounded-xl">
-        {PEOPLE_IMAGES.map((src, i) => (
+        {PEOPLE_MENU_IMAGES.map((image, i) => (
           <img
-            key={i}
-            src={src}
-            alt={`Department life ${i + 1}`}
+            key={image.src}
+            src={image.src}
+            alt={image.alt}
             className={cn(
               'absolute inset-0 size-full object-cover transition-opacity duration-700',
               i === currentImage ? 'opacity-100' : 'opacity-0',
             )}
+            style={{ objectPosition: image.objectPosition }}
           />
         ))}
-        {/* First image static for sizing */}
         <img
-          src={PEOPLE_IMAGES[0]}
-          alt=""
+          src={PEOPLE_MENU_IMAGES[0].src}
+          alt="CSE students and faculty at IIT Gandhinagar"
           className="invisible aspect-[16/9] w-full"
         />
-        {/* Dots */}
         <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
-          {PEOPLE_IMAGES.map((_, i) => (
+          {PEOPLE_MENU_IMAGES.map((image, i) => (
             <button
-              key={i}
+              key={image.src}
+              type="button"
               onClick={() => setCurrentImage(i)}
+              aria-label={`Show people image ${i + 1}`}
               className={cn(
-                'size-1.5 rounded-full transition-all',
-                i === currentImage ? 'bg-white w-4 rounded-full' : 'bg-white/50',
+                'size-1.5 rounded-full bg-white/55 transition-all',
+                i === currentImage && 'w-4 bg-white',
               )}
             />
           ))}
