@@ -297,7 +297,7 @@ export const RESEARCH_AREAS: Record<ResearchAreaSlug, ResearchAreaPage> = {
       {
         title: 'CSE research archive',
         detail: 'Historical department research descriptions and faculty summaries.',
-        href: 'https://cs.iitgn.ac.in/research',
+        href: 'https://cse.iitgn.ac.in/research',
       },
       {
         title: 'Neeldhara Misra homepage',
@@ -671,7 +671,7 @@ export const RESEARCH_AREAS: Record<ResearchAreaSlug, ResearchAreaPage> = {
       {
         title: 'Sameer Kulkarni CSE research summary',
         detail: 'NFV, SDN, distributed systems, and data reliability.',
-        href: 'https://cs.iitgn.ac.in/research',
+        href: 'https://cse.iitgn.ac.in/research',
       },
       {
         title: 'Shouvick Mondal IITGN profile',
