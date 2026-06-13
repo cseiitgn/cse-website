@@ -44,7 +44,7 @@ export const departmentNews: DepartmentNewsItem[] = [
     summary:
       "Naren Kumar, Manvendra Singh, and Dikshit Hegde have been awarded IndiaAI PhD Fellowships, marking a proud recognition for the department and their research groups.",
     people:
-      "Naren Kumar with Prof. Mayank Singh; Manvendra Singh with Prof. Anirban Dasgupta; Dikshit Hegde with Prof. Shanmuganathan Raman",
+      "Naren Kumar (advised by Prof. Mayank Singh); Manvendra Singh (advised by Prof. Anirban Dasgupta); Dikshit Hegde (advised by Prof. Shanmuganathan Raman)",
     displayDate: "Jun 2026",
     date: "2026-06-13",
     category: "award",
