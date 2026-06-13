@@ -39,6 +39,22 @@ export const STATUS_LABELS: Record<NewsStatus, string> = {
 
 export const departmentNews: DepartmentNewsItem[] = [
   {
+    id: "indiaai-phd-fellowships-2026",
+    title: "Three CSE PhD students receive IndiaAI PhD Fellowships",
+    summary:
+      "Naren Kumar, Manvendra Singh, and Dikshit Hegde have been awarded IndiaAI PhD Fellowships, marking a proud recognition for the department and their research groups.",
+    people:
+      "Naren Kumar with Prof. Mayank Singh; Manvendra Singh with Prof. Anirban Dasgupta; Dikshit Hegde with Prof. Shanmuganathan Raman",
+    displayDate: "Jun 2026",
+    date: "2026-06-13",
+    category: "award",
+    status: "achievement",
+    sourceLabel: "Department announcement",
+    sourceUrl: "https://cse.iitgn.ac.in/updates/news#award",
+    homepage: true,
+    featured: true,
+  },
+  {
     id: "abhishek-asiaccs-2026-track-chair",
     title: "Prof. Abhishek Bichhawat named AsiaCCS 2026 track co-chair",
     summary:
