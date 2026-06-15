@@ -48,7 +48,7 @@ export const departmentEvents: DepartmentEvent[] = [
     startDate: "2026-06-17",
     organizer: "Department of Computer Science & Engineering, IIT Gandhinagar",
     description:
-      "A one-day Theory Day focused on foundations of computer science. The schedule, talk titles, and abstracts will be announced soon.",
+      "A one-day Theory Day focused on foundations of computer science. The schedule, talk titles, abstracts, and venue information are available online.",
     source: "CSE archive",
     sourceLabel: "Event page",
     sourceUrl: "/events/theory-day-2026",

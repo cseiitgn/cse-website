@@ -10,6 +10,8 @@ import {
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
 
 const registrationLink = "https://forms.gle/sqqoh4JftBfKYA1b8";
+const scheduleLink = "https://gmanoj.people.iitgn.ac.in/schedule.html";
+const venueInfoLink = "https://gmanoj.people.iitgn.ac.in/info.html";
 const eventDate = "17 June 2026";
 const registrationDeadline = "14 June 2026";
 ---
@@ -35,19 +37,29 @@ const registrationDeadline = "14 June 2026";
           </p>
           <div class="mt-7 flex flex-wrap gap-3">
             <a
-              href={registrationLink}
+              href={scheduleLink}
               class="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition hover:bg-secondary"
               target="_blank"
               rel="noreferrer"
             >
-              Register now
+              View schedule
               <ArrowRight className="size-4" aria-hidden="true" />
             </a>
             <a
-              href="/updates/deadlines"
+              href={venueInfoLink}
               class="inline-flex items-center gap-2 rounded-full border bg-white px-5 py-2.5 text-sm font-medium transition hover:border-secondary hover:text-secondary"
+              target="_blank"
+              rel="noreferrer"
             >
-              Registration deadline: {registrationDeadline}
+              Venue and campus information
+            </a>
+            <a
+              href={registrationLink}
+              class="inline-flex items-center gap-2 rounded-full border bg-white px-5 py-2.5 text-sm font-medium transition hover:border-secondary hover:text-secondary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Register now
             </a>
           </div>
         </div>
@@ -73,7 +85,32 @@ const registrationDeadline = "14 June 2026";
               <MapPin className="mt-0.5 size-4 text-secondary" aria-hidden="true" />
               <div>
                 <dt class="text-muted-foreground">Venue</dt>
-                <dd class="font-medium">IIT Gandhinagar; room details forthcoming</dd>
+                <dd class="font-medium">
+                  <a
+                    href={venueInfoLink}
+                    class="text-primary underline-offset-4 hover:underline"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Venue and campus information
+                  </a>
+                </dd>
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <FileText className="mt-0.5 size-4 text-secondary" aria-hidden="true" />
+              <div>
+                <dt class="text-muted-foreground">Schedule</dt>
+                <dd class="font-medium">
+                  <a
+                    href={scheduleLink}
+                    class="text-primary underline-offset-4 hover:underline"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View the program schedule
+                  </a>
+                </dd>
               </div>
             </div>
           </dl>
@@ -100,11 +137,30 @@ const registrationDeadline = "14 June 2026";
           <div class="flex items-start gap-3">
             <FileText className="mt-1 size-5 text-secondary" aria-hidden="true" />
             <div>
-              <h3 class="text-xl font-semibold">Program details coming soon</h3>
+              <h3 class="text-xl font-semibold">Schedule is now available</h3>
               <p class="text-muted-foreground mt-3 leading-relaxed">
-                We will add the schedule, talk titles, and abstracts here as
-                soon as they are available.
+                The Theory Day schedule, talk titles, and abstracts are
+                available on the program schedule page.
               </p>
+              <div class="mt-5 flex flex-wrap gap-3">
+                <a
+                  href={scheduleLink}
+                  class="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition hover:bg-secondary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open schedule
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </a>
+                <a
+                  href={venueInfoLink}
+                  class="inline-flex items-center gap-2 rounded-full border bg-white px-4 py-2 text-sm font-medium transition hover:border-secondary hover:text-secondary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Venue and campus information
+                </a>
+              </div>
             </div>
           </div>
         </div>

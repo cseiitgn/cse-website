@@ -22,7 +22,7 @@ const homepageEventAnnouncements = [
     title: "Theory Day: Foundations of Computer Science",
     href: "/events/theory-day-2026",
     summary:
-      "Registration is open for Theory Day on 17 June 2026. Schedule, talk titles, and abstracts will be announced soon.",
+      "Theory Day is on 17 June 2026. The schedule and venue information are now available.",
     isExternal: false,
   },
 ];
