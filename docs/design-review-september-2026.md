@@ -92,11 +92,11 @@ Measured from the generated build, not a claim about end-user network latency:
 | Homepage inline JavaScript  |               — |                      About 2.5 KB |
 
 The redesign also removes the global route spinner, image carousel timers,
-preloading of hidden navigation imagery, and React dependency downloads on
-static pages. The interactive publications and course catalogues still load
+preloading of hidden navigation imagery, automatic embedded video downloads, and React dependency downloads on
+static pages. Research videos load their player only after a visitor presses play. The interactive publications and course catalogues still load
 their own React code and datasets when visited.
 
-Checks: 69-page Astro build; 14 Node checks including preview access protection,
+Checks: 69-page Astro build; 15 Node checks including preview access protection,
 static links/assets, script budget, palette fallback with blocked storage,
 research routes, faculty rendering, and closed registration. Browser review
 covers desktop and phone widths, theme navigation, faculty filters, search,

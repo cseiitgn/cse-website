@@ -141,3 +141,15 @@ test("expired Theory Day registration is closed and the old event cutoff is gone
     /as of 1 Jun 2026/,
   );
 });
+
+test("research videos do not contact the player before a visitor presses play", () => {
+  const systems = parse(read("dist/research/systems/index.html"));
+  assert.equal(walk(systems, (n) => n.tagName === "iframe").length, 0);
+  assert.equal(
+    walk(
+      systems,
+      (n) => n.tagName === "button" && attr(n, "data-research-video"),
+    ).length,
+    1,
+  );
+});
