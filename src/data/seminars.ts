@@ -1,5 +1,6 @@
 export type SeminarType =
   | 'CSE seminar'
+  | 'Invited talk'
   | 'CS theory seminar'
   | 'Faculty candidate seminar'
   | 'Virtual research seminar'
@@ -23,6 +24,7 @@ export interface SeminarEntry {
 
 export const seminarTypeLabels: Record<SeminarType, string> = {
   'CSE seminar': 'CSE Seminar',
+  'Invited talk': 'Invited Talk',
   'CS theory seminar': 'CS Theory Seminar',
   'Faculty candidate seminar': 'Faculty Candidate Seminar',
   'Virtual research seminar': 'Virtual Research Seminar',
@@ -96,6 +98,18 @@ const rawSeminarEntries = [
     time: '5:00 pm IST',
     venue: 'AB 13/126',
     summary: 'Understanding and defending against intimate partner surveillance and online scams, including a study of trust cues in UPI payment apps.',
+  },
+  {
+    id: 'devashree-tripathy-ai-infrastructure-2026',
+    type: 'Invited talk',
+    title: 'AI Infrastructure: Optimizing LLM for Efficiency and Scalability',
+    speaker: 'Prof. Devashree Tripathy',
+    affiliation: 'IIT Bhubaneswar',
+    date: '2026-04-01',
+    displayDate: '1 Apr 2026',
+    time: '11:30 am IST',
+    venue: 'AB 13/126',
+    summary: 'Optimising large language model inference for energy use, latency, and throughput.',
   },
   {
     id: 'sunil-chandran-graph-theory-quantum-physics-2026',
@@ -877,7 +891,7 @@ const seminarAbstracts: Partial<Record<string, string>> = {
 export const seminarEntries = rawSeminarEntries.map((entry) => ({
   ...entry,
   abstract: seminarAbstracts[entry.id] ?? entry.abstract,
-})) satisfies SeminarEntry[];
+})).sort((a, b) => b.date.localeCompare(a.date)) satisfies SeminarEntry[];
 
 export const seminarEntriesChronological = [...seminarEntries].sort((a, b) =>
   a.date.localeCompare(b.date),

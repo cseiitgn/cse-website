@@ -9,6 +9,7 @@ import { FileText, LayoutGrid, List, Search, UserRound, X } from "lucide-react";
 
 const typeOrder: SeminarType[] = [
   "CSE seminar",
+  "Invited talk",
   "Faculty candidate seminar",
   "CS theory seminar",
   "Virtual research seminar",
@@ -24,6 +25,7 @@ const seminarCounts = typeOrder
   .filter(({ count }) => count > 0);
 
 const seminarTypeStyles: Record<SeminarType, string> = {
+  "Invited talk": "border-sky-200 bg-sky-50 text-sky-700 data-[active=true]:bg-sky-600 data-[active=true]:text-white",
   "CSE seminar":
     "border-sky-200 bg-sky-50 text-sky-700 hover:border-sky-300 hover:bg-sky-100 data-[active=true]:border-sky-600 data-[active=true]:bg-sky-600 data-[active=true]:text-white",
   "Faculty candidate seminar":

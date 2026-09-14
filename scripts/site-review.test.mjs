@@ -246,9 +246,8 @@ test("administration matches the superseding signed order and separate DFAC appr
       names,
       role,
     );
-  assert.match(html, /CSE\/HOD\/2026-27\/003/);
+  assert.doesNotMatch(html, /Office order|CSE\/HOD\/|DFA\//i);
   assert.match(html, /1 September 2026–31 August 2027/);
-  assert.match(html, /DFA\/2026-27\/166/);
   assert.match(html, /10 September 2026/);
   assert.doesNotMatch(html, /19 September 2025|Bireshwar/);
 });
@@ -259,7 +258,7 @@ test("verified faculty photographs have local files and recorded provenance", ()
     ...JSON.parse(read("src/data/official-portraits.json")),
     ...JSON.parse(read("src/data/supplementary-portraits.json")),
   ].filter((p) => p.path.startsWith("/images/faculty/"));
-  assert.equal(photos.length, 30);
+  assert.equal(photos.length, 31);
   const displayed = walk(faculty, (n) => n.tagName === "img").map((n) =>
     attr(n, "src"),
   );
@@ -292,4 +291,34 @@ test('breadcrumbs retain a Home link and the section hierarchy', () => {
   const breadcrumb = walk(admin, n => n.tagName === 'nav' && attr(n, 'aria-label') === 'Breadcrumb')[0];
   assert.deepEqual(walk(breadcrumb, n => n.tagName === 'a').map(n => [content(n).trim(), attr(n, 'href')]), [['Home', '/'], ['About', '/about']]);
   assert.match(content(breadcrumb), /Administration/);
+});
+
+
+test('visitors includes recent seminar speakers, links to talks, and identifies online talks', () => {
+  const page = parse(read('dist/people/visitors/index.html'));
+  const main = walk(page, n => n.tagName === 'main')[0];
+  const rows = walk(main, n => n.tagName === 'article');
+  assert.equal(rows.length, 56);
+  assert.equal(rows.filter(row => content(row).includes('VenkataKeerthy')).length, 1);
+  const dates = rows.map(row => attr(walk(row, n => n.tagName === 'time')[0], 'datetime'));
+  assert.equal(dates[0], '2026-09-10');
+  assert.deepEqual(dates, [...dates].sort().reverse());
+  assert.equal(dates.filter(date => date > '2026-03-27').length, 13);
+  for (const name of ['Vineeth Chintala', 'Ambarish Ojha', 'Ranjani Krishnan', 'Arnav Gupta', 'Mainack Mondal', 'Devashree Tripathy']) assert.ok(rows.some(row => content(row).includes(name)), name);
+  const seminars = parse(read('dist/updates/seminars/index.html'));
+  const ids = new Set(walk(seminars, n => attr(n, 'id')).map(n => attr(n, 'id')));
+  for (const link of walk(main, n => n.tagName === 'a')) {
+    const href = attr(link, 'href');
+    if (href.startsWith('/updates/seminars#')) assert.ok(ids.has(href.split('#')[1]), href);
+  }
+  const online = rows.find(row => content(row).includes('Anindita Maiti'));
+  assert.match(content(online), /Online talk/);
+  assert.doesNotMatch(content(main), /Research Proposal Session/);
+});
+
+test('public copy omits internal orders and editorial housekeeping', () => {
+  for (const path of ['about/administration', 'updates/deadlines', 'updates/events', 'updates/news', 'people/faculty']) {
+    const main = walk(parse(read(`dist/${path}/index.html`)), n => n.tagName === 'main')[0];
+    assert.doesNotMatch(content(main), /Office order|DFA\/2026|CSE\/HOD|circulated by the HoD|Administrative placeholders|upcoming-sheet|verified items|Photographs from/);
+  }
 });

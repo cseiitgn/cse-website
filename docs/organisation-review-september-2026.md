@@ -31,7 +31,7 @@ Expired Theory Day registration is now listed under past deadlines, without a re
 
 ## Additional portraits
 
-IITGN remains the primary source (25 faculty portraits plus staff). Five gaps are now filled with small local WebP files, bringing faculty coverage to **30 of 31**. Each source is recorded in `src/data/supplementary-portraits.json`.
+IITGN remains the primary source (25 faculty portraits plus staff). Six gaps are now filled with small local WebP files, bringing faculty coverage to **31 of 31**. Each source is recorded in `src/data/supplementary-portraits.json`.
 
 | Faculty | Verified photo source |
 | --- | --- |
@@ -41,7 +41,15 @@ IITGN remains the primary source (25 faculty portraits plus staff). Five gaps ar
 | Ambarish Ojha | [Punjab National Bank director profile](https://pnb.bank.in/Director-Shri-Ambarish-Ojha.html), matching the seminar biography |
 | Madhavan Unnikrishnan Nair | [Cybertech speaker profile](https://tokyo.cybertechconference.com/node/2058); identity and IITGN association checked against his [LinkedIn profile](https://in.linkedin.com/in/lt-gen-madhavan-unnikrishnan-nair-6b69a478) |
 
-**Adithya Kumar remains initials-only.** His IITGN page, linked personal website, and public LinkedIn profile currently expose generic placeholders. Those images were inspected and excluded. No unrelated namesake photo was substituted.
+Adithya Kumar’s portrait now uses the Google Scholar image supplied by Nipun: [Google Scholar profile](https://scholar.google.com/citations?user=vVYNBYgAAAAJ). The earlier placeholders remain excluded.
+
+Public pages omit internal order numbers, forwarding notes, and editorial verification/curation notes. Source records remain here and in the data files for future updates.
+
+## Visitor archive correction
+
+The old visitor dataset stopped at 27 March 2026. Visitors now derives new entries from the seminar records and retains older standalone entries. The merged archive contains 56 visits and talks, including 13 after 27 March, through Vineeth Chintala on 10 September. Overlapping speaker/date records are deduplicated. Online talks are labelled; proposal discussions and teaching assessments do not create extra visitor entries. Talk titles link to the corresponding seminar details.
+
+Abhishek’s 1 April forward of Joycee Mekie’s announcement also adds Devashree Tripathy’s invited talk, “AI Infrastructure: Optimizing LLM for Efficiency and Scalability”, at 11:30 am in AB13/126 on 1 April 2026. Tentative invitations in the HoD’s 20 May planning email were not treated as completed visits.
 
 ## Verification
 

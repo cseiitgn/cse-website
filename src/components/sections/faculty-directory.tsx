@@ -157,16 +157,6 @@ export default function FacultyDirectory() {
           <p className="text-muted-foreground mx-auto mt-3 max-w-lg">
             Faculty are listed alphabetically within each appointment category. Select a category to narrow the directory.
           </p>
-          <p className="mt-3 text-xs text-muted-foreground">
-            Photographs from{' '}
-            <a
-              className="underline underline-offset-4"
-              href="https://iitgn.ac.in/faculty/cse"
-            >
-              IITGN’s faculty directory
-            </a>
-            , with additional photographs from faculty and institutional profile pages.
-          </p>
         </div>
       </section>
 

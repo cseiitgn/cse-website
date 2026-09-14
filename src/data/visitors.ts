@@ -1,11 +1,15 @@
+import { seminarEntries, type SeminarEntry, type SeminarType } from './seminars';
+
 export interface VisitorEntry {
   date: string;
   speaker: string;
   affiliation: string;
+  href?: string;
+  online?: boolean;
   title: string;
 }
 
-export const VISITORS: VisitorEntry[] = [
+const archivedVisitors: VisitorEntry[] = [
   {
     date: '2026-03-27',
     speaker: 'Dr. VenkataKeerthy',
@@ -196,3 +200,34 @@ export const VISITORS: VisitorEntry[] = [
       'Pushing the Limits of Hardware Prefetchers for Performance, Energy, Scalability, and Security; One Step at a Time',
   },
 ];
+
+
+// Seminar announcements are the source for new entries. Preserve older visits
+// that predate the seminar archive, and deduplicate the overlap by speaker/day.
+const speakerKey = (speaker: string) => speaker.toLowerCase()
+  .replace(/^(dr|prof|mr|ms|mrs)\.?\s+/, '').replace(/[^a-z0-9]/g, '')
+  // The older archive omits the initial in Dr. S. VenkataKeerthy.
+  .replace(/^svenkatakeerthy$/, 'venkatakeerthy');
+const visitKey = (entry: Pick<VisitorEntry, 'date' | 'speaker'>) => `${entry.date}:${speakerKey(entry.speaker)}`;
+const publicTalkTypes = new Set<SeminarType>([
+  'CSE seminar', 'CS theory seminar', 'Invited talk',
+  'Faculty candidate seminar', 'Virtual research seminar',
+]);
+const visits = new Map(archivedVisitors.map(entry => [visitKey(entry), entry]));
+for (const seminar of seminarEntries as SeminarEntry[]) {
+  // Proposal discussions and teaching assessments do not create extra visits.
+  if (!publicTalkTypes.has(seminar.type)) continue;
+  const key = visitKey(seminar);
+  const existing = visits.get(key);
+  visits.set(key, {
+    date: seminar.date,
+    speaker: seminar.speaker,
+    affiliation: seminar.affiliation ?? existing?.affiliation ?? '',
+    title: seminar.title,
+    href: `/updates/seminars#${seminar.id}`,
+    online: seminar.type === 'Virtual research seminar' || /online|zoom|virtual|webex/i.test(seminar.venue ?? ''),
+  });
+}
+export const VISITORS: VisitorEntry[] = [...visits.values()].sort(
+  (a, b) => b.date.localeCompare(a.date) || a.speaker.localeCompare(b.speaker),
+);
