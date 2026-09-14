@@ -29,6 +29,6 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Test preview protection
-        run: node --test scripts/protect-preview.test.mjs
+        run: node --test scripts/*preview*.test.mjs
       - name: Build site
         run: npm run build

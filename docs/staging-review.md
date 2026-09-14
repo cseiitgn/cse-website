@@ -26,23 +26,24 @@
 
 `scripts/protect-preview.mjs` runs after the Netlify build. In branch and PR
 preview contexts it requires `CSE_PREVIEW_CREDENTIALS` and generates Netlify
-HTTP Basic Auth rules for every path, plus no-index headers and `robots.txt`.
-Missing or malformed credentials stop the build. Production and local builds
-do not receive authentication rules.
+no-index headers and `robots.txt`. Missing or malformed credentials stop the build.
+`netlify/edge-functions/preview-auth.js` enforces HTTP Basic authentication before
+serving any preview path, including assets, and prevents shared response caching.
+Production is identified by Netlify's deploy context and remains public.
 
 The credential is marked secret in Netlify and set only for Deploy Previews and
 branch deploys. It is never committed to Git. A local copy for the maintainer
 is in the ignored `.codex/staging-access.json` file. Share it privately with
 reviewers. To rotate it, update the variable and rebuild staging. Older immutable
-deploys retain the credential with which they were built.
+deploys may retain the credential with which they were built.
 
-Netlify reference: https://www.netlify.com/blog/restricting-access-to-netlify-sites-with-passwords/
+Netlify reference: https://docs.netlify.com/build/edge-functions/api/
 
 ## Local commands
 
 ```sh
 npm ci
-node --test scripts/protect-preview.test.mjs
+node --test scripts/*preview*.test.mjs
 npm run build
 npm run dev
 ```

@@ -25,7 +25,8 @@ if (context === 'production' || context === 'dev' || (!context && !process.env.N
   }
   const marker = '# CSE preview protection';
   existing = existing.split(marker)[0].trimEnd();
-  await writeFile(headersPath, `${existing}\n${marker}\n/*\n  Basic-Auth: ${credentials}\n  X-Robots-Tag: noindex, nofollow, noarchive\n`, { mode: 0o600 });
+  // Authentication runs in the edge function; never put credentials in dist.
+  await writeFile(headersPath, `${existing}\n${marker}\n/*\n  X-Robots-Tag: noindex, nofollow, noarchive\n`);
   await writeFile(join(process.cwd(), 'dist', 'robots.txt'), 'User-agent: *\nDisallow: /\n');
-  console.log('Preview authentication and no-index rules generated.');
+  console.log('Preview credentials validated and no-index rules generated.');
 }
