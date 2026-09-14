@@ -1,0 +1,67 @@
+<script is:inline>
+  (() => {
+    const allowed = ["navy", "forest", "terracotta"];
+    const q = new URLSearchParams(location.search).get("q");
+    document.documentElement.dataset.palette = allowed.includes(q) ? q : "navy";
+    try {
+      document.documentElement.classList.toggle(
+        "dark",
+        localStorage.getItem("theme") === "dark",
+      );
+    } catch {}
+  })();
+</script>
+<script>
+  const palettes = ["navy", "forest", "terracotta"];
+  const selected = new URLSearchParams(location.search).get("q");
+  const carryTheme = () => {
+    document.querySelectorAll<HTMLAnchorElement>("a[href]").forEach((a) => {
+      const url = new URL(a.href, location.href);
+      if (a.hasAttribute("data-palette-choice")) {
+        url.pathname = location.pathname;
+        url.search = location.search;
+        url.searchParams.set("q", a.dataset.paletteChoice!);
+        url.hash = location.hash;
+        a.href = url.href;
+        a.setAttribute(
+          "aria-current",
+          a.dataset.paletteChoice === document.documentElement.dataset.palette
+            ? "true"
+            : "false",
+        );
+      } else if (
+        selected &&
+        palettes.includes(selected) &&
+        url.origin === location.origin &&
+        !/\.[a-z0-9]+$/i.test(url.pathname) &&
+        !a.hasAttribute("download") &&
+        !url.searchParams.has("q")
+      ) {
+        url.searchParams.set("q", selected);
+        a.href = url.href;
+      }
+    });
+  };
+  carryTheme();
+  new MutationObserver(carryTheme).observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+  document
+    .querySelector("[data-mode-toggle]")
+    ?.addEventListener("click", () => {
+      const dark = document.documentElement.classList.toggle("dark");
+      try {
+        localStorage.setItem("theme", dark ? "dark" : "light");
+      } catch {}
+      document
+        .querySelector("[data-mode-toggle]")
+        ?.setAttribute("aria-pressed", String(dark));
+    });
+  document
+    .querySelector("[data-mode-toggle]")
+    ?.setAttribute(
+      "aria-pressed",
+      String(document.documentElement.classList.contains("dark")),
+    );
+</script>

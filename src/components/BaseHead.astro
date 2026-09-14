@@ -1,8 +1,10 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '@/styles/global.css';
-import { SITE_TITLE, SITE_METADATA } from '../consts';
+import "@/styles/global.css";
+import { Font } from "astro:assets";
+import ThemeHead from "@/components/layout/ThemeHead.astro";
+import { SITE_TITLE, SITE_METADATA } from "../consts";
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
@@ -11,7 +13,8 @@ const defaultOpenGraphImage = SITE_METADATA.openGraph.images[0];
 const finalTitle = title || SITE_METADATA.title.default;
 const finalDescription = description || SITE_METADATA.description;
 const finalImage = image || defaultOpenGraphImage.url;
-const finalImageAlt = imageAlt || (image ? finalTitle : defaultOpenGraphImage.alt);
+const finalImageAlt =
+  imageAlt || (image ? finalTitle : defaultOpenGraphImage.alt);
 const imageURL = new URL(finalImage, Astro.url);
 ---
 
@@ -21,19 +24,15 @@ const imageURL = new URL(finalImage, Astro.url);
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta
   name="robots"
-  content={`${SITE_METADATA.robots.index ? 'index' : 'noindex'}, ${SITE_METADATA.robots.follow ? 'follow' : 'nofollow'}`}
+  content={`${SITE_METADATA.robots.index ? "index" : "noindex"}, ${SITE_METADATA.robots.follow ? "follow" : "nofollow"}`}
 />
-<meta name="keywords" content={SITE_METADATA.keywords.join(', ')} />
+<meta name="keywords" content={SITE_METADATA.keywords.join(", ")} />
 <meta name="author" content={SITE_METADATA.authors[0].name} />
 <meta name="creator" content={SITE_METADATA.creator} />
 <meta name="publisher" content={SITE_METADATA.publisher} />
 
-<!-- Theme Script -->
-<script is:inline>
-  const savedTheme = localStorage.getItem('theme');
-  const initialTheme = savedTheme || 'light';
-  document.documentElement.classList.toggle('dark', initialTheme === 'dark');
-</script>
+<Font cssVariable="--font-geist" preload />
+<ThemeHead />
 
 <!-- Favicon -->
 
@@ -58,7 +57,7 @@ const imageURL = new URL(finalImage, Astro.url);
   rel="alternate"
   type="application/rss+xml"
   title={SITE_TITLE}
-  href={new URL('rss.xml', Astro.site)}
+  href={new URL("rss.xml", Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
 

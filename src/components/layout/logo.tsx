@@ -22,9 +22,13 @@ const Logo: React.FC<LogoProps> = ({
           className,
         )}
       >
-        <div className="bg-primary text-primary-foreground grid size-8 place-items-center rounded-md text-xs font-bold">
-          CSE
-        </div>
+        <img
+          src="/layout/iitgn-logo.webp"
+          alt="IIT Gandhinagar"
+          width="180"
+          height="48"
+          className="w-28 h-auto dark:bg-white dark:p-1"
+        />
         {!onlyLogo && (
           <div className="flex flex-col leading-none">
             <span className="text-sm font-semibold">

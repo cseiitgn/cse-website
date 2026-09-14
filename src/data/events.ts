@@ -241,8 +241,7 @@ export const departmentEvents: DepartmentEvent[] = [
   },
   {
     id: "gian-randomized-methods-2022",
-    title:
-      "GIAN Course on Randomized Methods in Parameterized Algorithms",
+    title: "GIAN Course on Randomized Methods in Parameterized Algorithms",
     category: "course",
     year: 2022,
     displayDate: "5-9 Dec 2022",
@@ -327,8 +326,7 @@ export const departmentEvents: DepartmentEvent[] = [
     category: "conference",
     year: 2020,
     displayDate: "2020",
-    description:
-      "A department-hosted ACM-India annual gathering.",
+    description: "A department-hosted ACM-India annual gathering.",
     source: "CSE archive",
   },
   {
@@ -337,8 +335,7 @@ export const departmentEvents: DepartmentEvent[] = [
     category: "workshop",
     year: 2020,
     displayDate: "2020",
-    description:
-      "A workshop supporting women researchers in computer science.",
+    description: "A workshop supporting women researchers in computer science.",
     source: "CSE archive",
     featured: true,
   },
@@ -381,8 +378,7 @@ export const departmentEvents: DepartmentEvent[] = [
     category: "school",
     year: 2017,
     displayDate: "2017",
-    description:
-      "A summer school on graph theory and graph algorithms.",
+    description: "A summer school on graph theory and graph algorithms.",
     source: "CSE archive",
     featured: true,
   },
@@ -392,8 +388,7 @@ export const departmentEvents: DepartmentEvent[] = [
     category: "workshop",
     year: 2016,
     displayDate: "2016",
-    description:
-      "A workshop on complexity theory from the department archive.",
+    description: "A workshop on complexity theory from the department archive.",
     source: "CSE archive",
   },
   {
@@ -402,8 +397,7 @@ export const departmentEvents: DepartmentEvent[] = [
     category: "school",
     year: 2016,
     displayDate: "2016",
-    description:
-      "A TEQIP summer school on algorithm design and analysis.",
+    description: "A TEQIP summer school on algorithm design and analysis.",
     source: "CSE archive",
     featured: true,
   },
@@ -424,14 +418,26 @@ export const departmentEvents: DepartmentEvent[] = [
   },
 ];
 
-export const currentEventDate = "2026-06-01";
+// Compare in the institute's time zone; refresh on every site build.
+export const currentEventDate = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Asia/Kolkata",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+}).format(new Date());
 
 export const upcomingEvents = departmentEvents
-  .filter((event) => event.startDate && event.startDate >= currentEventDate)
+  .filter(
+    (event) =>
+      event.startDate && (event.endDate ?? event.startDate) >= currentEventDate,
+  )
   .sort((a, b) => (a.startDate ?? "").localeCompare(b.startDate ?? ""));
 
 export const pastEvents = departmentEvents
-  .filter((event) => !event.startDate || event.startDate < currentEventDate)
+  .filter(
+    (event) =>
+      !event.startDate || (event.endDate ?? event.startDate) < currentEventDate,
+  )
   .sort((a, b) => {
     const dateCompare = (b.startDate ?? `${b.year}`).localeCompare(
       a.startDate ?? `${a.year}`,

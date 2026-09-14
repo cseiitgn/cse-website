@@ -1,0 +1,81 @@
+---
+import { homepageNewsItems } from "@/data/news";
+import { seminarEntries } from "@/data/seminars";
+import { departmentEvents } from "@/data/events";
+// Only render compact summaries here; full abstracts stay on the seminar page.
+const talks = [...seminarEntries]
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, 4);
+const events = [...departmentEvents]
+  .filter((e) => e.startDate)
+  .sort((a, b) => b.startDate!.localeCompare(a.startDate!))
+  .slice(0, 2);
+---
+
+<section class="section-padding home-updates">
+  <div class="container updates-grid">
+    <div>
+      <div class="updates-heading">
+        <h2>Department news</h2><a href="/updates/news">All news ↗</a>
+      </div>{
+        homepageNewsItems.slice(0, 3).map((item) => (
+          <article class="news-row">
+            <>
+              <p class="eyebrow">
+                <time datetime={item.date}>{item.displayDate}</time> ·{" "}
+                {item.category}
+              </p>
+              <h3>
+                <a href={item.sourceUrl}>{item.title}</a>
+              </h3>
+              <p>{item.summary}</p>
+            </>
+          </article>
+        ))
+      }
+    </div>
+    <aside>
+      <div class="updates-heading">
+        <h2>Latest seminars</h2><a href="/updates/seminars">All talks ↗</a>
+      </div>{
+        talks.map((talk) => (
+          <article class="talk-row">
+            <>
+              <time datetime={talk.date}>
+                {talk.displayDate}
+                {talk.time && ` · ${talk.time}`}
+              </time>
+              <h3>
+                <a href={`/updates/seminars#${talk.id}`}>{talk.title}</a>
+              </h3>
+              <p>
+                {talk.speaker}
+                {talk.affiliation && ` · ${talk.affiliation}`}
+              </p>
+            </>
+          </article>
+        ))
+      }
+    </aside>
+  </div>
+  <div class="container">
+    <div class="event-strip">
+      <div>
+        <p class="eyebrow">Department events</p><a
+          class="text-sm underline underline-offset-4"
+          href="/updates/events">Browse the archive ↗</a>
+      </div>{
+        events.map((event) => (
+          <article>
+            <>
+              <time datetime={event.startDate}>{event.displayDate}</time>
+              <h3>
+                <a href={event.sourceUrl ?? "/updates/events"}>{event.title}</a>
+              </h3>
+            </>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -33,7 +33,58 @@ export const seminarTypeLabels: Record<SeminarType, string> = {
 const aninditaMaitiBio =
   'Dr. Anindita Maiti is a Postdoctoral Fellow at the Perimeter Institute for Theoretical Physics, cross-affiliated with Prof. Roger Melko’s group Perimeter Institute Quantum Intelligence Lab (PIQuIL) since September 2023. Previously, Anindita held a short postdoctoral appointment in physics for ML foundations, supervised by Prof. Cengiz Pehlevan, at Harvard Applied Math (May-August 2023). She earned her PhD in theoretical high-energy physics (string theory and particle theory division) at Northeastern University and the NSF AI Institute for Artificial Intelligence and Fundamental Interactions (IAIFI) in May 2023, under the supervision of Prof. James Halverson. Anindita received her Integrated Bachelors and Masters in Engineering Physics at IIT Bombay in Aug 2017, supervised by Prof. Urjit Yajnik. Anindita’s research lies at the intersection of AI/ML, quantum, and statistical physics. In short, she works on Physics of Learning and ML for Quantum. Broadly, Anindita uses theoretical physics concepts: such as Feynman path integrals, renormalization group flow, computational statistics, and random matrix theory, to develop a physics-informed theoretical foundation for ML and to guide the principled design of AI systems. Anindita applies this framework to construct interpretable and trustworthy AI- and ML-based simulation strategies for quantum field theory and quantum many-body physics.';
 
+// August–September entries: CSE seminar announcements, verified 14 September 2026.
 const rawSeminarEntries = [
+  {
+    id: 'vineeth-chintala-forbidden-structures-2026',
+    type: 'CSE seminar',
+    title: 'Forbidden Structures; Two Landmarks in Graph Colouring',
+    speaker: 'Dr. Vineeth Chintala',
+    date: '2026-09-10',
+    displayDate: '10 Sep 2026',
+    time: '5:00 pm IST',
+    venue: 'AB 13/126',
+    summary:
+      'An introduction to forbidden structures and landmark results in graph colouring, intended for students at all levels.',
+  },
+  {
+    id: 'ambarish-ojha-data-centers-2026',
+    type: 'CSE seminar',
+    title: 'Data Centers: The Factories of the Digital Age',
+    speaker: 'Mr. Ambarish Ojha',
+    date: '2026-09-09',
+    displayDate: '9 Sep 2026',
+    time: '3:30 pm IST',
+    venue: 'AB 13/124',
+    summary:
+      'A practitioner\u2019s perspective on data centres, enterprise systems, and the infrastructure behind digital platforms.',
+  },
+  {
+    id: 'ranjani-krishnan-safety-critical-software-2026',
+    type: 'CSE seminar',
+    title: 'Invited talk: verification of safety-critical software',
+    speaker: 'Dr. Ranjani Krishnan',
+    affiliation: 'Vikram Sarabhai Space Centre, ISRO',
+    date: '2026-08-27',
+    displayDate: '27 Aug 2026',
+    time: '2:30 pm IST',
+    venue: 'AB 13/404',
+    summary:
+      'Formal verification of real-time embedded Ada software using model checking and static analysis. Descriptive title; the announcement supplied an abstract without a talk title.',
+  },
+  {
+    id: 'arnav-gupta-outside-in-learning-2026',
+    type: 'CSE seminar',
+    title: 'From Inside-Out to Outside-In Learning in the age of LLMs and AGI',
+    speaker: 'Mr. Arnav Gupta',
+    affiliation: 'Meta',
+    date: '2026-08-20',
+    displayDate: '20 Aug 2026',
+    time: '11:30 am IST',
+    venue: 'AB 13/124',
+    summary:
+      'How generative AI changes the way students can learn software engineering, moving from working applications to the concepts underneath.',
+  },
   {
     id: 'sunil-chandran-graph-theory-quantum-physics-2026',
     type: 'CS theory seminar',

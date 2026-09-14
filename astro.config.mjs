@@ -13,21 +13,10 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.google(),
-      name: 'Imprima',
-      cssVariable: '--font-imprima',
-      weights: ['400'],
-    },
-    {
-      provider: fontProviders.google(),
-      name: 'Rubik',
-      cssVariable: '--font-rubik',
+      name: 'Geist',
+      cssVariable: '--font-geist',
       weights: ['400', '500', '600', '700'],
-    },
-    {
-      provider: fontProviders.google(),
-      name: 'EB Garamond',
-      cssVariable: '--font-eb-garamond',
-      weights: ['400', '500', '600', '700'],
+      subsets: ['latin'],
     },
   ],
 

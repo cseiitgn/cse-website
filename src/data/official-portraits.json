@@ -1,0 +1,391 @@
+[
+  {
+    "name": "Abhishek Bichhawat",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-abhishek",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-abhishek/ebaa664624-1771394086/Abhishek Bichhawat.jpg",
+    "path": "/images/faculty/abhishek-bichhawat.webp",
+    "width": 320,
+    "height": 213,
+    "interests": [
+      "Language-based security",
+      "Formal methods and verification for security",
+      "Information flow security",
+      "End-to-end policy enforcement",
+      "Security of IoT platforms"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Ajay Singh",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-ajay-singh",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-ajay-singh/8e617196e2-1783665906/0I1A0480-3.jpg",
+    "path": "/images/faculty/ajay-singh.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Data Structures and Algorithms on Emerging Memory Architectures",
+      "Data Structures and Algorithms for Emerging Applications",
+      "Memory Management in Concurrent Software",
+      "Software Performance Engineering"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Anirban Dasgupta",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-anirban",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-anirban/f540f910c6-1767089288/anirban.jpg",
+    "path": "/images/faculty/anirban-dasgupta.webp",
+    "width": 320,
+    "height": 213,
+    "interests": [
+      "Algorithms for large scale data",
+      "Social networks",
+      "Computational social science",
+      "Crowdsourcing",
+      "Machine learning"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Anup Kalbalia",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-anup",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-anup/a28e111ea3-1772095883/anup.jpg",
+    "path": "/images/faculty/anup-kalbalia.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Systems for education: assessment infrastructure, hardened exam environments, and platforms for programming instruction and automated evaluation",
+      "Academic integrity in the age of AI: preventing misuse without surveillance-heavy or stressful exam conditions",
+      "Pedagogy of introductory CS: rethinking CS101 to teach problem-solving logic before language syntax",
+      "Equity and access in computer science education"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Balagopal Komarath",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-balagopal",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-balagopal/e19d772800-1771394117/Balagopal Komarath.jpg",
+    "path": "/images/faculty/balagopal-komarath.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Circuit complexity and other low-level computational models"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Bireswar Das",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-bireswar",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-bireswar/3eae23e129-1784010155/0I1A1109-3.jpg",
+    "path": "/images/faculty/bireswar-das.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Computational complexity theory and algorithms",
+      "Algebra and computationy"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Joycee M. Mekie",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-joycee",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-joycee/b954e01cfb-1785989911/Joycee M. Mekie.jpg",
+    "path": "/images/faculty/joycee-m-mekie.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Approximate computing",
+      "Low power SRAM",
+      "Radiation hardened systems",
+      "Asynchronous design"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Jyothi Krishnan",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-jyothi",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-jyothi/4a60290f09-1785927926/0I1A9488-4.jpg",
+    "path": "/images/faculty/jyothi-krishnan.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Mathematics",
+      "Mathematical games",
+      "Board games",
+      "Game design and school mathematics through games"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Krishna Prasad Miyapuram",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-krishna",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-krishna/391528c879-1780904548/Krishna Prasad Miyapuram.jpg",
+    "path": "/images/faculty/krishna-prasad-miyapuram.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Neuroeconomics & neuromarketing",
+      "Computational cognitive science",
+      "Neuroimaging (EEG, fMRI) & brain computer interface",
+      "Machine learning & artificial intelligence"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Manisha Padala",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-manisha",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-manisha/8605b72ebb-1784118635/0I1A9470.jpg",
+    "path": "/images/faculty/manisha-padala.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Fairness in Machine Learning",
+      "Game Theory",
+      "Mechanism Design"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Manoj D Gupta",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-manoj",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-manoj/d32078176a-1770960994/Manoj D Gupta.jpg",
+    "path": "/images/faculty/manoj-d-gupta.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Dynamic graph algorithms",
+      "Streaming algorithms",
+      "Randomized algorithms",
+      "Data-structures"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Manu Awasthi",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-manu",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-manu/6c9a4ffda7-1772533534/manu.png",
+    "path": "/images/faculty/manu-awasthi.webp",
+    "width": 320,
+    "height": 213,
+    "interests": [
+      "Computer Architecture and Systems",
+      "Embedded Systems",
+      "Performance Modeling and Optimization",
+      "Software Engineering",
+      "Cloud Computing",
+      "Cloud Economics"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Mayank Singh",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-mayank",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-mayank/95600d457f-1771393827/Mayank Singh.jpg",
+    "path": "/images/faculty/mayank-singh.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Text mining",
+      "Natural language and processing",
+      "Machine learning",
+      "Network science",
+      "Information retrieval"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Neeldhara Misra",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-neeldhara",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-neeldhara/561eac0874-1771394144/Neeldhara Misra.jpg",
+    "path": "/images/faculty/neeldhara-misra.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Design and analysis of algorithms",
+      "Computational social choice",
+      "Extremal combinatorics",
+      "Combinatorial game theory",
+      "Combinatorial and computational Geometry",
+      "Satisfiability and constraint satisfaction"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Nipun Batra",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-nipun",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-nipun/fb6d611cdb-1781242177/Nipun Batra Computer Science and Engineering.jpg",
+    "path": "/images/faculty/nipun-batra.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Sensor networks",
+      "Machine learning",
+      "Computational sustainability"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Nirmal Kumar Sancheti",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-nirmal",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-nirmal/f2d18be57c-1771393937/Nirmal Kumar Sancheti.jpg",
+    "path": "/images/faculty/nirmal-kumar-sancheti.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Deep Learning, Machine Learning and Design Oriented Effective Programming"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Rajat Moona",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-rajat-moona",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-rajat-moona/67da95cb3a-1771578313/Rajat-Moona.jpg",
+    "path": "/images/faculty/rajat-moona.webp",
+    "width": 320,
+    "height": 213,
+    "interests": [
+      "Computer Architecture",
+      "VLSI Design",
+      "Operating Systems",
+      "Embedded Systems",
+      "Security",
+      "Smart Cards and RFID"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Sameer Gundurao Kulkarni",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-sameer",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-sameer/8180cd0d9f-1771393963/Sameer Gundurao Kulkarni.jpg",
+    "path": "/images/faculty/sameer-gundurao-kulkarni.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Network Function Virtualization",
+      "Software Defined Networking",
+      "Cloud Computing",
+      "Power & Performance Optimizations",
+      "Network Security and Data Reliability",
+      "Green Computing",
+      "Virtual Machines & Virtualization",
+      "Embedded and Portable Devices",
+      "Distributed Systems"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Shanmuganathan Raman",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-shanmuganathan",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-shanmuganathan/f3020efc27-1783053414/Shanmuganathan Raman.jpg",
+    "path": "/images/faculty/shanmuganathan-raman.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Computer Vision",
+      "Image & Video Processing",
+      "Computer Graphics",
+      "Deep Learning",
+      "Artificial Intelligence"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Shouvick Mondal",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-shouvick",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-shouvick/eeb7384456-1771394057/Shouvick Mondal.jpg",
+    "path": "/images/faculty/shouvick-mondal.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Software Engineering using Generative AI",
+      "Empirical Software Engineering",
+      "Software Testing",
+      "Compiler Design"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Udit Bhatia",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-udit",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-udit/e2023b4615-1779267116/udit.jpg",
+    "path": "/images/faculty/udit-bhatia.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Physics Guided Machine Learning for Urban Flooding",
+      "Food-Water Nexus",
+      "Resilience of Built and Natural Systems",
+      "Climate Variability and Change",
+      "Applied Networks"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Yogesh Kumar Meena",
+    "profile": "https://iitgn.ac.in/faculty/cse/fac-yogesh",
+    "source": "https://iitgn.ac.in/media/pages/faculty/cse/fac-yogesh/e54d65dc47-1781242468/Yogesh Kumar Meena Computer Science and Engineering.jpg",
+    "path": "/images/faculty/yogesh-kumar-meena.webp",
+    "width": 320,
+    "height": 214,
+    "interests": [
+      "Human-Computer Interaction",
+      "Brain-Computer Interface",
+      "Eye Tracking",
+      "Motor Control and Rehabilitation",
+      "Artificial Intelligence & Machine Learning",
+      "Internet of Things",
+      "User Experience and Usability"
+    ],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Venkatesh Raman",
+    "profile": "https://iitgn.ac.in/faculty/guestprof/fac-venkatesh_raman",
+    "source": "https://iitgn.ac.in/media/pages/faculty/guestprof/fac-venkatesh_raman/6742992283-1774421667/635 X 423 px.png",
+    "path": "/images/faculty/venkatesh-raman.webp",
+    "width": 320,
+    "height": 213,
+    "interests": [],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Yuvraj Patel",
+    "profile": "https://iitgn.ac.in/faculty/guestprof/yuvraj_patel",
+    "source": "https://iitgn.ac.in/media/pages/faculty/guestprof/yuvraj_patel/8cc53b6892-1767089287/yuvraj_patel.jpg",
+    "path": "/images/faculty/yuvraj-patel.webp",
+    "width": 320,
+    "height": 213,
+    "interests": [],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Subir Verma",
+    "profile": "https://iitgn.ac.in/faculty/guestprof/subir_varma",
+    "source": "https://iitgn.ac.in/media/pages/faculty/guestprof/subir_varma/a8b1f4e9f6-1767089286/Subir_Varma.jpg",
+    "path": "/images/faculty/subir-verma.webp",
+    "width": 320,
+    "height": 213,
+    "interests": [],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Dr. Supin Gopi",
+    "profile": "https://iitgn.ac.in/staff",
+    "source": "https://iitgn.ac.in/media/pages/staff/cse/1-supin/3517437127-1767089308/Supin.png",
+    "path": "/images/staff/dr-supin-gopi.webp",
+    "width": 125,
+    "height": 155,
+    "interests": [],
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Mr. Dinesh B. Desai",
+    "profile": "https://iitgn.ac.in/staff",
+    "source": "https://iitgn.ac.in/media/pages/staff/cse/2-dinesh/7eedf1491e-1767089308/dinesh.jpg",
+    "path": "/images/staff/mr-dinesh-b-desai.webp",
+    "width": 125,
+    "height": 155,
+    "interests": [],
+    "retrieved": "2026-09-14"
+  }
+]

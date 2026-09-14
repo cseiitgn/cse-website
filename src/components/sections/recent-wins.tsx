@@ -2,14 +2,14 @@ import { Trophy } from 'lucide-react';
 
 import { homepageAwardItems } from '@/data/news';
 
-const colors = ['bg-amber-400', 'bg-blue-500', 'bg-emerald-500'];
+const colors = ['bg-primary'];
 
 export default function RecentWins() {
   const featuredAward =
     homepageAwardItems.find((award) => award.featured) ?? homepageAwardItems[0];
-  const listedAwards = homepageAwardItems.filter(
-    (award) => award.id !== featuredAward?.id,
-  );
+  const listedAwards = homepageAwardItems
+    .filter((award) => award.id !== featuredAward?.id)
+    .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <section className="section-padding">
@@ -51,17 +51,20 @@ export default function RecentWins() {
               <col className="w-[12%]" />
             </colgroup>
             <thead>
-              <tr className="h-10 border-b text-left text-foreground/40">
+              <tr className="h-10 border-b text-left text-muted-foreground">
                 <th className="pr-4 font-normal">Name</th>
                 <th className="hidden pr-4 font-normal md:table-cell">
                   Description
                 </th>
-                <th className="text-right font-normal">Year</th>
+                <th className="text-right font-normal">Date</th>
               </tr>
             </thead>
             <tbody>
               {listedAwards.map((award, index) => (
-                <tr key={award.id} className="border-b text-left text-foreground/40">
+                <tr
+                  key={award.id}
+                  className="border-b text-left text-muted-foreground"
+                >
                   <td className="py-4 pr-4 text-base font-medium tracking-tight text-foreground">
                     <div className="flex items-center gap-3">
                       <span

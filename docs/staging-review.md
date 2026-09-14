@@ -43,8 +43,8 @@ Netlify reference: https://docs.netlify.com/build/edge-functions/api/
 
 ```sh
 npm ci
-node --test scripts/*preview*.test.mjs
 npm run build
+node --test scripts/*.test.mjs
 npm run dev
 ```
 
@@ -70,8 +70,9 @@ Source: “Fwd: Revisions for CSE Website”, forwarded by Neeldhara Misra on
    accessibility. Prepare and review the design on staging.
 4. Keep speakers, events, and awards current. Relevant sources include
    `src/data/seminars.ts`, `src/data/events.ts`, and `src/data/news.ts`.
-   Use dated, verified source information. The current homepage still promotes
+   Use dated, verified source information. The baseline homepage promoted
    the past Theory Day event of 17 June 2026 as registration-open.
 
-This staging setup preserves the current website content as a review baseline;
-the four content/design revisions remain pending.
+The September review implements these revisions on `staging`. See
+[the design review](design-review-september-2026.md) for theme links, sources,
+performance measurements, remaining portrait gaps, and content maintenance.

@@ -1,0 +1,54 @@
+---
+import { NAV_LINKS } from "@/data/navigation";
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-links">
+      {
+        NAV_LINKS.map((group) => (
+          <section>
+            <>
+              <h2>{group.label}</h2>
+              <ul>
+                {group.subitems?.map((item) => (
+                  <li>
+                    <a href={item.href}>{item.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          </section>
+        ))
+      }
+    </div>
+    <div class="footer-bottom">
+      <div>
+        <img
+          src="/layout/iitgn-logo.webp"
+          alt="IIT Gandhinagar"
+          width="180"
+          height="48"
+          loading="lazy"
+        /><p>
+          Department of Computer Science &amp; Engineering<br />IIT Gandhinagar,
+          Palaj, Gujarat 382355, India
+        </p>
+      </div>
+      <div>
+        <h2>Stay connected</h2><p>
+          <a href="/rss.xml">Subscribe via RSS ↗</a>
+        </p><nav aria-label="Social links">
+          <a href="https://twitter.com/cse_iitgn">X</a><a
+            href="https://www.linkedin.com/company/cse-iitgn">LinkedIn</a
+          ><a href="https://www.youtube.com/channel/UCPYUnvUV3CiMmkhfYME48QQ"
+            >YouTube</a
+          ><a href="https://instagram.com/iit_gandhinagar">Instagram</a>
+        </nav>
+      </div>
+    </div>
+    <p class="footer-copyright">
+      © {new Date().getFullYear()} IIT Gandhinagar · Computer Science &amp; Engineering
+    </p>
+  </div>
+</footer>

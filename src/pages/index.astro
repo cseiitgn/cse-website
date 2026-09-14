@@ -1,16 +1,15 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-
-import Announcements from '@/components/sections/announcements';
-import Hero from '@/components/sections/hero';
-import RecentWins from '@/components/sections/recent-wins';
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import Hero from "@/components/sections/HomeHero.astro";
+import Updates from "@/components/sections/HomeUpdates.astro";
+import ResearchGroups from "@/components/sections/ResearchGroups.astro";
+import RecentWins from "@/components/sections/recent-wins";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
 ---
 
 <DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-  <Hero client:load />
-  <div class="bg-blue-50/50 dark:bg-blue-900/20">
-    <Announcements client:load />
-  </div>
+  <Hero />
+  <ResearchGroups compact />
+  <Updates />
   <RecentWins />
 </DefaultLayout>

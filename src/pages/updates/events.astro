@@ -1,6 +1,7 @@
 ---
 import {
   departmentEvents,
+  currentEventDate,
   EVENT_CATEGORY_LABELS,
   EVENT_CATEGORY_STYLES,
   pastEvents,
@@ -112,11 +113,23 @@ const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
       <div class="grid gap-6 lg:grid-cols-[0.9fr_1.4fr]">
         <div>
           <div class="flex items-center gap-2">
-            <CalendarDays className="size-5 text-secondary" aria-hidden="true" />
-            <h2 class="text-2xl">Upcoming</h2>
+            <CalendarDays
+              className="size-5 text-secondary"
+              aria-hidden="true"
+            />
+            <h2 class="text-2xl">Upcoming &amp; ongoing</h2>
           </div>
           <p class="text-muted-foreground mt-2 text-sm">
-            Future-dated public event listings as of 1 Jun 2026.
+            Event listings as of <time datetime={currentEventDate}
+              >{
+                new Intl.DateTimeFormat("en-IN", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                  timeZone: "Asia/Kolkata",
+                }).format(new Date(currentEventDate))
+              }</time
+            >.
           </p>
         </div>
         <div class="grid gap-3 md:grid-cols-2">
@@ -131,76 +144,84 @@ const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
                   below.
                 </p>
               </article>
-            ) : upcomingEvents.map((event) => (
-              <article
-                class={`rounded-lg border bg-background p-5 shadow-sm ${upcomingEvents.length === 1 ? "md:col-start-2" : ""}`}
-                data-event-card
-                data-category={event.category}
-                data-search={[
-                  event.title,
-                  event.category,
-                  EVENT_CATEGORY_LABELS[event.category],
-                  event.displayDate,
-                  event.organizer,
-                  event.collaborators,
-                  event.description,
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
-              >
-                <div class="mb-3 flex flex-wrap items-center gap-2">
-                  <button
-                    type="button"
-                    class={`rounded-full border px-2 py-0.5 text-xs font-medium ${EVENT_CATEGORY_STYLES[event.category]}`}
-                    data-event-filter
-                    data-filter={event.category}
-                    data-active="false"
-                    aria-pressed="false"
-                  >
-                    {EVENT_CATEGORY_LABELS[event.category]}
-                  </button>
-                  <span class="text-muted-foreground text-xs">
-                    {event.displayDate}
-                  </span>
-                </div>
-                <h3 class="text-lg font-semibold leading-snug">
-                  {event.title}
-                </h3>
-                <p class="text-muted-foreground mt-2 text-sm">
-                  {event.description}
-                </p>
-                {event.sourceUrl && (
-                  <a
-                    href={event.sourceUrl}
-                    class="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-secondary"
-                    target={isExternalUrl(event.sourceUrl) ? "_blank" : undefined}
-                    rel={isExternalUrl(event.sourceUrl) ? "noreferrer" : undefined}
-                  >
-                    {event.sourceLabel ?? "Event website"}
-                    <ArrowRight
-                      className="size-4 transition group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
-                  </a>
-                )}
-                {(event.organizer || event.collaborators) && (
-                  <dl class="mt-4 grid gap-1.5 text-sm">
-                    {event.organizer && (
-                      <>
-                        <dt class="text-muted-foreground">Organizer</dt>
-                        <dd>{event.organizer}</dd>
-                      </>
-                    )}
-                    {event.collaborators && (
-                      <>
-                        <dt class="text-muted-foreground">With</dt>
-                        <dd>{event.collaborators}</dd>
-                      </>
-                    )}
-                  </dl>
-                )}
-              </article>
-            ))
+            ) : (
+              upcomingEvents.map((event) => (
+                <article
+                  class={`rounded-lg border bg-background p-5 shadow-sm ${upcomingEvents.length === 1 ? "md:col-start-2" : ""}`}
+                  data-event-card
+                  data-category={event.category}
+                  data-search={[
+                    event.title,
+                    event.category,
+                    EVENT_CATEGORY_LABELS[event.category],
+                    event.displayDate,
+                    event.organizer,
+                    event.collaborators,
+                    event.description,
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
+                >
+                  <div class="mb-3 flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      class={`rounded-full border px-2 py-0.5 text-xs font-medium ${EVENT_CATEGORY_STYLES[event.category]}`}
+                      data-event-filter
+                      data-filter={event.category}
+                      data-active="false"
+                      aria-pressed="false"
+                    >
+                      {EVENT_CATEGORY_LABELS[event.category]}
+                    </button>
+                    <span class="text-muted-foreground text-xs">
+                      {event.displayDate}
+                    </span>
+                  </div>
+                  <h3 class="text-lg font-semibold leading-snug">
+                    {event.title}
+                  </h3>
+                  <p class="text-muted-foreground mt-2 text-sm">
+                    {event.description}
+                  </p>
+                  {event.sourceUrl && (
+                    <a
+                      href={event.sourceUrl}
+                      class="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-secondary"
+                      target={
+                        isExternalUrl(event.sourceUrl) ? "_blank" : undefined
+                      }
+                      rel={
+                        isExternalUrl(event.sourceUrl)
+                          ? "noreferrer"
+                          : undefined
+                      }
+                    >
+                      {event.sourceLabel ?? "Event website"}
+                      <ArrowRight
+                        className="size-4 transition group-hover:translate-x-1"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  )}
+                  {(event.organizer || event.collaborators) && (
+                    <dl class="mt-4 grid gap-1.5 text-sm">
+                      {event.organizer && (
+                        <>
+                          <dt class="text-muted-foreground">Organizer</dt>
+                          <dd>{event.organizer}</dd>
+                        </>
+                      )}
+                      {event.collaborators && (
+                        <>
+                          <dt class="text-muted-foreground">With</dt>
+                          <dd>{event.collaborators}</dd>
+                        </>
+                      )}
+                    </dl>
+                  )}
+                </article>
+              ))
+            )
           }
         </div>
       </div>
@@ -258,8 +279,12 @@ const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
                   <a
                     href={event.sourceUrl}
                     class="group mt-4 inline-flex items-center gap-2 text-sm font-medium text-secondary"
-                    target={isExternalUrl(event.sourceUrl) ? "_blank" : undefined}
-                    rel={isExternalUrl(event.sourceUrl) ? "noreferrer" : undefined}
+                    target={
+                      isExternalUrl(event.sourceUrl) ? "_blank" : undefined
+                    }
+                    rel={
+                      isExternalUrl(event.sourceUrl) ? "noreferrer" : undefined
+                    }
                   >
                     {event.sourceLabel ?? "Event website"}
                     <ArrowRight
@@ -332,8 +357,16 @@ const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
                         <a
                           href={event.sourceUrl}
                           class="group mt-3 inline-flex items-center gap-2 text-sm font-medium text-secondary"
-                          target={isExternalUrl(event.sourceUrl) ? "_blank" : undefined}
-                          rel={isExternalUrl(event.sourceUrl) ? "noreferrer" : undefined}
+                          target={
+                            isExternalUrl(event.sourceUrl)
+                              ? "_blank"
+                              : undefined
+                          }
+                          rel={
+                            isExternalUrl(event.sourceUrl)
+                              ? "noreferrer"
+                              : undefined
+                          }
                         >
                           {event.sourceLabel ?? "Event website"}
                           <ArrowRight

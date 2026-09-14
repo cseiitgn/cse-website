@@ -1,3 +1,5 @@
+import officialPortraits from './official-portraits.json';
+
 export type FacultyCategory =
   | 'core'
   | 'affiliated'
@@ -31,12 +33,54 @@ export interface FacultyMember {
   secondaryDepartment?: string;
   affiliations?: string[];
   researchAreas: string[];
-  dateOfJoining: string;
+  dateOfJoining?: string;
+  image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  researchInterests?: string[];
   homepage?: string;
   links?: FacultyProfileLink[];
 }
 
-export const FACULTY: FacultyMember[] = [
+const facultyRoster: FacultyMember[] = [
+  {
+    name: 'Adithya Kumar',
+    researchInterests: [
+      'Distributed systems',
+      'AI/ML infrastructure',
+      'Performance evaluation',
+    ],
+    designation: 'Assistant Professor',
+    category: 'core',
+    primaryDepartment: 'Computer Science and Engineering',
+    researchAreas: [],
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-adithya',
+  },
+  {
+    name: 'Ajay Singh',
+    designation: 'Assistant Professor',
+    category: 'core',
+    primaryDepartment: 'Computer Science and Engineering',
+    researchAreas: [],
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-ajay-singh',
+  },
+  {
+    name: 'Joycee M. Mekie',
+    designation: 'Professor',
+    category: 'affiliated',
+    primaryDepartment: 'Electrical Engineering',
+    researchAreas: [],
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-joycee',
+  },
+  {
+    name: 'Krishna Prasad Miyapuram',
+    designation: 'Professor',
+    category: 'affiliated',
+    primaryDepartment: 'Cognitive and Brain Sciences',
+    researchAreas: [],
+    homepage: 'https://iitgn.ac.in/faculty/cse/fac-krishna',
+  },
+
   // --- Core Faculty ---
   {
     name: 'Rajat Moona',
@@ -64,7 +108,10 @@ export const FACULTY: FacultyMember[] = [
     designation: 'Professor',
     category: 'core',
     primaryDepartment: 'Computer Science and Engineering',
-    researchAreas: ['Computer Science and Engineering', 'Artificial Intelligence'],
+    researchAreas: [
+      'Computer Science and Engineering',
+      'Artificial Intelligence',
+    ],
     dateOfJoining: '2013-12-30',
     homepage: 'https://iitgn.ac.in/faculty/cse/fac-anirban',
     links: [
@@ -87,7 +134,7 @@ export const FACULTY: FacultyMember[] = [
   },
   {
     name: 'Bireswar Das',
-    designation: 'Associate Professor',
+    designation: 'Professor',
     category: 'core',
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering'],
@@ -116,7 +163,10 @@ export const FACULTY: FacultyMember[] = [
     designation: 'Associate Professor',
     category: 'core',
     primaryDepartment: 'Computer Science and Engineering',
-    researchAreas: ['Computer Science and Engineering', 'Artificial Intelligence'],
+    researchAreas: [
+      'Computer Science and Engineering',
+      'Artificial Intelligence',
+    ],
     dateOfJoining: '2015-09-23',
     homepage: 'https://iitgn.ac.in/faculty/cse/fac-neeldhara',
     links: [
@@ -163,7 +213,10 @@ export const FACULTY: FacultyMember[] = [
     category: 'core',
     primaryDepartment: 'Computer Science and Engineering',
     affiliations: ['Center for Sustainability'],
-    researchAreas: ['Computer Science and Engineering', 'Artificial Intelligence'],
+    researchAreas: [
+      'Computer Science and Engineering',
+      'Artificial Intelligence',
+    ],
     dateOfJoining: '2018-07-09',
     homepage: 'https://iitgn.ac.in/faculty/cse/fac-nipun',
     links: [
@@ -235,7 +288,10 @@ export const FACULTY: FacultyMember[] = [
     designation: 'Associate Professor',
     category: 'core',
     primaryDepartment: 'Computer Science and Engineering',
-    researchAreas: ['Computer Science and Engineering', 'Artificial Intelligence'],
+    researchAreas: [
+      'Computer Science and Engineering',
+      'Artificial Intelligence',
+    ],
     dateOfJoining: '2019-02-06',
     homepage: 'https://iitgn.ac.in/faculty/cse/fac-mayank',
     links: [
@@ -267,7 +323,10 @@ export const FACULTY: FacultyMember[] = [
     category: 'core',
     primaryDepartment: 'Computer Science and Engineering',
     secondaryDepartment: 'Electrical Engineering',
-    researchAreas: ['Computer Science and Engineering', 'Electrical Engineering'],
+    researchAreas: [
+      'Computer Science and Engineering',
+      'Electrical Engineering',
+    ],
     dateOfJoining: '2020-04-03',
     homepage: 'https://iitgn.ac.in/faculty/cse/fac-sameer',
     links: [
@@ -316,7 +375,7 @@ export const FACULTY: FacultyMember[] = [
   },
   {
     name: 'Abhishek Bichhawat',
-    designation: 'Assistant Professor',
+    designation: 'Associate Professor',
     category: 'core',
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: ['Computer Science and Engineering'],
@@ -461,7 +520,11 @@ export const FACULTY: FacultyMember[] = [
     category: 'affiliated',
     primaryDepartment: 'Civil Engineering',
     secondaryDepartment: 'Computer Science and Engineering',
-    researchAreas: ['Civil Engineering', 'Artificial Intelligence', 'Earth Sciences'],
+    researchAreas: [
+      'Civil Engineering',
+      'Artificial Intelligence',
+      'Earth Sciences',
+    ],
     dateOfJoining: '2019-01-17',
     homepage: 'https://iitgn.ac.in/faculty/civil/fac-udit',
     links: [
@@ -479,7 +542,7 @@ export const FACULTY: FacultyMember[] = [
   },
   // --- Teaching Faculty ---
   {
-    name: 'Jyoti Krishnan',
+    name: 'Jyothi Krishnan',
     designation: 'Assistant Teaching Professor',
     category: 'teaching',
     primaryDepartment: 'Computer Science and Engineering',
@@ -697,3 +760,25 @@ export const CATEGORY_ORDER: FacultyCategory[] = [
   'visiting',
   'guest',
 ];
+
+// Match official IITGN portraits by profile URL, with explicit display-name aliases.
+export const FACULTY: FacultyMember[] = facultyRoster.map((member) => {
+  const officialName =
+    member.name === 'Sameer G Kulkarni'
+      ? 'Sameer Gundurao Kulkarni'
+      : member.name;
+  const portrait = officialPortraits.find(
+    (p) => p.profile === member.homepage || p.name === officialName,
+  );
+  return {
+    ...member,
+    ...(portrait
+      ? {
+          image: portrait.path,
+          imageWidth: portrait.width,
+          imageHeight: portrait.height,
+          researchInterests: portrait.interests,
+        }
+      : {}),
+  };
+});

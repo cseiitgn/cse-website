@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import {
   CATEGORY_LABELS,
   CATEGORY_ORDER,
@@ -67,63 +66,72 @@ function FacultyCard({ member }: { member: FacultyMember }) {
   ];
 
   return (
-    <Card
-      className={`group relative flex gap-4 p-4 ${
-        isHeadOfDepartment ? 'bg-yellow-50/45' : ''
-      }`}
+    <article
+      className={`faculty-card ${isHeadOfDepartment ? 'bg-accent/30' : 'bg-card'}`}
     >
-      {isHeadOfDepartment && (
-        <span className="absolute right-4 top-4 rounded-full border border-primary/20 bg-primary/5 px-2 py-0.5 text-[0.68rem] font-medium uppercase tracking-wide text-primary">
-          HoD
-        </span>
-      )}
-      <div className="bg-primary/10 text-primary grid size-14 shrink-0 place-items-center rounded-lg text-lg font-semibold">
-        {initials}
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="flex items-start justify-between gap-2">
-          <div className="min-w-0">
-            <h3 className="text-sm font-semibold leading-snug">
-              {member.name}
-            </h3>
-            <p className="text-muted-foreground text-xs">{member.designation}</p>
-          </div>
-          <div
-            className={`flex max-w-28 shrink-0 flex-wrap items-center justify-end gap-1.5 ${
-              isHeadOfDepartment ? 'pt-10' : ''
-            }`}
-          >
-            {profileLinks.map((link) => {
-              const Icon = PROFILE_LINK_ICONS[link.type];
-
-              return (
-                <a
-                  key={`${link.type}-${link.url}`}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Open ${link.label} for ${member.name}`}
-                  title={link.label}
-                  className="text-muted-foreground hover:text-secondary transition-colors"
-                >
-                  <Icon className="size-3.5" />
-                </a>
-              );
-            })}
-          </div>
+      {member.image ? (
+        <img
+          src={member.image}
+          alt={member.name}
+          width={member.imageWidth}
+          height={member.imageHeight}
+          loading="lazy"
+          decoding="async"
+          className="faculty-portrait"
+        />
+      ) : (
+        <div
+          className="faculty-portrait grid place-items-center bg-muted text-2xl text-muted-foreground"
+          aria-label={`Photograph unavailable for ${member.name}`}
+        >
+          {initials}
         </div>
+      )}
+      <div className="min-w-0">
+        <h3 className="text-base font-semibold leading-snug">
+          {member.name}{' '}
+          {isHeadOfDepartment && (
+            <span className="ml-1 text-xs text-primary">HoD</span>
+          )}
+        </h3>
+        <p className="mt-1 text-xs text-muted-foreground">
+          {member.designation}
+        </p>
         {affiliationLine && (
-          <p className="text-muted-foreground mt-1 text-xs">
+          <p className="mt-1 text-xs text-muted-foreground">
             {affiliationLine}
           </p>
         )}
-        {member.affiliations && member.affiliations.length > 0 && (
-          <p className="text-muted-foreground mt-1 text-xs">
+        {member.affiliations?.length ? (
+          <p className="mt-1 text-xs text-muted-foreground">
             {member.affiliations.join(', ')}
           </p>
-        )}
+        ) : null}
+        <div className="mt-3 flex flex-wrap items-center gap-3">
+          {profileLinks.map((link) => {
+            const Icon = PROFILE_LINK_ICONS[link.type];
+            return (
+              <a
+                key={`${link.type}-${link.url}`}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${link.label} for ${member.name}`}
+                title={link.label}
+                className="text-muted-foreground hover:text-primary"
+              >
+                <Icon className="size-4" />
+              </a>
+            );
+          })}
+        </div>
+        {member.researchInterests?.length ? (
+          <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+            {member.researchInterests.slice(0, 3).join(' · ')}
+          </p>
+        ) : null}
       </div>
-    </Card>
+    </article>
   );
 }
 
@@ -143,12 +151,22 @@ export default function FacultyDirectory() {
   return (
     <div>
       {/* Header */}
-      <section className="from-primary/5 bg-gradient-to-b to-transparent py-16 md:py-20">
+      <section className="from-primary/5 bg-gradient-to-b to-transparent py-12 md:py-14">
         <div className="container text-center">
           <h1 className="text-3xl md:text-4xl">Faculty</h1>
           <p className="text-muted-foreground mx-auto mt-3 max-w-lg">
             Our faculty bring expertise across theoretical CS, AI, systems,
             security, and interdisciplinary computing.
+          </p>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Photographs from{' '}
+            <a
+              className="underline underline-offset-4"
+              href="https://iitgn.ac.in/faculty/cse"
+            >
+              IITGN’s official faculty directory
+            </a>
+            .
           </p>
         </div>
       </section>
@@ -197,7 +215,7 @@ export default function FacultyDirectory() {
                 <h2 className="mb-6 text-xl font-semibold">
                   {CATEGORY_LABELS[category]}
                 </h2>
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-4 md:grid-cols-2">
                   {members.map((member) => (
                     <FacultyCard key={member.name} member={member} />
                   ))}
