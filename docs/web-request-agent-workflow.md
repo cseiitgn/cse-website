@@ -2,6 +2,13 @@
 
 This repository is prepared for a staging-first website request workflow.
 
+> Maintenance update (14 September 2026): see [staging-review.md](staging-review.md)
+> for the verified repository access, current Netlify project, password-protected
+> staging setup, and revision brief. The Netlify project ID and direct GitHub
+> Actions deployment described below are historical; Netlify's GitHub integration
+> handles deployment in the updated workflow. The email intake process below
+> remains a proposal, not an enabled service.
+
 ## Current Repository Setup
 
 - Build command: `npm run build`
@@ -75,4 +82,3 @@ with the production URL.
 - Ask for clarification when a requested change is ambiguous or policy-relevant.
 - Keep one branch per request; do not mix unrelated email requests.
 - Include a concise change summary in every review email.
-
