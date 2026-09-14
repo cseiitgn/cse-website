@@ -1,8 +1,7 @@
 ---
-import { SITE_DESCRIPTION } from '@/consts';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import SectionOverview from '@/components/sections/SectionOverview.astro';
 ---
-
-<DefaultLayout title="People" description="People of the CSE department at IIT Gandhinagar">
-  <meta http-equiv="refresh" content="0;url=/people/faculty" slot="head" />
+<DefaultLayout title="People" description="Find faculty, researchers, students, and staff in the department.">
+  <SectionOverview section="/people" description="Find faculty, researchers, students, and staff in the department." />
 </DefaultLayout>

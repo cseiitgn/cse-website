@@ -1,8 +1,10 @@
 import officialPortraits from './official-portraits.json';
+import supplementaryPortraits from './supplementary-portraits.json';
 
 export type FacultyCategory =
   | 'core'
   | 'affiliated'
+  | 'joint'
   | 'visiting'
   | 'practice'
   | 'teaching'
@@ -55,6 +57,7 @@ const facultyRoster: FacultyMember[] = [
     primaryDepartment: 'Computer Science and Engineering',
     researchAreas: [],
     homepage: 'https://iitgn.ac.in/faculty/cse/fac-adithya',
+    links: [{ type: 'website', label: 'Personal website', url: 'https://minus-one.github.io/' }],
   },
   {
     name: 'Ajay Singh',
@@ -486,7 +489,7 @@ const facultyRoster: FacultyMember[] = [
   {
     name: 'Shanmuganathan Raman',
     designation: 'Professor',
-    category: 'affiliated',
+    category: 'joint',
     primaryDepartment: 'Electrical Engineering',
     secondaryDepartment: 'Computer Science and Engineering',
     researchAreas: [
@@ -517,7 +520,7 @@ const facultyRoster: FacultyMember[] = [
   {
     name: 'Udit Bhatia',
     designation: 'Associate Professor',
-    category: 'affiliated',
+    category: 'joint',
     primaryDepartment: 'Civil Engineering',
     secondaryDepartment: 'Computer Science and Engineering',
     researchAreas: [
@@ -687,6 +690,7 @@ const facultyRoster: FacultyMember[] = [
   },
   {
     name: 'Madhavan Unnikrishnan Nair',
+    links: [{ type: 'linkedin', label: 'LinkedIn', url: 'https://in.linkedin.com/in/lt-gen-madhavan-unnikrishnan-nair-6b69a478' }],
     designation: 'Guest Professor',
     category: 'guest',
     primaryDepartment: 'Computer Science and Engineering',
@@ -746,6 +750,7 @@ const facultyRoster: FacultyMember[] = [
 export const CATEGORY_LABELS: Record<FacultyCategory, string> = {
   core: 'Core Faculty',
   affiliated: 'Affiliated Faculty',
+  joint: 'Joint Appointments',
   visiting: 'Visiting Faculty',
   practice: 'Professors of Practice',
   teaching: 'Teaching Faculty',
@@ -754,6 +759,7 @@ export const CATEGORY_LABELS: Record<FacultyCategory, string> = {
 
 export const CATEGORY_ORDER: FacultyCategory[] = [
   'core',
+  'joint',
   'affiliated',
   'teaching',
   'practice',
@@ -770,8 +776,10 @@ export const FACULTY: FacultyMember[] = facultyRoster.map((member) => {
   const portrait = officialPortraits.find(
     (p) => p.profile === member.homepage || p.name === officialName,
   );
+  const supplementary = supplementaryPortraits.find(p => p.name === member.name);
   return {
     ...member,
+    ...(supplementary && !portrait ? { image: supplementary.path, imageWidth: supplementary.width, imageHeight: supplementary.height } : {}),
     ...(portrait
       ? {
           image: portrait.path,

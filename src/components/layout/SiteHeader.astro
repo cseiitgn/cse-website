@@ -1,7 +1,7 @@
 ---
-import { NAV_LINKS } from "@/data/navigation";
+import { NAV_LINKS, flattenLinks } from "@/data/navigation";
 const { currentPage = "/" } = Astro.props;
-const pages = NAV_LINKS.flatMap((group) => group.subitems ?? []);
+const pages = NAV_LINKS.flatMap((group) => flattenLinks(group.subitems ?? []));
 ---
 
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -27,8 +27,8 @@ const pages = NAV_LINKS.flatMap((group) => group.subitems ?? []);
           <details class="nav-group" name="main-navigation">
             <summary
               class:list={{
-                "current-section": group.subitems?.some((item) =>
-                  currentPage.startsWith(item.href),
+                "current-section": currentPage.replace(/\/$/, "") === group.href || flattenLinks(group.subitems ?? []).some(
+                  (item) => currentPage.startsWith(item.href),
                 ),
               }}
             >
@@ -36,19 +36,35 @@ const pages = NAV_LINKS.flatMap((group) => group.subitems ?? []);
               <span aria-hidden="true">⌄</span>
             </summary>
             <div class="nav-dropdown">
-              {group.subitems?.map((item) => (
-                <a
-                  href={item.href}
-                  aria-current={
-                    currentPage.replace(/\/$/, "") === item.href
-                      ? "page"
-                      : undefined
-                  }
-                >
-                  {item.label}
-                  <small>{item.description}</small>
-                </a>
-              ))}
+              <a class="nav-overview" href={group.href}>
+                {group.label} overview <span aria-hidden="true">→</span>
+              </a>
+              {group.subitems?.map((item) =>
+                item.children ? (
+                  <details class="nav-submenu">
+                    <summary>
+                      {item.label}
+                      <span aria-hidden="true">＋</span>
+                    </summary>
+                    <div>
+                      {item.children.map((child) => (
+                        <a href={child.href}>{child.label}</a>
+                      ))}
+                    </div>
+                  </details>
+                ) : (
+                  <a
+                    href={item.href}
+                    aria-current={
+                      currentPage.replace(/\/$/, "") === item.href
+                        ? "page"
+                        : undefined
+                    }
+                  >
+                    {item.label}
+                  </a>
+                ),
+              )}
             </div>
           </details>
         ))
@@ -95,15 +111,22 @@ const pages = NAV_LINKS.flatMap((group) => group.subitems ?? []);
 </header>
 <div class="theme-review-bar">
   <div class="container theme-review-inner">
-    <span>Explore a colour theme</span><nav aria-label="Colour themes">
-      <a href="?q=navy" data-palette-choice="navy"
-        ><i style="background:#244665" aria-hidden="true"></i>Navy</a
-      ><a href="?q=forest" data-palette-choice="forest"
-        ><i style="background:#28604f" aria-hidden="true"></i>Forest</a
-      ><a href="?q=terracotta" data-palette-choice="terracotta"
-        ><i style="background:#934a32" aria-hidden="true"></i>Terracotta</a>
-    </nav><span class="theme-share-note"
-      >Share the URL to share your theme</span>
+    <label for="palette-select"
+      >Colour
+      <select id="palette-select" data-appearance="q">
+        <option value="navy">Navy</option><option value="forest">Forest</option
+        ><option value="terracotta">Terracotta</option>
+      </select>
+    </label>
+    <label for="typography-select"
+      >Typography
+      <select id="typography-select" data-appearance="type">
+        <option value="modern">Modern</option><option value="system"
+          >System</option
+        ><option value="editorial">Editorial</option>
+      </select>
+    </label>
+    <span class="theme-share-note">Your choices are included in the URL</span>
   </div>
 </div>
 <dialog id="site-search" aria-labelledby="search-title">
@@ -111,7 +134,8 @@ const pages = NAV_LINKS.flatMap((group) => group.subitems ?? []);
     <h2 id="search-title">Search the site</h2><button
       type="button"
       data-search-close
-      aria-label="Close search">✕</button>
+      aria-label="Close search">✕</button
+    >
   </div>
   <label class="sr-only" for="site-search-input"
     >Search pages and programs</label

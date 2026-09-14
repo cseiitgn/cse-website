@@ -46,7 +46,7 @@ function FacultyCard({ member }: { member: FacultyMember }) {
     .slice(0, 2)
     .toUpperCase();
   const affiliationLine =
-    member.category === 'affiliated'
+    (member.category === 'affiliated' || member.category === 'joint')
       ? `Primary Affiliation: ${member.primaryDepartment}`
       : member.secondaryDepartment
         ? `Also affiliated with ${member.secondaryDepartment}`
@@ -155,8 +155,7 @@ export default function FacultyDirectory() {
         <div className="container text-center">
           <h1 className="text-3xl md:text-4xl">Faculty</h1>
           <p className="text-muted-foreground mx-auto mt-3 max-w-lg">
-            Our faculty bring expertise across theoretical CS, AI, systems,
-            security, and interdisciplinary computing.
+            Faculty are listed alphabetically within each appointment category. Select a category to narrow the directory.
           </p>
           <p className="mt-3 text-xs text-muted-foreground">
             Photographs from{' '}
@@ -164,9 +163,9 @@ export default function FacultyDirectory() {
               className="underline underline-offset-4"
               href="https://iitgn.ac.in/faculty/cse"
             >
-              IITGN’s official faculty directory
+              IITGN’s faculty directory
             </a>
-            .
+            , with additional photographs from faculty and institutional profile pages.
           </p>
         </div>
       </section>
@@ -212,9 +211,11 @@ export default function FacultyDirectory() {
 
             return (
               <div key={category} className="mb-12 last:mb-0">
-                <h2 className="mb-6 text-xl font-semibold">
+                <h2 className="mb-3 text-xl font-semibold">
                   {CATEGORY_LABELS[category]}
                 </h2>
+                {category === 'joint' && <p className="mb-5 text-sm text-muted-foreground">Faculty with appointments shared with another department.</p>}
+                {category === 'affiliated' && <p className="mb-5 text-sm text-muted-foreground">Faculty affiliated with the CSE or AI discipline; their primary department is shown below.</p>}
                 <div className="grid gap-4 md:grid-cols-2">
                   {members.map((member) => (
                     <FacultyCard key={member.name} member={member} />

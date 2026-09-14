@@ -8,67 +8,51 @@ const { compact = false } = Astro.props;
     <div class="research-intro">
       <div>
         <p class="eyebrow">Research at CSE</p>{
-          compact ? (
-            <h2>
-              Three perspectives.
-              <br />
-              Shared possibilities.
-            </h2>
-          ) : (
-            <h1>Research</h1>
-          )
+          compact ? <h2>Research areas</h2> : <h1>Research</h1>
         }
-      </div><p>
-        From the foundations of computation to the systems and intelligence we
-        build with it. Our faculty work across three connected areas.
+      </div>
+      <p>
+        Find faculty, topics, and selected work in each area. Many faculty work
+        across these areas.
       </p>
     </div>
     {
       RESEARCH_GROUPS.map((group, index) => (
         <article class="research-row">
           <span class="research-number">0{index + 1}</span>
-          <div>
+          <div class="research-summary">
+            <h2>
+              <a href={`/research/${group.slug}`}>
+                {group.title} <span aria-hidden="true">↗</span>
+              </a>
+            </h2>
             <p>{group.description}</p>
-            {!compact && group.related.length > 0 && (
-              <div class="mt-3 flex gap-4 text-xs text-primary">
-                {group.related.map((topic) => (
-                  <a class="underline underline-offset-4" href={topic.href}>
-                    {topic.title}
-                  </a>
-                ))}
-              </div>
-            )}
           </div>
-          <div class="research-faculty">
-            <>
-              <p class="eyebrow">Faculty</p>
-              <p>
-                {group.area.faculty.map((faculty, i) => (
-                  <>
-                    {i > 0 && <span class="text-muted-foreground"> · </span>}
-                    <a href={faculty.profile ?? "/people/faculty"}>
-                      {faculty.name}
-                    </a>
-                  </>
-                ))}
-              </p>
-            </>
-          </div>
+          <a
+            class="text-link research-area-link"
+            href={`/research/${group.slug}`}
+          >
+            Faculty and research <span aria-hidden="true">→</span>
+          </a>
         </article>
       ))
     }
     {
       !compact && (
-        <p class="mt-7 max-w-3xl text-xs text-muted-foreground">
-          Faculty may contribute to more than one area. These broad groupings
-          reflect the research interests in{" "}
-          <a
-            class="underline underline-offset-4"
-            href="https://iitgn.ac.in/faculty/cse"
-          >
-            IITGN’s faculty directory
+        <p class="mt-7 text-sm text-muted-foreground">
+          Browse{" "}
+          <a class="underline" href="/research/publications">
+            publications
           </a>
-          ; individual profiles describe each researcher’s work in more detail.
+          ,{" "}
+          <a class="underline" href="/research/projects">
+            funded projects
+          </a>
+          , or{" "}
+          <a class="underline" href="/research/patents">
+            patents
+          </a>{" "}
+          across the department.
         </p>
       )
     }

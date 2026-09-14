@@ -30,7 +30,7 @@ const definitions = [
     slug: "ai",
     title: "AI & Machine Learning",
     description:
-      "Learning from language, images, and data; building trustworthy, human-centred AI for science and society.",
+      "Machine learning, natural language processing, computer vision, data science, and human–computer interaction.",
     topics: ["ai", "data-science", "hci"],
     extra: ["Nirmal Kumar Sancheti", "Shouvick Mondal"],
     related: [

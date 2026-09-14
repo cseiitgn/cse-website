@@ -1,81 +1,93 @@
 ---
-import JeeOpenHousePromo from '@/components/sections/jee-open-house-promo.astro';
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { ArrowRight, CalendarDays } from 'lucide-react';
-
-const theoryDayRegistrationLink = 'https://forms.gle/sqqoh4JftBfKYA1b8';
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+const deadline = "2026-09-15T23:00:00+05:30";
+const closed = Date.now() > new Date(deadline).getTime();
 ---
 
 <DefaultLayout
   title="Deadlines"
-  description="Upcoming important dates, sessions, and application deadlines."
+  description="Application and nomination deadlines relevant to CSE students and researchers."
 >
-  <section class="from-primary/5 border-b bg-gradient-to-b to-transparent py-16 md:py-20">
+  <section class="section-padding section-overview">
     <div class="container">
-      <p class="text-secondary text-sm font-medium uppercase tracking-wider">
-        Updates
+      <p class="eyebrow">News &amp; events</p><h1>Deadlines</h1>
+      <p class="page-lead">
+        Check the organiser’s announcement before applying. Degree admissions
+        dates and requirements are maintained on <a
+          class="underline"
+          href="https://iitgn.ac.in/admissions">IITGN’s admissions website</a
+        >.
       </p>
-      <h1 class="mt-3 text-3xl font-semibold md:text-5xl">Deadlines</h1>
-      <p class="text-muted-foreground mt-4 max-w-2xl text-lg leading-relaxed">
-        Upcoming important dates, information sessions, and application-related
-        announcements.
-      </p>
-    </div>
-  </section>
-
-  <section class="section-padding">
-    <div class="container">
-      <div class="mb-6">
-        <p class="text-secondary text-sm font-medium">Upcoming</p>
-        <h2 class="mt-3 text-2xl font-semibold md:text-3xl">
-          Registration deadlines
-        </h2>
-      </div>
-
-      <article class="rounded-lg border bg-background p-6 shadow-sm">
-        <div class="grid gap-6 md:grid-cols-[12rem_1fr_auto] md:items-center">
-          <div class="flex items-center gap-3">
-            <span class="inline-flex size-11 items-center justify-center rounded-full bg-secondary/10 text-secondary">
-              <CalendarDays className="size-5" aria-hidden="true" />
-            </span>
-            <div>
-              <p class="text-muted-foreground text-sm">Deadline</p>
-              <p class="text-lg font-semibold">14 Jun 2026</p>
-            </div>
-          </div>
-
-          <div>
-            <h3 class="text-xl font-semibold">
-              Theory Day: Foundations of Computer Science
-            </h3>
-            <p class="text-muted-foreground mt-2 text-sm leading-relaxed">
-              Theory Day is on 17 June 2026. The schedule and venue information
-              are available from the event page.
-            </p>
-          </div>
-
-          <div class="flex flex-wrap gap-3 md:justify-end">
-            <a
-              href="/events/theory-day-2026"
-              class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition hover:border-secondary hover:text-secondary"
-            >
-              Event page
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </a>
-            <a
-              href={theoryDayRegistrationLink}
-              class="inline-flex items-center gap-2 rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background transition hover:bg-secondary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Register
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </a>
-          </div>
-        </div>
+      <article class="deadline-entry" data-deadline={deadline}>
+        <p class="eyebrow">
+          Nomination deadline · <time datetime={deadline}
+            >15 September 2026, 11 pm IST</time>
+        </p>
+        <h2>ACM India Doctoral Dissertation Award 2026</h2>
+        <p>
+          For dissertations defended between 1 July 2025 and 30 June 2026.
+          Nominations are submitted by the primary advisor with institutional
+          endorsement; students should contact their advisor and the department
+          office.
+        </p>
+        <p class="source-note">
+          ACM India call circulated by the HoD on 2 September 2026.
+        </p>
+        <p data-deadline-status>
+          {
+            closed
+              ? "Nomination deadline passed"
+              : "Nominations close on 15 September"
+          }
+        </p>
+        <a
+          class="text-link"
+          href="https://cmt3.research.microsoft.com/acmindiaawards2026"
+          >Award submission portal →</a
+        >
       </article>
+      <section class="admin-group">
+        <h2>Past deadlines</h2><p class="text-muted-foreground">
+          Theory Day 2026 registration closed on 14 June 2026. <a
+            class="underline"
+            href="/events/theory-day-2026">View the event archive</a
+          >.
+        </p>
+      </section>
     </div>
   </section>
-
-  <JeeOpenHousePromo variant="deadlines" />
 </DefaultLayout>
+<script>
+  // Keep status correct between static builds, including pages left open overnight.
+  const update = () =>
+    document
+      .querySelectorAll<HTMLElement>("[data-deadline]")
+      .forEach((entry) => {
+        if (Date.now() > new Date(entry.dataset.deadline!).getTime())
+          entry.querySelector<HTMLElement>(
+            "[data-deadline-status]",
+          )!.textContent = "Nomination deadline passed";
+      });
+  update();
+  setInterval(update, 60000);
+</script>
+<style>
+  .deadline-entry {
+    margin-top: 2.5rem;
+    padding: 1.5rem 0;
+    border-block: 1px solid var(--border);
+    max-width: 800px;
+  }
+  .deadline-entry h2 {
+    font-size: 1.6rem;
+    margin: 1rem 0;
+  }
+  .deadline-entry > p {
+    line-height: 1.7;
+  }
+  [data-deadline-status] {
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+</style>

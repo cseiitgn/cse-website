@@ -1,0 +1,27 @@
+---
+import { NAV_LINKS } from "@/data/navigation";
+const { section, description } = Astro.props;
+const group = NAV_LINKS.find((group) => group.href === section)!;
+---
+
+<section class="section-padding section-overview">
+  <div class="container">
+    <p class="eyebrow">Computer Science &amp; Engineering</p>
+    <h1>{group.label}</h1><p class="page-lead">{description}</p>
+    <div class="overview-links">
+      {
+        group.subitems?.map((item) => (
+          <a href={item.href}>
+            <>
+              <h2>
+                {item.label}
+                <span aria-hidden="true">→</span>
+              </h2>
+              <p>{item.description}</p>
+            </>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -153,3 +153,143 @@ test("research videos do not contact the player before a visitor presses play", 
     1,
   );
 });
+
+const content = (n) =>
+  n.nodeName === "#text" ? n.value : (n.childNodes ?? []).map(content).join("");
+const hasClass = (n, c) => (attr(n, "class") ?? "").split(/\s+/).includes(c);
+
+test("every research area has a named heading and a destination", () => {
+  for (const path of ["dist/index.html", "dist/research/index.html"]) {
+    const rows = walk(parse(read(path)), (n) => hasClass(n, "research-row"));
+    assert.equal(rows.length, 3);
+    assert.deepEqual(
+      rows.map((row) =>
+        content(walk(row, (n) => n.tagName === "h2")[0])
+          .replace("↗", "")
+          .trim(),
+      ),
+      ["Theory", "Systems", "AI & Machine Learning"],
+    );
+    assert.deepEqual(
+      rows.map((row) => attr(walk(row, (n) => n.tagName === "a")[0], "href")),
+      ["/research/theory", "/research/systems", "/research/ai"],
+    );
+  }
+});
+
+test("research navigation groups the three areas inside a submenu", () => {
+  const submenus = walk(
+    dom,
+    (n) => n.tagName === "details" && hasClass(n, "nav-submenu"),
+  );
+  assert.equal(submenus.length, 1);
+  assert.match(content(submenus[0]), /Research areas/);
+  assert.deepEqual(
+    walk(submenus[0], (n) => n.tagName === "a")
+      .map((n) => attr(n, "href"))
+      .sort(),
+    ["/research/ai", "/research/systems", "/research/theory"],
+  );
+});
+
+test("typography is independently selected and rejects unknown values", () => {
+  const source = read("src/components/layout/ThemeHead.astro").match(
+    /<script is:inline>([\s\S]*?)<\/script>/,
+  )[1];
+  for (const [query, expected] of [
+    ["?q=forest&type=editorial", "editorial"],
+    ["?type=system", "system"],
+    ["?type=garbage", "modern"],
+    ["", "modern"],
+  ]) {
+    const document = {
+      documentElement: { dataset: {}, classList: { toggle() {} } },
+    };
+    vm.runInNewContext(source, {
+      URLSearchParams,
+      location: { search: query },
+      document,
+      localStorage: {
+        getItem() {
+          throw Error("blocked");
+        },
+      },
+    });
+    assert.equal(document.documentElement.dataset.typography, expected);
+  }
+});
+
+test("administration matches the superseding signed order and separate DFAC approval", () => {
+  const html = read("dist/about/administration/index.html");
+  const admin = parse(html);
+  const roles = walk(admin, (n) => hasClass(n, "admin-role")).map((n) => [
+    content(walk(n, (c) => c.tagName === "dt")[0]),
+    content(walk(n, (c) => c.tagName === "dd")[0]),
+  ]);
+  assert.equal(roles.length, 17);
+  for (const [role, names] of [
+    [
+      "PG admissions and programmes",
+      "Ajay Singh, Sameer Kulkarni, Jyothi Krishnan",
+    ],
+    ["PG supervisor allocation", "Abhishek Bichhawat, Manoj Gupta"],
+    ["UG/PG graduation plan and claim verification", "Bireswar Das"],
+    ["CDS representatives", "Anirban Dasgupta, Arjun Arul"],
+    ["PhD qualifying examinations", "Balagopal Komarath, Anup Kalbalia"],
+    ["UG/PG project courses and thesis grades", "Manoj Gupta, Adithya Kumar"],
+    ["Website and communications", "Nipun Batra, Manu Awasthi"],
+    ["Department vision", "Manoj Gupta, Shouvick Mondal"],
+    ["Department visitors", "Abhishek Bichhawat, Manisha Padala"],
+  ])
+    assert.equal(
+      roles.find(([title]) => title.trim().startsWith(role))?.[1],
+      names,
+      role,
+    );
+  assert.match(html, /CSE\/HOD\/2026-27\/003/);
+  assert.match(html, /1 September 2026–31 August 2027/);
+  assert.match(html, /DFA\/2026-27\/166/);
+  assert.match(html, /10 September 2026/);
+  assert.doesNotMatch(html, /19 September 2025|Bireshwar/);
+});
+
+test("verified faculty photographs have local files and recorded provenance", () => {
+  const faculty = parse(read("dist/people/faculty/index.html"));
+  const photos = [
+    ...JSON.parse(read("src/data/official-portraits.json")),
+    ...JSON.parse(read("src/data/supplementary-portraits.json")),
+  ].filter((p) => p.path.startsWith("/images/faculty/"));
+  assert.equal(photos.length, 30);
+  const displayed = walk(faculty, (n) => n.tagName === "img").map((n) =>
+    attr(n, "src"),
+  );
+  for (const photo of photos) {
+    assert.ok(displayed.includes(photo.path), photo.name);
+    assert.ok(photo.profile.startsWith("https://"));
+    assert.ok(fs.statSync("public" + photo.path).size < 60000);
+    assert.ok(photo.width <= 320 && photo.height <= 360);
+  }
+  assert.match(content(faculty), /Joint Appointments/);
+});
+
+test("section overview pages have usable content and obsolete registration is removed", () => {
+  for (const section of ["about", "people", "academics"]) {
+    const html = read(`dist/${section}/index.html`);
+    assert.match(html, /class="overview-links"/);
+    assert.doesNotMatch(
+      html,
+      /http-equiv="refresh"|coming soon|under construction/i,
+    );
+  }
+  const deadlines = read("dist/updates/deadlines/index.html");
+  assert.match(deadlines, /15 September 2026/);
+  assert.doesNotMatch(deadlines, /sqqoh4JftBfKYA1b8|>Register</);
+  assert.match(read("dist/updates/seminars/index.html"), /Mainack Mondal/);
+});
+
+test('breadcrumbs retain a Home link and the section hierarchy', () => {
+  const admin = parse(read('dist/about/administration/index.html'));
+  const breadcrumb = walk(admin, n => n.tagName === 'nav' && attr(n, 'aria-label') === 'Breadcrumb')[0];
+  assert.deepEqual(walk(breadcrumb, n => n.tagName === 'a').map(n => [content(n).trim(), attr(n, 'href')]), [['Home', '/'], ['About', '/about']]);
+  assert.match(content(breadcrumb), /Administration/);
+});

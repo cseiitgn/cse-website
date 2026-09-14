@@ -1,8 +1,20 @@
 <script is:inline>
   (() => {
-    const allowed = ["navy", "forest", "terracotta"];
-    const q = new URLSearchParams(location.search).get("q");
-    document.documentElement.dataset.palette = allowed.includes(q) ? q : "navy";
+    const params = new URLSearchParams(location.search);
+    document.documentElement.dataset.palette = [
+      "navy",
+      "forest",
+      "terracotta",
+    ].includes(params.get("q"))
+      ? params.get("q")
+      : "navy";
+    document.documentElement.dataset.typography = [
+      "modern",
+      "system",
+      "editorial",
+    ].includes(params.get("type"))
+      ? params.get("type")
+      : "modern";
     try {
       document.documentElement.classList.toggle(
         "dark",
@@ -12,56 +24,56 @@
   })();
 </script>
 <script>
-  const palettes = ["navy", "forest", "terracotta"];
-  const selected = new URLSearchParams(location.search).get("q");
-  const carryTheme = () => {
+  const params = new URLSearchParams(location.search);
+  const choices: Record<string, string[]> = {
+    q: ["navy", "forest", "terracotta"],
+    type: ["modern", "system", "editorial"],
+  };
+  const carryAppearance = () => {
     document.querySelectorAll<HTMLAnchorElement>("a[href]").forEach((a) => {
       const url = new URL(a.href, location.href);
-      if (a.hasAttribute("data-palette-choice")) {
-        url.pathname = location.pathname;
-        url.search = location.search;
-        url.searchParams.set("q", a.dataset.paletteChoice!);
-        url.hash = location.hash;
-        a.href = url.href;
-        a.setAttribute(
-          "aria-current",
-          a.dataset.paletteChoice === document.documentElement.dataset.palette
-            ? "true"
-            : "false",
-        );
-      } else if (
-        selected &&
-        palettes.includes(selected) &&
-        url.origin === location.origin &&
-        !/\.[a-z0-9]+$/i.test(url.pathname) &&
-        !a.hasAttribute("download") &&
-        !url.searchParams.has("q")
-      ) {
-        url.searchParams.set("q", selected);
-        a.href = url.href;
+      if (
+        url.origin !== location.origin ||
+        /\.[a-z0-9]+$/i.test(url.pathname) ||
+        a.hasAttribute("download")
+      )
+        return;
+      for (const [key, allowed] of Object.entries(choices)) {
+        const value = params.get(key);
+        if (value && allowed.includes(value) && !url.searchParams.has(key))
+          url.searchParams.set(key, value);
       }
+      if (a.href !== url.href) a.href = url.href;
     });
   };
-  carryTheme();
-  new MutationObserver(carryTheme).observe(document.body, {
+  carryAppearance();
+  new MutationObserver(carryAppearance).observe(document.body, {
     childList: true,
     subtree: true,
   });
   document
-    .querySelector("[data-mode-toggle]")
-    ?.addEventListener("click", () => {
-      const dark = document.documentElement.classList.toggle("dark");
-      try {
-        localStorage.setItem("theme", dark ? "dark" : "light");
-      } catch {}
-      document
-        .querySelector("[data-mode-toggle]")
-        ?.setAttribute("aria-pressed", String(dark));
+    .querySelectorAll<HTMLSelectElement>("[data-appearance]")
+    .forEach((select) => {
+      const key = select.dataset.appearance!;
+      const value = params.get(key);
+      select.value =
+        value && choices[key].includes(value) ? value : choices[key][0];
+      select.addEventListener("change", () => {
+        const url = new URL(location.href);
+        url.searchParams.set(key, select.value);
+        location.assign(url.href);
+      });
     });
-  document
-    .querySelector("[data-mode-toggle]")
-    ?.setAttribute(
-      "aria-pressed",
-      String(document.documentElement.classList.contains("dark")),
-    );
+  const toggle = document.querySelector("[data-mode-toggle]");
+  toggle?.setAttribute(
+    "aria-pressed",
+    String(document.documentElement.classList.contains("dark")),
+  );
+  toggle?.addEventListener("click", () => {
+    const dark = document.documentElement.classList.toggle("dark");
+    try {
+      localStorage.setItem("theme", dark ? "dark" : "light");
+    } catch {}
+    toggle.setAttribute("aria-pressed", String(dark));
+  });
 </script>

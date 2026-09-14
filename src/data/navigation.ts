@@ -1,7 +1,17 @@
+export interface NavLink {
+  label: string;
+  href: string;
+  description: string;
+  children?: NavLink[];
+}
+
+export const flattenLinks = (items: NavLink[]): NavLink[] =>
+  items.flatMap((item) => [item, ...flattenLinks(item.children ?? [])]);
+
 export interface NavItem {
   label: string;
   href: string;
-  subitems?: { label: string; href: string; description: string }[];
+  subitems?: NavLink[];
 }
 
 export const NAV_LINKS: NavItem[] = [
@@ -35,7 +45,7 @@ export const NAV_LINKS: NavItem[] = [
         description: "Open positions and how to join us",
       },
       {
-        label: "Get in Touch",
+        label: "Contact",
         href: "/about/contact",
         description: "Reach out to the department",
       },
@@ -46,19 +56,20 @@ export const NAV_LINKS: NavItem[] = [
     href: "/people",
     subitems: [
       {
+        label: "Faculty",
+        href: "/people/faculty",
+        description: "Core, affiliated, visiting, and guest faculty",
+      },
+
+      {
         label: "Research Scholars",
         href: "/people/students",
         description: "Doctoral researchers in CSE and AI",
       },
       {
-        label: "Post-Docs",
+        label: "Postdoctoral researchers",
         href: "/people/postdocs",
         description: "Postdoctoral researchers and fellows",
-      },
-      {
-        label: "Faculty",
-        href: "/people/faculty",
-        description: "Core, affiliated, visiting, and guest faculty",
       },
       {
         label: "Staff",
@@ -128,6 +139,28 @@ export const NAV_LINKS: NavItem[] = [
     href: "/research",
     subitems: [
       {
+        label: "Research areas",
+        href: "/research",
+        description: "Theory, systems, and AI & machine learning",
+        children: [
+          {
+            label: "AI & Machine Learning",
+            href: "/research/ai",
+            description: "Deep learning, NLP, computer vision",
+          },
+          {
+            label: "Theory",
+            href: "/research/theory",
+            description: "Algorithms, complexity, graph theory",
+          },
+          {
+            label: "Systems",
+            href: "/research/systems",
+            description: "Computer architecture and embedded systems",
+          },
+        ],
+      },
+      {
         label: "Publications",
         href: "/research/publications",
         description: "Recent papers and articles",
@@ -142,25 +175,10 @@ export const NAV_LINKS: NavItem[] = [
         href: "/research/patents",
         description: "Intellectual property and technology transfer",
       },
-      {
-        label: "AI & Machine Learning",
-        href: "/research/ai",
-        description: "Deep learning, NLP, computer vision",
-      },
-      {
-        label: "Theory",
-        href: "/research/theory",
-        description: "Algorithms, complexity, graph theory",
-      },
-      {
-        label: "Systems",
-        href: "/research/systems",
-        description: "Computer architecture and embedded systems",
-      },
     ],
   },
   {
-    label: "Updates",
+    label: "News & events",
     href: "/updates/news",
     subitems: [
       {

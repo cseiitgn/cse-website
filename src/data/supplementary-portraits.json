@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Viraj Shah",
+    "profile": "https://virajshah.com/",
+    "source": "https://virajshah.com/assets/images/profile2crop.jpg",
+    "path": "/images/faculty/viraj-shah.webp",
+    "width": 320,
+    "height": 310,
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Samit Bhattacharya",
+    "profile": "https://iitg.ac.in/samit/",
+    "source": "https://iitg.ac.in/samit/profile.jpeg",
+    "path": "/images/faculty/samit-bhattacharya.webp",
+    "width": 200,
+    "height": 200,
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "K. Gopinath",
+    "profile": "https://www.csa.iisc.ac.in/~gopi/",
+    "source": "https://www.csa.iisc.ac.in/~gopi/webpage-photo.jpg",
+    "path": "/images/faculty/k-gopinath.webp",
+    "width": 320,
+    "height": 320,
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Ambarish Ojha",
+    "profile": "https://pnb.bank.in/Director-Shri-Ambarish-Ojha.html",
+    "source": "https://pnb.bank.in/downloadprocess.aspx?fid=oGex71IG4rq2YoJolYOs3Q==",
+    "path": "/images/faculty/ambarish-ojha.webp",
+    "width": 280,
+    "height": 360,
+    "retrieved": "2026-09-14"
+  },
+  {
+    "name": "Madhavan Unnikrishnan Nair",
+    "profile": "https://tokyo.cybertechconference.com/node/2058",
+    "source": "https://tokyo.cybertechconference.com/sites/tokyo2025/files/styles/speaker/public/2025-07/%D7%92%D7%95%D7%93%D7%9C%20%D7%93%D7%95%D7%91%D7%A8%D7%99%D7%9D%20%D7%90%D7%AA%D7%A8.png?itok=WiaOM_7a",
+    "path": "/images/faculty/madhavan-unnikrishnan-nair.webp",
+    "width": 290,
+    "height": 290,
+    "retrieved": "2026-09-14"
+  }
+]

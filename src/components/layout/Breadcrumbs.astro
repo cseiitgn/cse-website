@@ -1,0 +1,34 @@
+---
+import { NAV_LINKS, flattenLinks } from "@/data/navigation";
+const path = Astro.url.pathname.replace(/\/$/, "");
+const group = NAV_LINKS.find(
+  (group) =>
+    path.startsWith(group.href.split("/").slice(0, 2).join("/")) ||
+    group.subitems?.some((item) => item.href === path),
+);
+const page =
+  group &&
+  flattenLinks(group.subitems ?? []).find((item) => item.href === path);
+---
+
+{
+  path && group && (
+    <nav class="container breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      {group.href === path ? (
+        <span aria-current="page">{group.label}</span>
+      ) : (
+        <>
+          <a href={group.href}>{group.label}</a>
+          {page && (
+            <>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{page.label}</span>
+            </>
+          )}
+        </>
+      )}
+    </nav>
+  )
+}

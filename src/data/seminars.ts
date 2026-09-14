@@ -70,7 +70,7 @@ const rawSeminarEntries = [
     time: '2:30 pm IST',
     venue: 'AB 13/404',
     summary:
-      'Formal verification of real-time embedded Ada software using model checking and static analysis. Descriptive title; the announcement supplied an abstract without a talk title.',
+      'Formal verification of real-time embedded Ada software using model checking and static analysis.',
   },
   {
     id: 'arnav-gupta-outside-in-learning-2026',
@@ -84,6 +84,18 @@ const rawSeminarEntries = [
     venue: 'AB 13/124',
     summary:
       'How generative AI changes the way students can learn software engineering, moving from working applications to the concepts underneath.',
+  },
+  {
+    id: 'mainack-mondal-trust-2026',
+    type: 'CSE seminar',
+    title: 'Trust: Built, Broken, Repaired',
+    speaker: 'Dr. Mainack Mondal',
+    affiliation: 'IIT Kharagpur',
+    date: '2026-07-30',
+    displayDate: '30 Jul 2026',
+    time: '5:00 pm IST',
+    venue: 'AB 13/126',
+    summary: 'Understanding and defending against intimate partner surveillance and online scams, including a study of trust cues in UPI payment apps.',
   },
   {
     id: 'sunil-chandran-graph-theory-quantum-physics-2026',

@@ -42,7 +42,7 @@ export const departmentNews: DepartmentNewsItem[] = [
     id: "indiaai-phd-fellowships-2026",
     title: "Three CSE PhD students receive IndiaAI PhD Fellowships",
     summary:
-      "Naren Kumar, Manvendra Singh, and Dikshit Hegde have been awarded IndiaAI PhD Fellowships, marking a proud recognition for the department and their research groups.",
+      "Naren Kumar, Manvendra Singh, and Dikshit Hegde have been awarded IndiaAI PhD Fellowships.",
     people:
       "Naren Kumar (advised by Prof. Mayank Singh); Manvendra Singh (advised by Prof. Anirban Dasgupta); Dikshit Hegde (advised by Prof. Shanmuganathan Raman)",
     displayDate: "Jun 2026",
