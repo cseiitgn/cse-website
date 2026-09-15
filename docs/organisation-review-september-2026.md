@@ -56,3 +56,18 @@ Abhishek’s 1 April forward of Joycee Mekie’s announcement also adds Devashre
 Build and regression checks cover static navigation and assets, script budget, palette/type whitelists, named research headings, nested navigation, approved committee membership/dates, photo provenance and size, usable overview pages, expired registration, click-to-load video, and preview access protection. Browser checks cover desktop/mobile layouts, appearance changes, internal-link persistence, administration search, and research submenu navigation.
 
 The pre-existing TypeScript errors in `faq-section.tsx`, `not-found.tsx`, `pricing.tsx`, and `publications-directory.tsx` are separate from this revision. No new packages were added.
+
+## Alumni portraits and copy — 15 September 2026
+
+All 12 featured alumni now have local WebP portraits (82,758 bytes combined), lazy-loaded with explicit dimensions. Sources and retrieval dates are recorded in `src/data/alumni-portraits.json`. Images were checked together for correct subjects and cropping, then in the desktop and mobile page layouts. No client-side gallery or new dependency was added.
+
+The page has jump links for highlights, careers, and the doctoral alumni record. Shorter descriptions replace editorial phrases such as “public trajectories”. Existing profile links remain available; Pankaj's link now leads to his St. Jude lab and obsolete CVIG links use Raman's working website.
+
+Content corrections from current profiles:
+
+- Dharaben R. Thakkar: Designated Assistant Professor at Nagoya University; winner of the ACM India Doctoral Dissertation Award 2025 for work on optimal representations of finite groups. Sources: [personal profile](https://sites.google.com/iitgn.ac.in/dharathakkar), [ACM India ARCS](https://event.india.acm.org/arcs/), and [ACM award record](https://prod-awards.acm.bloomreach.cloud/india-doctoral-dissertation).
+- Murali Krishna Enduri: Assistant Dean (Graduate Outcomes) at SRM University-AP, as shown on his [faculty profile](https://www.srmap.edu.in/faculty/dr-murali-krishna-enduri/).
+- Sudhakar Kumawat: graduation year is shown consistently as 2021, matching the doctoral alumni record.
+- Rachit Chhaya: uses the university's current Dhirubhai Ambani University name.
+
+Validation: 69-page static build; all 24 existing regression checks passed; all 12 local images decoded successfully and appeared in browser checks; no horizontal overflow at desktop or 390px mobile width.

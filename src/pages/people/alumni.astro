@@ -7,6 +7,9 @@ import {
 } from 'lucide-react';
 
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import alumniPortraits from '@/data/alumni-portraits.json';
+
+const portraits: Record<string, { image: string; width: number; height: number }> = alumniPortraits;
 
 type AlumniLink = {
   label: string;
@@ -64,11 +67,11 @@ const featuredAlumni: FeaturedAlum[] = [
     credential: 'PhD CSE 2025',
     current: 'Research Associate, University of Cambridge',
     summary:
-      'Researches mobile sensing and health AI. Public profiles note Fulbright-Nehru, PMRF, Amazon internship, and student innovation recognition.',
+      'Builds mobile sensing systems for health, with a focus on making AI work on everyday devices.',
     tags: ['health AI', 'ubiquitous computing', 'PhD'],
     links: [
       { label: 'Profile', href: 'https://rishi-a.github.io/' },
-      { label: 'CVIG alumni', href: 'https://shanmuga.people.iitgn.ac.in/team.html' },
+      { label: 'CVIG alumni', href: 'https://shanmugaiit.github.io/team.html' },
     ],
   },
   {
@@ -91,25 +94,25 @@ const featuredAlumni: FeaturedAlum[] = [
     tags: ['faculty', 'computer vision', 'PhD'],
     links: [
       { label: 'Faculty profile', href: 'https://www.iitbhu.ac.in/dept/cse/people/indracse' },
-      { label: 'CVIG alumni', href: 'https://shanmuga.people.iitgn.ac.in/team.html' },
+      { label: 'CVIG alumni', href: 'https://shanmugaiit.github.io/team.html' },
     ],
   },
   {
     name: 'Sudhakar Kumawat',
-    credential: 'PhD CSE alumnus',
+    credential: 'PhD CSE 2021',
     current: 'Assistant Professor, IIT(ISM) Dhanbad',
     summary:
-      'Computer-vision researcher whose public alumni profile lists PMRF, BRICS Young Scientist, JSPS, Qualcomm Innovation Fellowship, patent, and CVPR-workshop recognition.',
+      'Researches computer vision and deep learning, including efficient methods for recognising actions in video.',
     tags: ['faculty', 'computer vision', 'awards'],
     links: [
       { label: 'Faculty profile', href: 'https://www.iitism.ac.in/faculty-details?faculty=sudhakar' },
-      { label: 'CVIG alumni', href: 'https://shanmuga.people.iitgn.ac.in/team.html' },
+      { label: 'CVIG alumni', href: 'https://shanmugaiit.github.io/team.html' },
     ],
   },
   {
     name: 'Rachit Chhaya',
     credential: 'PhD CSE 2022',
-    current: 'Assistant Professor, DA-IICT / DAU Gandhinagar',
+    current: 'Assistant Professor, Dhirubhai Ambani University',
     summary:
       'Works on streaming and randomized algorithms, coresets, and scalable methods for clustering and graph problems.',
     tags: ['faculty', 'theory', 'coresets'],
@@ -120,7 +123,7 @@ const featuredAlumni: FeaturedAlum[] = [
   {
     name: 'Akash Pareek',
     credential: 'PhD CSE 2025',
-    current: 'Postdoctoral researcher, Universite libre de Bruxelles',
+    current: 'Postdoctoral researcher, Université libre de Bruxelles',
     summary:
       'Works in theoretical computer science, algorithms, and data structures after completing doctoral work at IITGN.',
     tags: ['postdoc', 'theory', 'PhD'],
@@ -136,19 +139,19 @@ const featuredAlumni: FeaturedAlum[] = [
       'Researches machine learning for imaging and neurotechnology, with prior postdoctoral work at the University of Rhode Island.',
     tags: ['postdoc', 'machine learning', 'health'],
     links: [
-      { label: 'Profile', href: 'https://openreview.net/profile?id=~Pankaj_Pandey1' },
+      { label: 'Lab profile', href: 'https://www.stjude.org/research/labs/sitaram-lab/ranganatha-sitaram-lab-team.html' },
     ],
   },
   {
     name: 'Dharaben R. Thakkar',
     credential: 'PhD CSE 2025',
-    current: 'Assistant Professor, Nagoya University',
+    current: 'Designated Assistant Professor, Nagoya University',
     summary:
-      'Recognized by ACM India Doctoral Dissertation Award 2025 mentions for her work on parameterized complexity and structural graph parameters.',
+      'Received the ACM India Doctoral Dissertation Award 2025 for her thesis on computing optimal representations of finite groups.',
     tags: ['faculty', 'theory', 'award'],
     links: [
-      { label: 'Award mention', href: 'https://iitgn.ac.in/assets/pdfs/connections/v18i3.pdf' },
-      { label: 'Talk profile', href: 'https://event.india.acm.org/arcs/' },
+      { label: 'Profile', href: 'https://sites.google.com/iitgn.ac.in/dharathakkar' },
+      { label: 'Dissertation award', href: 'https://www.acm.org/articles/acm-india-bulletins/2026/doctoral-dissertation-award-2025' },
     ],
   },
   {
@@ -165,9 +168,9 @@ const featuredAlumni: FeaturedAlum[] = [
   {
     name: 'Murali Krishna Enduri',
     credential: 'PhD CSE 2018',
-    current: 'Faculty member, SRM University-AP',
+    current: 'Assistant Dean (Graduate Outcomes), SRM University-AP',
     summary:
-      'Works on graph algorithms, complex networks, data mining, machine learning, and systems with patents and journal publications listed publicly.',
+      'Studies graph algorithms and complex networks, including how information and disease spread through networks.',
     tags: ['faculty', 'networks', 'PhD'],
     links: [
       { label: 'Faculty profile', href: 'https://www.srmap.edu.in/faculty/dr-murali-krishna-enduri/' },
@@ -184,15 +187,15 @@ const pathwayGroups: PathwayGroup[] = [
       'Supratim Shit - IIIT Delhi',
       'Indra Deep Mastan - IIT BHU',
       'Sudhakar Kumawat - IIT(ISM) Dhanbad',
-      'Rachit Chhaya - DA-IICT / DAU',
-      'Akash Pareek - Universite libre de Bruxelles',
+      'Rachit Chhaya - Dhirubhai Ambani University',
+      'Akash Pareek - Université libre de Bruxelles',
       'Jayesh Choudhari - University of Warwick',
     ],
   },
   {
     title: 'Research labs and applied AI',
     description:
-      'Undergraduate, masters, and lab alumni are visible in AI research, applied science, and engineering roles at major research and product organizations.',
+      'Our alumni work on AI research, applied science, and software engineering in industry.',
     people: [
       'Vinu Sankar Sadasivan - Meta',
       'Sachin Yadav - Google DeepMind',
@@ -203,11 +206,11 @@ const pathwayGroups: PathwayGroup[] = [
     ],
   },
   {
-    title: 'Recognition and public impact',
+    title: 'Awards and fellowships',
     description:
-      'Public alumni profiles list awards, fellowships, patents, open-source work, and research contributions across AI, theory, systems, and HCI.',
+      'Alumni have received research fellowships and awards for work in computer science.',
     people: [
-      'Dharaben R. Thakkar - ACM India Doctoral Dissertation Award mention',
+      'Dharaben R. Thakkar - ACM India Doctoral Dissertation Award 2025',
       'Rishiraj Adhikary - Fulbright-Nehru and PMRF',
       'Sudhakar Kumawat - PMRF, JSPS, Qualcomm Innovation Fellowship',
       'Darshita Jain - TCS Research and Innovation',
@@ -241,7 +244,7 @@ const doctoralAlumni: DoctoralAlum[] = [
 
 <DefaultLayout
   title="Alumni"
-  description="A public snapshot of IIT Gandhinagar CSE alumni achievements, career paths, and doctoral alumni."
+  description="Meet IIT Gandhinagar CSE alumni and explore their research, careers, and achievements."
 >
   <section class="from-primary/5 bg-gradient-to-b to-transparent pb-8 pt-16 md:pb-12 md:pt-20">
     <div class="container">
@@ -251,30 +254,45 @@ const doctoralAlumni: DoctoralAlum[] = [
         </p>
         <h1 class="mt-3 text-3xl md:text-4xl">Alumni</h1>
         <p class="text-muted-foreground mt-4 text-base leading-relaxed">
-          IITGN CSE alumni are building careers in academia, research labs,
-          product engineering, graduate programs, startups, and public-interest
-          technology.
+          Meet our alumni and see where their work has taken them, from university
+          research to industry.
         </p>
+        <nav aria-label="On this page" class="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-secondary">
+          <a href="#highlights" class="underline underline-offset-4">Alumni highlights</a>
+          <a href="#careers" class="underline underline-offset-4">Careers</a>
+          <a href="#doctoral-alumni" class="underline underline-offset-4">PhD alumni</a>
+        </nav>
       </div>
     </div>
   </section>
 
-  <section class="py-12 md:py-16">
+  <section id="highlights" class="scroll-mt-28 py-12 md:py-16">
     <div class="container">
       <div>
         <div>
           <p class="text-secondary flex items-center gap-2 text-sm font-medium">
             <Award className="size-4" aria-hidden="true" />
-            Featured public trajectories
+            Alumni highlights
           </p>
-          <h2 class="mt-2 text-2xl md:text-3xl">Featured Alumni Profiles</h2>
+          <h2 class="mt-2 text-2xl md:text-3xl">Meet Our Alumni</h2>
         </div>
       </div>
 
-      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {featuredAlumni.map((alum) => (
           <article class="flex flex-col rounded-lg border bg-card p-5 text-card-foreground">
-            <div class="flex items-start justify-between gap-4">
+            <div class="flex items-center gap-4">
+              {portraits[alum.name] && (
+                <img
+                  src={portraits[alum.name].image}
+                  alt={alum.name}
+                  width={portraits[alum.name].width}
+                  height={portraits[alum.name].height}
+                  loading="lazy"
+                  decoding="async"
+                  class="size-20 shrink-0 rounded-md bg-muted object-cover"
+                />
+              )}
               <div>
                 <h3 class="text-base font-semibold leading-snug">{alum.name}</h3>
                 <p class="text-secondary mt-1 text-xs font-medium">
@@ -315,7 +333,7 @@ const doctoralAlumni: DoctoralAlum[] = [
     </div>
   </section>
 
-  <section class="border-y bg-muted/35 py-12 md:py-16">
+  <section id="careers" class="scroll-mt-28 border-y bg-muted/35 py-12 md:py-16">
     <div class="container">
       <div class="max-w-3xl">
         <p class="text-secondary flex items-center gap-2 text-sm font-medium">
@@ -324,8 +342,7 @@ const doctoralAlumni: DoctoralAlum[] = [
         </p>
         <h2 class="mt-2 text-2xl md:text-3xl">Alumni Careers</h2>
         <p class="text-muted-foreground mt-4 text-sm leading-relaxed">
-          We are delighted to share the versatile trajectories that our alumni
-          are pursuing.
+          Explore a few of the places our alumni work and the recognition they have received.
         </p>
       </div>
 
@@ -349,7 +366,7 @@ const doctoralAlumni: DoctoralAlum[] = [
     </div>
   </section>
 
-  <section class="py-12 md:py-16">
+  <section id="doctoral-alumni" class="scroll-mt-28 py-12 md:py-16">
     <div class="container">
       <div>
         <div>
