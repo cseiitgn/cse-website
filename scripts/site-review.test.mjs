@@ -179,9 +179,10 @@ test("changelog has a dated email summary and working links", () => {
   assert.equal(walk(page, n => attr(n, "id") === "2026-09-16").length, 1);
   assert.equal(walk(page, n => n.tagName === "button" && attr(n, "data-copy-summary") !== undefined).length, 1);
   const changes = walk(page, n => attr(n, "data-change-text") !== undefined).map(content);
-  assert.ok(changes.some(text => /12 featured alumni/.test(text)));
-  assert.ok(changes.some(text => /research-area assignments/.test(text)));
-  assert.ok(changes.some(text => /thumbnail images/.test(text)));
+  assert.ok(changes.includes("Alumni portraits"));
+  assert.ok(changes.includes("Faculty mapping"));
+  assert.ok(changes.includes("Video thumbnails"));
+  assert.ok(changes.every(text => text.trim().split(/\s+/).length <= 2));
   for (const link of walk(page, n => n.tagName === "a")) {
     const href = attr(link, "href");
     if (!href?.startsWith("/") || href.startsWith("//")) continue;

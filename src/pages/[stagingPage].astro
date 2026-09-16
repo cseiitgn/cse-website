@@ -23,9 +23,9 @@ export function getStaticPaths() {
             <button class="rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4" type="button" data-copy-summary hidden>Copy summary</button>
             <span class="text-sm text-muted-foreground" role="status" data-copy-status></span>
           </div>
-          <ol class="mt-7 list-decimal space-y-5 pl-6 leading-relaxed">
+          <ol class="mt-7 list-decimal space-y-3 pl-6 leading-relaxed">
             {update.changes.map(change => (
-              <li class="pl-1"><span data-change-text>{change.text}</span>{' '}<a class="underline underline-offset-4" href={change.href}>{change.label}</a></li>
+              <li class="pl-1"><a data-change-text class="underline underline-offset-4" href={change.href}>{change.text}</a></li>
             ))}
           </ol>
         </article>
