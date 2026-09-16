@@ -39,7 +39,7 @@ test("research lists contain unique names from the faculty directory", () => {
   }
 });
 
-test("every faculty category and area matches the workbook allocation", () => {
+test("every faculty category and area matches the current allocation", () => {
   assert.equal(FACULTY_ALLOCATIONS.length, FACULTY.length);
   for (const member of FACULTY) {
     const allocation = FACULTY_ALLOCATIONS.find(item => item.name === member.name);
@@ -49,8 +49,8 @@ test("every faculty category and area matches the workbook allocation", () => {
   }
   assert.deepEqual(memberships("Jyothi Krishnan"), ["theory"]);
   assert.deepEqual(memberships("Samit Bhattacharya"), []);
-  assert.deepEqual(memberships("Anirban Dasgupta"), ["ai", "theory"]);
-  assert.deepEqual(memberships("Shouvick Mondal"), ["ai", "systems"]);
+  assert.deepEqual(memberships("Anirban Dasgupta"), ["ai"]);
+  assert.deepEqual(memberships("Shouvick Mondal"), ["systems"]);
 });
 
 test("coverage validation rejects new, removed, or duplicate directory entries", () => {

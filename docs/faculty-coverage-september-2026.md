@@ -2,7 +2,7 @@
 
 Mapping imported from CSE-faculty-allocations.xlsx on 16 September 2026 and applied at Nipun’s request. This is the current staging allocation; it is not described as final HoD approval.
 
-All 31 directory entries have an explicit allocation record: Theory 7, Systems 8, AI/ML 10, and Unallocated 8. Anirban Dasgupta and Shouvick Mondal each have two area assignments. Categories also follow the workbook.
+All 31 directory entries have an explicit allocation record: Theory 6, Systems 8, AI/ML 9, and Unallocated 8. Following Nipun’s subsequent update on 16 September, Anirban Dasgupta is assigned only to AI/ML and Shouvick Mondal only to Systems. Categories also follow the workbook.
 
 | Faculty | Category | Area(s) |
 | --- | --- | --- |
@@ -10,7 +10,7 @@ All 31 directory entries have an explicit allocation record: Theory 7, Systems 8
 | Adithya Kumar | core | Systems |
 | Ajay Singh | core | Systems |
 | Ambarish Ojha | guest | Unallocated |
-| Anirban Dasgupta | core | Theory, AI/ML |
+| Anirban Dasgupta | core | AI/ML |
 | Anup Kalbalia | practice | Theory |
 | Balagopal Komarath | core | Theory |
 | Bireswar Das | core | Theory |
@@ -30,7 +30,7 @@ All 31 directory entries have an explicit allocation record: Theory 7, Systems 8
 | Sameer G Kulkarni | core | Systems |
 | Samit Bhattacharya | visiting | Unallocated |
 | Shanmuganathan Raman | joint | AI/ML |
-| Shouvick Mondal | core | Systems, AI/ML |
+| Shouvick Mondal | core | Systems |
 | Subir Verma | guest | Unallocated |
 | Udit Bhatia | joint | AI/ML |
 | Venkatesh Raman | guest | Unallocated |
