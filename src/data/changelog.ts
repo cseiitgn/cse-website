@@ -5,7 +5,7 @@ export const WEBSITE_UPDATES = [
     title: 'September website update',
     changes: [
       { text: 'Added portraits alongside the text for all 12 featured alumni, and updated their profiles and links.', href: '/people/alumni/', label: 'Alumni' },
-      { text: 'Updated faculty categories and research-area assignments using the current allocation. Jyothi Krishnan is in Theory; Samit Bhattacharya is listed with the unallocated faculty. Both area assignments are retained for Anirban Dasgupta and Shouvick Mondal.', href: '/research/', label: 'Research areas' },
+      { text: 'Updated faculty categories and research-area assignments to match the reviewed spreadsheet.', href: '/research/', label: 'Research areas' },
       { text: 'Added thumbnail images to the five embedded research and outreach videos. Players load when you press Play.', href: '/research/ai/', label: 'Video example' },
       { text: 'Added photographs for all 31 faculty, using IITGN profiles and other verified profile sources where needed.', href: '/people/faculty/', label: 'Faculty' },
       { text: 'Extended the visitor archive through 10 September 2026. Entries link to talks where available, and online talks are labelled.', href: '/people/visitors/', label: 'Visitors' },

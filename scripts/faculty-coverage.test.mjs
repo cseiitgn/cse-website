@@ -59,13 +59,12 @@ test("coverage validation rejects new, removed, or duplicate directory entries",
   assert.throws(() => validateAllocationCoverage([...FACULTY, FACULTY[0]]), /mismatch/);
 });
 
-test("unallocated faculty remain visible and do not appear in subject lists", () => {
-  const overview = parse(readFileSync("dist/research/index.html", "utf8"));
-  const list = walk(overview).find(node => node.attrs?.some(attr => attr.name === "data-unallocated-faculty"));
-  assert.ok(list);
-  const names = walk(list).filter(node => node.tagName === "li").map(textContent).sort();
+test("faculty without areas stay in the directory without a public allocation-status section", () => {
+  const overview = readFileSync("dist/research/index.html", "utf8");
+  assert.doesNotMatch(overview, /unallocated|do not currently have an area allocation/i);
+  const directory = readFileSync("dist/people/faculty/index.html", "utf8");
   const unallocated = FACULTY_ALLOCATIONS.filter(member => !member.areas.length).map(member => member.name).sort();
-  assert.deepEqual(names, unallocated);
+  for (const name of unallocated) assert.ok(directory.includes(name), name);
   for (const area of Object.values(RESEARCH_AREAS)) {
     for (const name of unallocated) assert.ok(!area.faculty.some(member => member.name === name), name);
   }

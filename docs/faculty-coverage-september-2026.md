@@ -38,6 +38,6 @@ All 31 directory entries have an explicit allocation record: Theory 7, Systems 8
 | Yogesh Kumar Meena | core | AI/ML |
 | Yuvraj Patel | guest | Unallocated |
 
-The JSON allocation file is the source for broad group membership and categories. Existing subtopic faculty lists are filtered by their parent group. Unallocated faculty remain in the faculty directory and are listed separately on the research overview.
+The JSON allocation file is the source for broad group membership and categories. Existing subtopic faculty lists are filtered by their parent group. Faculty without an area remain in the faculty directory. No allocation-status section or label is shown on the website.
 
-The build rejects missing or unknown allocation names. Tests check all categories and memberships, rendered faculty cards, and the unallocated list. Run npm run build and node --test scripts/*.test.mjs.
+The build rejects missing or unknown allocation names. Tests check all categories and memberships, rendered faculty cards, directory coverage, and the absence of public allocation-status labels. Run npm run build and node --test scripts/*.test.mjs.

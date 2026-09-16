@@ -83,8 +83,3 @@ export const RESEARCH_GROUPS = definitions.map((group) => {
   };
   return { ...group, area };
 });
-
-export const UNALLOCATED_FACULTY = FACULTY_ALLOCATIONS
-  .filter(member => member.areas.length === 0)
-  .map(allocation => FACULTY.find(member => member.name === allocation.name)!)
-  .sort((a, b) => a.name.localeCompare(b.name));
