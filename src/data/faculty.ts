@@ -1,5 +1,6 @@
 import officialPortraits from './official-portraits.json';
 import supplementaryPortraits from './supplementary-portraits.json';
+import { FACULTY_ALLOCATIONS, validateAllocationCoverage } from './faculty-allocations';
 
 export type FacultyCategory =
   | 'core'
@@ -768,7 +769,9 @@ export const CATEGORY_ORDER: FacultyCategory[] = [
 ];
 
 // Match official IITGN portraits by profile URL, with explicit display-name aliases.
+validateAllocationCoverage(facultyRoster);
 export const FACULTY: FacultyMember[] = facultyRoster.map((member) => {
+  const allocation = FACULTY_ALLOCATIONS.find(item => item.name === member.name)!;
   const officialName =
     member.name === 'Sameer G Kulkarni'
       ? 'Sameer Gundurao Kulkarni'
@@ -779,6 +782,7 @@ export const FACULTY: FacultyMember[] = facultyRoster.map((member) => {
   const supplementary = supplementaryPortraits.find(p => p.name === member.name);
   return {
     ...member,
+    category: allocation.category,
     ...(supplementary && !portrait ? { image: supplementary.path, imageWidth: supplementary.width, imageHeight: supplementary.height } : {}),
     ...(portrait
       ? {

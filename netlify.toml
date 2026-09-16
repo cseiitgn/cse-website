@@ -5,6 +5,9 @@ publish = "dist"
 [build.environment]
 NODE_VERSION = "22"
 
+[context.staging.environment]
+STAGING_PREVIEW = "true"
+
 [[edge_functions]]
 function = "preview-auth"
 path = "/*"

@@ -1,5 +1,6 @@
 ---
 import { NAV_LINKS } from "@/data/navigation";
+import { IS_STAGING } from "@/lib/staging";
 ---
 
 <footer class="site-footer">
@@ -38,7 +39,9 @@ import { NAV_LINKS } from "@/data/navigation";
       <div>
         <h2>Stay connected</h2><p>
           <a href="/rss.xml">Subscribe via RSS ↗</a>
-        </p><nav aria-label="Social links">
+        </p>
+        {IS_STAGING && <p><a href="/changelog/">Website changelog</a></p>}
+        <nav aria-label="Social links">
           <a href="https://twitter.com/cse_iitgn">X</a><a
             href="https://www.linkedin.com/company/cse-iitgn">LinkedIn</a
           ><a href="https://www.youtube.com/channel/UCPYUnvUV3CiMmkhfYME48QQ"

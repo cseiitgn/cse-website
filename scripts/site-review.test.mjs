@@ -169,6 +169,27 @@ test("faculty groups retain the stream corrections supplied by Nipun", () => {
   assert.ok(systems.includes("Ajay Singh"));
 });
 
+test("changelog has a dated email summary and working links", () => {
+  if (!fs.existsSync("dist/changelog/index.html")) {
+    assert.doesNotMatch(read("dist/index.html"), /href="\/changelog\/"/);
+    return;
+  }
+  const page = parse(read("dist/changelog/index.html"));
+  assert.match(read("dist/index.html"), /href="\/changelog\/"/);
+  assert.equal(walk(page, n => attr(n, "id") === "2026-09-16").length, 1);
+  assert.equal(walk(page, n => n.tagName === "button" && attr(n, "data-copy-summary") !== undefined).length, 1);
+  const changes = walk(page, n => attr(n, "data-change-text") !== undefined).map(content);
+  assert.ok(changes.some(text => /12 featured alumni/.test(text)));
+  assert.ok(changes.some(text => /research-area assignments/.test(text)));
+  assert.ok(changes.some(text => /thumbnail images/.test(text)));
+  for (const link of walk(page, n => n.tagName === "a")) {
+    const href = attr(link, "href");
+    if (!href?.startsWith("/") || href.startsWith("//")) continue;
+    const path = new URL(href, "https://cse.iitgn.ac.in").pathname;
+    assert.ok(fs.existsSync("dist" + path) || fs.existsSync("dist" + path + "/index.html"), href);
+  }
+});
+
 const content = (n) =>
   n.nodeName === "#text" ? n.value : (n.childNodes ?? []).map(content).join("");
 const hasClass = (n, c) => (attr(n, "class") ?? "").split(/\s+/).includes(c);

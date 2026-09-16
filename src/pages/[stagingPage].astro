@@ -1,0 +1,58 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { WEBSITE_UPDATES } from '@/data/changelog';
+import { IS_STAGING } from '@/lib/staging';
+
+export function getStaticPaths() {
+  return IS_STAGING ? [{ params: { stagingPage: 'changelog' } }] : [];
+}
+---
+
+<DefaultLayout title="Website changelog" description="A dated summary of changes to the CSE IIT Gandhinagar website.">
+  <section class="section-padding">
+    <div class="container max-w-4xl">
+      <a class="text-sm underline underline-offset-4" href="/">Home</a>
+      <h1 class="mt-6 text-3xl font-semibold tracking-tight md:text-4xl">Website changelog</h1>
+      <p class="mt-4 max-w-2xl text-lg text-muted-foreground">Recent changes to the CSE website. Each update has a link and a summary you can copy into an email.</p>
+      {WEBSITE_UPDATES.map(update => (
+        <article id={update.id} class="mt-12 scroll-mt-28 border-t pt-8" data-changelog-entry>
+          <time class="text-sm text-muted-foreground" datetime={update.id}>{update.date}</time>
+          <h2 class="mt-2 text-2xl font-semibold">{update.title}</h2>
+          <div class="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3">
+            <a class="underline underline-offset-4" href={`#${update.id}`}>Link to this update</a>
+            <button class="rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4" type="button" data-copy-summary hidden>Copy summary</button>
+            <span class="text-sm text-muted-foreground" role="status" data-copy-status></span>
+          </div>
+          <ol class="mt-7 list-decimal space-y-5 pl-6 leading-relaxed">
+            {update.changes.map(change => (
+              <li class="pl-1"><span data-change-text>{change.text}</span>{' '}<a class="underline underline-offset-4" href={change.href}>{change.label}</a></li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </div>
+  </section>
+</DefaultLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-changelog-entry]').forEach(entry => {
+    const button = entry.querySelector<HTMLButtonElement>('[data-copy-summary]');
+    const status = entry.querySelector<HTMLElement>('[data-copy-status]');
+    if (!button || !status) return;
+    button.hidden = false;
+    button.addEventListener('click', async () => {
+      const title = entry.querySelector('h2')!.textContent?.trim();
+      const date = entry.querySelector('time')!.textContent?.trim();
+      const items = Array.from(entry.querySelectorAll('[data-change-text]'), (item, index) => `${index + 1}. ${item.textContent?.trim()}`);
+      const url = new URL(window.location.href);
+      url.hash = entry.id;
+      const summary = `${title} (${date})\n\n${items.join('\n')}\n\n${url.href}`;
+      try {
+        await navigator.clipboard.writeText(summary);
+        status.textContent = 'Summary copied.';
+      } catch {
+        status.textContent = 'Select the numbered list below to copy it.';
+      }
+    });
+  });
+</script>

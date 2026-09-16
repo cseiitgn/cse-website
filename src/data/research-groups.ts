@@ -1,12 +1,12 @@
 import { FACULTY } from "./faculty";
+import { FACULTY_ALLOCATIONS } from "./faculty-allocations";
 import {
   RESEARCH_AREAS,
   type ResearchAreaPage,
   type ResearchAreaSlug,
 } from "./research-area-pages";
 
-// Preserve topic content while applying faculty stream corrections supplied
-// by Nipun Batra on 16 September 2026. Subtopic URLs remain available.
+// Topic content and faculty allocations have separate sources.
 const definitions = [
   {
     slug: "theory",
@@ -14,8 +14,6 @@ const definitions = [
     description:
       "Algorithms, complexity, combinatorics, and the mathematical foundations of computation.",
     topics: ["theory"],
-    extra: ["Anup Kalbalia"],
-    exclude: ["Ajay Singh", "Manisha Padala"],
     related: [],
   },
   {
@@ -24,8 +22,6 @@ const definitions = [
     description:
       "Computer architecture, networks, distributed systems, software engineering, security, and privacy.",
     topics: ["systems", "security"],
-    extra: ["Adithya Kumar", "Ajay Singh", "Joycee M. Mekie"],
-    exclude: ["Anup Kalbalia", "Manisha Padala", "Nipun Batra"],
     related: [{ title: "Security & privacy", href: "/research/security" }],
   },
   {
@@ -34,8 +30,6 @@ const definitions = [
     description:
       "Machine learning, natural language processing, computer vision, data science, and human–computer interaction.",
     topics: ["ai", "data-science", "hci"],
-    extra: ["Nirmal Kumar Sancheti", "Shouvick Mondal", "Manisha Padala", "Nipun Batra"],
-    exclude: [],
     related: [
       { title: "Data science", href: "/research/data-science" },
       { title: "HCI & cognitive science", href: "/research/hci" },
@@ -50,12 +44,8 @@ export const RESEARCH_GROUPS = definitions.map((group) => {
   const pages = group.topics.map(
     (slug) => RESEARCH_AREAS[slug as ResearchAreaSlug],
   );
-  const names = unique(
-    [...pages.flatMap((p) => p.faculty.map((f) => f.name)), ...group.extra],
-    (n) => n,
-  );
+  const names = FACULTY_ALLOCATIONS.filter(member => member.areas.includes(group.slug)).map(member => member.name);
   const faculty = names
-    .filter((name) => !(group.exclude as readonly string[]).includes(name))
     .map((name) => {
       const member = FACULTY.find((f) => f.name === name);
       const existing = pages
@@ -93,3 +83,8 @@ export const RESEARCH_GROUPS = definitions.map((group) => {
   };
   return { ...group, area };
 });
+
+export const UNALLOCATED_FACULTY = FACULTY_ALLOCATIONS
+  .filter(member => member.areas.length === 0)
+  .map(allocation => FACULTY.find(member => member.name === allocation.name)!)
+  .sort((a, b) => a.name.localeCompare(b.name));

@@ -1,3 +1,5 @@
+import { FACULTY_ALLOCATIONS, type ResearchGroupSlug } from './faculty-allocations';
+
 export type ResearchAreaSlug =
   | 'ai'
   | 'theory'
@@ -817,3 +819,14 @@ export const RESEARCH_AREA_ORDER: ResearchAreaSlug[] = [
   'systems',
   'hci',
 ];
+
+// Subtopic pages retain their subject-specific faculty subset within the allocation.
+const parentGroups: Record<ResearchAreaSlug, ResearchGroupSlug> = {
+  theory: 'theory', systems: 'systems', security: 'systems',
+  ai: 'ai', 'data-science': 'ai', hci: 'ai',
+};
+for (const slug of RESEARCH_AREA_ORDER) {
+  RESEARCH_AREAS[slug].faculty = RESEARCH_AREAS[slug].faculty.filter(member =>
+    FACULTY_ALLOCATIONS.some(allocation => allocation.name === member.name && allocation.areas.includes(parentGroups[slug])),
+  );
+}

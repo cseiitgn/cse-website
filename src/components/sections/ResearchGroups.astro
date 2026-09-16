@@ -1,5 +1,5 @@
 ---
-import { RESEARCH_GROUPS } from "@/data/research-groups";
+import { RESEARCH_GROUPS, UNALLOCATED_FACULTY } from "@/data/research-groups";
 const { compact = false } = Astro.props;
 ---
 
@@ -56,5 +56,17 @@ const { compact = false } = Astro.props;
         </p>
       )
     }
+    {!compact && UNALLOCATED_FACULTY.length > 0 && (
+      <section id="unallocated" class="mt-12 border-t pt-8" aria-labelledby="unallocated-heading">
+        <h2 id="unallocated-heading" class="text-xl font-semibold">Unallocated faculty</h2>
+        <p class="mt-3 text-muted-foreground">These faculty remain in the directory and do not currently have an area allocation.</p>
+        <ul class="mt-5 grid gap-3 sm:grid-cols-2" data-unallocated-faculty>
+          {UNALLOCATED_FACULTY.map(member => (
+            <li><a class="underline underline-offset-4" href={member.homepage ?? member.links?.find(link => link.type === 'website')?.url ?? '/people/faculty'}>{member.name}</a></li>
+          ))}
+        </ul>
+        <p class="mt-5"><a class="text-link" href="/people/faculty">View all faculty</a></p>
+      </section>
+    )}
   </div>
 </section>

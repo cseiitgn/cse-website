@@ -30,5 +30,7 @@ jobs:
       - run: npm ci
       - name: Build site
         run: npm run build
+        env:
+          STAGING_PREVIEW: ${{ github.ref_name == 'staging' || github.base_ref == 'staging' }}
       - name: Test site and preview protection
         run: node --test scripts/*.test.mjs
