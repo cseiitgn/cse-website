@@ -1,6 +1,7 @@
 ---
 import { ArrowUpRight, Globe } from "lucide-react";
 
+import VideoPreview from "@/components/VideoPreview.astro";
 import { FACULTY } from "@/data/faculty";
 import type { ResearchAreaPage } from "@/data/research-area-pages";
 
@@ -56,24 +57,10 @@ const accentStyle =
             </div>
             <div class="overflow-hidden rounded-lg border border-[var(--area-accent-border)] bg-background shadow-sm">
               <div class="aspect-video">
-                <button
-                  type="button"
-                  data-research-video={area.featuredVideo.embedUrl}
-                  data-video-title={area.featuredVideo.title}
-                  class="flex h-full w-full flex-col items-center justify-center gap-4 bg-accent px-6 text-primary"
-                  aria-label={`Play ${area.featuredVideo.title}`}
-                >
-                  <span
-                    class="grid size-14 place-items-center rounded-full border border-primary/30 text-xl"
-                    aria-hidden="true"
-                  >
-                    ▶
-                  </span>
-                  <span class="text-sm font-medium">
-                    {area.featuredVideo.title}
-                  </span>
-                  <span class="text-xs text-muted-foreground">Play video</span>
-                </button>
+                <VideoPreview
+                  embedUrl={area.featuredVideo.embedUrl}
+                  title={area.featuredVideo.title}
+                />
               </div>
             </div>
           </div>
@@ -219,28 +206,3 @@ const accentStyle =
     </div>
   </section>
 </div>
-
-<script>
-  document
-    .querySelectorAll<HTMLButtonElement>("[data-research-video]")
-    .forEach((button) => {
-      button.addEventListener(
-        "click",
-        () => {
-          const frame = document.createElement("iframe");
-          const url = new URL(button.dataset.researchVideo!);
-          url.searchParams.set("autoplay", "1");
-          frame.src = url.href;
-          frame.title = button.dataset.videoTitle!;
-          frame.className = "h-full w-full";
-          frame.allow =
-            "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share";
-          frame.referrerPolicy = "strict-origin-when-cross-origin";
-          frame.allowFullscreen = true;
-          button.replaceWith(frame);
-          frame.focus();
-        },
-        { once: true },
-      );
-    });
-</script>

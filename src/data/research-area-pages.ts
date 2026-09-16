@@ -70,7 +70,7 @@ export const RESEARCH_AREAS: Record<ResearchAreaSlug, ResearchAreaPage> = {
       caption: 'Models, data, language, vision, and deployment-minded AI.',
     },
     featuredVideo: {
-      title: 'AI and machine learning at IIT Gandhinagar',
+      title: 'Synthesizing Compositional Videos from Text Description',
       href: 'https://www.youtube.com/watch?v=sx1QhfZ4yMA',
       embedUrl: 'https://www.youtube.com/embed/sx1QhfZ4yMA',
     },
@@ -573,7 +573,7 @@ export const RESEARCH_AREAS: Record<ResearchAreaSlug, ResearchAreaPage> = {
       caption: 'Systems, architecture, infrastructure, and performance at scale.',
     },
     featuredVideo: {
-      title: 'Systems and architecture at IIT Gandhinagar',
+      title: 'Systems and Security Research at IIT Gandhinagar',
       href: 'https://www.youtube.com/watch?v=JHoRJQz2N5o',
       embedUrl: 'https://www.youtube.com/embed/JHoRJQz2N5o',
     },

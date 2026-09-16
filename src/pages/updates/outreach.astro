@@ -4,6 +4,7 @@ import {
   EVENT_CATEGORY_STYLES,
   featuredLearningEvents,
 } from "@/data/events";
+import VideoPreview from "@/components/VideoPreview.astro";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
 import {
   ArrowRight,
@@ -281,14 +282,10 @@ const educationCategoryCounts = ["school", "course", "workshop", "conference"]
     <div class="container grid gap-5 lg:grid-cols-2">
       <article class="overflow-hidden rounded-lg border bg-muted/20">
         <div class="aspect-video bg-black">
-          <iframe
-            class="size-full"
-            src={featuredPublicTalk.embedUrl}
+          <VideoPreview
+            embedUrl={featuredPublicTalk.embedUrl}
             title={featuredPublicTalk.title}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+          />
         </div>
         <div class="p-6 md:p-7">
           <span class="rounded-full border border-secondary/20 bg-secondary/10 px-2 py-0.5 text-xs font-medium uppercase tracking-wider text-secondary">

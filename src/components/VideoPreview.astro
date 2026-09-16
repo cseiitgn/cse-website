@@ -1,0 +1,57 @@
+---
+import thumbnails from "@/data/video-thumbnails.json";
+
+type Props = { embedUrl: string; title: string };
+const { embedUrl, title } = Astro.props;
+const videoId = new URL(embedUrl).pathname.split("/").pop()!;
+const thumbnail = thumbnails[videoId as keyof typeof thumbnails];
+if (!thumbnail) throw new Error(`Missing video thumbnail: ${videoId}`);
+---
+
+<button
+  type="button"
+  data-research-video={embedUrl}
+  data-video-title={title}
+  class="group relative flex h-full w-full items-center justify-center overflow-hidden bg-muted focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-[-4px] focus-visible:outline-primary"
+  aria-label={`Play ${title}`}
+>
+  <img
+    src={thumbnail.image}
+    alt=""
+    width={thumbnail.width}
+    height={thumbnail.height}
+    loading="lazy"
+    decoding="async"
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <span class="absolute inset-0 bg-black/15 transition-colors group-hover:bg-black/25" aria-hidden="true"></span>
+  <span class="relative grid size-16 place-items-center rounded-full bg-black/75 text-white shadow-lg transition-transform group-hover:scale-105 group-active:scale-95" aria-hidden="true">
+    <svg viewBox="0 0 24 24" class="ml-1 size-7" fill="currentColor"><path d="M7 4v16l14-8z" /></svg>
+  </span>
+  <span class="absolute bottom-4 rounded-md bg-black/75 px-3 py-1.5 text-sm font-medium text-white">Play video</span>
+</button>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>("[data-research-video]")
+    .forEach((button) => {
+      button.addEventListener(
+        "click",
+        () => {
+          const frame = document.createElement("iframe");
+          const url = new URL(button.dataset.researchVideo!);
+          url.searchParams.set("autoplay", "1");
+          frame.src = url.href;
+          frame.title = button.dataset.videoTitle!;
+          frame.className = "h-full w-full";
+          frame.allow =
+            "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share";
+          frame.referrerPolicy = "strict-origin-when-cross-origin";
+          frame.allowFullscreen = true;
+          button.replaceWith(frame);
+          frame.focus();
+        },
+        { once: true },
+      );
+    });
+</script>

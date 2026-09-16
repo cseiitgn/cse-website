@@ -5,8 +5,8 @@ import {
   type ResearchAreaSlug,
 } from "./research-area-pages";
 
-// Broad groups inferred from the research interests on IITGN faculty profiles.
-// Membership can overlap; subtopic pages retain their established URLs.
+// Preserve topic content while applying faculty stream corrections supplied
+// by Nipun Batra on 16 September 2026. Subtopic URLs remain available.
 const definitions = [
   {
     slug: "theory",
@@ -14,7 +14,8 @@ const definitions = [
     description:
       "Algorithms, complexity, combinatorics, and the mathematical foundations of computation.",
     topics: ["theory"],
-    extra: ["Manisha Padala", "Ajay Singh"],
+    extra: ["Anup Kalbalia"],
+    exclude: ["Ajay Singh", "Manisha Padala"],
     related: [],
   },
   {
@@ -23,7 +24,8 @@ const definitions = [
     description:
       "Computer architecture, networks, distributed systems, software engineering, security, and privacy.",
     topics: ["systems", "security"],
-    extra: ["Adithya Kumar", "Ajay Singh", "Joycee M. Mekie", "Anup Kalbalia"],
+    extra: ["Adithya Kumar", "Ajay Singh", "Joycee M. Mekie"],
+    exclude: ["Anup Kalbalia", "Manisha Padala", "Nipun Batra"],
     related: [{ title: "Security & privacy", href: "/research/security" }],
   },
   {
@@ -32,7 +34,8 @@ const definitions = [
     description:
       "Machine learning, natural language processing, computer vision, data science, and human–computer interaction.",
     topics: ["ai", "data-science", "hci"],
-    extra: ["Nirmal Kumar Sancheti", "Shouvick Mondal"],
+    extra: ["Nirmal Kumar Sancheti", "Shouvick Mondal", "Manisha Padala", "Nipun Batra"],
+    exclude: [],
     related: [
       { title: "Data science", href: "/research/data-science" },
       { title: "HCI & cognitive science", href: "/research/hci" },
@@ -52,6 +55,7 @@ export const RESEARCH_GROUPS = definitions.map((group) => {
     (n) => n,
   );
   const faculty = names
+    .filter((name) => !(group.exclude as readonly string[]).includes(name))
     .map((name) => {
       const member = FACULTY.find((f) => f.name === name);
       const existing = pages

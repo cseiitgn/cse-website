@@ -71,3 +71,11 @@ Content corrections from current profiles:
 - Rachit Chhaya: uses the university's current Dhirubhai Ambani University name.
 
 Validation: 69-page static build; all 24 existing regression checks passed; all 12 local images decoded successfully and appeared in browser checks; no horizontal overflow at desktop or 390px mobile width.
+
+## Faculty streams and video previews — 16 September 2026
+
+Applied Nipun's corrections to the broad research-group faculty lists: Anup Kalbalia in Theory; Manisha Padala and Nipun Batra in AI/ML, excluded from Systems; Ajay Singh and Manisha excluded from Theory. Ajay remains in Systems. Explicit exclusions prevent inherited subtopic membership from reintroducing these errors. Other memberships and subject-specific research content are unchanged.
+
+The four research videos and the Outreach public talk now show their actual YouTube thumbnails, stored locally as WebP images (about 60 KB combined). Source URLs, video titles, dimensions, and retrieval dates are recorded in `src/data/video-thumbnails.json`. The shared `VideoPreview.astro` component loads the iframe only after Play is activated, including keyboard activation, and keeps the existing external YouTube links. AI and Systems video headings now match the actual video titles.
+
+Validation: 69-page build and 25 checks pass, including faculty membership assertions and local thumbnail coverage without initial iframes. Browser checks verify thumbnail loading, deferred player creation, and responsive layout.

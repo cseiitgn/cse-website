@@ -142,16 +142,31 @@ test("expired Theory Day registration is closed and the old event cutoff is gone
   );
 });
 
-test("research videos do not contact the player before a visitor presses play", () => {
-  const systems = parse(read("dist/research/systems/index.html"));
-  assert.equal(walk(systems, (n) => n.tagName === "iframe").length, 0);
-  assert.equal(
-    walk(
-      systems,
-      (n) => n.tagName === "button" && attr(n, "data-research-video"),
-    ).length,
-    1,
-  );
+test("featured videos show local thumbnails without loading players before play", () => {
+  for (const path of ["research/ai", "research/theory", "research/systems", "research/data-science", "updates/outreach"]) {
+    const page = parse(read(`dist/${path}/index.html`));
+    assert.equal(walk(page, (n) => n.tagName === "iframe").length, 0, path);
+    const buttons = walk(page, (n) => n.tagName === "button" && attr(n, "data-research-video"));
+    assert.equal(buttons.length, 1, path);
+    const images = walk(buttons[0], (n) => n.tagName === "img");
+    assert.equal(images.length, 1, `${path} thumbnail`);
+    const src = attr(images[0], "src");
+    assert.ok(src.startsWith("/images/videos/"));
+    assert.ok(fs.statSync("dist" + src).size < 30000);
+    assert.ok(Number(attr(images[0], "width")) > 0);
+    assert.ok(Number(attr(images[0], "height")) > 0);
+    assert.equal(attr(images[0], "loading"), "lazy");
+  }
+});
+
+test("faculty groups retain the stream corrections supplied by Nipun", () => {
+  const names = (slug) => walk(parse(read(`dist/research/${slug}/index.html`)), (n) => n.tagName === "h3").map(content);
+  const theory = names("theory"), systems = names("systems"), ai = names("ai");
+  assert.ok(theory.includes("Anup Kalbalia"));
+  for (const name of ["Ajay Singh", "Manisha Padala"]) assert.ok(!theory.includes(name), name);
+  for (const name of ["Anup Kalbalia", "Manisha Padala", "Nipun Batra"]) assert.ok(!systems.includes(name), name);
+  for (const name of ["Manisha Padala", "Nipun Batra"]) assert.ok(ai.includes(name), name);
+  assert.ok(systems.includes("Ajay Singh"));
 });
 
 const content = (n) =>
