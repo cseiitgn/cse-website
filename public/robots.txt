@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cse.iitgn.ac.in/sitemap-index.xml
