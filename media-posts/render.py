@@ -11,6 +11,7 @@ from matplotlib.patches import Ellipse, Polygon, Rectangle
 from matplotlib.font_manager import FontProperties
 from PIL import Image
 from illustrations import browser_permissions, sparse_projection, fellowship_research
+from recognition_illustrations import learning_network, multilingual_model, finite_group, TEAM_ILLUSTRATIONS
 
 SOURCE=Path(__file__).resolve().parent
 ROOT=SOURCE.parent
@@ -87,7 +88,7 @@ class Poster:
         self.rule(1276)
         self.text(68,1300,'cse.iitgn.ac.in',17,mono=True)
         self.text(1012,1300,self.post['displayDate'].upper(),16,mono=True,color=self.muted,ha='right')
-    def photo(self,path,x,y,w,h,focus=.5):
+    def photo(self,path,x,y,w,h,focus=.5,crop=None):
         # A viewport crops the displayed source; original photo files remain intact.
         # A narrow pale-blue mat makes light and busy backgrounds feel consistent.
         self.ax.add_patch(Rectangle((x-6,y-6),w+12,h+12,
@@ -96,7 +97,11 @@ class Poster:
         photoax=self.fig.add_axes([x/1080,1-(y+h)/1350,w/1080,h/1350])
         photoax.imshow(im,interpolation='lanczos'); photoax.axis('off')
         iw,ih=im.size; ratio=w/h
-        if iw/ih>ratio:
+        if crop:
+            left,top,right,bottom=crop
+            assert abs((right-left)/(bottom-top)-ratio)<.01
+            photoax.set_xlim(left,right);photoax.set_ylim(bottom,top)
+        elif iw/ih>ratio:
             cw=ih*ratio; left=(iw-cw)*focus; photoax.set_xlim(left,left+cw);photoax.set_ylim(ih,0)
         else:
             ch=iw/ratio; top=max(0,(ih-ch)*.10);photoax.set_ylim(top+ch,top);photoax.set_xlim(0,iw)
@@ -130,18 +135,34 @@ def render(post,template):
     p.post=post
     (OUT/post['slug']).mkdir(parents=True,exist_ok=True)
     p.header();p.text(68,174,post['award'],28)
-    p.text(65,218,post['headline'],63 if len(post['headline'])>16 else 70 if len(post['headline'])>12 else 77,bold=True)
-    if len(post['people'])==1:
+    p.text(65,218,post['headline'],post.get('headlineSize',63 if len(post['headline'])>16 else 70 if len(post['headline'])>12 else 77),bold=True)
+    if post.get('layout')=='fellows-roster':
+        p.text(68,325,post['badge'],23,mono=True,color=p.accent)
+        learning_network(p);p.rule(756)
+        for i,person in enumerate(post['people']):
+            y=795+i*145
+            p.text(68,y,person['name'],39,bold=True)
+            p.text(68,y+56,'Adviser: '+person['advisers'],25,color=p.muted)
+        p.text(68,1222,'Congratulations to our research scholars.',23,color=p.muted)
+    elif post.get('layout')=='team':
+        p.text(68,325,post['badge'],23,mono=True,color=p.accent)
+        TEAM_ILLUSTRATIONS[post['illustration']](p)
+        p.rule(855)
+        p.text(68,883,post['detailLines'],post.get('detailSize',31),bold=True,linespacing=1.3)
+        p.text(68,1007,post.get('peopleLabel','TEAM IIT GANDHINAGAR'),16,mono=True,color=p.accent)
+        p.text(68,1051,post['peopleLines'],34,bold=True,linespacing=1.4)
+        p.text(68,1222,post.get('closing','Congratulations to the team.'),23,color=p.muted)
+    elif len(post['people'])==1:
         person=post['people'][0]
         p.text(68,325,post['badge'],21,mono=True,color=p.accent)
-        p.photo(SOURCE/person['image'],68,419,390,390,person.get('photoFocus',.5))
-        illustrations={'browser-permissions':browser_permissions,'sparse-projection':sparse_projection}
+        p.photo(SOURCE/person['image'],68,419,390,390,person.get('photoFocus',.5),person.get('photoCrop'))
+        illustrations={'browser-permissions':browser_permissions,'sparse-projection':sparse_projection,'multilingual-model':multilingual_model,'finite-group':finite_group}
         illustrations[post['illustration']](p)
         p.text(68,848,person['role'].upper(),15,mono=True,color=p.accent)
         p.text(68,883,person.get('posterName',person['name']),43,bold=True,linespacing=1.12)
         p.rule(1008)
         p.text(68,1042,post['detailLabel'],16,mono=True,color=p.accent)
-        p.text(68,1082,post['detailLines'],32,bold=True)
+        p.text(68,1082,post['detailLines'],post.get('detailSize',32),bold=True,linespacing=post.get('detailLineSpacing',1.2))
         if post.get('creditLines'): p.text(68,1130,post['creditLines'],25,color=p.muted)
         p.text(68,1202,post['closing'],23,color=p.muted)
     elif len(post['people'])==2:

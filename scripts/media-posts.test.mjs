@@ -38,7 +38,10 @@ test('local collection has complete exports, captions and preferred geometric de
       assert.ok(fs.statSync(`media-posts/exports/${post.slug}/${template}-preview.webp`).size < 180000);
       assert.ok(gallery.includes(`exports/${post.slug}/${template}.png`));
     }
-    for (const person of post.people) assert.ok(fs.existsSync('media-posts/'+person.image));
+    for (const person of post.people) {
+      if (person.image) assert.ok(fs.existsSync('media-posts/'+person.image));
+      else assert.ok(['team','fellows-roster'].includes(post.layout), 'Portrait-free layouts must credit every person by name');
+    }
   }
 });
 
@@ -72,4 +75,19 @@ test('awards page links only the selected reviewed media, with matching files', 
     }
     assert.ok(fs.statSync('dist'+selected.base+'/preview.webp').size<180000);
   }
+});
+
+test('every requested award through Dharaben has selected media and a complete roster', () => {
+  const expected = ['qif-india-2026','tcs-phd-fellowships-2026','indiaai-phd-fellowships-2026','comsnets-2026-mcp-diag','himanshu-msr-fulbright','inter-iit-2025-algorithmic-optimisation','inter-iit-2025-game-development','inter-iit-2025-isro-geospatial','gayatri-google-phd-fellowship','dharaben-acm-india-dda'];
+  for(const id of expected){
+    const post=posts.find(p=>p.awardId===id);assert.ok(post,id);
+    const award=allDepartmentNews.find(p=>p.id===id);assert.ok(award);
+    for(const person of post.people){
+      assert.ok(award.people.includes(person.name), `${person.name} must match the award roster`);
+      if(post.layout==='team')assert.ok(post.peopleLines.includes(person.name));
+    }
+  }
+  const indiaAI=posts.find(p=>p.awardId==='indiaai-phd-fellowships-2026');
+  assert.deepEqual(indiaAI.people.map(p=>[p.name,p.advisers]),[['Naren Kumar','Prof. Mayank Singh'],['Manvendra Singh','Prof. Anirban Dasgupta'],['Dikshit Hegde','Prof. Shanmuganathan Raman']]);
+  assert.equal(posts.find(p=>p.awardId==='inter-iit-2025-isro-geospatial').people.length,6);
 });

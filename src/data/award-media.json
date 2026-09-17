@@ -7,9 +7,37 @@
     "base": "/media/awards/tcs-phd-fellowships-2026",
     "alt": "Ayush Shrivastava and Rohit Narayanan selected for TCS PhD fellowships"
   },
+  "indiaai-phd-fellowships-2026": {
+    "base": "/media/awards/indiaai-phd-fellowships-2026",
+    "alt": "Three CSE PhD students receive IndiaAI PhD Fellowships"
+  },
+  "comsnets-2026-mcp-diag": {
+    "base": "/media/awards/comsnets-2026-mcp-diag",
+    "alt": "MCP-Diag recognized at COMSNETS 2026 Graduate Forum"
+  },
+  "himanshu-msr-fulbright": {
+    "base": "/media/awards/himanshu-msr-fulbright",
+    "alt": "Himanshu Beniwal receives Microsoft Research India PhD Award and Fulbright-Nehru Fellowship"
+  },
+  "inter-iit-2025-algorithmic-optimisation": {
+    "base": "/media/awards/inter-iit-2025-algorithmic-optimisation",
+    "alt": "IITGN wins Inter-IIT gold in Algorithmic Optimisation"
+  },
+  "inter-iit-2025-game-development": {
+    "base": "/media/awards/inter-iit-2025-game-development",
+    "alt": "IITGN wins Inter-IIT silver in Game Development Challenge"
+  },
+  "inter-iit-2025-isro-geospatial": {
+    "base": "/media/awards/inter-iit-2025-isro-geospatial",
+    "alt": "IITGN wins Inter-IIT silver in ISRO Geospatial Challenge"
+  },
   "gayatri-google-phd-fellowship": {
     "base": "/media/awards/gayatri-google-phd-fellowship",
     "alt": "Gayatri Priyadarsini Kancherla receives Google PhD Fellowship"
+  },
+  "dharaben-acm-india-dda": {
+    "base": "/media/awards/dharaben-acm-india-dda",
+    "alt": "Dharaben R. Thakkar receives ACM India Doctoral Dissertation Award"
   },
   "anirban-stoc-test-of-time-2024": {
     "base": "/media/awards/anirban-stoc-test-of-time-2024",

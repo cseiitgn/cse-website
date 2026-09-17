@@ -84,6 +84,283 @@
     "awardId": "tcs-phd-fellowships-2026"
   },
   {
+    "slug": "indiaai-phd-fellowships-2026",
+    "awardId": "indiaai-phd-fellowships-2026",
+    "title": "Three CSE PhD students receive IndiaAI PhD Fellowships",
+    "award": "IndiaAI",
+    "headline": "PhD fellowships",
+    "badge": "THREE RESEARCH SCHOLARS · 2026",
+    "date": "June 2026",
+    "displayDate": "June 2026",
+    "caption": "Congratulations to Naren Kumar, Manvendra Singh and Dikshit Hegde on receiving IndiaAI PhD Fellowships. Their advisers are Prof. Mayank Singh, Prof. Anirban Dasgupta and Prof. Shanmuganathan Raman, respectively.",
+    "people": [
+      {
+        "name": "Naren Kumar",
+        "role": "PhD fellow",
+        "advisers": "Prof. Mayank Singh"
+      },
+      {
+        "name": "Manvendra Singh",
+        "role": "PhD fellow",
+        "advisers": "Prof. Anirban Dasgupta"
+      },
+      {
+        "name": "Dikshit Hegde",
+        "role": "PhD fellow",
+        "advisers": "Prof. Shanmuganathan Raman"
+      }
+    ],
+    "templates": [
+      "low-poly"
+    ],
+    "preferredTemplate": "low-poly",
+    "palette": "dark-blue-white",
+    "illustration": "learning-network",
+    "illustrationDescription": "An original layered learning-network schematic evokes AI research. It does not depict any of the recipients’ fellowship proposals or results.",
+    "sourceUrl": "https://cse.iitgn.ac.in/updates/news/",
+    "sources": [
+      "https://cse.iitgn.ac.in/updates/news/"
+    ],
+    "illustrationSources": [
+      "https://cse.iitgn.ac.in/updates/news/"
+    ],
+    "layout": "fellows-roster",
+    "photoNote": "The official directory provides placeholder images for Naren and Manvendra. A complete name-led layout gives equal space to all three recipients."
+  },
+  {
+    "slug": "comsnets-2026-mcp-diag",
+    "awardId": "comsnets-2026-mcp-diag",
+    "title": "MCP-Diag recognized at COMSNETS 2026 Graduate Forum",
+    "award": "COMSNETS 2026",
+    "headline": "MCP-Diag",
+    "badge": "GRADUATE FORUM · BEST PAPER RUNNER-UP",
+    "date": "2026",
+    "displayDate": "2026",
+    "caption": "Congratulations to Devansh Lodha, Mohit Panchal and Prof. Sameer G. Kulkarni. Their paper, “MCP-Diag: A Deterministic, Protocol-Driven Architecture for AI-Native Network Diagnostics”, received the Graduate Forum Best Paper Runner-up award at COMSNETS 2026.",
+    "people": [
+      {
+        "name": "Devansh Lodha",
+        "role": "Co-author"
+      },
+      {
+        "name": "Mohit Panchal",
+        "role": "Co-author"
+      },
+      {
+        "name": "Prof. Sameer G. Kulkarni",
+        "role": "Co-author"
+      }
+    ],
+    "templates": [
+      "low-poly"
+    ],
+    "preferredTemplate": "low-poly",
+    "palette": "dark-blue-white",
+    "illustration": "network-diagnostics",
+    "illustrationDescription": "An original network-to-diagnostics diagram introduces the paper’s subject. The observe/check/explain sequence is conceptual, not the paper’s exact architecture.",
+    "sourceUrl": "https://www.comsnets.org/awards.html",
+    "sources": [
+      "https://www.comsnets.org/awards.html"
+    ],
+    "illustrationSources": [
+      "https://www.comsnets.org/awards.html"
+    ],
+    "layout": "team",
+    "detailLines": "A Deterministic, Protocol-Driven Architecture\nfor AI-Native Network Diagnostics",
+    "peopleLabel": "AUTHORS",
+    "peopleLines": "Devansh Lodha · Mohit Panchal\nProf. Sameer G. Kulkarni",
+    "photoNote": "Name-led co-author layout; a complete verified portrait set was not available."
+  },
+  {
+    "slug": "himanshu-msr-fulbright",
+    "awardId": "himanshu-msr-fulbright",
+    "title": "Himanshu Beniwal receives Microsoft Research India PhD Award and Fulbright-Nehru Fellowship",
+    "award": "Microsoft Research India · Fulbright-Nehru",
+    "headline": "Research honours",
+    "badge": "MICROSOFT RESEARCH · FULBRIGHT-NEHRU",
+    "date": "2025-26",
+    "displayDate": "2025-26",
+    "caption": "Congratulations to Himanshu Beniwal on receiving the Microsoft Research India PhD Award 2025 and the Fulbright-Nehru Doctoral Research Fellowship 2025-26. He carried out his doctoral research with Prof. Mayank Singh at IIT Gandhinagar.",
+    "people": [
+      {
+        "name": "Himanshu Beniwal",
+        "role": "Award and fellowship recipient",
+        "image": "images/himanshu-2025/himanshu-beniwal.jpg",
+        "photoCrop": [
+          0,
+          200,
+          1800,
+          2000
+        ],
+        "imageSource": "https://himanshubeniwal.github.io/socials/mypic.jpeg",
+        "profileSource": "https://himanshubeniwal.github.io/"
+      }
+    ],
+    "templates": [
+      "low-poly"
+    ],
+    "preferredTemplate": "low-poly",
+    "palette": "dark-blue-white",
+    "illustration": "multilingual-model",
+    "illustrationDescription": "Two language streams enter a shared model, an original conceptual illustration of multilingual NLP. It is not a specific model architecture or an experimental result.",
+    "sourceUrl": "https://iitgn.ac.in/assets/pdfs/connections/v18i1.pdf",
+    "sources": [
+      "https://iitgn.ac.in/assets/pdfs/connections/v18i1.pdf",
+      "https://www.microsoft.com/en-us/research/academic-program/microsoft-research-india-phd-award/2025-awardees/",
+      "https://himanshubeniwal.github.io/"
+    ],
+    "illustrationSources": [
+      "https://iitgn.ac.in/assets/pdfs/connections/v18i1.pdf",
+      "https://www.microsoft.com/en-us/research/academic-program/microsoft-research-india-phd-award/2025-awardees/",
+      "https://himanshubeniwal.github.io/"
+    ],
+    "detailLabel": "AWARD & FELLOWSHIP",
+    "detailLines": "Microsoft Research India PhD Award 2025\nFulbright-Nehru Doctoral Research Fellowship 2025-26",
+    "detailSize": 27,
+    "closing": "Doctoral adviser: Prof. Mayank Singh"
+  },
+  {
+    "slug": "inter-iit-2025-algorithmic-optimisation",
+    "awardId": "inter-iit-2025-algorithmic-optimisation",
+    "title": "IITGN wins Inter-IIT gold in Algorithmic Optimisation",
+    "award": "Inter-IIT Tech Meet 14.0",
+    "headline": "Gold medal",
+    "badge": "ALGORITHMIC OPTIMISATION",
+    "date": "December 2025",
+    "displayDate": "December 2025",
+    "caption": "Congratulations to Anurag Singh and Nishchay Bhutoria on winning gold in the Algorithmic Optimisation at Inter-IIT Tech Meet 14.0, held at IIT Patna in December 2025.",
+    "people": [
+      {
+        "name": "Anurag Singh",
+        "role": "Team member"
+      },
+      {
+        "name": "Nishchay Bhutoria",
+        "role": "Team member"
+      }
+    ],
+    "templates": [
+      "low-poly"
+    ],
+    "preferredTemplate": "low-poly",
+    "palette": "dark-blue-white",
+    "illustration": "algorithmic-routes",
+    "illustrationDescription": "An original graph with one highlighted route represents algorithmic problem-solving. It does not claim to reproduce the winning algorithm or a measured performance result.",
+    "sourceUrl": "https://technical-council.iitgn.tech/achievements",
+    "sources": [
+      "https://technical-council.iitgn.tech/achievements"
+    ],
+    "illustrationSources": [
+      "https://technical-council.iitgn.tech/achievements"
+    ],
+    "layout": "team",
+    "detailLines": "Algorithmic Optimisation",
+    "peopleLines": "Anurag Singh\nNishchay Bhutoria",
+    "photoNote": "A name-led team layout preserves the membership and spellings given by the IITGN Technical Council."
+  },
+  {
+    "slug": "inter-iit-2025-game-development",
+    "awardId": "inter-iit-2025-game-development",
+    "title": "IITGN wins Inter-IIT silver in Game Development Challenge",
+    "award": "Inter-IIT Tech Meet 14.0",
+    "headline": "Silver medal",
+    "badge": "GAME DEVELOPMENT CHALLENGE",
+    "date": "December 2025",
+    "displayDate": "December 2025",
+    "caption": "Congratulations to Divyansh Sharma, Hem Tilva, Nilay and Shubham on winning silver in the Game Development Challenge at Inter-IIT Tech Meet 14.0, held at IIT Patna in December 2025.",
+    "people": [
+      {
+        "name": "Divyansh Sharma",
+        "role": "Team member"
+      },
+      {
+        "name": "Hem Tilva",
+        "role": "Team member"
+      },
+      {
+        "name": "Nilay",
+        "role": "Team member"
+      },
+      {
+        "name": "Shubham",
+        "role": "Team member"
+      }
+    ],
+    "templates": [
+      "low-poly"
+    ],
+    "preferredTemplate": "low-poly",
+    "palette": "dark-blue-white",
+    "illustration": "game-world",
+    "illustrationDescription": "An original isometric tile level evokes game development. It is an imagined scene, not a screenshot or reconstruction of the team’s game.",
+    "sourceUrl": "https://technical-council.iitgn.tech/achievements",
+    "sources": [
+      "https://technical-council.iitgn.tech/achievements"
+    ],
+    "illustrationSources": [
+      "https://technical-council.iitgn.tech/achievements"
+    ],
+    "layout": "team",
+    "detailLines": "Game Development Challenge",
+    "peopleLines": "Divyansh Sharma · Hem Tilva\nNilay · Shubham",
+    "photoNote": "A name-led team layout preserves the membership and spellings given by the IITGN Technical Council."
+  },
+  {
+    "slug": "inter-iit-2025-isro-geospatial",
+    "awardId": "inter-iit-2025-isro-geospatial",
+    "title": "IITGN wins Inter-IIT silver in ISRO Geospatial Challenge",
+    "award": "Inter-IIT Tech Meet 14.0",
+    "headline": "Silver medal",
+    "badge": "ISRO GEOSPATIAL CHALLENGE",
+    "date": "December 2025",
+    "displayDate": "December 2025",
+    "caption": "Congratulations to Umang, Karan, Laksh, Romit, Shreyans and Viraj on winning silver in the ISRO Geospatial Challenge at Inter-IIT Tech Meet 14.0, held at IIT Patna in December 2025.",
+    "people": [
+      {
+        "name": "Umang",
+        "role": "Team member"
+      },
+      {
+        "name": "Karan",
+        "role": "Team member"
+      },
+      {
+        "name": "Laksh",
+        "role": "Team member"
+      },
+      {
+        "name": "Romit",
+        "role": "Team member"
+      },
+      {
+        "name": "Shreyans",
+        "role": "Team member"
+      },
+      {
+        "name": "Viraj",
+        "role": "Team member"
+      }
+    ],
+    "templates": [
+      "low-poly"
+    ],
+    "preferredTemplate": "low-poly",
+    "palette": "dark-blue-white",
+    "illustration": "geospatial-layers",
+    "illustrationDescription": "Original synthetic raster layers evoke geospatial analysis and satellite data. They are not a real location, satellite observation or competition result.",
+    "sourceUrl": "https://technical-council.iitgn.tech/achievements",
+    "sources": [
+      "https://technical-council.iitgn.tech/achievements"
+    ],
+    "illustrationSources": [
+      "https://technical-council.iitgn.tech/achievements"
+    ],
+    "layout": "team",
+    "detailLines": "ISRO Geospatial Challenge",
+    "peopleLines": "Umang · Karan · Laksh\nRomit · Shreyans · Viraj",
+    "photoNote": "A name-led team layout preserves the membership and spellings given by the IITGN Technical Council."
+  },
+  {
     "slug": "google-phd-fellowship-2025",
     "title": "Gayatri Priyadarsini Kancherla receives Google PhD Fellowship",
     "award": "Google PhD Fellowship",
@@ -116,6 +393,47 @@
     ],
     "palette": "dark-blue-white",
     "awardId": "gayatri-google-phd-fellowship"
+  },
+  {
+    "slug": "dharaben-acm-india-dda",
+    "awardId": "dharaben-acm-india-dda",
+    "title": "Dharaben R. Thakkar receives ACM India Doctoral Dissertation Award",
+    "award": "ACM India · 2025",
+    "headline": "Dissertation Award",
+    "badge": "DOCTORAL DISSERTATION AWARD RECIPIENT",
+    "date": "2025",
+    "displayDate": "2025",
+    "caption": "Congratulations to Dr. Dharaben R. Thakkar on receiving the ACM India Doctoral Dissertation Award 2025 for “On Computing Optimal Representations of Finite Groups”. Her doctoral adviser was Prof. Bireswar Das at IIT Gandhinagar.",
+    "people": [
+      {
+        "name": "Dr. Dharaben R. Thakkar",
+        "role": "Award recipient",
+        "image": "images/dharaben-2025/dharaben-thakkar.jpg",
+        "photoFocus": 0.7,
+        "imageSource": "https://event.india.acm.org/wp-content/uploads/2024/10/dharaben-thakkar.jpg",
+        "profileSource": "https://event.india.acm.org/arcs/"
+      }
+    ],
+    "templates": [
+      "low-poly"
+    ],
+    "preferredTemplate": "low-poly",
+    "palette": "dark-blue-white",
+    "illustration": "finite-group",
+    "illustrationDescription": "The cyclic group of order five is drawn with addition of one modulo five. It is an introductory finite-group example, not a result or construction from the dissertation.",
+    "sourceUrl": "https://awards.acm.org/india-doctoral-dissertation",
+    "sources": [
+      "https://awards.acm.org/india-doctoral-dissertation",
+      "https://prod-awards.acm.bloomreach.cloud/india-doctoral-dissertation"
+    ],
+    "illustrationSources": [
+      "https://awards.acm.org/india-doctoral-dissertation",
+      "https://prod-awards.acm.bloomreach.cloud/india-doctoral-dissertation"
+    ],
+    "detailLabel": "AWARDED DISSERTATION",
+    "detailLines": "On Computing Optimal Representations\nof Finite Groups",
+    "detailSize": 32,
+    "closing": "Doctoral adviser: Prof. Bireswar Das"
   },
   {
     "slug": "anirban-stoc-test-of-time-2024",

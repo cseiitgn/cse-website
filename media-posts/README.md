@@ -12,6 +12,7 @@ Preferred designs:
 - TCS PhD fellowships 2026: **Low-poly**, with a Gaussian alternative.
 - Google PhD Fellowship 2025: **Gaussian**.
 - STOC Test of Time Award 2024: **Low-poly**.
+- IndiaAI fellowships, COMSNETS, Himanshu's awards, the three Inter-IIT 2025 wins and Dharaben's dissertation award: **Low-poly**, with a subject-specific diagram.
 
 The shared design language is typography, layout and a dark-blue background with white text, blue illustrations and a white IITGN header. Every portrait has a narrow pale-blue mat and fine blue border, keeping white and photographic backgrounds visually consistent. Each illustration is chosen from the specific article or the recipient's verified research. Sources and the meaning of each schematic are stored in `posts.json` under `illustrationSources` and `illustrationDescription`.
 
@@ -21,6 +22,18 @@ The shared design language is typography, layout and a dark-blue background with
 - **STOC:** a sparse matrix mapping a longer vector to a shorter one, linked to the awarded dimension-reduction paper. The toy matrix illustrates sparsity and dimensions; no numerical accuracy guarantee is implied.
 
 Simple versions remain available. Choose a text-led layout when no relevant illustration is supported by the sources.
+
+The September 2026 collection covers every awards-page entry from QIF 2026 through Dharaben's 2025 award, plus the existing STOC 2024 poster. `layout: team` uses a named roster and a large topic diagram. `layout: fellows-roster` pairs each fellow with their adviser. These layouts give everyone equal space when a complete set of verified portraits is unavailable. They use no generated faces or placeholder portraits.
+
+Additional original illustrations in `recognition_illustrations.py`:
+
+- **IndiaAI:** a layered learning-network schematic, without suggesting particular fellowship topics.
+- **COMSNETS:** network observations leading into a conceptual diagnostic workflow.
+- **Himanshu:** two language streams entering a shared model, linked to multilingual NLP.
+- **Algorithmic optimisation:** a route through a graph, not a claim about the winning solution.
+- **Game development:** an imagined isometric tile level, not a screenshot of the team's game.
+- **Geospatial analysis:** stacked synthetic raster layers, not satellite measurements.
+- **Dharaben:** the cyclic group of order five, as an introductory finite-group example.
 
 ## Reuse
 
@@ -58,6 +71,20 @@ Retrieved 17 September 2026. Original source photographs are retained. User-requ
 
 - Gayatri Priyadarsini Kancherla: [IITGN scholar directory](https://iitgn.ac.in/people/students/cse), listed as K.K. Gayatri Priyadarsini; `https://drive.google.com/thumbnail?id=1xlT7lJP3ntP-gKmLtTUDlhBb0g6X164V`.
 - Anirban Dasgupta: [IITGN faculty profile](https://iitgn.ac.in/faculty/cse/fac-anirban), `https://iitgn.ac.in/media/pages/faculty/cse/fac-anirban/f540f910c6-1767089288/anirban.jpg`.
+- Himanshu Beniwal: [personal research homepage](https://himanshubeniwal.github.io/), `/socials/mypic.jpeg`. The poster uses a display crop of the original photograph.
+- Dharaben R. Thakkar: [ACM India ARCS](https://event.india.acm.org/arcs/), `https://event.india.acm.org/wp-content/uploads/2024/10/dharaben-thakkar.jpg`.
+
+The new portraits retain their original backgrounds. The official CSE scholar directory currently uses placeholder images for Naren Kumar and Manvendra Singh; the IndiaAI poster therefore uses a complete named roster.
+
+## Sources for the additional announcements
+
+Verified 17 September 2026. The displayed year/month follows the award announcement; no precise date is inferred from a sorting date in the website data.
+
+- IndiaAI: [CSE department announcement](https://cse.iitgn.ac.in/updates/news/), including all three adviser assignments.
+- COMSNETS: [conference awards](https://www.comsnets.org/awards.html), Graduate Forum Best Paper Runner-up, with all three authors. The indexed conference page retains the 2026 awards even while the site header advertises 2027.
+- Himanshu: [IITGN Connections XVIII(1), page 4](https://iitgn.ac.in/assets/pdfs/connections/v18i1.pdf), [Microsoft's 2025 recipients](https://www.microsoft.com/en-us/research/academic-program/microsoft-research-india-phd-award/2025-awardees/), and his research homepage. The two recognitions and their years are named separately.
+- Inter-IIT: [IITGN Technical Council achievements](https://technical-council.iitgn.tech/achievements), including team membership, placements and the December 11-14, 2025 event at IIT Patna. Short names follow this source without guessed surnames.
+- Dharaben: [ACM India Doctoral Dissertation Award](https://awards.acm.org/india-doctoral-dissertation), also available at [ACM's publishing host](https://prod-awards.acm.bloomreach.cloud/india-doctoral-dissertation), for the dissertation title and 2025 award year.
 
 ## Scientific illustration
 
