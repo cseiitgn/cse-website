@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import {
-  ArrowUpRight,
   BookOpen,
   CalendarDays,
   Check,
@@ -295,7 +294,7 @@ function PublicationCard({
             className="group/title inline-flex items-start gap-2 text-base font-semibold leading-snug hover:text-primary"
           >
             {publication.title}
-            <ArrowUpRight className="mt-0.5 size-4 shrink-0 opacity-0 transition-opacity group-hover/title:opacity-100" />
+
           </a>
 
           <p className="text-sm leading-relaxed text-muted-foreground">
@@ -728,7 +727,7 @@ export default function PublicationsDirectory() {
                   rel="noopener noreferrer"
                 >
                   DBLP Profile
-                  <ArrowUpRight className="size-3.5" />
+
                 </a>
               </Button>
               {selectedFacultyProfile.profileUrls.slice(0, 3).map((url) => (
@@ -741,7 +740,7 @@ export default function PublicationsDirectory() {
                 >
                   <a href={url} target="_blank" rel="noopener noreferrer">
                     {profileLabel(url)}
-                    <ArrowUpRight className="size-3.5" />
+
                   </a>
                 </Button>
               ))}

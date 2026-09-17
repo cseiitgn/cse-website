@@ -17,7 +17,7 @@ const years = [...new Set(awards.map(item => item.date.slice(0, 4)))].sort().rev
           const media = awardMedia[item.id as keyof typeof awardMedia];
           return <article class:list={['award-entry', {'award-with-media': media}]} id={item.id}>
             {media && <div class="award-preview"><img src={`${media.base}/preview.webp`} alt={media.alt} width="1080" height="1350" loading="lazy" /></div>}
-            <div><time datetime={item.date}>{item.displayDate}</time><h3>{item.title}</h3><p>{item.summary}</p><p class="award-people">{item.people}</p>{!item.sourceUrl.startsWith('/awards/') && <a class="media-link" href={item.sourceUrl} target={item.sourceUrl.startsWith('https://') ? '_blank' : undefined} rel={item.sourceUrl.startsWith('https://') ? 'noreferrer' : undefined}>{item.sourceLabel} ↗</a>}
+            <div><time datetime={item.date}>{item.displayDate}</time><h3>{item.title}</h3><p>{item.summary}</p><p class="award-people">{item.people}</p>{!item.sourceUrl.startsWith('/awards/') && <a class="media-link" href={item.sourceUrl} target={item.sourceUrl.startsWith('https://') ? '_blank' : undefined} rel={item.sourceUrl.startsWith('https://') ? 'noreferrer' : undefined}>{item.sourceLabel}</a>}
             </div>
           </article>;
         })}</div>

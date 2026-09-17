@@ -9,7 +9,7 @@ import {
   type EventCategory,
 } from "@/data/events";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
-import { ArrowRight, CalendarDays, Search, Sparkles } from "lucide-react";
+import { CalendarDays, Search } from "lucide-react";
 
 const categoryOrder: EventCategory[] = [
   "conference",
@@ -197,10 +197,7 @@ const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
                       }
                     >
                       {event.sourceLabel ?? "Event website"}
-                      <ArrowRight
-                        className="size-4 transition group-hover:translate-x-1"
-                        aria-hidden="true"
-                      />
+
                     </a>
                   )}
                   {(event.organizer || event.collaborators) && (
@@ -231,7 +228,7 @@ const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
   <section class="border-y bg-muted/20 py-10 md:py-12">
     <div class="container">
       <div class="mb-6 flex items-center gap-2">
-        <Sparkles className="size-5 text-secondary" aria-hidden="true" />
+
         <h2 class="text-2xl">Featured Programs</h2>
       </div>
       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -287,10 +284,7 @@ const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
                     }
                   >
                     {event.sourceLabel ?? "Event website"}
-                    <ArrowRight
-                      className="size-4 transition group-hover:translate-x-1"
-                      aria-hidden="true"
-                    />
+
                   </a>
                 )}
               </article>
@@ -365,10 +359,7 @@ const isExternalUrl = (url: string) => /^https?:\/\//.test(url);
                           }
                         >
                           {event.sourceLabel ?? "Event website"}
-                          <ArrowRight
-                            className="size-4 transition group-hover:translate-x-1"
-                            aria-hidden="true"
-                          />
+
                         </a>
                       )}
                     </div>

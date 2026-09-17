@@ -7,7 +7,6 @@ import {
 import VideoPreview from "@/components/VideoPreview.astro";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
 import {
-  ArrowRight,
   GraduationCap,
   Lightbulb,
   Mic2,
@@ -15,8 +14,7 @@ import {
   Newspaper,
   Search,
   School,
-  Sparkles,
-} from "lucide-react";
+  } from "lucide-react";
 
 const researchOutcomes = [
   {
@@ -305,10 +303,7 @@ const educationCategoryCounts = ["school", "course", "workshop", "conference"]
             class="group mt-5 inline-flex items-center gap-2 text-sm font-medium text-secondary"
           >
             {featuredPublicTalk.sourceLabel}
-            <ArrowRight
-              className="size-4 transition group-hover:translate-x-1"
-              aria-hidden="true"
-            />
+
           </a>
         </div>
       </article>
@@ -338,10 +333,7 @@ const educationCategoryCounts = ["school", "course", "workshop", "conference"]
           </p>
           <span class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-secondary">
             Read the blog post
-            <ArrowRight
-              className="size-4 transition group-hover:translate-x-1"
-              aria-hidden="true"
-            />
+
           </span>
         </div>
       </a>
@@ -541,7 +533,7 @@ const educationCategoryCounts = ["school", "course", "workshop", "conference"]
   <section class="border-y bg-muted/20 py-10 md:py-12">
     <div class="container">
       <div class="mb-6 flex items-center gap-2">
-        <Sparkles className="size-5 text-secondary" aria-hidden="true" />
+
         <h2 class="text-2xl">Recognition and Access Programs</h2>
       </div>
       <div class="grid gap-4 md:grid-cols-3">

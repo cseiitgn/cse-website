@@ -38,7 +38,7 @@ const pages = NAV_LINKS.flatMap((group) => flattenLinks(group.subitems ?? []));
             </summary>
             <div class="nav-dropdown">
               <a class="nav-overview" href={group.href}>
-                {group.label} overview <span aria-hidden="true">→</span>
+                {group.label} overview
               </a>
               <div class="nav-links">
               {group.subitems?.map((item) =>

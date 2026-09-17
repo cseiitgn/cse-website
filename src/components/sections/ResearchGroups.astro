@@ -23,7 +23,7 @@ const { compact = false } = Astro.props;
           <div class="research-summary">
             <h2>
               <a href={`/research/${group.slug}`}>
-                {group.title} <span aria-hidden="true">↗</span>
+                {group.title}
               </a>
             </h2>
             <p>{group.description}</p>
@@ -32,7 +32,7 @@ const { compact = false } = Astro.props;
             class="text-link research-area-link"
             href={`/research/${group.slug}`}
           >
-            Faculty and research <span aria-hidden="true">→</span>
+            Faculty and research
           </a>
         </article>
       ))

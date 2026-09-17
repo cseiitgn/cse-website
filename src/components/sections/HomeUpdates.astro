@@ -16,7 +16,7 @@ const events = [...departmentEvents]
   <div class="container updates-grid">
     <div>
       <div class="updates-heading">
-        <h2>Department news</h2><a href="/updates/news">All news ↗</a>
+        <h2>Department news</h2><a href="/updates/news">All news</a>
       </div>{
         homepageNewsItems.slice(0, 3).map((item) => (
           <article class="news-row">
@@ -36,7 +36,7 @@ const events = [...departmentEvents]
     </div>
     <aside>
       <div class="updates-heading">
-        <h2>Latest seminars</h2><a href="/updates/seminars">All talks ↗</a>
+        <h2>Latest seminars</h2><a href="/updates/seminars">All talks</a>
       </div>{
         talks.map((talk) => (
           <article class="talk-row">
@@ -63,7 +63,7 @@ const events = [...departmentEvents]
       <div>
         <p class="eyebrow">Department events</p><a
           class="text-sm underline underline-offset-4"
-          href="/updates/events">Browse the archive ↗</a>
+          href="/updates/events">Browse the archive</a>
       </div>{
         events.map((event) => (
           <article>

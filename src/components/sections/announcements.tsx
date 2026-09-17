@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ArrowRight, Calendar, Megaphone } from "lucide-react";
+import { Calendar, Megaphone } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -90,7 +90,7 @@ export default function Announcements() {
               </h2>
               <Button variant="ghost" size="sm" asChild>
                 <a href="/updates/news">
-                  View all <ArrowRight className="ml-1 size-3.5" />
+                  View all
                 </a>
               </Button>
             </div>
