@@ -16,8 +16,9 @@ export default function RecentWins() {
       <div className="container space-y-8">
         <h2 className="flex items-center gap-2 text-2xl">
           <Trophy className="text-secondary size-6" />
-          Recognitions &amp; Awards
+          Awards &amp; fellowships
         </h2>
+        <a href="/awards/" className="inline-block underline underline-offset-4">All awards &amp; fellowships →</a>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,0.35fr)_minmax(0,0.65fr)]">
           {featuredAward && (
@@ -32,7 +33,7 @@ export default function RecentWins() {
               </div>
               <a
                 href={featuredAward.sourceUrl}
-                target="_blank"
+                target={featuredAward.sourceUrl.startsWith("https://") ? "_blank" : undefined}
                 rel="noreferrer"
                 className="mt-5 block text-xl font-semibold tracking-tight text-foreground transition-colors hover:text-secondary"
               >
@@ -72,7 +73,7 @@ export default function RecentWins() {
                       />
                       <a
                         href={award.sourceUrl}
-                        target="_blank"
+                        target={award.sourceUrl.startsWith("https://") ? "_blank" : undefined}
                         rel="noreferrer"
                         className="block transition-colors hover:text-secondary"
                       >

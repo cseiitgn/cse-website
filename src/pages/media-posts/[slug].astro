@@ -1,0 +1,72 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { MEDIA_POSTS, TEMPLATE_LABELS, mediaAsset } from '@/data/media-posts';
+import '@/styles/media-posts.css';
+export function getStaticPaths() {
+  return MEDIA_POSTS.map(post => ({ params: { slug: post.slug }, props: { post } }));
+}
+const { post } = Astro.props;
+---
+<DefaultLayout title={post.title} description={post.summary} image={mediaAsset(post.slug, 'simple', 'png')} imageAlt={post.title} imageWidth={2160} imageHeight={2700}>
+  <article class="container media-page">
+    <a class="media-link" href="/media-posts/">← All media posts</a>
+    <header class="media-heading">
+      <time datetime={post.date}>{post.displayDate}</time>
+      <h1>{post.title}</h1>
+      <p>{post.summary}</p>
+    </header>
+    <div class="media-feature">
+      <a class="media-cover" href={mediaAsset(post.slug, 'simple', 'png')} aria-label="Open full-size poster">
+        <img src={mediaAsset(post.slug, 'simple-preview', 'webp')} alt={post.title} width="1080" height="1350" fetchpriority="high" />
+      </a>
+      <div class="media-info">
+        <h2>People</h2>
+        <ul class="media-people">
+          {post.people.map(person => (
+            <li><strong>{person.name}</strong><span>{person.role}</span>{'advisers' in person && <p>Advised by {person.advisers}</p>}</li>
+          ))}
+        </ul>
+        {post.proposal && <section><h2>Awarded proposal</h2><p>{post.proposal}</p></section>}
+        <section>
+          <h2>Download poster</h2>
+          <div class="media-downloads">
+            <a href={mediaAsset(post.slug, 'simple', 'png')} download>PNG · 2160 × 2700</a>
+            <a href={mediaAsset(post.slug, 'simple', 'pdf')} download>PDF</a>
+          </div>
+        </section>
+        <section>
+          <h2>Caption</h2>
+          <p id="post-caption" class="media-caption">{post.caption}</p>
+          <div class="media-downloads">
+            <button type="button" data-copy-caption>Copy caption</button>
+            <a href={`/media-posts/${post.slug}/caption.txt`} download>Download text</a>
+          </div>
+          <p data-copy-status role="status" aria-live="polite"></p>
+        </section>
+      </div>
+    </div>
+    {post.templates.length > 1 && <section class="media-variants"><h2>More designs</h2><div class="media-variant-grid">
+      {post.templates.filter(template => template !== 'simple').map(template => (
+        <article>
+          <a href={mediaAsset(post.slug, template, 'png')} aria-label={`Open ${TEMPLATE_LABELS[template]} poster`}><img src={mediaAsset(post.slug, `${template}-preview`, 'webp')} alt={`${TEMPLATE_LABELS[template]} version of ${post.title}`} width="1080" height="1350" loading="lazy" /></a>
+          <h3>{TEMPLATE_LABELS[template]}</h3>
+          <div class="media-downloads"><a href={mediaAsset(post.slug, template, 'png')} download>PNG</a><a href={mediaAsset(post.slug, template, 'pdf')} download>PDF</a></div>
+        </article>
+      ))}
+    </div></section>}
+    {post.illustrationDescription && <aside class="media-note"><h2>About the illustration</h2><p>{post.illustrationDescription}</p></aside>}
+    <p class="media-back"><a class="media-link" href="/awards/">Awards &amp; fellowships →</a></p>
+  </article>
+</DefaultLayout>
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-copy-caption]');
+  button?.addEventListener('click', async () => {
+    const status = document.querySelector<HTMLElement>('[data-copy-status]');
+    try {
+      await navigator.clipboard.writeText(document.querySelector('#post-caption')?.textContent?.trim() ?? '');
+      if (status) status.textContent = 'Caption copied.';
+    } catch {
+      if (status) status.textContent = 'Select the caption to copy it, or download the text.';
+    }
+  });
+</script>

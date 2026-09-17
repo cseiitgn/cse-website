@@ -1,3 +1,5 @@
+import { MEDIA_POSTS } from './media-posts';
+
 export type NewsCategory =
   | "media"
   | "research"
@@ -38,6 +40,13 @@ export const STATUS_LABELS: Record<NewsStatus, string> = {
 };
 
 export const departmentNews: DepartmentNewsItem[] = [
+  ...MEDIA_POSTS.map((post): DepartmentNewsItem => ({
+    id: post.slug, title: post.title, summary: post.summary,
+    people: post.people.map(person => 'advisers' in person ? `${person.name} (advised by ${person.advisers})` : `${person.name} (${person.role})`).join('; '),
+    displayDate: post.displayDate, date: post.date, category: 'award', status: 'achievement',
+    sourceLabel: 'Posters & caption', sourceUrl: `/media-posts/${post.slug}/`, homepage: true,
+    featured: post.slug === 'qif-india-2026',
+  })),
   {
     id: "indiaai-phd-fellowships-2026",
     title: "Three CSE PhD students receive IndiaAI PhD Fellowships",
@@ -52,7 +61,7 @@ export const departmentNews: DepartmentNewsItem[] = [
     sourceLabel: "Department announcement",
     sourceUrl: "https://cse.iitgn.ac.in/updates/news#award",
     homepage: true,
-    featured: true,
+    featured: false,
   },
   {
     id: "abhishek-asiaccs-2026-track-chair",

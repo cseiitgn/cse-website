@@ -1,0 +1,40 @@
+[
+  {
+    "slug": "qif-india-2026",
+    "title": "Arjun Badola and Dikshit Hegde win QIF India 2026",
+    "award": "Qualcomm Innovation Fellowship",
+    "headline": "India 2026",
+    "badge": "WINNERS",
+    "date": "2026-09-16",
+    "displayDate": "16 September 2026",
+    "summary": "Arjun Badola and Dikshit Hegde have won the Qualcomm Innovation Fellowship India 2026 for their proposal on transparent 3D Gaussian splatting, advised by Prof. Shanmuganathan Raman.",
+    "proposal": "Frequency-Adaptive Prior Supervision for Transparent 3D Gaussian Splatting",
+    "proposalLines": "Frequency-Adaptive Prior Supervision\nfor Transparent 3D Gaussian Splatting",
+    "caption": "Congratulations to Arjun Badola and Dikshit Hegde on winning the Qualcomm Innovation Fellowship India 2026. Their proposal, ‘Frequency-Adaptive Prior Supervision for Transparent 3D Gaussian Splatting’, is advised by Prof. Shanmuganathan Raman at IIT Gandhinagar.",
+    "people": [
+      {"name": "Arjun Badola", "role": "QIF 2026 winner", "image": "images/qif-2026/arjun-badola.jpg"},
+      {"name": "Dikshit Hegde", "role": "QIF 2026 winner", "image": "images/qif-2026/dikshit-hegde.jpg"},
+      {"name": "Prof. Shanmuganathan Raman", "posterName": "Prof. Shanmuganathan\nRaman", "role": "Faculty adviser", "image": "images/qif-2026/shanmuganathan-raman.jpg"}
+    ],
+    "templates": ["simple", "gaussian", "low-poly"],
+    "illustration": "torus",
+    "illustrationDescription": "The torus is a doughnut-shaped surface. The Gaussian version uses overlapping elliptical contours, the low-poly version uses triangular faces, and the simple version uses a wireframe. These are conceptual illustrations, not results from the awarded project."
+  },
+  {
+    "slug": "tcs-phd-fellowships-2026",
+    "title": "Ayush Shrivastava and Rohit Narayanan selected for TCS PhD fellowships",
+    "award": "TCS Research Scholar Program",
+    "headline": "PhD fellowships",
+    "badge": "CYCLE 20 · 2026",
+    "date": "2026-08-03",
+    "displayDate": "3 August 2026",
+    "effectiveDate": "1 July 2026",
+    "summary": "Ayush Shrivastava and Rohit Narayanan have been selected for the TCS Research Scholar Program, Cycle 20, with fellowships effective 1 July 2026.",
+    "caption": "Congratulations to Ayush Shrivastava and Rohit Narayanan on their selection for the TCS Research Scholar Program, Cycle 20. Ayush is advised by Prof. Nipun Batra and Prof. Mayank Goel; Rohit is advised by Prof. Balagopal Komarath. The fellowships are effective 1 July 2026.",
+    "people": [
+      {"name": "Ayush Shrivastava", "role": "PhD fellow", "advisers": "Prof. Nipun Batra and Prof. Mayank Goel", "adviserLines": "Prof. Nipun Batra\nand Prof. Mayank Goel", "image": "images/tcs-2026/ayush-shrivastava.jpg"},
+      {"name": "Rohit Narayanan", "role": "PhD fellow", "advisers": "Prof. Balagopal Komarath", "adviserLines": "Prof. Balagopal Komarath", "image": "images/tcs-2026/rohit-narayanan.jpg"}
+    ],
+    "templates": ["simple"]
+  }
+]

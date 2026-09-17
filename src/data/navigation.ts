@@ -192,6 +192,16 @@ export const NAV_LINKS: NavItem[] = [
         description: "Announcements and highlights",
       },
       {
+        label: "Awards & fellowships",
+        href: "/awards",
+        description: "Student, faculty and alumni recognitions",
+      },
+      {
+        label: "Media posts",
+        href: "/media-posts",
+        description: "Posters and captions for sharing",
+      },
+      {
         label: "Seminars",
         href: "/updates/seminars",
         description: "Talks and lecture series",

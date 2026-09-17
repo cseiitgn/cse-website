@@ -177,7 +177,7 @@ test("changelog has a dated email summary and working links", () => {
   const page = parse(read("dist/changelog/index.html"));
   assert.match(read("dist/index.html"), /href="\/changelog\/"/);
   assert.equal(walk(page, n => attr(n, "id") === "2026-09-16").length, 1);
-  assert.equal(walk(page, n => n.tagName === "button" && attr(n, "data-copy-summary") !== undefined).length, 1);
+  assert.equal(walk(page, n => n.tagName === "button" && attr(n, "data-copy-summary") !== undefined).length, 2);
   const changes = walk(page, n => attr(n, "data-change-text") !== undefined).map(content);
   assert.ok(changes.includes("Alumni portraits"));
   assert.ok(changes.includes("Faculty mapping"));

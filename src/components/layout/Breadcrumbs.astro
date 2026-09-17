@@ -4,7 +4,7 @@ const path = Astro.url.pathname.replace(/\/$/, "");
 const group = NAV_LINKS.find(
   (group) =>
     path.startsWith(group.href.split("/").slice(0, 2).join("/")) ||
-    group.subitems?.some((item) => item.href === path),
+    group.subitems?.some((item) => item.href === path || path.startsWith(item.href + "/")),
 );
 const page =
   group &&
