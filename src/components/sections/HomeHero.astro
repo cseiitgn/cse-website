@@ -27,8 +27,9 @@
       /></a><figcaption>
         <span data-photo-caption>CSE · Class of 2026</span>
         <div class="photo-controls" hidden>
-          <button type="button" data-photo-index="0" aria-label="Show Class of 2026 photograph" aria-pressed="true">Class of 2026</button>
-          <button type="button" data-photo-index="1" aria-label="Show farewell dinner photograph" aria-pressed="false">Farewell dinner</button>
+          <button type="button" data-photo-step="-1" aria-label="Previous photograph">←</button>
+          <span data-photo-count aria-live="polite" aria-atomic="true">1 / 2</span>
+          <button type="button" data-photo-step="1" aria-label="Next photograph">→</button>
         </div>
       </figcaption>
       <span class="sr-only" data-photo-status role="status"></span>
@@ -42,6 +43,7 @@
   const link = gallery.querySelector<HTMLAnchorElement>('a')!;
   const caption = gallery.querySelector<HTMLElement>('[data-photo-caption]')!;
   const controls = gallery.querySelector<HTMLElement>('.photo-controls')!;
+  const count = gallery.querySelector<HTMLElement>('[data-photo-count]')!;
   const status = gallery.querySelector<HTMLElement>('[data-photo-status]')!;
   const buttons = [...controls.querySelectorAll<HTMLButtonElement>('button')];
   const photos = [
@@ -51,12 +53,12 @@
   let current = 0;
   let loading = false;
   controls.hidden = false;
-  caption.hidden = true;
-  async function showPhoto(nextIndex:number) {
-    if (loading || nextIndex === current) return;
+  async function showPhoto(step:number) {
+    if (loading) return;
     loading = true;
     buttons.forEach(button => button.setAttribute('aria-disabled','true'));
     status.textContent = 'Loading photograph';
+    const nextIndex = (current + step + photos.length) % photos.length;
     const photo = photos[nextIndex];
     const base = `/images/people/${photo.name}`;
     const next = new Image();
@@ -71,7 +73,7 @@
       link.href = `${base}-1440.webp`;
       caption.textContent = photo.caption;
       current = nextIndex;
-      buttons.forEach((button,index) => button.setAttribute('aria-pressed',String(index === current)));
+      count.textContent = `${current + 1} / ${photos.length}`;
       status.textContent = photo.caption;
     } catch {
       status.textContent = 'Photograph could not load. Please try again.';
@@ -80,13 +82,11 @@
       buttons.forEach(button => button.removeAttribute('aria-disabled'));
     }
   }
-  buttons.forEach(button => button.addEventListener('click', () => showPhoto(Number(button.dataset.photoIndex))));
+  buttons.forEach(button => button.addEventListener('click', () => showPhoto(Number(button.dataset.photoStep))));
   controls.addEventListener('keydown', event => {
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
-      const nextIndex = (current + (event.key === 'ArrowLeft' ? -1 : 1) + photos.length) % photos.length;
-      buttons[nextIndex].focus();
-      showPhoto(nextIndex);
+      showPhoto(event.key === 'ArrowLeft' ? -1 : 1);
     }
   });
 </script>

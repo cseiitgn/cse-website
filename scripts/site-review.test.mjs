@@ -27,7 +27,7 @@ test("homepage starts with the class photograph and defers other images", () => 
   assert.equal(posters.length, 2);
   for (const poster of posters) assert.equal(attr(poster, "loading"), "lazy");
   const controls = walk(hero, n => n.tagName === "button");
-  assert.deepEqual(controls.map(n => attr(n, "aria-label")), ["Show Class of 2026 photograph", "Show farewell dinner photograph"]);
+  assert.deepEqual(controls.map(n => attr(n, "aria-label")), ["Previous photograph", "Next photograph"]);
   for (const width of [640, 960, 1440]) {
     assert.ok(fs.statSync(`dist/images/people/cse-farewell-dinner-${width}.webp`).size < 220000);
   }

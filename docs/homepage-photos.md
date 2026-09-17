@@ -23,7 +23,7 @@ photograph from Shanmuganathan Raman's Farewell folder (received 17 September
 at x=0, y=650, width=4160, height=2340 and exported at the same three widths and
 WebP quality. It is stored as `cse-farewell-dinner-*` (53, 105 and 206 kB).
 
-The class photograph is first. Labelled photo selectors and left/right arrow keys
+The class photograph is first. Previous/next buttons and left/right arrow keys
 switch photographs, updating the caption, alt text and full-size link. There is
 no autoplay or carousel dependency. The dinner image loads only on request;
 the class photograph remains available if JavaScript is disabled or loading fails.
