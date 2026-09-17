@@ -1,6 +1,7 @@
 {
   "tool": "Built-in image_gen",
   "date": "2026-09-17",
+  "scope": "Only Rohit and Gayatri use background-edited portraits; all other portraits use their original sources.",
   "edits": [
     {
       "name": "rohit",
@@ -9,22 +10,10 @@
       "output": "images/tcs-2026/rohit-narayanan-white.png"
     },
     {
-      "name": "ayush",
-      "prompt": "Use case: identity-preserve / background-extraction. Edit target: the single supplied academic portrait. Background cleanup only. Remove the building, rails, wall and outdoor background. Replace the background with a seamless solid pure white (#ffffff) background. Preserve the person's face, facial features, expression, gaze, skin tone and skin texture, hair, glasses, forehead mark if present, facial hair, clothing, body proportions and exact pose as faithfully as possible. Do not beautify, smooth skin, change lighting on the person, change clothes, invent accessories, alter expression, or recompose the shot. Preserve original framing and aspect ratio. Clean natural hair edges; no gray halos, borders, shadows, text or gradients. This will be used as an authentic portrait on a university award poster. Return only the edited individual photograph.",
-      "source": "images/tcs-2026/ayush-shrivastava.jpg",
-      "output": "images/tcs-2026/ayush-shrivastava-white.png"
-    },
-    {
-      "name": "raman",
-      "prompt": "Use case: identity-preserve / background-extraction. Edit target: the single supplied academic portrait. Background cleanup only. Remove the trees and foliage background. Replace the background with a seamless solid pure white (#ffffff) background. Preserve the person's face, facial features, expression, gaze, skin tone and skin texture, hair, glasses, forehead mark if present, facial hair, clothing, body proportions and exact pose as faithfully as possible. Do not beautify, smooth skin, change lighting on the person, change clothes, invent accessories, alter expression, or recompose the shot. Preserve original framing and aspect ratio. Clean natural hair edges; no gray halos, borders, shadows, text or gradients. This will be used as an authentic portrait on a university award poster. Return only the edited individual photograph.",
-      "source": "images/qif-2026/shanmuganathan-raman.jpg",
-      "output": "images/qif-2026/shanmuganathan-raman-white.png"
-    },
-    {
-      "name": "anirban",
-      "prompt": "Use case: identity-preserve / background-extraction. Edit target: the single supplied academic portrait. Background cleanup only. Remove the whiteboards, classroom, wall, furniture, and small bottom-left watermark from the background. Preserve the seated person's full existing hand gestures and pose. Replace the background with a seamless solid pure white (#ffffff) background. Preserve the person's face, facial features, expression, gaze, skin tone and skin texture, hair, glasses, forehead mark if present, facial hair, clothing, body proportions and exact pose as faithfully as possible. Do not beautify, smooth skin, change lighting on the person, change clothes, invent accessories, alter expression, or recompose the shot. Preserve original framing and aspect ratio. Clean natural hair edges; no gray halos, borders, shadows, text or gradients. This will be used as an authentic portrait on a university award poster. Return only the edited individual photograph.",
-      "source": "images/stoc-2024/anirban-dasgupta.jpg",
-      "output": "images/stoc-2024/anirban-dasgupta-white.png"
+      "name": "gayatri",
+      "prompt": "Use case: identity-preserve. Edit target: supplied Gayatri academic portrait. Clean only the uneven gray-white background to seamless pure white. Preserve her exact identity, facial structure, expression, gaze, skin tone and natural texture, hair, ears, clothing, posture, framing and proportions faithfully. Do not beautify, smooth, relight, sharpen facial features, invent jewelry, modify hair or change clothes. Keep natural hair edges without halos. Preserve original aspect ratio. Return just the individual photograph.",
+      "source": "images/google-2025/gayatri-priyadarsini.jpg",
+      "output": "images/google-2025/gayatri-priyadarsini-white.png"
     }
   ]
 }

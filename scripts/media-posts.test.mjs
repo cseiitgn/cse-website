@@ -62,7 +62,7 @@ test('awards page links only the selected reviewed media, with matching files', 
   const page=parse(fs.readFileSync('dist/awards/index.html','utf8'));
   const nodes=walk(page);
   for(const post of posts){
-    assert.equal(post.palette,'white-blue');
+    assert.equal(post.palette,'dark-blue-white');
     const selected=media[post.awardId];assert.ok(selected);
     const article=nodes.find(n=>n.tagName==='article' && attr(n,'id')===post.awardId);assert.ok(article);
     for(const [published,original] of [['poster.png',post.preferredTemplate+'.png'],['poster.pdf',post.preferredTemplate+'.pdf'],['caption.txt','caption.txt']]){

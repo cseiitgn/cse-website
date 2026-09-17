@@ -26,8 +26,7 @@
         "name": "Prof. Shanmuganathan Raman",
         "posterName": "Prof. Shanmuganathan\nRaman",
         "role": "Faculty adviser",
-        "image": "images/qif-2026/shanmuganathan-raman-white.png",
-        "originalImage": "images/qif-2026/shanmuganathan-raman.jpg"
+        "image": "images/qif-2026/shanmuganathan-raman.jpg"
       }
     ],
     "templates": [
@@ -38,7 +37,7 @@
     "illustration": "torus",
     "illustrationDescription": "The torus is a doughnut-shaped surface. The Gaussian version uses overlapping elliptical contours, the low-poly version uses triangular faces, and the simple version uses a wireframe. These are conceptual illustrations, not results from the awarded project.",
     "preferredTemplate": "gaussian",
-    "palette": "white-blue",
+    "palette": "dark-blue-white",
     "awardId": "qif-india-2026"
   },
   {
@@ -58,8 +57,7 @@
         "role": "PhD fellow",
         "advisers": "Prof. Nipun Batra and Prof. Mayank Goel",
         "adviserLines": "Prof. Nipun Batra\nand Prof. Mayank Goel",
-        "image": "images/tcs-2026/ayush-shrivastava-white.png",
-        "originalImage": "images/tcs-2026/ayush-shrivastava.jpg"
+        "image": "images/tcs-2026/ayush-shrivastava.jpg"
       },
       {
         "name": "Rohit Narayanan",
@@ -82,7 +80,7 @@
       "https://ayushshrivstava.github.io/",
       "https://arxiv.org/abs/2511.03388"
     ],
-    "palette": "white-blue",
+    "palette": "dark-blue-white",
     "awardId": "tcs-phd-fellowships-2026"
   },
   {
@@ -99,7 +97,8 @@
         "name": "Gayatri Priyadarsini Kancherla",
         "posterName": "Gayatri Priyadarsini\nKancherla",
         "role": "PhD fellow",
-        "image": "images/google-2025/gayatri-priyadarsini.jpg"
+        "image": "images/google-2025/gayatri-priyadarsini-white.png",
+        "originalImage": "images/google-2025/gayatri-priyadarsini.jpg"
       }
     ],
     "templates": [
@@ -115,7 +114,7 @@
     "illustrationSources": [
       "https://arxiv.org/abs/2411.15416"
     ],
-    "palette": "white-blue",
+    "palette": "dark-blue-white",
     "awardId": "gayatri-google-phd-fellowship"
   },
   {
@@ -131,9 +130,8 @@
       {
         "name": "Prof. Anirban Dasgupta",
         "role": "Award co-recipient",
-        "image": "images/stoc-2024/anirban-dasgupta-white.png",
-        "photoFocus": 1,
-        "originalImage": "images/stoc-2024/anirban-dasgupta.jpg"
+        "image": "images/stoc-2024/anirban-dasgupta.jpg",
+        "photoFocus": 1
       }
     ],
     "templates": [
@@ -150,7 +148,7 @@
     "illustrationSources": [
       "https://arxiv.org/abs/1004.4240"
     ],
-    "palette": "white-blue",
+    "palette": "dark-blue-white",
     "awardId": "anirban-stoc-test-of-time-2024"
   }
 ]
