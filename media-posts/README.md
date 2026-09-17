@@ -13,7 +13,7 @@ Preferred designs:
 - Google PhD Fellowship 2025: **Gaussian**.
 - STOC Test of Time Award 2024: **Low-poly**.
 
-The shared design language is typography, layout and a dark-blue background with white text, blue illustrations and a white IITGN header. Each illustration is chosen from the specific article or the recipient's verified research. Sources and the meaning of each schematic are stored in `posts.json` under `illustrationSources` and `illustrationDescription`.
+The shared design language is typography, layout and a dark-blue background with white text, blue illustrations and a white IITGN header. Every portrait has a narrow pale-blue mat and fine blue border, keeping white and photographic backgrounds visually consistent. Each illustration is chosen from the specific article or the recipient's verified research. Sources and the meaning of each schematic are stored in `posts.json` under `illustrationSources` and `illustrationDescription`.
 
 - **QIF:** a torus rendered as Gaussian splats or triangular faces, illustrating surface representation. It remains a conceptual example, not a project result.
 - **TCS:** a thermal patch and waveform for Ayush's health sensing; a monotone arithmetic formula for Rohit's algebraic complexity. The motifs describe their published research areas, without claiming to depict their fellowship proposals.

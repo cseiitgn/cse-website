@@ -89,6 +89,9 @@ class Poster:
         self.text(1012,1300,self.post['displayDate'].upper(),16,mono=True,color=self.muted,ha='right')
     def photo(self,path,x,y,w,h,focus=.5):
         # A viewport crops the displayed source; original photo files remain intact.
+        # A narrow pale-blue mat makes light and busy backgrounds feel consistent.
+        self.ax.add_patch(Rectangle((x-6,y-6),w+12,h+12,
+                                    facecolor='#dbeafb',edgecolor='#8ec5ff',lw=.8))
         im=Image.open(path)
         photoax=self.fig.add_axes([x/1080,1-(y+h)/1350,w/1080,h/1350])
         photoax.imshow(im,interpolation='lanczos'); photoax.axis('off')
