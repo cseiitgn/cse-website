@@ -16,9 +16,8 @@ const years = [...new Set(awards.map(item => item.date.slice(0, 4)))].sort().rev
         <div>{awards.filter(item => item.date.startsWith(year)).map(item => {
           const media = awardMedia[item.id as keyof typeof awardMedia];
           return <article class:list={['award-entry', {'award-with-media': media}]} id={item.id}>
-            {media && <a class="award-preview" href={`${media.base}/poster.png`} aria-label={`View poster: ${item.title}`}><img src={`${media.base}/preview.webp`} alt={media.alt} width="1080" height="1350" loading="lazy" /></a>}
+            {media && <div class="award-preview"><img src={`${media.base}/preview.webp`} alt={media.alt} width="1080" height="1350" loading="lazy" /></div>}
             <div><time datetime={item.date}>{item.displayDate}</time><h3>{item.title}</h3><p>{item.summary}</p><p class="award-people">{item.people}</p>{!item.sourceUrl.startsWith('/awards/') && <a class="media-link" href={item.sourceUrl} target={item.sourceUrl.startsWith('https://') ? '_blank' : undefined} rel={item.sourceUrl.startsWith('https://') ? 'noreferrer' : undefined}>{item.sourceLabel} ↗</a>}
-              {media && <nav class="award-downloads" aria-label={`Media for ${item.title}`}><a href={`${media.base}/poster.png`} download>Poster PNG</a><a href={`${media.base}/poster.pdf`} download>PDF</a><a href={`${media.base}/caption.txt`} download>Caption</a></nav>}
             </div>
           </article>;
         })}</div>

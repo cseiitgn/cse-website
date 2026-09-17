@@ -1,1 +1,0 @@
-Congratulations to Devansh Lodha, Mohit Panchal and Prof. Sameer G. Kulkarni. Their paper, “MCP-Diag: A Deterministic, Protocol-Driven Architecture for AI-Native Network Diagnostics”, received the Graduate Forum Best Paper Runner-up award at COMSNETS 2026.

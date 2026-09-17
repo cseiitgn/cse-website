@@ -60,7 +60,7 @@ test('poster facts distinguish winners, advisers and historical award years', ()
   for (const author of ['Anirban Dasgupta', 'Ravi Kumar', 'Tamás Sarlós']) assert.ok(stoc.creditLines.includes(author));
 });
 
-test('awards page links only the selected reviewed media, with matching files', () => {
+test('awards page displays selected previews while downloads stay in the repository', () => {
   const media=JSON.parse(fs.readFileSync('src/data/award-media.json','utf8'));
   const page=parse(fs.readFileSync('dist/awards/index.html','utf8'));
   const nodes=walk(page);
@@ -68,10 +68,13 @@ test('awards page links only the selected reviewed media, with matching files', 
     assert.equal(post.palette,'dark-blue-white');
     const selected=media[post.awardId];assert.ok(selected);
     const article=nodes.find(n=>n.tagName==='article' && attr(n,'id')===post.awardId);assert.ok(article);
-    for(const [published,original] of [['poster.png',post.preferredTemplate+'.png'],['poster.pdf',post.preferredTemplate+'.pdf'],['caption.txt','caption.txt']]){
-      const href=selected.base+'/'+published;
-      assert.ok(walk(article).some(n=>n.tagName==='a' && attr(n,'href')===href));
-      assert.ok(fs.readFileSync('dist'+href).equals(fs.readFileSync('media-posts/exports/'+post.slug+'/'+original)));
+    const preview=selected.base+'/preview.webp';
+    assert.ok(walk(article).some(n=>n.tagName==='img' && attr(n,'src')===preview));
+    assert.ok(fs.readFileSync('dist'+preview).equals(fs.readFileSync('media-posts/exports/'+post.slug+'/'+post.preferredTemplate+'-preview.webp')));
+    for(const filename of ['poster.png','poster.pdf','caption.txt']){
+      const href=selected.base+'/'+filename;
+      assert.ok(!nodes.some(n=>n.tagName==='a' && attr(n,'href')===href));
+      assert.ok(!fs.existsSync('dist'+href), href+' must not be published');
     }
     assert.ok(fs.statSync('dist'+selected.base+'/preview.webp').size<180000);
   }

@@ -1,6 +1,6 @@
 # Internal CSE poster collection
 
-Working files for departmental announcements. This folder is outside `public/` and `src/pages/`; the working gallery and source files are excluded from the website build. Selected finished posters are explicitly copied to `public/media/awards/` for links on the awards page. The public awards archive is maintained separately in `src/data/news.ts`.
+Working files for departmental announcements. This folder is outside `public/` and `src/pages/`; the working gallery and source files are excluded from the website build. Only compressed WebP previews are copied to `public/media/awards/` for display on the awards page. Downloadable PNGs, PDFs and captions stay in `media-posts/exports/` in GitHub. The public awards archive is maintained separately in `src/data/news.ts`.
 
 ## Open and share
 
@@ -47,7 +47,7 @@ Additional original illustrations in `recognition_illustrations.py`:
    ```
 
    Omit `--post` to regenerate all. Packages are isolated by `uv`, not website dependencies. Arial and Source Code Pro have DejaVu fallbacks.
-5. Inspect the PNG and PDF for cropping, line breaks and names. The renderer checks text against page bounds. Commit sources and exports together. Run `python3 media-posts/publish.py` to copy the preferred PNG, PDF, preview and caption for each announcement into `public/media/awards/` and update `src/data/award-media.json`. The remaining variants and source portraits stay internal.
+5. Inspect the PNG and PDF for cropping, line breaks and names. The renderer checks text against page bounds. Commit sources and exports together. Run `python3 media-posts/publish.py` to copy only the preferred WebP preview for each announcement into `public/media/awards/` and update `src/data/award-media.json`. All PNG/PDF variants, captions and source portraits stay in this repository folder. The script also removes legacy download copies from the public output.
 
 PNG: 2160 × 2700, portrait 4:5. PDF: 274.32 × 342.9 mm, embedded text. WebP previews: 1080 × 1350. `node --test scripts/media-posts.test.mjs` after a site build checks that the working collection stays internal and selected media downloads match their reviewed exports.
 

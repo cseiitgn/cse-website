@@ -1,1 +1,0 @@
-Prof. Anirban Dasgupta, Ravi Kumar and Tamás Sarlós received the STOC 2024 10-year Test of Time Award for “A Sparse Johnson-Lindenstrauss Transform”, published in 2010. Congratulations to the authors.
