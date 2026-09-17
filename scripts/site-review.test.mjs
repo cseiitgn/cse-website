@@ -13,7 +13,7 @@ const walk = (node, predicate) => [
 const home = read("dist/index.html");
 const dom = parse(home);
 
-test("homepage uses one responsive class photograph and defers award posters", () => {
+test("homepage starts with the class photograph and defers other images", () => {
   const hero = walk(dom, n => n.tagName === "figure" && attr(n, "class") === "hero-photo")[0];
   const photos = walk(hero, n => n.tagName === "img");
   assert.equal(photos.length, 1);
@@ -26,6 +26,12 @@ test("homepage uses one responsive class photograph and defers award posters", (
   const posters = walk(dom, n => n.tagName === "img" && attr(n, "src")?.startsWith("/media/awards/"));
   assert.equal(posters.length, 2);
   for (const poster of posters) assert.equal(attr(poster, "loading"), "lazy");
+  const controls = walk(hero, n => n.tagName === "button");
+  assert.deepEqual(controls.map(n => attr(n, "aria-label")), ["Previous photograph", "Next photograph"]);
+  for (const width of [640, 960, 1440]) {
+    assert.ok(fs.statSync(`dist/images/people/cse-farewell-dinner-${width}.webp`).size < 220000);
+  }
+  assert.doesNotMatch(home, /<img[^>]+src="[^"]*cse-farewell-dinner/);
 });
 
 test("theme review controls follow the staging-only changelog", () => {
@@ -234,10 +240,10 @@ test("every research area has a named heading and a destination", () => {
   }
 });
 
-test("research navigation groups the three areas inside a submenu", () => {
+test("research navigation groups all three areas without a second disclosure", () => {
   const submenus = walk(
     dom,
-    (n) => n.tagName === "details" && hasClass(n, "nav-submenu"),
+    (n) => n.tagName === "div" && hasClass(n, "nav-area-group"),
   );
   assert.equal(submenus.length, 1);
   assert.match(content(submenus[0]), /Research areas/);

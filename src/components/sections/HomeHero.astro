@@ -13,7 +13,7 @@
       </div><a class="careers-link" href="/about/careers"
         >Join us at IIT Gandhinagar <span aria-hidden="true">→</span></a>
     </div>
-    <figure class="hero-photo">
+    <figure class="hero-photo" data-community-gallery aria-label="CSE community photographs" aria-roledescription="carousel">
       <a href="/images/people/cse-class-2026-1440.webp" aria-label="View photograph at full size" target="_blank" rel="noreferrer">
       <img
         src="/images/people/cse-class-2026-960.webp"
@@ -25,8 +25,68 @@
         fetchpriority="high"
         decoding="async"
       /></a><figcaption>
-        <span>CSE · Class of 2026</span>
+        <span data-photo-caption>CSE · Class of 2026</span>
+        <div class="photo-controls" hidden>
+          <button type="button" data-photo-step="-1" aria-label="Previous photograph">←</button>
+          <span data-photo-count aria-live="polite" aria-atomic="true">1 / 2</span>
+          <button type="button" data-photo-step="1" aria-label="Next photograph">→</button>
+        </div>
       </figcaption>
+      <span class="sr-only" data-photo-status role="status"></span>
     </figure>
   </div>
 </section>
+
+<script>
+  const gallery = document.querySelector<HTMLElement>('[data-community-gallery]')!;
+  const image = gallery.querySelector<HTMLImageElement>('img')!;
+  const link = gallery.querySelector<HTMLAnchorElement>('a')!;
+  const caption = gallery.querySelector<HTMLElement>('[data-photo-caption]')!;
+  const controls = gallery.querySelector<HTMLElement>('.photo-controls')!;
+  const count = gallery.querySelector<HTMLElement>('[data-photo-count]')!;
+  const status = gallery.querySelector<HTMLElement>('[data-photo-status]')!;
+  const buttons = [...controls.querySelectorAll<HTMLButtonElement>('button')];
+  const photos = [
+    {name:'cse-class-2026', caption:'CSE · Class of 2026', alt:image.alt},
+    {name:'cse-farewell-dinner', caption:'CSE farewell dinner', alt:'CSE students and faculty together at the farewell dinner, with a seated front row and colleagues standing behind'},
+  ];
+  let current = 0;
+  let loading = false;
+  controls.hidden = false;
+  async function showPhoto(step:number) {
+    if (loading) return;
+    loading = true;
+    buttons.forEach(button => button.setAttribute('aria-disabled','true'));
+    status.textContent = 'Loading photograph';
+    const nextIndex = (current + step + photos.length) % photos.length;
+    const photo = photos[nextIndex];
+    const base = `/images/people/${photo.name}`;
+    const next = new Image();
+    next.sizes = image.sizes;
+    next.srcset = [640,960,1440].map(width => `${base}-${width}.webp ${width}w`).join(', ');
+    next.src = `${base}-960.webp`;
+    try {
+      await next.decode();
+      image.srcset = next.srcset;
+      image.src = next.src;
+      image.alt = photo.alt;
+      link.href = `${base}-1440.webp`;
+      caption.textContent = photo.caption;
+      current = nextIndex;
+      count.textContent = `${current + 1} / ${photos.length}`;
+      status.textContent = photo.caption;
+    } catch {
+      status.textContent = 'Photograph could not load. Please try again.';
+    } finally {
+      loading = false;
+      buttons.forEach(button => button.removeAttribute('aria-disabled'));
+    }
+  }
+  buttons.forEach(button => button.addEventListener('click', () => showPhoto(Number(button.dataset.photoStep))));
+  controls.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      showPhoto(event.key === 'ArrowLeft' ? -1 : 1);
+    }
+  });
+</script>

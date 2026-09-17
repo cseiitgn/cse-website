@@ -5,7 +5,9 @@ export const WEBSITE_UPDATES = [
     title: 'Website launch',
     changes: [
       { text: 'Homepage polish', href: '/' },
-      { text: 'Class photograph', href: '/' },
+      { text: 'Community carousel', href: '/' },
+      { text: 'Cleaner navigation', href: '/' },
+      { text: 'Poster gallery', href: '/awards/' },
       { text: 'Awards archive', href: '/awards/' },
       { text: 'Award posters', href: '/awards/' },
       { text: 'QIF winners', href: '/awards/#qif-india-2026' },

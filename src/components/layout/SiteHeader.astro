@@ -22,7 +22,7 @@ const pages = NAV_LINKS.flatMap((group) => flattenLinks(group.subitems ?? []));
       />
       <span>Computer Science<br />&amp; Engineering</span>
     </a>
-    <nav aria-label="Main navigation" class="site-navigation">
+    <nav id="main-navigation" aria-label="Main navigation" class="site-navigation">
       {
         NAV_LINKS.map((group) => (
           <details class="nav-group" name="main-navigation">
@@ -34,44 +34,37 @@ const pages = NAV_LINKS.flatMap((group) => flattenLinks(group.subitems ?? []));
               }}
             >
               {group.label}
-              <span aria-hidden="true">⌄</span>
+              <svg class="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 4.5 3 3 3-3" /></svg>
             </summary>
             <div class="nav-dropdown">
               <a class="nav-overview" href={group.href}>
                 {group.label} overview <span aria-hidden="true">→</span>
               </a>
+              <div class="nav-links">
               {group.subitems?.map((item) =>
                 item.children ? (
-                  <details class="nav-submenu">
-                    <summary>
-                      {item.label}
-                      <span aria-hidden="true">＋</span>
-                    </summary>
-                    <div>
-                      {item.children.map((child) => (
-                        <a href={child.href}>{child.label}</a>
-                      ))}
-                    </div>
-                  </details>
+                  <div class="nav-area-group">
+                    <p>{item.label}</p>
+                    {item.children.map((child) => (
+                      <a href={child.href} aria-current={currentPage.replace(/\/$/, "") === child.href ? "page" : undefined}>{child.label}</a>
+                    ))}
+                  </div>
                 ) : (
-                  <a
-                    href={item.href}
-                    aria-current={
-                      currentPage.replace(/\/$/, "") === item.href
-                        ? "page"
-                        : undefined
-                    }
-                  >
-                    {item.label}
+                  <a href={item.href} aria-current={currentPage.replace(/\/$/, "") === item.href ? "page" : undefined}>
+                    <span>{item.label}</span><small>{item.description}</small>
                   </a>
                 ),
               )}
+              </div>
             </div>
           </details>
         ))
       }
     </nav>
     <div class="header-actions">
+      <button type="button" class="mobile-menu-toggle" data-nav-toggle aria-expanded="false" aria-controls="main-navigation" hidden>
+        <span>Menu</span><svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h14M3 14h14" /></svg>
+      </button>
       <button
         type="button"
         data-search-open
@@ -163,9 +156,64 @@ const pages = NAV_LINKS.flatMap((group) => flattenLinks(group.subitems ?? []));
   </p>
 </dialog>
 <script>
+  const header = document.querySelector<HTMLElement>(".site-header")!;
+  const navigation = header.querySelector<HTMLElement>(".site-navigation")!;
+  const menuToggle = header.querySelector<HTMLButtonElement>("[data-nav-toggle]")!;
+  const groups = [...navigation.querySelectorAll<HTMLDetailsElement>(".nav-group")];
+  const closeNavigation = () => {
+    groups.forEach(group => group.open = false);
+    menuToggle.setAttribute("aria-expanded", "false");
+    header.classList.remove("menu-open");
+  };
+  header.dataset.navEnhanced = "true";
+  menuToggle.hidden = false;
+  menuToggle.addEventListener("click", event => {
+    const opening = menuToggle.getAttribute("aria-expanded") !== "true";
+    closeNavigation();
+    menuToggle.setAttribute("aria-expanded", String(opening));
+    header.classList.toggle("menu-open", opening);
+    if (opening && event.detail === 0) navigation.querySelector("summary")?.focus();
+  });
+  menuToggle.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeNavigation();
+  });
+  groups.forEach(group => {
+    const trigger = group.querySelector<HTMLElement>("summary")!;
+    trigger.addEventListener("keydown", event => {
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        group.open = true;
+        group.querySelector<HTMLAnchorElement>("a")?.focus();
+      }
+    });
+    group.addEventListener("focusout", () => {
+      requestAnimationFrame(() => {
+        if (!group.contains(document.activeElement)) group.open = false;
+      });
+    });
+  });
+  navigation.addEventListener("keydown", event => {
+    if (event.key !== "Escape") return;
+    event.preventDefault();
+    event.stopPropagation();
+    const openGroup = groups.find(group => group.open);
+    if (openGroup) {
+      openGroup.open = false;
+      openGroup.querySelector("summary")?.focus();
+    } else {
+      closeNavigation();
+      menuToggle.focus();
+    }
+  });
+  document.addEventListener("click", event => {
+    if (!header.contains(event.target as Node)) closeNavigation();
+  });
+  window.matchMedia("(max-width: 1050px)").addEventListener("change", closeNavigation);
+
   const dialog = document.querySelector<HTMLDialogElement>("#site-search")!;
   const input = document.querySelector<HTMLInputElement>("#site-search-input")!;
   const openSearch = () => {
+    closeNavigation();
     dialog.showModal();
     input.focus();
   };
