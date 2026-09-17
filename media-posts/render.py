@@ -13,7 +13,7 @@ from PIL import Image
 
 SOURCE=Path(__file__).resolve().parent
 ROOT=SOURCE.parent
-OUT=ROOT/"public"/"media-posts"
+OUT=SOURCE/"exports"
 FONT='/System/Library/Fonts/Supplemental/Arial.ttf'
 BOLD='/System/Library/Fonts/Supplemental/Arial Bold.ttf'
 MONO='/Library/Fonts/SourceCodePro-Regular.ttf'
@@ -86,14 +86,14 @@ class Poster:
         self.rule(1276)
         self.text(68,1300,'cse.iitgn.ac.in',17,mono=True)
         self.text(1012,1300,self.post['displayDate'].upper(),16,mono=True,color=self.muted,ha='right')
-    def photo(self,path,x,y,w,h):
+    def photo(self,path,x,y,w,h,focus=.5):
         # A viewport crops the displayed source; original photo files remain intact.
         im=Image.open(path)
         photoax=self.fig.add_axes([x/1080,1-(y+h)/1350,w/1080,h/1350])
         photoax.imshow(im,interpolation='lanczos'); photoax.axis('off')
         iw,ih=im.size; ratio=w/h
         if iw/ih>ratio:
-            cw=ih*ratio; photoax.set_xlim((iw-cw)/2,(iw+cw)/2);photoax.set_ylim(ih,0)
+            cw=ih*ratio; left=(iw-cw)*focus; photoax.set_xlim(left,left+cw);photoax.set_ylim(ih,0)
         else:
             ch=iw/ratio; top=max(0,(ih-ch)*.10);photoax.set_ylim(top+ch,top);photoax.set_xlim(0,iw)
     def people(self,y=820,h=226):
@@ -127,13 +127,34 @@ def render(post,template):
     p.post=post
     (OUT/post['slug']).mkdir(parents=True,exist_ok=True)
     p.header();p.text(68,174,post['award'],28)
-    p.text(65,218,post['headline'],70 if len(post['headline'])>12 else 77,bold=True)
-    if len(post['people'])==2:
+    p.text(65,218,post['headline'],63 if len(post['headline'])>16 else 70 if len(post['headline'])>12 else 77,bold=True)
+    if len(post['people'])==1:
+        person=post['people'][0]
+        p.text(68,325,post['badge'],21,mono=True,color=p.accent)
+        p.photo(SOURCE/person['image'],68,419,390,390,person.get('photoFocus',.5))
+        if template=='gaussian': gaussian(p.ax,(760,609),138)
+        else: poly(p.ax,(760,609),138)
+        p.text(68,848,person['role'].upper(),15,mono=True,color=p.accent)
+        p.text(68,883,person.get('posterName',person['name']),43,bold=True,linespacing=1.12)
+        p.rule(1008)
+        p.text(68,1042,post['detailLabel'],16,mono=True,color=p.accent)
+        p.text(68,1082,post['detailLines'],32,bold=True)
+        if post.get('creditLines'): p.text(68,1130,post['creditLines'],25,color=p.muted)
+        p.text(68,1202,post['closing'],23,color=p.muted)
+    elif len(post['people'])==2:
         p.text(68,323,post['badge'],24,mono=True,color=p.accent)
-        p.people(y=413,h=400)
-        p.rule(1042)
-        p.text(68,1090,'Congratulations to our research scholars.',30,bold=True)
-        p.text(68,1148,f"Fellowships effective {post['effectiveDate']}.",24,color=p.muted)
+        if template!='simple':
+            if template=='gaussian': gaussian(p.ax,(897,365),64)
+            else: poly(p.ax,(897,365),64)
+            p.people(y=445,h=400)
+            p.rule(1090)
+            p.text(68,1130,'Congratulations to our research scholars.',30,bold=True)
+            p.text(68,1183,f"Fellowships effective {post['effectiveDate']}.",24,color=p.muted)
+        else:
+            p.people(y=413,h=400)
+            p.rule(1042)
+            p.text(68,1090,'Congratulations to our research scholars.',30,bold=True)
+            p.text(68,1148,f"Fellowships effective {post['effectiveDate']}.",24,color=p.muted)
     elif template=='simple':
         p.text(68,325,'Congratulations to our winning team',29,color=p.accent)
         p.people(y=411,h=260);p.rule(840)
@@ -160,6 +181,22 @@ def render(post,template):
         p.people();p.text(68,1197,'Congratulations to the winning team and their adviser.',22,color=p.muted)
     p.footer();p.save()
 
+
+def make_gallery(posts):
+    """A local contact sheet with relative file links; never part of the site build."""
+    from html import escape
+    sections=[]
+    for post in posts:
+        preferred=post['preferredTemplate']
+        variants=sorted(post['templates'],key=lambda t:t!=preferred)
+        cards=[]
+        for template in variants:
+            base=f"exports/{post['slug']}/{template}"
+            label={'gaussian':'Gaussian','low-poly':'Low-poly','simple':'Simple'}[template]
+            cards.append(f'<figure><a href="{base}.png"><img src="{base}-preview.webp" alt="{escape(post["title"])} — {label}"></a><figcaption>{label}{" · preferred" if template==preferred else ""} · <a href="{base}.png">PNG</a> · <a href="{base}.pdf">PDF</a></figcaption></figure>')
+        sections.append(f'<section><h2>{escape(post["title"])}</h2><div class="designs">{"".join(cards)}</div><p>{escape(post["caption"])}</p><a href="exports/{post["slug"]}/caption.txt">Caption text</a><details><summary>Illustration note</summary><p>{escape(post.get("illustrationDescription",""))}</p></details></section>')
+    (SOURCE/'index.html').write_text('''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSE poster collection</title><style>body{font:16px/1.6 system-ui,sans-serif;background:#f6f5f0;color:#183a3c;margin:0;padding:40px}main{max-width:1200px;margin:auto}h1{font-size:40px;line-height:1.1}h2{font-size:24px;line-height:1.3}section{border-top:1px solid #bac5c1;margin-top:48px;padding-top:24px}.designs{display:flex;flex-wrap:wrap;gap:24px}figure{margin:0;width:calc((100% - 48px)/3);min-width:260px}img{width:100%;display:block}figcaption{padding-top:8px}a{color:#126b70}p{max-width:80ch}details{font-size:14px;margin-top:12px}@media(max-width:700px){body{padding:20px}figure{width:100%}}</style><main><h1>CSE poster collection</h1><p>Internal working files. Gaussian and low-poly are the preferred styles. Open a poster to view the full PNG, or download its PDF.</p>'''+''.join(sections)+'</main></html>')
+
 if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser();parser.add_argument('--post');args=parser.parse_args()
@@ -172,3 +209,4 @@ if __name__=='__main__':
             render(post,template)
             print(f"Rendered {post['slug']}/{template}")
         (OUT/post['slug']/'caption.txt').write_text(post['caption']+'\n')
+    make_gallery(json.loads((SOURCE/'posts.json').read_text()))

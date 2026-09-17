@@ -12,13 +12,31 @@
     "proposalLines": "Frequency-Adaptive Prior Supervision\nfor Transparent 3D Gaussian Splatting",
     "caption": "Congratulations to Arjun Badola and Dikshit Hegde on winning the Qualcomm Innovation Fellowship India 2026. Their proposal, ‘Frequency-Adaptive Prior Supervision for Transparent 3D Gaussian Splatting’, is advised by Prof. Shanmuganathan Raman at IIT Gandhinagar.",
     "people": [
-      {"name": "Arjun Badola", "role": "QIF 2026 winner", "image": "images/qif-2026/arjun-badola.jpg"},
-      {"name": "Dikshit Hegde", "role": "QIF 2026 winner", "image": "images/qif-2026/dikshit-hegde.jpg"},
-      {"name": "Prof. Shanmuganathan Raman", "posterName": "Prof. Shanmuganathan\nRaman", "role": "Faculty adviser", "image": "images/qif-2026/shanmuganathan-raman.jpg"}
+      {
+        "name": "Arjun Badola",
+        "role": "QIF 2026 winner",
+        "image": "images/qif-2026/arjun-badola.jpg"
+      },
+      {
+        "name": "Dikshit Hegde",
+        "role": "QIF 2026 winner",
+        "image": "images/qif-2026/dikshit-hegde.jpg"
+      },
+      {
+        "name": "Prof. Shanmuganathan Raman",
+        "posterName": "Prof. Shanmuganathan\nRaman",
+        "role": "Faculty adviser",
+        "image": "images/qif-2026/shanmuganathan-raman.jpg"
+      }
     ],
-    "templates": ["simple", "gaussian", "low-poly"],
+    "templates": [
+      "simple",
+      "gaussian",
+      "low-poly"
+    ],
     "illustration": "torus",
-    "illustrationDescription": "The torus is a doughnut-shaped surface. The Gaussian version uses overlapping elliptical contours, the low-poly version uses triangular faces, and the simple version uses a wireframe. These are conceptual illustrations, not results from the awarded project."
+    "illustrationDescription": "The torus is a doughnut-shaped surface. The Gaussian version uses overlapping elliptical contours, the low-poly version uses triangular faces, and the simple version uses a wireframe. These are conceptual illustrations, not results from the awarded project.",
+    "preferredTemplate": "gaussian"
   },
   {
     "slug": "tcs-phd-fellowships-2026",
@@ -32,9 +50,85 @@
     "summary": "Ayush Shrivastava and Rohit Narayanan have been selected for the TCS Research Scholar Program, Cycle 20, with fellowships effective 1 July 2026.",
     "caption": "Congratulations to Ayush Shrivastava and Rohit Narayanan on their selection for the TCS Research Scholar Program, Cycle 20. Ayush is advised by Prof. Nipun Batra and Prof. Mayank Goel; Rohit is advised by Prof. Balagopal Komarath. The fellowships are effective 1 July 2026.",
     "people": [
-      {"name": "Ayush Shrivastava", "role": "PhD fellow", "advisers": "Prof. Nipun Batra and Prof. Mayank Goel", "adviserLines": "Prof. Nipun Batra\nand Prof. Mayank Goel", "image": "images/tcs-2026/ayush-shrivastava.jpg"},
-      {"name": "Rohit Narayanan", "role": "PhD fellow", "advisers": "Prof. Balagopal Komarath", "adviserLines": "Prof. Balagopal Komarath", "image": "images/tcs-2026/rohit-narayanan.jpg"}
+      {
+        "name": "Ayush Shrivastava",
+        "role": "PhD fellow",
+        "advisers": "Prof. Nipun Batra and Prof. Mayank Goel",
+        "adviserLines": "Prof. Nipun Batra\nand Prof. Mayank Goel",
+        "image": "images/tcs-2026/ayush-shrivastava.jpg"
+      },
+      {
+        "name": "Rohit Narayanan",
+        "role": "PhD fellow",
+        "advisers": "Prof. Balagopal Komarath",
+        "adviserLines": "Prof. Balagopal Komarath",
+        "image": "images/tcs-2026/rohit-narayanan.jpg"
+      }
     ],
-    "templates": ["simple"]
+    "templates": [
+      "low-poly",
+      "gaussian",
+      "simple"
+    ],
+    "preferredTemplate": "low-poly",
+    "illustration": "torus",
+    "illustrationDescription": "Decorative torus used as the CSE poster motif; not a research result or a depiction of the fellows’ work."
+  },
+  {
+    "slug": "google-phd-fellowship-2025",
+    "title": "Gayatri Priyadarsini Kancherla receives Google PhD Fellowship",
+    "award": "Google PhD Fellowship",
+    "headline": "Class of 2025",
+    "badge": "FELLOWSHIP RECIPIENT · 2025",
+    "date": "2025",
+    "displayDate": "2025",
+    "caption": "Congratulations to Gayatri Priyadarsini Kancherla on receiving a 2025 Google PhD Fellowship in Privacy, Safety, and Security.",
+    "people": [
+      {
+        "name": "Gayatri Priyadarsini Kancherla",
+        "posterName": "Gayatri Priyadarsini\nKancherla",
+        "role": "PhD fellow",
+        "image": "images/google-2025/gayatri-priyadarsini.jpg"
+      }
+    ],
+    "templates": [
+      "gaussian"
+    ],
+    "preferredTemplate": "gaussian",
+    "illustration": "torus",
+    "illustrationDescription": "Decorative Gaussian torus; not a representation of the recipient’s research.",
+    "detailLabel": "RESEARCH AREA",
+    "detailLines": "Privacy, Safety, and Security",
+    "closing": "Congratulations on the fellowship.",
+    "sourceUrl": "https://research.google/programs-and-events/phd-fellowship/recipients/"
+  },
+  {
+    "slug": "anirban-stoc-test-of-time-2024",
+    "title": "Anirban Dasgupta receives STOC 2024 Test of Time Award",
+    "award": "ACM Symposium on Theory of Computing",
+    "headline": "Test of Time Award",
+    "badge": "10-YEAR AWARD · 2024",
+    "date": "2024",
+    "displayDate": "2024",
+    "caption": "Prof. Anirban Dasgupta, Ravi Kumar and Tamás Sarlós received the STOC 2024 10-year Test of Time Award for “A Sparse Johnson-Lindenstrauss Transform”, published in 2010. Congratulations to the authors.",
+    "people": [
+      {
+        "name": "Prof. Anirban Dasgupta",
+        "role": "Award co-recipient",
+        "image": "images/stoc-2024/anirban-dasgupta.jpg",
+        "photoFocus": 1
+      }
+    ],
+    "templates": [
+      "low-poly"
+    ],
+    "preferredTemplate": "low-poly",
+    "illustration": "torus",
+    "illustrationDescription": "Decorative triangular torus; not a visualisation of the Johnson-Lindenstrauss transform.",
+    "detailLabel": "AWARDED PAPER · STOC 2010",
+    "detailLines": "A Sparse Johnson-Lindenstrauss Transform",
+    "creditLines": "Anirban Dasgupta · Ravi Kumar · Tamás Sarlós",
+    "closing": "Congratulations to the authors.",
+    "sourceUrl": "https://bowers.cornell.edu/news-stories/faculty-and-alumni-receive-test-time-awards-stoc-2024"
   }
 ]

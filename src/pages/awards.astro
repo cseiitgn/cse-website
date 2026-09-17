@@ -1,23 +1,20 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { allDepartmentNews } from '@/data/news';
-import { MEDIA_POSTS, mediaAsset } from '@/data/media-posts';
-import '@/styles/media-posts.css';
+import '@/styles/awards.css';
 const awards = allDepartmentNews.filter(item => item.category === 'award');
 const years = [...new Set(awards.map(item => item.date.slice(0, 4)))].sort().reverse();
 ---
 <DefaultLayout title="Awards & fellowships" description="Awards, fellowships and recognitions received by CSE students, faculty and alumni at IIT Gandhinagar.">
   <section class="container media-page">
-    <header class="media-heading"><p class="media-eyebrow">Recognition</p><h1>Awards &amp; fellowships</h1><p>Celebrating our students, faculty and alumni.</p><a class="media-link" href="/media-posts/">Posters &amp; captions →</a></header>
+    <header class="media-heading"><p class="media-eyebrow">Recognition</p><h1>Awards &amp; fellowships</h1><p>Celebrating our students, faculty and alumni.</p></header>
     <nav class="award-years" aria-label="Awards by year">{years.map(year => <a href={`#year-${year}`}>{year}</a>)}</nav>
     {years.map(year => (
       <section class="award-year" id={`year-${year}`}>
         <h2>{year}</h2>
         <div>{awards.filter(item => item.date.startsWith(year)).map(item => {
-          const post = MEDIA_POSTS.find(post => post.slug === item.id);
-          return <article class:list={['award-entry', { 'award-with-poster': post }]} id={item.id}>
-            {post && <a href={`/media-posts/${post.slug}/`} class="award-poster"><img src={mediaAsset(post.slug, 'simple-preview', 'webp')} alt={`Poster: ${item.title}`} width="1080" height="1350" loading="lazy" /></a>}
-            <div><time datetime={item.date}>{item.displayDate}</time><h3>{item.title}</h3><p>{item.summary}</p><p class="award-people">{item.people}</p><a class="media-link" href={item.sourceUrl} target={item.sourceUrl.startsWith('https://') ? '_blank' : undefined} rel={item.sourceUrl.startsWith('https://') ? 'noreferrer' : undefined}>{post ? 'Posters & caption →' : `${item.sourceLabel} ↗`}</a></div>
+          return <article class="award-entry" id={item.id}>
+            <div><time datetime={item.date}>{item.displayDate}</time><h3>{item.title}</h3><p>{item.summary}</p><p class="award-people">{item.people}</p>{!item.sourceUrl.startsWith('/awards/') && <a class="media-link" href={item.sourceUrl} target={item.sourceUrl.startsWith('https://') ? '_blank' : undefined} rel={item.sourceUrl.startsWith('https://') ? 'noreferrer' : undefined}>{item.sourceLabel} ↗</a>}</div>
           </article>;
         })}</div>
       </section>

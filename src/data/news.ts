@@ -1,5 +1,3 @@
-import { MEDIA_POSTS } from './media-posts';
-
 export type NewsCategory =
   | "media"
   | "research"
@@ -40,13 +38,34 @@ export const STATUS_LABELS: Record<NewsStatus, string> = {
 };
 
 export const departmentNews: DepartmentNewsItem[] = [
-  ...MEDIA_POSTS.map((post): DepartmentNewsItem => ({
-    id: post.slug, title: post.title, summary: post.summary,
-    people: post.people.map(person => 'advisers' in person ? `${person.name} (advised by ${person.advisers})` : `${person.name} (${person.role})`).join('; '),
-    displayDate: post.displayDate, date: post.date, category: 'award', status: 'achievement',
-    sourceLabel: 'Posters & caption', sourceUrl: `/media-posts/${post.slug}/`, homepage: true,
-    featured: post.slug === 'qif-india-2026',
-  })),
+  {
+    "id": "qif-india-2026",
+    "title": "Arjun Badola and Dikshit Hegde win QIF India 2026",
+    "summary": "Arjun Badola and Dikshit Hegde have won the Qualcomm Innovation Fellowship India 2026 for their proposal on transparent 3D Gaussian splatting, advised by Prof. Shanmuganathan Raman.",
+    "displayDate": "16 September 2026",
+    "date": "2026-09-16",
+    "people": "Arjun Badola (QIF 2026 winner); Dikshit Hegde (QIF 2026 winner); Prof. Shanmuganathan Raman (Faculty adviser)",
+    "category": "award",
+    "status": "achievement",
+    "sourceLabel": "Department announcement",
+    "sourceUrl": "/awards/#qif-india-2026",
+    "homepage": true,
+    "featured": true
+  },
+  {
+    "id": "tcs-phd-fellowships-2026",
+    "title": "Ayush Shrivastava and Rohit Narayanan selected for TCS PhD fellowships",
+    "summary": "Ayush Shrivastava and Rohit Narayanan have been selected for the TCS Research Scholar Program, Cycle 20, with fellowships effective 1 July 2026.",
+    "displayDate": "3 August 2026",
+    "date": "2026-08-03",
+    "people": "Ayush Shrivastava (advised by Prof. Nipun Batra and Prof. Mayank Goel); Rohit Narayanan (advised by Prof. Balagopal Komarath)",
+    "category": "award",
+    "status": "achievement",
+    "sourceLabel": "Department announcement",
+    "sourceUrl": "/awards/#tcs-phd-fellowships-2026",
+    "homepage": true,
+    "featured": false
+  },
   {
     id: "indiaai-phd-fellowships-2026",
     title: "Three CSE PhD students receive IndiaAI PhD Fellowships",
