@@ -1,4 +1,4 @@
-"""Three original Matplotlib announcement layouts. Photo pixels are not retouched.
+"""Three original Matplotlib announcement layouts with approved portrait assets.
 Run: uv run --with matplotlib==3.11.2 --with pillow==12.3.0 python media-posts/render.py
 """
 from pathlib import Path
@@ -40,7 +40,7 @@ def gaussian(ax,c,s):
         samples.append(((R@p)[2],np.array(c)+P@p*s,vals,np.degrees(np.arctan2(vecs[1,1],vecs[0,1])),u))
     for depth,xy,vals,ang,u in sorted(samples,key=lambda x:x[0]):
         mix=(np.sin(u+.5)+1)/2
-        color=np.array(matplotlib.colors.to_rgb('#0f7e84'))*(1-mix)+np.array(matplotlib.colors.to_rgb('#c1783f'))*mix
+        color=np.array(matplotlib.colors.to_rgb('#175fae'))*(1-mix)+np.array(matplotlib.colors.to_rgb('#87b7eb'))*mix
         for k,alpha in [(2.5,.055),(1.7,.09),(1.,.12)]:
             ax.add_patch(Ellipse(xy,2*k*np.sqrt(vals[1]),2*k*np.sqrt(vals[0]),angle=ang,facecolor=color,edgecolor='none',alpha=alpha))
         ax.add_patch(Ellipse(xy,3.4*np.sqrt(vals[1]),3.4*np.sqrt(vals[0]),angle=ang,facecolor='none',edgecolor=color,alpha=.30,lw=.4))
@@ -57,18 +57,18 @@ def poly(ax,c,s):
             light=np.array([-.3,-.4,1]); light/=np.linalg.norm(light)
             shade=.32+.68*abs(np.dot(R@n,light))
             t=(np.sin(u+.45)+1)/2
-            col=(np.array(matplotlib.colors.to_rgb('#44bac1'))*(1-t)+np.array(matplotlib.colors.to_rgb('#ecad70'))*t)*shade
+            col=(np.array(matplotlib.colors.to_rgb('#276ab2'))*(1-t)+np.array(matplotlib.colors.to_rgb('#a6c9ee'))*t)*shade
             faces.append((np.mean(pts@R.T,axis=0)[2],np.array(c)+pts@P.T*s,col))
     for z,xy,col in sorted(faces,key=lambda x:x[0]):
-        ax.add_patch(Polygon(xy,facecolor=col,edgecolor='#143944',linewidth=.35))
+        ax.add_patch(Polygon(xy,facecolor=col,edgecolor='#214d80',linewidth=.35))
 
 def wire(ax,c,s):
     for v in np.linspace(0,2*np.pi,7,endpoint=False):
         pts=np.array([point(u,v) for u in np.linspace(0,2*np.pi,200)])@P.T*s+np.array(c)
-        ax.plot(pts[:,0],pts[:,1],color='#2a797c',alpha=.58,lw=.6)
+        ax.plot(pts[:,0],pts[:,1],color='#327ac0',alpha=.58,lw=.6)
     for u in np.linspace(0,2*np.pi,16,endpoint=False):
         pts=np.array([point(u,v) for v in np.linspace(0,2*np.pi,60)])@P.T*s+np.array(c)
-        ax.plot(pts[:,0],pts[:,1],color='#2a797c',alpha=.38,lw=.5)
+        ax.plot(pts[:,0],pts[:,1],color='#327ac0',alpha=.38,lw=.5)
 
 class Poster:
     def __init__(self,slug,bg,ink,muted,accent,dark=False):
@@ -81,7 +81,7 @@ class Poster:
     def header(self):
         if self.dark: self.ax.add_patch(Rectangle((0,0),1080,134,facecolor='#f7f6f0',zorder=-1))
         self.ax.imshow(Image.open(ROOT/'public/layout/iitgn-logo.webp'),extent=(68,346,109,39),interpolation='lanczos')
-        self.text(1012,52,'COMPUTER SCIENCE\n& ENGINEERING',18,bold=True,ha='right',color='#183a3c',linespacing=1.4)
+        self.text(1012,52,'COMPUTER SCIENCE\n& ENGINEERING',18,bold=True,ha='right',color='#15345f',linespacing=1.4)
         if not self.dark:self.rule(134)
     def footer(self):
         self.rule(1276)
@@ -123,8 +123,7 @@ class Poster:
 
 
 def render(post,template):
-    dark=template=='low-poly'
-    p=Poster(f"{post['slug']}/{template}", '#102f38' if dark else '#ffffff' if template=='simple' else '#f5f3ec', '#f3f3e9' if dark else '#183a3c', '#b6cacc' if dark else '#536663', '#72d5d4' if dark else '#147b83',dark)
+    p=Poster(f"{post['slug']}/{template}", '#ffffff', '#15345f', '#56708f', '#175fae')
     p.post=post
     (OUT/post['slug']).mkdir(parents=True,exist_ok=True)
     p.header();p.text(68,174,post['award'],28)
@@ -196,7 +195,7 @@ def make_gallery(posts):
             label={'gaussian':'Gaussian','low-poly':'Low-poly','simple':'Simple'}[template]
             cards.append(f'<figure><a href="{base}.png"><img src="{base}-preview.webp" alt="{escape(post["title"])} — {label}"></a><figcaption>{label}{" · preferred" if template==preferred else ""} · <a href="{base}.png">PNG</a> · <a href="{base}.pdf">PDF</a></figcaption></figure>')
         sections.append(f'<section><h2>{escape(post["title"])}</h2><div class="designs">{"".join(cards)}</div><p>{escape(post["caption"])}</p><a href="exports/{post["slug"]}/caption.txt">Caption text</a><details><summary>Illustration note</summary><p>{escape(post.get("illustrationDescription",""))}</p></details></section>')
-    (SOURCE/'index.html').write_text('''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSE poster collection</title><style>body{font:16px/1.6 system-ui,sans-serif;background:#f6f5f0;color:#183a3c;margin:0;padding:40px}main{max-width:1200px;margin:auto}h1{font-size:40px;line-height:1.1}h2{font-size:24px;line-height:1.3}section{border-top:1px solid #bac5c1;margin-top:48px;padding-top:24px}.designs{display:flex;flex-wrap:wrap;gap:24px}figure{margin:0;width:calc((100% - 48px)/3);min-width:260px}img{width:100%;display:block}figcaption{padding-top:8px}a{color:#126b70}p{max-width:80ch}details{font-size:14px;margin-top:12px}@media(max-width:700px){body{padding:20px}figure{width:100%}}</style><main><h1>CSE poster collection</h1><p>Internal working files. Consistent typography and palettes; illustrations chosen for each research topic. Open a poster to view the full PNG, or download its PDF.</p>'''+''.join(sections)+'</main></html>')
+    (SOURCE/'index.html').write_text('''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSE poster collection</title><style>body{font:16px/1.6 system-ui,sans-serif;background:#f3f7fc;color:#15345f;margin:0;padding:40px}main{max-width:1200px;margin:auto}h1{font-size:40px;line-height:1.1}h2{font-size:24px;line-height:1.3}section{border-top:1px solid #c2d5ec;margin-top:48px;padding-top:24px}.designs{display:flex;flex-wrap:wrap;gap:24px}figure{margin:0;width:calc((100% - 48px)/3);min-width:260px}img{width:100%;display:block}figcaption{padding-top:8px}a{color:#175fae}p{max-width:80ch}details{font-size:14px;margin-top:12px}@media(max-width:700px){body{padding:20px}figure{width:100%}}</style><main><h1>CSE poster collection</h1><p>Internal working files. White and blue throughout; illustrations chosen for each research topic. Open a poster to view the full PNG, or download its PDF.</p>'''+''.join(sections)+'</main></html>')
 
 if __name__=='__main__':
     import argparse

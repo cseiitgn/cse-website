@@ -5,6 +5,7 @@ export const WEBSITE_UPDATES = [
     title: 'Awards update',
     changes: [
       { text: 'Awards archive', href: '/awards/' },
+      { text: 'Award posters', href: '/awards/' },
       { text: 'QIF winners', href: '/awards/#qif-india-2026' },
       { text: 'TCS fellowships', href: '/awards/#tcs-phd-fellowships-2026' },
     ],

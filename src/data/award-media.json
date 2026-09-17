@@ -1,0 +1,18 @@
+{
+  "qif-india-2026": {
+    "base": "/media/awards/qif-india-2026",
+    "alt": "Arjun Badola and Dikshit Hegde win QIF India 2026"
+  },
+  "tcs-phd-fellowships-2026": {
+    "base": "/media/awards/tcs-phd-fellowships-2026",
+    "alt": "Ayush Shrivastava and Rohit Narayanan selected for TCS PhD fellowships"
+  },
+  "gayatri-google-phd-fellowship": {
+    "base": "/media/awards/gayatri-google-phd-fellowship",
+    "alt": "Gayatri Priyadarsini Kancherla receives Google PhD Fellowship"
+  },
+  "anirban-stoc-test-of-time-2024": {
+    "base": "/media/awards/anirban-stoc-test-of-time-2024",
+    "alt": "Anirban Dasgupta receives STOC 2024 Test of Time Award"
+  }
+}

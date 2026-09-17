@@ -16,3 +16,10 @@
 .media-page a:focus-visible,.media-page button:focus-visible {outline:2px solid var(--secondary);outline-offset:4px;}
 .award-entry p {line-height:1.7;color:var(--muted-foreground);max-width:65ch;}
 @media(max-width:700px){.media-page{padding-block:1.5rem 3rem}.award-year{grid-template-columns:1fr;gap:1rem}.award-entry h3{font-size:1.15rem}}
+.award-with-media {display:grid;grid-template-columns:11rem minmax(0,1fr);gap:1.75rem;align-items:start;}
+.award-preview {display:block;border:1px solid var(--border);background:#fff;}
+.award-preview img {display:block;width:100%;height:auto;aspect-ratio:4/5;}
+.award-downloads {display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.1rem;}
+.award-downloads a {border:1px solid var(--border);border-radius:.25rem;padding:.4rem .65rem;font-size:.85rem;color:var(--secondary);background:var(--background);}
+.award-downloads a:hover {border-color:var(--secondary);}
+@media(max-width:700px){.award-with-media{grid-template-columns:1fr;gap:1rem}.award-preview{max-width:13rem}.award-downloads a{padding:.65rem .8rem}}

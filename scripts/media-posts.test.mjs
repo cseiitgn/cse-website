@@ -56,3 +56,20 @@ test('poster facts distinguish winners, advisers and historical award years', ()
   assert.equal(stoc.displayDate, '2024');
   for (const author of ['Anirban Dasgupta', 'Ravi Kumar', 'Tamás Sarlós']) assert.ok(stoc.creditLines.includes(author));
 });
+
+test('awards page links only the selected reviewed media, with matching files', () => {
+  const media=JSON.parse(fs.readFileSync('src/data/award-media.json','utf8'));
+  const page=parse(fs.readFileSync('dist/awards/index.html','utf8'));
+  const nodes=walk(page);
+  for(const post of posts){
+    assert.equal(post.palette,'white-blue');
+    const selected=media[post.awardId];assert.ok(selected);
+    const article=nodes.find(n=>n.tagName==='article' && attr(n,'id')===post.awardId);assert.ok(article);
+    for(const [published,original] of [['poster.png',post.preferredTemplate+'.png'],['poster.pdf',post.preferredTemplate+'.pdf'],['caption.txt','caption.txt']]){
+      const href=selected.base+'/'+published;
+      assert.ok(walk(article).some(n=>n.tagName==='a' && attr(n,'href')===href));
+      assert.ok(fs.readFileSync('dist'+href).equals(fs.readFileSync('media-posts/exports/'+post.slug+'/'+original)));
+    }
+    assert.ok(fs.statSync('dist'+selected.base+'/preview.webp').size<180000);
+  }
+});

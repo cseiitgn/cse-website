@@ -1,6 +1,6 @@
 # Internal CSE poster collection
 
-Working files for departmental announcements. This folder is outside `public/` and `src/pages/`; neither the gallery nor its posters are published by the website build. The public awards archive is maintained separately in `src/data/news.ts`.
+Working files for departmental announcements. This folder is outside `public/` and `src/pages/`; the working gallery and source files are excluded from the website build. Selected finished posters are explicitly copied to `public/media/awards/` for links on the awards page. The public awards archive is maintained separately in `src/data/news.ts`.
 
 ## Open and share
 
@@ -13,7 +13,7 @@ Preferred designs:
 - Google PhD Fellowship 2025: **Gaussian**.
 - STOC Test of Time Award 2024: **Low-poly**.
 
-The shared design language is typography, layout and the teal/copper palettes. Each illustration is chosen from the specific article or the recipient's verified research. Sources and the meaning of each schematic are stored in `posts.json` under `illustrationSources` and `illustrationDescription`.
+The shared design language is typography, layout and a white background with navy text and blue illustrations. Each illustration is chosen from the specific article or the recipient's verified research. Sources and the meaning of each schematic are stored in `posts.json` under `illustrationSources` and `illustrationDescription`.
 
 - **QIF:** a torus rendered as Gaussian splats or triangular faces, illustrating surface representation. It remains a conceptual example, not a project result.
 - **TCS:** a thermal patch and waveform for Ayush's health sensing; a monotone arithmetic formula for Rohit's algebraic complexity. The motifs describe their published research areas, without claiming to depict their fellowship proposals.
@@ -26,7 +26,7 @@ Simple versions remain available. Choose a text-led layout when no relevant illu
 
 1. Add a record to `posts.json` with verified names, award, year, caption, photo paths, templates and `preferredTemplate`. Keep winners and advisers distinct. Use only the year when the precise announcement date has not been verified.
 2. Add authentic public profile photographs under `images/<announcement>/` and document the sources below. Do not add email threads, private contacts or administrative paperwork.
-3. Choose the light `gaussian` or dark `low-poly` palette separately from the `illustration`. Original topic drawings live in `illustrations.py`; add a suitable drawing and explicit renderer mapping for new topics. Avoid a default decorative object. Single-recipient records use `detailLabel`, `detailLines`, `closing` and optional `creditLines`; two-recipient fellowship records use `advisers`, `adviserLines` and `effectiveDate`; three-person QIF-style teams use `proposalLines`. Use `posterName` to control long-name line breaks.
+3. All templates use white and blue. Choose `gaussian` or `low-poly` for the drawing style separately from the `illustration`. Original topic drawings live in `illustrations.py`; add a suitable drawing and explicit renderer mapping for new topics. Avoid a default decorative object. Single-recipient records use `detailLabel`, `detailLines`, `closing` and optional `creditLines`; two-recipient fellowship records use `advisers`, `adviserLines` and `effectiveDate`; three-person QIF-style teams use `proposalLines`. Use `posterName` to control long-name line breaks.
 4. Render a post and refresh the local gallery:
 
    ```sh
@@ -34,9 +34,9 @@ Simple versions remain available. Choose a text-led layout when no relevant illu
    ```
 
    Omit `--post` to regenerate all. Packages are isolated by `uv`, not website dependencies. Arial and Source Code Pro have DejaVu fallbacks.
-5. Inspect the PNG and PDF for cropping, line breaks and names. The renderer checks text against page bounds. Commit sources and exports together. Do not copy exports into `public/` unless explicitly asked to publish a selected poster.
+5. Inspect the PNG and PDF for cropping, line breaks and names. The renderer checks text against page bounds. Commit sources and exports together. Run `python3 media-posts/publish.py` to copy the preferred PNG, PDF, preview and caption for each announcement into `public/media/awards/` and update `src/data/award-media.json`. The remaining variants and source portraits stay internal.
 
-PNG: 2160 × 2700, portrait 4:5. PDF: 274.32 × 342.9 mm, embedded text. WebP previews: 1080 × 1350. `node --test scripts/media-posts.test.mjs` after a site build checks that this collection stays out of the deployed site.
+PNG: 2160 × 2700, portrait 4:5. PDF: 274.32 × 342.9 mm, embedded text. WebP previews: 1080 × 1350. `node --test scripts/media-posts.test.mjs` after a site build checks that the working collection stays internal and selected media downloads match their reviewed exports.
 
 ## Verified announcement facts
 
@@ -48,7 +48,7 @@ PNG: 2160 × 2700, portrait 4:5. PDF: 274.32 × 342.9 mm, embedded text. WebP pr
 
 ## Portrait sources
 
-Retrieved 17 September 2026. Images are placed in layout viewports without retouching.
+Retrieved 17 September 2026. Original source photographs are retained. User-requested background-cleaned copies for Rohit, Ayush, Raman and Anirban are recorded in `background-edits.json`; edited files use `-white.png`. The built-in image editor was instructed to preserve identity, expression, clothing and pose while replacing only distracting backgrounds with white. Other photos retain their original backgrounds.
 
 - Arjun Badola: [IITGN scholar directory](https://iitgn.ac.in/people/students/cse), image linked there at `https://drive.google.com/thumbnail?id=1pN_HyrvrN6nYg0XF5Ruybas5CWdnSleS`.
 - Dikshit Hegde: [personal academic homepage](https://dikshithegde.github.io/), `https://dikshithegde.github.io/images/Self.jpeg`.

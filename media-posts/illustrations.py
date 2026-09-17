@@ -12,20 +12,20 @@ def browser_permissions(p):
     """Two scripts with distinct allowed/blocked access to persistent storage."""
     x,y,w,h=533,451,479,300
     p.text(x,419,'BROWSER PRIVACY',16,mono=True,color=p.accent)
-    p.ax.add_patch(Rectangle((x,y),w,h,facecolor='#e8efea',edgecolor=p.accent,lw=1.1))
+    p.ax.add_patch(Rectangle((x,y),w,h,facecolor='#edf4fc',edgecolor=p.accent,lw=1.1))
     p.ax.plot([x,x+w],[y+34,y+34],color=p.accent,alpha=.4,lw=.8)
     for i in range(3): p.ax.add_patch(Circle((x+18+i*17,y+17),3.5,color=p.muted,alpha=.65))
     p.text(x+84,y+10,'Least-privilege access',18,color=p.ink)
     for yy,label in [(540,'Script A'),(654,'Script B')]:
-        p.ax.add_patch(Rectangle((556,yy-10),104,45,facecolor='#f5f3ec',edgecolor=p.accent,lw=.9))
+        p.ax.add_patch(Rectangle((556,yy-10),104,45,facecolor='#ffffff',edgecolor=p.accent,lw=.9))
         p.text(608,yy,label,18,ha='center')
     for yy,label in [(536,'Cookies'),(650,'Local storage')]:
         for size,alpha in [(1.4,.035),(1.2,.07),(1,.10)]:
             p.ax.add_patch(Circle((899,yy+20),43*size,facecolor=p.accent,alpha=alpha,edgecolor='none'))
-        p.ax.add_patch(Rectangle((806,yy-8),180,52,facecolor='#f5f3ec',edgecolor=p.accent,lw=1.1))
+        p.ax.add_patch(Rectangle((806,yy-8),180,52,facecolor='#ffffff',edgecolor=p.accent,lw=1.1))
         p.text(896,yy+8,label,19,ha='center')
     arrow(p,(662,553),(803,553));p.text(735,574,'allow',15,mono=True,ha='center',color=p.accent)
-    copper='#bd6844'
+    copper='#15345f'
     p.ax.plot([662,764],[670,670],color=copper,lw=1.5)
     p.ax.plot([758,772],[662,678],color=copper,lw=1.6)
     p.ax.plot([758,772],[678,662],color=copper,lw=1.6)
@@ -46,19 +46,19 @@ def sparse_projection(p):
     for row in range(4):
       for col in range(10):
         xx,yy=x+col*cell,y+row*cell
-        p.ax.add_patch(Rectangle((xx,yy),cell-3,cell-3,facecolor='#20434b',edgecolor='none'))
+        p.ax.add_patch(Rectangle((xx,yy),cell-3,cell-3,facecolor='#e6eff9',edgecolor='none'))
         if matrix[row,col]:
-            color='#65c8c7' if matrix[row,col]>0 else '#ddad78'
+            color='#2871bc' if matrix[row,col]>0 else '#76a9df'
             p.ax.add_patch(Polygon([(xx,yy),(xx+cell-3,yy),(xx+cell-3,yy+cell-3)],facecolor=color,edgecolor='none',alpha=.9))
             p.ax.add_patch(Polygon([(xx,yy),(xx,yy+cell-3),(xx+cell-3,yy+cell-3)],facecolor=color,edgecolor='none',alpha=.65))
     for i in range(10):
-        p.ax.add_patch(Rectangle((850,477+i*24),23,20,facecolor='#65c8c7',alpha=.4+.06*(i%6),edgecolor='none'))
+        p.ax.add_patch(Rectangle((850,477+i*24),23,20,facecolor='#2871bc',alpha=.4+.06*(i%6),edgecolor='none'))
     arrow(p,(888,590),(951,590))
     for i in range(4):
-        p.ax.add_patch(Rectangle((965,543+i*25),25,21,facecolor='#ddad78',alpha=.6+.1*i,edgecolor='none'))
+        p.ax.add_patch(Rectangle((965,543+i*25),25,21,facecolor='#76a9df',alpha=.6+.1*i,edgecolor='none'))
     p.text(667,677,'A',26,mono=True,ha='center',color=p.accent)
     p.text(861,726,'x',26,mono=True,ha='center',color=p.accent)
-    p.text(977,677,'y',26,mono=True,ha='center',color='#ddad78')
+    p.text(977,677,'y',26,mono=True,ha='center',color='#76a9df')
     p.text(533,766,'y = Ax  ·  fewer coordinates',20,mono=True,color=p.muted)
     p.text(533,801,'Schematic sparse map',14,color=p.muted)
 
@@ -68,7 +68,7 @@ def fellowship_research(p):
     # Synthetic thermal patch and synthetic periodic signal. No patient measurements.
     xx,yy=np.meshgrid(np.linspace(-1,1,10),np.linspace(-1,1,5))
     z=np.exp(-(xx*xx/.4+yy*yy/.8))
-    cool=np.array([.16,.57,.61]);warm=np.array([.92,.68,.40])
+    cool=np.array([.86,.93,.99]);warm=np.array([.09,.31,.60])
     for row in range(5):
       for col in range(10):
         color=cool*(1-z[row,col])+warm*z[row,col]

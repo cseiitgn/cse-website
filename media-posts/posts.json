@@ -26,7 +26,8 @@
         "name": "Prof. Shanmuganathan Raman",
         "posterName": "Prof. Shanmuganathan\nRaman",
         "role": "Faculty adviser",
-        "image": "images/qif-2026/shanmuganathan-raman.jpg"
+        "image": "images/qif-2026/shanmuganathan-raman-white.png",
+        "originalImage": "images/qif-2026/shanmuganathan-raman.jpg"
       }
     ],
     "templates": [
@@ -36,7 +37,9 @@
     ],
     "illustration": "torus",
     "illustrationDescription": "The torus is a doughnut-shaped surface. The Gaussian version uses overlapping elliptical contours, the low-poly version uses triangular faces, and the simple version uses a wireframe. These are conceptual illustrations, not results from the awarded project.",
-    "preferredTemplate": "gaussian"
+    "preferredTemplate": "gaussian",
+    "palette": "white-blue",
+    "awardId": "qif-india-2026"
   },
   {
     "slug": "tcs-phd-fellowships-2026",
@@ -55,14 +58,16 @@
         "role": "PhD fellow",
         "advisers": "Prof. Nipun Batra and Prof. Mayank Goel",
         "adviserLines": "Prof. Nipun Batra\nand Prof. Mayank Goel",
-        "image": "images/tcs-2026/ayush-shrivastava.jpg"
+        "image": "images/tcs-2026/ayush-shrivastava-white.png",
+        "originalImage": "images/tcs-2026/ayush-shrivastava.jpg"
       },
       {
         "name": "Rohit Narayanan",
         "role": "PhD fellow",
         "advisers": "Prof. Balagopal Komarath",
         "adviserLines": "Prof. Balagopal Komarath",
-        "image": "images/tcs-2026/rohit-narayanan.jpg"
+        "image": "images/tcs-2026/rohit-narayanan-white.png",
+        "originalImage": "images/tcs-2026/rohit-narayanan.jpg"
       }
     ],
     "templates": [
@@ -76,7 +81,9 @@
     "illustrationSources": [
       "https://ayushshrivstava.github.io/",
       "https://arxiv.org/abs/2511.03388"
-    ]
+    ],
+    "palette": "white-blue",
+    "awardId": "tcs-phd-fellowships-2026"
   },
   {
     "slug": "google-phd-fellowship-2025",
@@ -107,7 +114,9 @@
     "sourceUrl": "https://research.google/programs-and-events/phd-fellowship/recipients/",
     "illustrationSources": [
       "https://arxiv.org/abs/2411.15416"
-    ]
+    ],
+    "palette": "white-blue",
+    "awardId": "gayatri-google-phd-fellowship"
   },
   {
     "slug": "anirban-stoc-test-of-time-2024",
@@ -122,8 +131,9 @@
       {
         "name": "Prof. Anirban Dasgupta",
         "role": "Award co-recipient",
-        "image": "images/stoc-2024/anirban-dasgupta.jpg",
-        "photoFocus": 1
+        "image": "images/stoc-2024/anirban-dasgupta-white.png",
+        "photoFocus": 1,
+        "originalImage": "images/stoc-2024/anirban-dasgupta.jpg"
       }
     ],
     "templates": [
@@ -139,6 +149,8 @@
     "sourceUrl": "https://bowers.cornell.edu/news-stories/faculty-and-alumni-receive-test-time-awards-stoc-2024",
     "illustrationSources": [
       "https://arxiv.org/abs/1004.4240"
-    ]
+    ],
+    "palette": "white-blue",
+    "awardId": "anirban-stoc-test-of-time-2024"
   }
 ]
