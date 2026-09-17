@@ -1,5 +1,6 @@
 ---
 import { NAV_LINKS, flattenLinks } from "@/data/navigation";
+import { IS_STAGING } from "@/lib/staging";
 const { currentPage = "/" } = Astro.props;
 const pages = NAV_LINKS.flatMap((group) => flattenLinks(group.subitems ?? []));
 ---
@@ -109,7 +110,7 @@ const pages = NAV_LINKS.flatMap((group) => flattenLinks(group.subitems ?? []));
     </div>
   </div>
 </header>
-<div class="theme-review-bar">
+{IS_STAGING && <div class="theme-review-bar">
   <div class="container theme-review-inner">
     <label for="palette-select"
       >Colour
@@ -128,7 +129,7 @@ const pages = NAV_LINKS.flatMap((group) => flattenLinks(group.subitems ?? []));
     </label>
     <span class="theme-share-note">Your choices are included in the URL</span>
   </div>
-</div>
+</div>}
 <dialog id="site-search" aria-labelledby="search-title">
   <div class="search-top">
     <h2 id="search-title">Search the site</h2><button

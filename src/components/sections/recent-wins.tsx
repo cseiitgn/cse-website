@@ -1,96 +1,31 @@
-import { Trophy } from 'lucide-react';
-
 import { homepageAwardItems } from '@/data/news';
-
-const colors = ['bg-primary'];
+import awardMedia from '@/data/award-media.json';
 
 export default function RecentWins() {
-  const featuredAward =
-    homepageAwardItems.find((award) => award.featured) ?? homepageAwardItems[0];
-  const listedAwards = homepageAwardItems
-    .filter((award) => award.id !== featuredAward?.id)
-    .sort((a, b) => b.date.localeCompare(a.date));
+  const awards = [...homepageAwardItems].sort((a,b) => b.date.localeCompare(a.date));
+  const featured = awards.filter(award => award.id in awardMedia).slice(0,2);
+  const remaining = awards.filter(award => !featured.some(item => item.id === award.id));
 
   return (
-    <section className="section-padding">
-      <div className="container space-y-8">
-        <h2 className="flex items-center gap-2 text-2xl">
-          <Trophy className="text-secondary size-6" />
-          Awards &amp; fellowships
-        </h2>
-        <a href="/awards/" className="inline-block underline underline-offset-4">All awards &amp; fellowships →</a>
-
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.35fr)_minmax(0,0.65fr)]">
-          {featuredAward && (
-            <article className="self-start rounded-lg border border-secondary/20 bg-secondary/5 p-5">
-              <div className="flex items-center justify-between gap-3">
-                <span className="inline-flex rounded-full border border-secondary/30 bg-background px-2.5 py-1 text-[0.68rem] font-medium uppercase tracking-wide text-secondary">
-                  Featured
-                </span>
-                <span className="text-sm font-medium text-foreground">
-                  {featuredAward.displayDate}
-                </span>
-              </div>
-              <a
-                href={featuredAward.sourceUrl}
-                target={featuredAward.sourceUrl.startsWith("https://") ? "_blank" : undefined}
-                rel="noreferrer"
-                className="mt-5 block text-xl font-semibold tracking-tight text-foreground transition-colors hover:text-secondary"
-              >
-                {featuredAward.title}
+    <section className="section-padding home-recognition" aria-labelledby="recognition-heading">
+      <div className="container">
+        <div className="recognition-heading">
+          <div><p className="eyebrow">Our community</p><h2 id="recognition-heading">Awards &amp; fellowships</h2></div>
+          <a className="text-link" href="/awards/">All awards &amp; fellowships <span aria-hidden="true">→</span></a>
+        </div>
+        <div className="recognition-featured">
+          {featured.map(award => {
+            const media = awardMedia[award.id as keyof typeof awardMedia];
+            return <article className="recognition-story" key={award.id}>
+              <a className="recognition-poster" href={`/awards/#${award.id}`} aria-label={`Read about ${award.title}`}>
+                <img src={`${media.base}/preview.webp`} alt={media.alt} width="1080" height="1350" loading="lazy" decoding="async" />
               </a>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                {featuredAward.summary}
-              </p>
-            </article>
-          )}
-
-          <table className="w-full table-fixed border-collapse">
-            <colgroup>
-              <col className="w-[42%]" />
-              <col className="hidden md:table-column w-[46%]" />
-              <col className="w-[12%]" />
-            </colgroup>
-            <thead>
-              <tr className="h-10 border-b text-left text-muted-foreground">
-                <th className="pr-4 font-normal">Name</th>
-                <th className="hidden pr-4 font-normal md:table-cell">
-                  Description
-                </th>
-                <th className="text-right font-normal">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {listedAwards.map((award, index) => (
-                <tr
-                  key={award.id}
-                  className="border-b text-left text-muted-foreground"
-                >
-                  <td className="py-4 pr-4 text-base font-medium tracking-tight text-foreground">
-                    <div className="flex items-center gap-3">
-                      <span
-                        className={`size-3 shrink-0 rounded-full ${colors[index % colors.length]}`}
-                      />
-                      <a
-                        href={award.sourceUrl}
-                        target={award.sourceUrl.startsWith("https://") ? "_blank" : undefined}
-                        rel="noreferrer"
-                        className="block transition-colors hover:text-secondary"
-                      >
-                        {award.title}
-                      </a>
-                    </div>
-                  </td>
-                  <td className="hidden py-4 pr-4 text-sm md:table-cell">
-                    {award.summary}
-                  </td>
-                  <td className="py-4 text-right text-sm text-foreground">
-                    {award.displayDate}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+              <div><time dateTime={award.date}>{award.displayDate}</time><h3><a href={`/awards/#${award.id}`}>{award.title}</a></h3><p>{award.summary}</p><a className="recognition-details" href={`/awards/#${award.id}`}>Details &amp; poster <span aria-hidden="true">→</span></a></div>
+            </article>;
+          })}
+        </div>
+        <div className="recognition-more">
+          {remaining.map(award => <a href={`/awards/#${award.id}`} key={award.id}><span>{award.title}</span><time dateTime={award.date}>{award.displayDate}</time><span aria-hidden="true">↗</span></a>)}
         </div>
       </div>
     </section>

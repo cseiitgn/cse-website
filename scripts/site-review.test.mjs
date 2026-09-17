@@ -13,6 +13,26 @@ const walk = (node, predicate) => [
 const home = read("dist/index.html");
 const dom = parse(home);
 
+test("homepage uses one responsive class photograph and defers award posters", () => {
+  const hero = walk(dom, n => n.tagName === "figure" && attr(n, "class") === "hero-photo")[0];
+  const photos = walk(hero, n => n.tagName === "img");
+  assert.equal(photos.length, 1);
+  assert.match(attr(photos[0], "src"), /cse-class-2026-960.webp$/);
+  assert.equal(attr(photos[0], "fetchpriority"), "high");
+  for (const candidate of attr(photos[0], "srcset").split(",")) {
+    const path = candidate.trim().split(" ")[0];
+    assert.ok(fs.statSync("dist" + path).size < 180000, `${path} exceeds the image budget`);
+  }
+  const posters = walk(dom, n => n.tagName === "img" && attr(n, "src")?.startsWith("/media/awards/"));
+  assert.equal(posters.length, 2);
+  for (const poster of posters) assert.equal(attr(poster, "loading"), "lazy");
+});
+
+test("theme review controls follow the staging-only changelog", () => {
+  const reviewControls = walk(dom, n => n.tagName === "select" && attr(n, "id") === "palette-select");
+  assert.equal(reviewControls.length, fs.existsSync("dist/changelog/index.html") ? 1 : 0);
+});
+
 test("homepage renders content without React and stays within the script budget", () => {
   assert.equal(walk(dom, (n) => n.tagName === "astro-island").length, 0);
   assert.match(home, /Computer Science/);

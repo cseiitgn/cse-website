@@ -2,8 +2,10 @@ export const WEBSITE_UPDATES = [
   {
     id: '2026-09-17',
     date: '17 September 2026',
-    title: 'Awards update',
+    title: 'Website launch',
     changes: [
+      { text: 'Homepage polish', href: '/' },
+      { text: 'Class photograph', href: '/' },
       { text: 'Awards archive', href: '/awards/' },
       { text: 'Award posters', href: '/awards/' },
       { text: 'QIF winners', href: '/awards/#qif-india-2026' },

@@ -17,10 +17,9 @@
 - Staging branch: `staging`.
 - Expected branch URL: https://staging--cseiitgn.netlify.app/
 - Netlify's existing GitHub integration builds and deploys the website.
-- The GitHub workflow on `staging` runs build and authentication checks only.
+- The GitHub workflow runs build and authentication checks only.
   It replaces the obsolete CLI deployment to site ID
   `e20cb60a-0bfa-48dc-9e8e-5925b0c86ccd`, whose latest runs failed at deploy time.
-  The workflow on `main` stays unchanged until this branch is merged.
 
 ## Password protection
 
