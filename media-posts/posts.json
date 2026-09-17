@@ -71,8 +71,12 @@
       "simple"
     ],
     "preferredTemplate": "low-poly",
-    "illustration": "torus",
-    "illustrationDescription": "Decorative torus used as the CSE poster motif; not a research result or a depiction of the fellows’ work."
+    "illustration": "sensing-and-formulas",
+    "illustrationDescription": "Ayush: a synthetic thermal patch and waveform evoke thermal health sensing. Rohit: a small monotone arithmetic formula evokes his work on bounded-depth formula complexity. These are original topic illustrations, not research measurements, paper figures or claims about the funded fellowship proposals.",
+    "illustrationSources": [
+      "https://ayushshrivstava.github.io/",
+      "https://arxiv.org/abs/2511.03388"
+    ]
   },
   {
     "slug": "google-phd-fellowship-2025",
@@ -95,12 +99,15 @@
       "gaussian"
     ],
     "preferredTemplate": "gaussian",
-    "illustration": "torus",
-    "illustrationDescription": "Decorative Gaussian torus; not a representation of the recipient’s research.",
+    "illustration": "browser-permissions",
+    "illustrationDescription": "A browser window shows scripts with allowed and blocked access to persistent storage. Inspired by Gayatri’s paper on least-privilege browser-storage access; this is an original schematic, not an assertion that this specific paper received the fellowship.",
     "detailLabel": "RESEARCH AREA",
     "detailLines": "Privacy, Safety, and Security",
     "closing": "Congratulations on the fellowship.",
-    "sourceUrl": "https://research.google/programs-and-events/phd-fellowship/recipients/"
+    "sourceUrl": "https://research.google/programs-and-events/phd-fellowship/recipients/",
+    "illustrationSources": [
+      "https://arxiv.org/abs/2411.15416"
+    ]
   },
   {
     "slug": "anirban-stoc-test-of-time-2024",
@@ -123,12 +130,15 @@
       "low-poly"
     ],
     "preferredTemplate": "low-poly",
-    "illustration": "torus",
-    "illustrationDescription": "Decorative triangular torus; not a visualisation of the Johnson-Lindenstrauss transform.",
+    "illustration": "sparse-projection",
+    "illustrationDescription": "A sparse matrix maps a longer coordinate vector to a shorter one, illustrating the dimension-reduction idea in the awarded paper. The displayed toy matrix illustrates shape and sparsity only; it is not the paper’s construction and does not claim a distance-preservation guarantee.",
     "detailLabel": "AWARDED PAPER · STOC 2010",
     "detailLines": "A Sparse Johnson-Lindenstrauss Transform",
     "creditLines": "Anirban Dasgupta · Ravi Kumar · Tamás Sarlós",
     "closing": "Congratulations to the authors.",
-    "sourceUrl": "https://bowers.cornell.edu/news-stories/faculty-and-alumni-receive-test-time-awards-stoc-2024"
+    "sourceUrl": "https://bowers.cornell.edu/news-stories/faculty-and-alumni-receive-test-time-awards-stoc-2024",
+    "illustrationSources": [
+      "https://arxiv.org/abs/1004.4240"
+    ]
   }
 ]

@@ -10,6 +10,7 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import Ellipse, Polygon, Rectangle
 from matplotlib.font_manager import FontProperties
 from PIL import Image
+from illustrations import browser_permissions, sparse_projection, fellowship_research
 
 SOURCE=Path(__file__).resolve().parent
 ROOT=SOURCE.parent
@@ -132,8 +133,8 @@ def render(post,template):
         person=post['people'][0]
         p.text(68,325,post['badge'],21,mono=True,color=p.accent)
         p.photo(SOURCE/person['image'],68,419,390,390,person.get('photoFocus',.5))
-        if template=='gaussian': gaussian(p.ax,(760,609),138)
-        else: poly(p.ax,(760,609),138)
+        illustrations={'browser-permissions':browser_permissions,'sparse-projection':sparse_projection}
+        illustrations[post['illustration']](p)
         p.text(68,848,person['role'].upper(),15,mono=True,color=p.accent)
         p.text(68,883,person.get('posterName',person['name']),43,bold=True,linespacing=1.12)
         p.rule(1008)
@@ -144,12 +145,12 @@ def render(post,template):
     elif len(post['people'])==2:
         p.text(68,323,post['badge'],24,mono=True,color=p.accent)
         if template!='simple':
-            if template=='gaussian': gaussian(p.ax,(897,365),64)
-            else: poly(p.ax,(897,365),64)
-            p.people(y=445,h=400)
-            p.rule(1090)
-            p.text(68,1130,'Congratulations to our research scholars.',30,bold=True)
-            p.text(68,1183,f"Fellowships effective {post['effectiveDate']}.",24,color=p.muted)
+            assert post['illustration']=='sensing-and-formulas'
+            fellowship_research(p)
+            p.people(y=505,h=400)
+            p.rule(1144)
+            p.text(68,1176,'Congratulations to our research scholars.',30,bold=True)
+            p.text(68,1222,f"Fellowships effective {post['effectiveDate']}.",24,color=p.muted)
         else:
             p.people(y=413,h=400)
             p.rule(1042)
@@ -195,7 +196,7 @@ def make_gallery(posts):
             label={'gaussian':'Gaussian','low-poly':'Low-poly','simple':'Simple'}[template]
             cards.append(f'<figure><a href="{base}.png"><img src="{base}-preview.webp" alt="{escape(post["title"])} — {label}"></a><figcaption>{label}{" · preferred" if template==preferred else ""} · <a href="{base}.png">PNG</a> · <a href="{base}.pdf">PDF</a></figcaption></figure>')
         sections.append(f'<section><h2>{escape(post["title"])}</h2><div class="designs">{"".join(cards)}</div><p>{escape(post["caption"])}</p><a href="exports/{post["slug"]}/caption.txt">Caption text</a><details><summary>Illustration note</summary><p>{escape(post.get("illustrationDescription",""))}</p></details></section>')
-    (SOURCE/'index.html').write_text('''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSE poster collection</title><style>body{font:16px/1.6 system-ui,sans-serif;background:#f6f5f0;color:#183a3c;margin:0;padding:40px}main{max-width:1200px;margin:auto}h1{font-size:40px;line-height:1.1}h2{font-size:24px;line-height:1.3}section{border-top:1px solid #bac5c1;margin-top:48px;padding-top:24px}.designs{display:flex;flex-wrap:wrap;gap:24px}figure{margin:0;width:calc((100% - 48px)/3);min-width:260px}img{width:100%;display:block}figcaption{padding-top:8px}a{color:#126b70}p{max-width:80ch}details{font-size:14px;margin-top:12px}@media(max-width:700px){body{padding:20px}figure{width:100%}}</style><main><h1>CSE poster collection</h1><p>Internal working files. Gaussian and low-poly are the preferred styles. Open a poster to view the full PNG, or download its PDF.</p>'''+''.join(sections)+'</main></html>')
+    (SOURCE/'index.html').write_text('''<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CSE poster collection</title><style>body{font:16px/1.6 system-ui,sans-serif;background:#f6f5f0;color:#183a3c;margin:0;padding:40px}main{max-width:1200px;margin:auto}h1{font-size:40px;line-height:1.1}h2{font-size:24px;line-height:1.3}section{border-top:1px solid #bac5c1;margin-top:48px;padding-top:24px}.designs{display:flex;flex-wrap:wrap;gap:24px}figure{margin:0;width:calc((100% - 48px)/3);min-width:260px}img{width:100%;display:block}figcaption{padding-top:8px}a{color:#126b70}p{max-width:80ch}details{font-size:14px;margin-top:12px}@media(max-width:700px){body{padding:20px}figure{width:100%}}</style><main><h1>CSE poster collection</h1><p>Internal working files. Consistent typography and palettes; illustrations chosen for each research topic. Open a poster to view the full PNG, or download its PDF.</p>'''+''.join(sections)+'</main></html>')
 
 if __name__=='__main__':
     import argparse

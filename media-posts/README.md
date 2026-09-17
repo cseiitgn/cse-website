@@ -13,13 +13,20 @@ Preferred designs:
 - Google PhD Fellowship 2025: **Gaussian**.
 - STOC Test of Time Award 2024: **Low-poly**.
 
-Simple versions remain as alternatives. Geometric motifs are decorative; the QIF torus is a conceptual illustration of surface representations, not a result from the awarded project. Other posters use it as a visual motif, without implying a connection to the recipient's research.
+The shared design language is typography, layout and the teal/copper palettes. Each illustration is chosen from the specific article or the recipient's verified research. Sources and the meaning of each schematic are stored in `posts.json` under `illustrationSources` and `illustrationDescription`.
+
+- **QIF:** a torus rendered as Gaussian splats or triangular faces, illustrating surface representation. It remains a conceptual example, not a project result.
+- **TCS:** a thermal patch and waveform for Ayush's health sensing; a monotone arithmetic formula for Rohit's algebraic complexity. The motifs describe their published research areas, without claiming to depict their fellowship proposals.
+- **Google fellowship:** a browser-storage permission diagram inspired by Gayatri's work on least-privilege access.
+- **STOC:** a sparse matrix mapping a longer vector to a shorter one, linked to the awarded dimension-reduction paper. The toy matrix illustrates sparsity and dimensions; no numerical accuracy guarantee is implied.
+
+Simple versions remain available. Choose a text-led layout when no relevant illustration is supported by the sources.
 
 ## Reuse
 
 1. Add a record to `posts.json` with verified names, award, year, caption, photo paths, templates and `preferredTemplate`. Keep winners and advisers distinct. Use only the year when the precise announcement date has not been verified.
 2. Add authentic public profile photographs under `images/<announcement>/` and document the sources below. Do not add email threads, private contacts or administrative paperwork.
-3. Choose `gaussian` or `low-poly`. Single-recipient records use `detailLabel`, `detailLines`, `closing` and optional `creditLines`; two-recipient fellowship records use `advisers`, `adviserLines` and `effectiveDate`; three-person QIF-style teams use `proposalLines`. Use `posterName` to control long-name line breaks.
+3. Choose the light `gaussian` or dark `low-poly` palette separately from the `illustration`. Original topic drawings live in `illustrations.py`; add a suitable drawing and explicit renderer mapping for new topics. Avoid a default decorative object. Single-recipient records use `detailLabel`, `detailLines`, `closing` and optional `creditLines`; two-recipient fellowship records use `advisers`, `adviserLines` and `effectiveDate`; three-person QIF-style teams use `proposalLines`. Use `posterName` to control long-name line breaks.
 4. Render a post and refresh the local gallery:
 
    ```sh
@@ -55,3 +62,10 @@ Retrieved 17 September 2026. Images are placed in layout viewports without retou
 ## Scientific illustration
 
 Original mathematical artwork inspired by Nicolas Rougier's [Scientific Visualization](https://github.com/rougier/scientific-visualization-book) approach. No book code or figures are copied. A torus is sampled and projected as Gaussian ellipse contours, triangular faces or a wireframe. It is not a reconstruction or result from the QIF project. For the underlying Gaussian-splatting method, see [Kerbl et al., SIGGRAPH 2023](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/).
+
+### Sources for the topic illustrations
+
+- [Gayatri et al., Least Privilege Access for Persistent Storage Mechanisms in Web Browsers](https://arxiv.org/abs/2411.15416): labels restrict script access to cookies and other persistent storage. The poster uses an original simplified allow/block diagram.
+- [Ayush's research homepage](https://ayushshrivstava.github.io/): health sensing, thermal imagery and sleep-apnea screening. The poster's thermal patch and waveform are synthetic, with no patient data.
+- [Komarath and Narayanan, Monotone Bounded Depth Formula Complexity of Graph Homomorphism Polynomials](https://arxiv.org/abs/2511.03388): the poster uses a small arithmetic formula as an introductory visual, not a reproduction of their decomposition.
+- [Dasgupta, Kumar and Sarlós, A Sparse Johnson–Lindenstrauss Transform](https://arxiv.org/abs/1004.4240): sparse projection for dimension reduction. The poster illustrates matrix shape and sparsity, not the construction or its guarantees.
